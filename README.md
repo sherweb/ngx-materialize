@@ -1,4 +1,4 @@
-# ng2-materialize
+# ng2-materialize [![CircleCI](https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955)](https://circleci.com/gh/sherweb/ng2-materialize)
 
 This library is an [Angular 2](https://angular.io/) wrap around [Materialize](http://materializecss.com/) library, a responsive CSS/JS framework that implements Material Design specifications from Google.
 

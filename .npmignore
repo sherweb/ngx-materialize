@@ -11,5 +11,6 @@
 ./src/test.ts
 ./src/tsconfig.json
 ./src/typings.d.ts
+./tslint-formatters
 karma.conf.js
 protractor.conf.js
