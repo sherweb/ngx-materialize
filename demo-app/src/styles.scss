@@ -1,0 +1,54 @@
+@import "./_variables";
+
+code[class*="language-"] {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.1em;
+  color: #000;
+  padding: 0.1em 0.3em;
+  margin: 0 0.05em;
+}
+
+table {
+  &.striped {
+    > tbody {
+      > tr {
+        &:nth-child(odd) {
+          background-color: rgba(0,0,0,0.07) !important;
+        }
+        > td {
+          &:first-child {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.section {
+  padding-top: 0 !important;
+
+  > p:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+.preloader-container {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+}
+
+/* Materialize-CSS addons */
+
+.m-valign-wrapper {
+  @media #{$medium-and-up} {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}

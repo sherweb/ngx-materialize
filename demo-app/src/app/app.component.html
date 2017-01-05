@@ -1,0 +1,40 @@
+<header>
+  <mz-sidenav
+    [id]="'sidenav'"
+    [backgroundClass]="'blue-grey'"
+    [collapseButtonId]="'btn-sidenav'"
+    [fixed]="true">
+
+    <mz-sidenav-header class="sidenav-header">
+      <img class="angular-logo" src="assets/angular.png">
+      <img class="materialize-logo" src="assets/materialize-logo.png">
+      <h5 class="materialize-name center-align white-text">ng2-materialize</h5>
+    </mz-sidenav-header>
+
+    <mz-sidenav-subheader>Components</mz-sidenav-subheader>
+
+    <mz-sidenav-link *ngFor="let route of routes">
+      <a class="waves-effect" [routerLink]="route.path" *ngIf="route.data">
+        <i class="mdi mdi-{{ route.data.icon }} mdi-24px"></i>{{ route.data.text }}
+      </a>
+    </mz-sidenav-link>
+  </mz-sidenav>
+
+  <mz-button
+    class="sidenav-button"
+    [id]="'btn-sidenav'"
+    [buttonClass]="'blue-grey hide-on-large-only'"
+    [float]="true"
+    [large]="true">
+    <mz-icon [mdiIcon]="'menu'"></mz-icon>
+  </mz-button>
+</header>
+
+<main>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer>
+</footer>

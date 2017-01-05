@@ -1,0 +1,34 @@
+.header-background {
+  background: rgba(0,0,0,0.14);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.07) inset;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 245px;
+  width: 100%;
+  z-index: -1;
+}
+
+.header-content {
+  height: 176px;
+  margin-bottom: 76px;
+}
+
+.angular-logo {
+  max-height: 175px;
+}
+
+.plus-logo {
+  margin: 0 -58px;
+  color: rgba(255,255,255,0.75);
+
+  #{'/deep/'} .mdi:before {
+    font-size: 116px;
+  }
+}
+
+.materialize-logo {
+  margin: 14px;
+  max-height: 125px;
+}

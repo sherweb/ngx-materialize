@@ -1,0 +1,281 @@
+<h3>Navbar</h3>
+
+<div class="section">
+  <h5 class="thin">Simple Navbar with items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Simple navbar with items defined by <code class="language-markup">mz-navbar-item-container</code> and <code class="language-markup">mz-navbar-item</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Navbar with custom style</h5>
+
+  <div class="col s12">
+    <mz-navbar [navbarClass]="'blue'">
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with custom style defined by <code class="language-markup">navbarClass</code> property on <code class="language-markup">mz-navbar</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Right aligned items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="#" class="brand-logo">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with logo and right aligned items defined by <code class="language-markup">align</code> property on <code class="language-markup">mz-navbar-item-container</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Left aligned items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="#" class="brand-logo right">Logo</a>
+      <mz-navbar-item-container [align]="'left'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with logo and left aligned items defined by <code class="language-markup">align</code> property on <code class="language-markup">mz-navbar-item-container</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Centering the logo</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="#" class="brand-logo center">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with centered logo
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Centering the logo, and left and right items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <mz-navbar-item-container [align]="'left'">
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+      </mz-navbar-item-container>
+      <a href="#" class="brand-logo center">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with centered logo and two <code class="language-markup">mz-navbar-item-container</code> left and right aligned
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Active items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="#" class="brand-logo">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item [active]="true"><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with an active item defined by <code class="language-markup">active</code> property on <code class="language-markup">mz-navbar-item</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Navbar dropdown menu</h5>
+
+  <div class="col s12">
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
+    <mz-navbar>
+      <a href="#" class="brand-logo">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+        <mz-navbar-item>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">
+            Dropdown
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with an item as dropdown
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-navbar>
+  &lt;a href="#" class="brand-logo">Logo&lt;/a>
+  &lt;mz-navbar-item-container [align]="'right'">
+    &lt;mz-navbar-item>&lt;a href="#">Sass&lt;/a>&lt;/mz-navbar-item>
+    &lt;mz-navbar-item>&lt;a href="#">Components&lt;/a>&lt;/mz-navbar-item>
+    &lt;mz-navbar-item>&lt;a routerLink="js">JavaScript&lt;/a>&lt;/mz-navbar-item>
+  &lt;/mz-navbar-item-container>
+&lt;/mz-navbar>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+  <h5 class="thin">Properties</h5>
+
+  <div class="section">
+    <h6 class="thin">mz-navbar</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar</code> will transclude any contents into a <code class="language-markup">nav</code> tag, and can host <code class="language-markup">mz-navbar-item-container</code>.
+    </p>
+
+    <p>
+      It can be customized using the following property on the <code class="language-markup">mz-navbar</code> element.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>navbarClass</td>
+          <td>string</td>
+          <td>Navbar css class to be applied on the navbar</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h6 class="thin">mz-navbar-item-container</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar-item-container</code> will transclude any contents, and can host <code class="language-markup">mz-navbar-item</code>.
+    </p>
+
+    <p>
+      It can be customized using the following property on the <code class="language-markup">mz-navbar-item-container</code> element.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>align</td>
+          <td>string</td>
+          <td>Alignment of the item-container, could be <code class="language-markup">left</code> or <code class="language-markup">right</code></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h6 class="thin">mz-navbar-item</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar-item</code> will transclude any contents.
+    </p>
+
+    <p>
+      It can be customized using the following properties on the <code class="language-markup">mz-navbar</code> element.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>active</td>
+          <td>boolean</td>
+          <td>Denote the current item as active</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>itemClass</td>
+          <td>string</td>
+          <td>Css class to be applied on the navbar item</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

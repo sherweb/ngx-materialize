@@ -1,0 +1,99 @@
+<h3>Progress</h3>
+
+<h5 class="thin">Determinate</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6"
+    [percentage]="determinate">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    Using <code class="language-markup">percentage</code> input property you can define the percentage of completion of the progress bar.
+  </p>
+</div>
+
+<h5 class="thin">Indeterminate</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    When <code class="language-markup">percentage</code> input property is not provided on <code class="language-markup">mz-progress</code> tag the progress bar will be shown as indeterminate.
+  </p>
+</div>
+
+<h5 class="thin">Colors</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6"
+    [backgroundClass]="'blue lighten-4'"
+    [percentage]="55"
+    [progressClass]="'blue'">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    Optionally, colors can be customized using <code class="language-markup">backgroundClass</code> and/or <code class="language-markup">progressClass</code> input properties but are <u>not required</u>.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-progress
+  [backgroundClass]="'blue lighten-4'"
+  [percentage]="55"
+  [progressClass]="'blue'">
+&lt;/mz-progress>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    Cards can be customized using the following properties on the <code class="language-markup">mz-progress</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>backgroundClass</td>
+        <td>string</td>
+        <td>Background css class to be applied on the progress</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>percentage</td>
+        <td>number</td>
+        <td>Percentage of progress completion</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>progressClass</td>
+        <td>string</td>
+        <td>Progress css class to be applied on the progress</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

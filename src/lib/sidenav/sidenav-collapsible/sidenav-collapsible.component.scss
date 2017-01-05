@@ -1,0 +1,25 @@
+.collapsible-header {
+  @media only screen and (min-width: 992px) {
+    padding: 0 32px;
+  }
+}
+
+:host #{'/deep/'} {
+  .collapsible-header {
+    i {
+      color: rgba(0,0,0,0.54);
+    }
+  }
+
+  .collapsible-body {
+    li {
+      a {
+        font-weight: initial;
+
+        @media only screen and (min-width: 992px) {
+          padding: 0 48px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import "../_variables";
+
+header {
+  .sidenav-header {
+    background: rgba(0,0,0,0.14);
+    display: block;
+    padding-top: 10px;
+  }
+
+  .angular-logo {
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+  }
+
+  .materialize-logo {
+    display: block;
+    margin: -62px auto 0;
+  }
+
+  .materialize-name {
+    background: rgba(0,0,0,0.14);
+    font-weight: 200;
+    padding: 14px;
+  }
+
+  .sidenav-button {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 24;
+  }
+}
+
+main {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  @media #{$large-and-up} {
+    padding-left: 300px;
+  }
+
+  .container {
+    width: 90% !important;
+
+    @media #{$large-and-up} {
+      margin: 0 3%;
+    }
+  }
+}

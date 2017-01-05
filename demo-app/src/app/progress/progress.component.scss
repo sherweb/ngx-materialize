@@ -1,0 +1,8 @@
+@import "../../_variables";
+@import "../../_route-animation-host";
+
+.valign-wrapper {
+  @media #{$small-and-down} {
+    display: block !important;
+  }
+}

@@ -1,0 +1,22 @@
+ <div class="preloader-wrapper active {{ size }}">
+
+    <div
+      class="spinner-layer"
+      [class.spinner-red-only]="color === 'red'"
+      [class.spinner-green-only]="color === 'green'"
+      [class.spinner-blue-only]="color === 'blue'"
+      [class.spinner-yellow-only]="color === 'yellow'">
+
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div>
+
+      <div class="gap-patch">
+        <div class="circle"></div>
+      </div>
+
+      <div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,285 @@
+<h3>Button</h3>
+
+<h5 class="thin">Basic button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button class="col s12 m3">
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Simple basic button
+  </p>
+</div>
+
+<h5 class="thin">Styled button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3"
+    [buttonClass]="'red'"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Basic button with <code class="language-markup">buttonClass</code> property as <i>red</i>
+  </p>
+</div>
+
+<h5 class="thin">Styled text button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3"
+    [textClass]="'yellow-text'"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Basic button with <code class="language-markup">textClass</code> property as <i>yellow-text</i>
+  </p>
+</div>
+
+<h5 class="thin">Large button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button
+    class="col s12 m3" 
+    [large]="true"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    The button has a larger height with<code class="language-markup">large</code> property
+  </p>
+</div>
+
+<h5 class="thin">Flat button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3" 
+    [flat]="true"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    The button has a flat elevation with <code class="language-markup">flat</code> property
+  </p>
+</div>
+
+<h5 class="thin">Float button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3" 
+    [float]="true"
+  >
+    <mz-icon [icon]="'add'"></mz-icon>
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button is round and floating with <code class="language-markup">float</code> property
+  </p>
+</div>
+
+<h5 class="thin">Flat & float button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button
+    class="col s12 m3"
+    [float]="true"
+    [flat]="true"
+  >
+    <mz-icon [icon]="'menu'" [iconClass]="'black-text'"></mz-icon>
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button is flat, round and floating with these properties : <code class="language-markup">float</code> & <code class="language-markup">flat</code>
+  </p>
+</div>
+
+<h5 class="thin">Button with left icon</h5>
+
+<div class="row valign-wrapper">
+  <mz-button class="col s12 m3">
+    <mz-icon [icon]="'cloud'" [iconAlign]="'left'"></mz-icon>
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button with a left <code class="language-markup">mz-icon</code> set by <code class="language-markup">iconAlign</code> property
+  </p>
+</div>
+
+<h5 class="thin">Button with right icon</h5>
+
+<div class="row valign-wrapper">
+  <mz-button class="col s12 m3">
+    <mz-icon [icon]="'cloud'" [iconAlign]="'right'"></mz-icon>
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button with a right <code class="language-markup">mz-icon</code> set by <code class="language-markup">iconAlign</code> property
+  </p>
+</div>
+
+<h5 class="thin">Button with styled icon</h5>
+
+<div class="row valign-wrapper">
+  <mz-button class="col s12 m3">
+    <mz-icon [icon]="'cloud'" [iconAlign]="'left'" [iconClass]="'red-text'"></mz-icon>
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button with a red color set by <code class="language-markup">iconClass</code> property as <code class="language-markup">red-text</code>
+  </p>
+</div>
+
+<h5 class="thin">Button with Material Design Icon (mdi)</h5>
+
+<div class="row valign-wrapper">
+  <mz-button class="col s12 m3">
+    <mz-icon [mdiIcon]="'owl'" [iconAlign]="'left'"></mz-icon>
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Button with a mdi icon set by <code class="language-markup">mdiIcon</code> property as <code class="language-markup">owl</code>
+  </p>
+</div>
+<h5 class="thin">Disabled button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3"
+    [disabled]="true"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Buttom becomes disabled with <code class="language-markup">disabled</code> property
+  </p>
+</div>
+
+<h5 class="thin">Clickable button</h5>
+
+<div class="row valign-wrapper">
+  <mz-button 
+    class="col s12 m3"
+    [submit]="true"
+    [autofocus]="true"
+    (onClick)="this.clicked($event)"
+  >
+    button
+  </mz-button>
+
+  <p class="col s12 m9">
+    Buttom has a submit type with <code class="language-markup">submit</code> property and a callback function with <code class="language-markup">onClick</code> property
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-button 
+  [textClass]="'yellow-text'"
+  [flat]="true"
+>
+  button
+&lt;/mz-button>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    Buttons can be customized using the following properties on the <code class="language-markup">mz-button</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>autofocus</td>
+        <td>boolean</td>
+        <td>Button will be auto focused</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>buttonClass</td>
+        <td>string</td>
+        <td>Button css class to be applied on the button</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>boolean</td>
+        <td>Button will be disabled</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>flat</td>
+        <td>boolean</td>
+        <td>Button will have flat style</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>float</td>
+        <td>boolean</td>
+        <td>Button will have float style</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>Id to be applied on the button</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>large</td>
+        <td>boolean</td>
+        <td>Button will have large style</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>submit</td>
+        <td>boolean</td>
+        <td>Button will have a submit type</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>textClass</td>
+        <td>string</td>
+        <td>Text class to be applied on the button text</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>onClick</td>
+        <td>Function</td>
+        <td>Function that will be called on click</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

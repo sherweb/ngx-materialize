@@ -1,0 +1,6 @@
+<i 
+  class="{{ icon && 'material-icons' }}{{ mdiIcon && 'mdi mdi-' + mdiIcon }}{{ mdiIcon && ' mdi-' + (mdiIconSize || '24px')  }}{{ iconClass && ' ' + iconClass }}"
+  [class.left]="iconAlign === 'left'"
+  [class.right]="iconAlign === 'right'">
+  {{ icon }}
+</i>

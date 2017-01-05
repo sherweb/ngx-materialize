@@ -1,0 +1,150 @@
+<h3>Icon</h3>
+
+<div class="section">
+  <p>
+    The <code class="language-markup">mz-icon</code> component support both <a href="https://material.io/icons/" target="_blank">Material Icons</a> and <a href="https://materialdesignicons.com/" target="_blank">Material Design Icons</a>. Its use is not mandatory, but it's provide an easy icons integration.
+  </p>
+
+  <p>
+    You may use one, both, or neither of these implementation of icons. Although we suggest you to use Material Design Icons due to the fact that not only it provides access to all the Google icons but it has a lot of community added icons that might be usefull.
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="thin">Material Icons</h5>
+  <h6><a href="https://materialdesignicons.com/">https://materialdesignicons.com/</a></h6>
+
+  <div class="row m-valign-wrapper">
+    <mz-icon
+      class="col s12 m2"
+      [icon]="'cloud'">
+    </mz-icon>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">cloud</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-icon
+      class="col s12 m2"
+      [icon]="'cloud'"
+      [iconClass]="'medium'">
+    </mz-icon>
+
+    <p class="col s12 m10">
+      <code class="language-markup">iconClass</code> property as <code class="language-markup">medium</code>
+    </p>
+  </div>
+
+  <h5 class="thin">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-icon
+  [icon]="'cloud'"
+  [iconClass]="'medium'">
+&lt;/mz-icon>
+  </app-code-snippet>
+</div>
+
+  <div class="section">
+  <h5 class="thin">Material Design Icons</h5>
+  <h6><a href="https://material.io/icons/">https://material.io/icons/</a></h6>
+
+  <div class="row m-valign-wrapper">
+    <mz-icon
+      class="col s12 m2"
+      [mdiIcon]="'sword'">
+    </mz-icon>
+
+    <p class="col s12 m10">
+      <code class="language-markup">mdiIcon</code> property as <code class="language-markup">sword</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-icon
+      class="col s12 m2"
+      [iconClass]="'red-text'"
+      [mdiIcon]="'puzzle'">
+    </mz-icon>
+
+    <p class="col s12 m10">
+    <code class="language-markup">iconClass</code> property as <code class="language-markup">red-text</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-icon
+      class="col s12 m2"
+      [mdiIcon]="'puzzle'"
+      [mdiIconSize]="'36px'">
+    </mz-icon>
+
+    <p class="col s12 m10">
+      <code class="language-markup">mdiIconSize</code> property as <code class="language-markup">36px</code>
+    </p>
+  </div>
+
+  <h5 class="thin">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-icon
+  [mdiIcon]="'puzzle'"
+  [mdiIconSize]="'36px'">
+&lt;/mz-icon>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    Icons can be customized using the following properties on the <code class="language-markup">mz-icon</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>icon</td>
+        <td>string</td>
+        <td>The name of the icon</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>iconAlign</td>
+        <td>string</td>
+        <td>Alignement of the icon</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>iconClass</td>
+        <td>string</td>
+        <td>Icon css class to be applied on the icon</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>mdiIcon</td>
+        <td>string</td>
+        <td>The name of the material design icon (mdi)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>mdiIconSize</td>
+        <td>string</td>
+        <td>Icon size to be applied on the icon, could be : 24px, 36px, or 48px</td>
+        <td>24px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

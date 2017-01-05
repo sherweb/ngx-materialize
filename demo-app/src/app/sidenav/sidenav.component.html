@@ -1,0 +1,252 @@
+<h3>Sidenav</h3>
+
+<div class="section">
+
+  <h5 class="thin">Fixed navigation</h5>
+
+  <p>
+    The side navigation on the left of this demo application is an example of implementation of the <code class="language-markup">mz-sidenav</code> component with <code class="language-markup">fixed</code> property set to <code class="language-markup">true</code>. On small resolution the side navigation will be automatically hidden so you need to add a collapse button to allow the sidenav to be toggled.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Hidden navigation</h5>
+
+  <p>
+    The side navigation will be hidden on all screen resolution if <code class="language-markup">fixed</code> property is either omitted or false on the <code class="language-markup">mz-sidenav</code> component. To be able to toggle the side navigation visibility add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> trought the <code class="language-markup">collapseButtonId</code> property of the <code class="language-markup">mz-sidenav</code> component. The class <code class="language-markup">show-on-large</code> will automatically be applied on the button to make it visible on all screen resolutions when <code class="language-markup">fixed</code> property is not provided or false.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Collapse Button</h5>
+
+  <p>
+    To toggle the side navigation add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> to the <code class="language-markup">mz-sidenav</code> component trought the <code class="language-markup">collapseButtonId</code> property. To avoid the collapse button to be visible at the same time as a fixed side navigation on large resolution, add the class <code class="language-markup">hide-on-large-only</code> to the <code class="language-markup">buttonClass</code> property of the <code class="language-markup">mz-button</code>.
+  </p>
+
+  <mz-button [id]="'btn-sidenav-demo'">Open</mz-button>
+
+  <mz-sidenav
+    [id]="'sidenav-demo'"
+    [collapseButtonId]="'btn-sidenav-demo'"
+    [edge]="'right'">
+
+    <mz-sidenav-header>
+      <div class="user-view">
+        <img class="circle avatar" src="assets/sidenav-demo-avatar.png">
+        <a class="white-text name">King Nobody</a>
+        <a class="white-text email">king.nobody@gmail.com</a>
+      </div>
+    </mz-sidenav-header>
+
+    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+
+    <mz-sidenav-link>
+      <a>First Link</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link>
+      <a class="waves-effect">Second Link With Waves</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-divider></mz-sidenav-divider>
+
+    <mz-sidenav-link>
+      <a><i class="mdi mdi-cloud mdi-24px"></i>Third Link With Icon</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-divider></mz-sidenav-divider>
+
+    <mz-sidenav-subheader>Collapsible Subheader</mz-sidenav-subheader>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        Collapsible
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        Collapsible With Carret<i class="caret mdi mdi-menu-right mdi-24px"></i>
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        <i class="mdi mdi-cloud mdi-24px"></i>Collapsible With Icon
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+  </mz-sidenav>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-sidenav
+  [id]="'sidenav-demo'"
+  [collapseButtonId]="'btn-sidenav-demo'">
+  &lt;mz-sidenav-header>
+    Sidenav header
+  &lt;/mz-sidenav-header>
+  &lt;mz-sidenav-subheader>Link Subheader&lt;/mz-sidenav-subheader>
+  &lt;mz-sidenav-link>
+    &lt;a href="#">First Link&lt;/a>
+  &lt;/mz-sidenav-link>
+  &lt;mz-sidenav-divider>&lt;/mz-sidenav-divider>
+  &lt;mz-sidenav-link>
+    &lt;a href="#" class="waves-effect">Second Link With Waves&lt;/a>
+  &lt;/mz-sidenav-link>
+&lt;/mz-sidenav>
+</app-code-snippet>
+<app-code-snippet>
+&lt;mz-button [id]="'btn-sidenav-demo'">
+  Open
+&lt;/mz-button>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Dropdown variation</h5>
+
+  <p>
+    You can add collapsible menus to your sidebar by using the <code class="language-markup">mz-sidenav-collapsible</code> component.
+  </p>
+
+<app-code-snippet>
+&lt;mz-sidenav>
+  &lt;mz-sidenav-collapsible>
+    &lt;mz-sidenav-collapsible-header>
+      Collapsible
+    &lt;/mz-sidenav-collapsible-header>
+    &lt;mz-sidenav-collapsible-content>
+      &lt;mz-sidenav-link>
+        &lt;a href="#" class="waves-effect">First Link&lt;/a>
+      &lt;/mz-sidenav-link>
+      &lt;mz-sidenav-link>
+        &lt;a href="#" class="waves-effect">Second Link&lt;/a>
+      &lt;/mz-sidenav-link>
+    &lt;/mz-sidenav-collapsible-content>
+  &lt;/mz-sidenav-collapsible>
+&lt;/mz-sidenav>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    The side navigation can be customized using the following properties on the <code class="language-markup">mz-sidenav</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>backgroundClass</td>
+        <td>string</td>
+        <td>Allow css class to be applied on the sidenav</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>collapseButtonId</td>
+        <td>string</td>
+        <td>Id of the collapse button</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>closeOnClick</td>
+        <td>boolean</td>
+        <td>Closes side-nav on link clicks, useful for non-fixed navigation</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>edge</td>
+        <td>string</td>
+        <td>Choose the horizontal side navigation opening origin</td>
+        <td>left</td>
+      </tr>
+      <tr>
+        <td>fixed</td>
+        <td>boolean</td>
+        <td>Side navigation will be fixed on small and medium resolution screen while hidden on small resolution</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>Id of the side navigation</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>width</td>
+        <td>number</td>
+        <td>Side navigation width</td>
+        <td>300</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

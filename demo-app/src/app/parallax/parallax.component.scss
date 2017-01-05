@@ -1,0 +1,20 @@
+@import "../../_route-animation-host";
+
+.parallax-card #{'/deep/'} {
+
+  .card-content {
+    padding: 0;
+  }
+
+  .parallax-container {
+    z-index: 1;
+  }
+
+  .parallax-section {
+    padding: 32px;
+  }
+
+  .parallax-image {
+    height: 650px;
+  }
+}

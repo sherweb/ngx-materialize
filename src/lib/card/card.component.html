@@ -1,0 +1,19 @@
+<div
+  class="card {{ backgroundClass }}"
+  [class.hoverable]="hoverable">
+
+  <div class="card-content {{ textClass }}">
+
+    <span class="card-title">
+      <ng-content select="mz-card-title"></ng-content>
+    </span>
+
+    <p>
+      <ng-content select="mz-card-content"></ng-content>
+    </p>
+  </div>
+
+  <div #cardActionWrapper class="card-action">
+    <ng-content select="mz-card-action"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+:host #{'/deep/'} {
+  a {
+    i,
+    i.material-icons,
+    i[class*="mdi-"] {
+      margin-right: 1.5em;
+
+      &::before {
+        vertical-align: middle;
+      }
+    }
+  }
+}

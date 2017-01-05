@@ -1,0 +1,9 @@
+<div class="progress {{ backgroundClass }}">
+
+  <div
+    class="progress-bar {{ progressClass }}"
+    [class.determinate]="percentage != null"
+    [class.indeterminate]="percentage == null"
+    [style.width.%]="percentage">
+  </div>
+</div>

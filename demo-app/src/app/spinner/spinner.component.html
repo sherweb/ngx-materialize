@@ -1,0 +1,107 @@
+<h3>Spinner</h3>
+
+<h5 class="thin">Sizes</h5>
+
+<div class="row">
+
+  <p class="valign-wrapper col s12 m8 l6">
+
+    <mz-spinner
+      class="valign center-align col s4"
+      [size]="'small'">
+    </mz-spinner>
+
+    <mz-spinner
+      class="valign center-align col s4">
+    </mz-spinner>
+
+    <mz-spinner
+      class="valign center-align col s4"
+      [size]="'big'">
+    </mz-spinner>
+  </p>
+
+  <p class="col s12 m4 l6">
+    Default size is <code class="language-markup">medium</code> but you can use <code class="language-markup">size</code> input property with <code class="language-markup">small</code> or <code class="language-markup">big</code> value to adjust the size accordingly.
+  </p>
+</div>
+
+<h5 class="thin">Colors</h5>
+
+<div class="row">
+
+  <p class="valign-wrapper col s12 m8 l6">
+
+    <mz-spinner
+      class="valign center-align col s3"
+      [color]="'red'">
+    </mz-spinner>
+
+    <mz-spinner
+      class="valign center-align col s3"
+      [color]="'green'">
+    </mz-spinner>
+
+    <mz-spinner
+      class="valign center-align col s3"
+      [color]="'blue'">
+    </mz-spinner>
+
+    <mz-spinner
+      class="valign center-align col s3"
+      [color]="'yellow'">
+    </mz-spinner>
+  </p>
+
+  <p class="col s12 m4 l6">
+    Optionally, spinner color can be customized using <code class="language-markup">color</code> input property with <code class="language-markup">red</code>, <code class="language-markup">green</code>, <code class="language-markup">blue</code> or <code class="language-markup">yellow</code> value.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-spinner
+  [color]="'blue'"
+  [size]="'big'">
+&lt;/mz-spinner>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    Cards can be customized using the following properties on the <code class="language-markup">mz-spinner</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>color</td>
+        <td>string</td>
+        <td>Spinner color (red, green, blue, yellow)</td>
+        <td>default color</td>
+      </tr>
+      <tr>
+        <td>size</td>
+        <td>string</td>
+        <td>Spinner size (small, medium, big)</td>
+        <td>medium</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

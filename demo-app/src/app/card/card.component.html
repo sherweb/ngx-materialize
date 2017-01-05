@@ -1,0 +1,160 @@
+<h3>Card</h3>
+
+<h5 class="thin">Basic card</h5>
+
+<div class="row">
+
+  <mz-card class="col s12 m8 l6">
+
+    <mz-card-title>
+      Card Title
+    </mz-card-title>
+
+    <mz-card-content>
+      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+    </mz-card-content>
+
+    <mz-card-action>
+      <a href="#">This is a link</a>
+      <a href="#">This is a link</a>
+    </mz-card-action>
+  </mz-card>
+
+  <p class="col s12 m4 l6">
+    Simple basic card combining title, content and actions.
+  </p>
+</div>
+
+<h5 class="thin">No action</h5>
+
+<div class="row">
+
+  <mz-card class="col s12 m8 l6">
+
+    <mz-card-title>
+      Card Title
+    </mz-card-title>
+
+    <mz-card-content>
+      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+    </mz-card-content>
+  </mz-card>
+
+  <p class="col s12 m4 l6">
+    Action bar won't be displayed if <code class="language-markup">mz-card-action</code> tag is not present or if it does not contain any action.
+  </p>
+</div>
+
+<h5 class="thin">No title</h5>
+
+<div class="row">
+
+  <mz-card
+    class="col s12 m8 l6"
+    [backgroundClass]="'orange lighten-1'">
+
+    <mz-card-content>
+      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+    </mz-card-content>
+  </mz-card>
+
+  <p class="col s12 m4 l6">
+    Title will also be hidden if <code class="language-markup">mz-card-title</code> tag is not present. This could be usefull to alert the user when combined with appropriate color.
+  </p>
+</div>
+
+<h5 class="thin">Colors and hoverable</h5>
+
+<div class="row">
+
+  <mz-card
+    class="col s12 m8 l6"
+    [backgroundClass]="'blue-grey darken-1'"
+    [textClass]="'white-text'"
+    [hoverable]="true">
+
+    <mz-card-title>
+      Card Title
+    </mz-card-title>
+
+    <mz-card-content>
+      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+    </mz-card-content>
+
+    <mz-card-action>
+      <a href="#">This is a link</a>
+      <a href="#">This is a link</a>
+    </mz-card-action>
+  </mz-card>
+
+  <p class="col s12 m4 l6">
+    Optionally, colors can be customized using <code class="language-markup">backgroundClass</code> and/or <code class="language-markup">textClass</code> input properties but are <u>not required</u>.<br>
+    <br>
+    An animation for box-shadow can also be added using <code class="language-markup">hoverable</code> input properties. Roll your cursor over and out of the card to see the animation.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-card
+  [backgroundClass]="'blue-grey darken-1'"
+  [textClass]="'white-text'"
+  [hoverable]="true">
+  &lt;mz-card-title>
+    Card Title
+  &lt;/mz-card-title>
+  &lt;mz-card-content>
+    I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+  &lt;/mz-card-content>
+  &lt;mz-card-action>
+    &lt;a href="#">This is a link&lt;/a>
+    &lt;a href="#">This is a link&lt;/a>
+  &lt;/mz-card-action>
+&lt;/mz-card>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <p>
+    Cards can be customized using the following properties on the <code class="language-markup">mz-card</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>backgroundClass</td>
+        <td>string</td>
+        <td>Background css class to be applied on the sidenav</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>hoverable</td>
+        <td>boolean</td>
+        <td>Box-shadow css animnation on card rollover</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>textClass</td>
+        <td>string</td>
+        <td>Text css class to be applied on the sidenav</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

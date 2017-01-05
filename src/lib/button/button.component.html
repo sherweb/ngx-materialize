@@ -1,0 +1,13 @@
+<button
+  class="waves-effect waves-light btn {{ buttonClass }} {{ textClass }}"
+  [attr.autofocus]="autofocus"
+  [attr.id]="id"
+  [attr.type]="submit ? 'submit' : null"
+  [class.btn-flat]="flat"
+  [class.btn-floating]="float"
+  [class.btn-large]="large"
+  [class.disabled]="disabled"
+  (click)="handleClick($event)"
+>  
+  <ng-content></ng-content>
+</button>

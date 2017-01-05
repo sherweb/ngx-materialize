@@ -1,0 +1,15 @@
+*.ngfactory.ts
+*.ngstyle.ts
+*.ngsummary.json
+*.spec.ts
+./app/shared/test-wrapper
+./demo-app
+./e2e
+./src/environments
+./src/main.ts
+./src/polyfills.ts
+./src/test.ts
+./src/tsconfig.json
+./src/typings.d.ts
+karma.conf.js
+protractor.conf.js

@@ -1,0 +1,25 @@
+@mixin hz-box-shadow($offset-multiplicator: 1) {
+  box-shadow: 2px * $offset-multiplicator 0 2px 0 rgba(0, 0, 0, 0.14),
+              1px * $offset-multiplicator 0 5px 0 rgba(0, 0, 0, 0.12),
+              3px * $offset-multiplicator 0 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.side-nav {
+  &.fixed {
+    &.right-aligned {
+      @include hz-box-shadow(-1);
+    }
+
+    &:not(.right-aligned) {
+      @include hz-box-shadow;
+    }
+  }
+
+  li {
+    a {
+      i[class*="mdi-"] {
+        margin: 0.3em 1em 0 0;
+      }
+    }
+  }
+}
