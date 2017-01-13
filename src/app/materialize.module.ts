@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import * as Button from './button/button.component';
 import * as Card from './card/card.component';
 import * as Icon from './icon/icon.component';
-import * as Input from './input/input.directive';
 import * as Navbar from './navbar';
 import * as Parallax from './parallax/parallax.component';
 import * as Progress from './progress/progress.component';
@@ -18,7 +17,6 @@ const MZ_COMPONENTS = [
   Card.MzCardContentDirective,
   Card.MzCardTitleDirective,
   Icon.MzIconComponent,
-  Input.MzInputDirective,
   Navbar.MzNavbarComponent,
   Navbar.MzNavbarItemComponent,
   Navbar.MzNavbarItemContainerComponent,
