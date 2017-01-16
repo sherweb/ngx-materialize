@@ -15,11 +15,11 @@
     ]
   },
   "include": [
-    "app/**/*"
+    "../inline-template/**/*"
   ],
   "exclude": [
-    "app/app.*",
-    "app/**/*.spec.ts"
+    "../inline-template/app.*",
+    "../inline-template/**/*.spec.ts"
   ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
