@@ -110,6 +110,7 @@
     "no-empty-interfaces": true,
     "no-unnecessary-local-variable": true,
     "object-curly-spacing": true,
+    "prefer-const": true,
     "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
   }
 }
