@@ -16,9 +16,9 @@ export class MzInputDirective implements OnInit {
   @Input() length: number;
   @Input() validate: boolean;
 
-  InputElement: JQuery;
-  InputContainerElement: JQuery;
-  LabelElement: JQuery;
+  inputElement: JQuery;
+  inputContainerElement: JQuery;
+  labelElement: JQuery;
 
   constructor(
     private elementRef: ElementRef,
@@ -30,23 +30,23 @@ export class MzInputDirective implements OnInit {
   }
 
   initElements() {
-    this.InputElement = $(this.elementRef.nativeElement);
-    this.InputContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
-    this.LabelElement = this.generateLabelElement();
+    this.inputElement = $(this.elementRef.nativeElement);
+    this.inputContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
+    this.labelElement = this.createLabelElement();
   }
 
-  generateLabelElement() {
+  createLabelElement() {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.InputContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
 
     return $(labelElement);
   }
 
   handleProperties() {
-    if (this.InputContainerElement.length === 0) {
-      console.error('Input must be place inside an [mz-input-container] tag', this.InputElement);
+    if (this.inputContainerElement.length === 0) {
+      console.error('Input must be place inside an [mz-input-container] tag', this.inputElement);
       return;
     }
 
@@ -59,47 +59,47 @@ export class MzInputDirective implements OnInit {
   }
 
   handleLabel() {
-    if (this.placeholder || this.InputElement.val()) {
-      this.LabelElement.addClass('active');
+    if (this.placeholder || this.inputElement.val()) {
+      this.renderer.setElementClass(this.labelElement[0], 'active', true);
     }
 
     if (this.label) {
       const labelText = document.createTextNode(this.label);
-      this.LabelElement.append(labelText);
+      this.renderer.invokeElementMethod(this.labelElement, 'append', [labelText]);
     }
   }
 
   handleValidate() {
     if (this.validate) {
-      this.renderer.setElementClass(this.InputElement[0], 'validate', true);
+      this.renderer.setElementClass(this.inputElement[0], 'validate', true);
     }
   }
 
   handleDataError() {
     if (this.dataError) {
-      this.renderer.setElementAttribute(this.LabelElement[0], 'data-error', this.dataError);
+      this.renderer.setElementAttribute(this.labelElement[0], 'data-error', this.dataError);
     }
   }
 
   handleDataSuccess() {
     if (this.dataSuccess) {
-      this.renderer.setElementAttribute(this.LabelElement[0], 'data-success', this.dataSuccess);
+      this.renderer.setElementAttribute(this.labelElement[0], 'data-success', this.dataSuccess);
     }
   }
 
   handleLength() {
     if (this.length) {
-      this.renderer.setElementAttribute(this.InputElement[0], 'length', this.length.toString());
-      this.renderer.invokeElementMethod(this.InputElement, 'characterCounter');
+      this.renderer.setElementAttribute(this.inputElement[0], 'length', this.length.toString());
+      this.renderer.invokeElementMethod(this.inputElement, 'characterCounter');
     }
   }
 
   handleAutocomplete() {
     if (this.autocomplete) {
-      this.renderer.setElementClass(this.InputElement[0], 'autocomplete', true);
+      this.renderer.setElementClass(this.inputElement[0], 'autocomplete', true);
 
       // need setTimeout otherwise loading directly on the page cause an error
-      setTimeout(() => this.renderer.invokeElementMethod(this.InputElement, 'autocomplete', [this.autocomplete]), 0);
+      setTimeout(() => this.renderer.invokeElementMethod(this.inputElement, 'autocomplete', [this.autocomplete]), 0);
     }
   }
 }

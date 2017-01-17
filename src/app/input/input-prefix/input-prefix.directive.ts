@@ -1,7 +1,9 @@
 import { Directive, ElementRef, OnInit, Renderer } from '@angular/core';
 
 @Directive({
-  selector: 'i[mzInputPrefix], i[mz-input-prefix], mz-icon[MzInputPrefix], mz-icon[mz-input-prefix]',
+  selector: `
+    i[mzInputPrefix], i[mz-input-prefix],
+    mz-icon[MzInputPrefix], mz-icon[mz-input-prefix]`,
 })
 export class MzInputPrefixDirective implements OnInit {
 
