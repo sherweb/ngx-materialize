@@ -81,7 +81,7 @@
         "variable-declaration": "nospace"
       }
     ],
-    "variable-name": false,
+    "variable-name": [true, "ban-keywords", "check-format"],
     "whitespace": [
       true,
       "check-branch",
@@ -105,6 +105,8 @@
     "no-access-missing-member": true,
     "templates-use-public": true,
     "invoke-injectable": true,
+
+    "ordered-imports": [true, {"import-sources-order": "case-insensitive", "named-imports-order": "case-insensitive"}],
 
     "block-spacing": true,
     "no-empty-interfaces": true,

@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
-import { MzTestWrapperComponent, buildComponent } from '../shared/test-wrapper';
+import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzCardComponent } from './card.component';
 
 describe('MzCardComponent:view', () => {
