@@ -1,8 +1,8 @@
 import { async, TestBed } from '@angular/core/testing';
 
-import { MzTestWrapperComponent, buildComponent } from '../shared/test-wrapper';
-import { MzButtonComponent } from './button.component';
 import { MzIconComponent } from '../icon/icon.component';
+import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { MzButtonComponent } from './button.component';
 
 describe('MzButtonComponent:view', () => {
 

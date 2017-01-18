@@ -1,6 +1,6 @@
 import { async, TestBed } from '@angular/core/testing';
 
-import { MzTestWrapperComponent, buildComponent } from '../../shared/test-wrapper';
+import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
 import { MzSidenavDividerComponent } from './sidenav-divider.component';
 
 describe('MzSidenavDividerComponent:view', () => {
