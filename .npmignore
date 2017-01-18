@@ -5,13 +5,10 @@
 ./app/shared/test-wrapper
 ./demo-app
 ./e2e
-./src/environments
-./src/main.ts
-./src/polyfills.ts
-./src/test.ts
-./src/tsconfig.json
-./src/typings.d.ts
+./src/
 ./test-results.xml
 ./tslint-formatters
+gulpfile.js
+index.ts
 karma.conf.js
 protractor.conf.js

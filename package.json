@@ -4,16 +4,19 @@
   "license": "UNLICENSED",
   "angular-cli": {},
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
-    "clean": "npm cache clean && rimraf -- node_modules dist; rimraf \"src/**/*.ngfactory.ts\" \"src/**/*.ngsummary.json\" \"src/**/*.ngstyle.ts\"",
+    "clean": "rimraf -- dist inline-template node_modules",
     "e2e": "protractor",
     "lint": "tslint \"src/**/*.ts\"",
     "ng": "ng",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "start": "cd demo-app && npm start",
     "test": "ng test",
-    "prebuild": "rimraf -- dist src/node_modules",
-    "build": "ngc -p src/tsconfig.json"
+    "prebuild": "rimraf -- dist inline-template src/node_modules",
+    "build": "gulp && ngc -p src/tsconfig.json",
+    "postbuild": "rimraf -- src/inline-template"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,6 +36,8 @@
     "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~2.0.0-beta.1",
     "core-js": "^2.4.1",
+    "gulp": "^3.9.1",
+    "gulp-inline-ng2-template": "^4.0.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
     "jquery": "^2.2.4",

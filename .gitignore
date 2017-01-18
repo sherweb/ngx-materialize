@@ -34,6 +34,8 @@ test-results.xml
 Thumbs.db
 
 /src/node_modules
+/src/inline-template
+/inline-template
 *.ngsummary.json
 *.ngfactory.ts
 *.ngstyle.ts
