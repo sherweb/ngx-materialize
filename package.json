@@ -7,7 +7,7 @@
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "clean": "rimraf -- \"src/**/*.ngfactory.ts\" \"src/**/*.ngsummary.json\" \"src/**/*.ngstyle.ts\"; rimraf -- dist node_modules",
+    "clean": "rimraf -- dist inline-template node_modules",
     "e2e": "protractor",
     "lint": "tslint \"src/**/*.ts\"",
     "ng": "ng",
