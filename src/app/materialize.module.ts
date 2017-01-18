@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import * as Button from './button/button.component';
 import * as Card from './card/card.component';
 import * as Icon from './icon/icon.component';
+import * as Input from './input';
 import * as Navbar from './navbar';
 import * as Parallax from './parallax/parallax.component';
 import * as Progress from './progress/progress.component';
@@ -17,6 +18,9 @@ const MZ_COMPONENTS = [
   Card.MzCardContentDirective,
   Card.MzCardTitleDirective,
   Icon.MzIconComponent,
+  Input.MzInputContainerComponent,
+  Input.MzInputDirective,
+  Input.MzInputPrefixDirective,
   Navbar.MzNavbarComponent,
   Navbar.MzNavbarItemComponent,
   Navbar.MzNavbarItemContainerComponent,
@@ -37,13 +41,11 @@ const MZ_COMPONENTS = [
   imports: [CommonModule],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
-  providers: [],
 })
 export class MaterializeModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: MaterializeModule,
-      providers: [],
     };
   }
 }
