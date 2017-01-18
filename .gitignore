@@ -10,7 +10,6 @@
 
 # IDEs and editors
 /.idea
-/.vscode
 .project
 .classpath
 *.launch
@@ -24,6 +23,7 @@
 npm-debug.log
 testem.log
 /typings
+test-results.xml
 
 # e2e
 /e2e/*.js

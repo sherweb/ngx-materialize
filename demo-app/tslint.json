@@ -81,7 +81,7 @@
         "variable-declaration": "nospace"
       }
     ],
-    "variable-name": false,
+    "variable-name": [true, "ban-keywords", "check-format"],
     "whitespace": [
       true,
       "check-branch",
@@ -106,10 +106,13 @@
     "templates-use-public": true,
     "invoke-injectable": true,
 
+    "ordered-imports": [true, {"import-sources-order": "case-insensitive", "named-imports-order": "case-insensitive"}],
+
     "block-spacing": true,
     "no-empty-interfaces": true,
     "no-unnecessary-local-variable": true,
     "object-curly-spacing": true,
+    "prefer-const": true,
     "trailing-comma": [true, {"multiline": "always", "singleline": "never"}]
   }
 }

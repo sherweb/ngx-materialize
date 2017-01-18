@@ -12,6 +12,7 @@ import { ButtonModule } from './button/button.module';
 import { CardModule } from './card/card.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
+import { InputModule } from './input/input.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
@@ -32,6 +33,7 @@ import { SpinnerModule } from './spinner/spinner.module';
     CardModule,
     HomeModule,
     IconModule,
+    InputModule,
     NavbarModule,
     ParallaxModule,
     ProgressModule,

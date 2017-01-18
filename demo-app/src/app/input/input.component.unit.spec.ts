@@ -1,23 +1,23 @@
 /* tslint:disable:no-unused-variable */
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
-import { MzSpinnerComponent } from './spinner.component';
+import { InputComponent } from './input.component';
 
-describe('MzSpinnerComponent', () => {
-  let component: MzSpinnerComponent;
-  let fixture: ComponentFixture<MzSpinnerComponent>;
+describe('InputComponent', () => {
+  let component: InputComponent;
+  let fixture: ComponentFixture<InputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MzSpinnerComponent],
+      declarations: [ InputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MzSpinnerComponent);
+    fixture = TestBed.createComponent(InputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

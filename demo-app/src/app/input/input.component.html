@@ -1,0 +1,389 @@
+<h3>Input</h3>
+
+<div class="section">
+  <p>
+    Ng2-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-input</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element. Take note that the input <u>must be</u> contained inside a <code class="language-markup">mz-input-container</code> component otherwise an error will be shown in the console.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Basic input</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Label'"
+        id="basic-input-placeholder"
+        placeholder="Placeholder"
+        type="text">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      Label and placeholder can be combined using both <code class="language-markup">label</code> and <code class="language-markup">placeholder</code> properties.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Label as placeholder'"
+        id="basic-input"
+        type="text">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      To use the floating label directly as a placeholder provide only the <code class="language-markup">label</code> property.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        id="basic-input"
+        placeholder="Placeholder"
+        type="text">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      You can omit the floating label and use only a placeholder by providing only the <code class="language-markup">placeholder</code> property.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Inline input</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Input can be inline:
+
+      <mz-input-container
+        [inline]="true"
+      >
+        <input mz-input
+          [label]="'Inline'"
+          id="inline-input"
+          type="text"
+          value="I am inline">
+      </mz-input-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the input inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-input-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Disabled input</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Disabled'"
+        id="disabled-input"
+        type="text"
+        value="I am disabled"
+        disabled>
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      Disable the input by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML5 input type</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Password'"
+        id="password-input"
+        type="password"
+        value="1234567890">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      All the HTML5 input types are supported with the native property <code class="language-markup">type</code> as shown with this example using type <code class="language-markup">password</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Validate</h5>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          [label]="'Email'"
+          [validate]="true"
+          id="valid-input"
+          type="email"
+          value="valid-example@domain.com">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          [label]="'Email'"
+          [validate]="true"
+          id="invalid-input"
+          type="email"
+          value="invalid-example">
+      </mz-input-container>
+    </div>
+
+    <p class="col s12 m6">
+      Set <code class="language-markup">validate</code> property to <code class="language-markup">true</code> to leverage HTML5 type validation and change the border color depending on the validity state.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Error/Success Messages</h5>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          [label]="'Email'"
+          [validate]="true"
+          [dataError]="'Value is invalid (i.e. example@domain.com)'"
+          [dataSuccess]="'Value is valid'"
+          id="valid-input"
+          type="email"
+          value="valid-example@domain.com">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          [label]="'Email'"
+          [validate]="true"
+          [dataError]="'Value is invalid (i.e. example@domain.com)'"
+          [dataSuccess]="'Value is valid'"
+          id="invalid-input"
+          type="email"
+          value="invalid-example">
+      </mz-input-container>
+    </div>
+
+    <p class="col s12 m6">
+      You can provide Error/Success hints using <code class="language-markup">dataError</code> and/or <code class="language-markup">dataSuccess</code> properties with the desired text.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Icon Prefixes</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <mz-icon mz-input-prefix
+        [icon]="'phone'">
+      </mz-icon>
+      <input mz-input
+        [label]="'Phone'"
+        id="phone-input"
+        type="tel"
+        value="1-800-555-6677">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      To use an icon prefix add the icon inside the <code class="language-markup">mz-input-container</code> component with the <code class="language-markup">mz-input-prefix</code> directive on the icon tag.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Character Count</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Character Count'"
+        [length]="10"
+        id="character-count-input"
+        type="text"
+        value="Four">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      You can add a character count on input focus using the native property <code class="language-markup">length</code> with the number of restricted characters.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Autocomplete</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-input-container class="col s12 m6">
+      <input mz-input
+        [label]="'Autocomplete'"
+        [autocomplete]="autocomplete"
+        id="autocomplete-input"
+        type="text">
+    </mz-input-container>
+
+    <p class="col s12 m6">
+      Add an autocomplete dropdown bellow the input to suggest possible values by providing the <code class="language-markup">autocomplete</code> property with the proper object structure (see input properties table).
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">HTML Structure</h5>
+
+  <p>
+    The input element must be contained inside the <code class="language-markup">mz-input-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-input-container class="col s12">
+  &lt;mz-icon mz-input-prefix
+    [icon]="'mail'">
+  &lt;/mz-icon>
+  &lt;input mz-input
+    [label]="'Email'"
+    [validate]="true"
+    [dataError]="'Email is invalid'"
+    [dataSuccess]="'Email is valid'"
+    id="email-input"
+    placeholder="Enter your email"
+    length="150"
+    type="email">
+&lt;/mz-input-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties - mz-input-container</h5>
+
+  <p>
+    The <code class="language-markup">mz-input-container</code> component can be customized using the following properties.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>inline</td>
+        <td>boolean</td>
+        <td>Show input inline</td>
+        <td>false</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties - input</h5>
+
+  <p>
+    The input can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-input</code> directive.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>autocomplete</td>
+        <td>&#123; data: &#123; [key: string]: string } }</td>
+        <td>Suggest possible values</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>dataError</td>
+        <td>string</td>
+        <td>Invalid message</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>dataSuccess</td>
+        <td>string</td>
+        <td>Valid message</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>Id of the input</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>string</td>
+        <td>Floating label</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>length</td>
+        <td>number</td>
+        <td>Show character count</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>placeholder</td>
+        <td>string</td>
+        <td>Show placeholder</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>type</td>
+        <td>string</td>
+        <td>HTML5 input type</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>validate</td>
+        <td>boolean</td>
+        <td>Activate HTML5 validation</td>
+        <td>false</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

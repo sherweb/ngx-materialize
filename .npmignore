@@ -6,6 +6,7 @@
 ./demo-app
 ./e2e
 ./src/
+./test-results.xml
 ./tslint-formatters
 gulpfile.js
 index.ts

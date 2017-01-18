@@ -28,7 +28,8 @@ table {
 .section {
   padding-top: 0 !important;
 
-  > p:last-child {
+  > p:last-child,
+  > .row:last-child {
     margin-bottom: 0 !important;
   }
 }
