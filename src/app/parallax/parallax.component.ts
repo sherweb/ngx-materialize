@@ -20,12 +20,7 @@ export class MzParallaxComponent implements AfterViewInit {
   constructor(public renderer: Renderer) { }
 
   ngAfterViewInit(): void {
-    // set parallax height
-    this.renderer.setElementStyle(
-      this.parallaxContainer.nativeElement,
-      'height',
-      isNaN(this.height) ? '500px' : this.height + 'px');
-    // initialize parallax element
-    $(this.parallax.nativeElement).parallax();
+    this.renderer.setElementStyle(this.parallaxContainer.nativeElement, 'height', isNaN(this.height) ? '500px' : this.height + 'px');
+    this.renderer.invokeElementMethod($(this.parallax.nativeElement), 'parallax');
   }
 }
