@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { CollapsibleComponent } from './collapsible/collapsible.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -23,6 +24,7 @@ export const ROUTES: Routes = [
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button' } },
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card' } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox' } },
+  { path: 'collapsible', component: CollapsibleComponent, data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible' } },
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon' } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input' } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },

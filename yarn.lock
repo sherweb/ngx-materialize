@@ -78,7 +78,7 @@
   version "2.0.37"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.37.tgz#dae31d21864fb9de34ba145f7f161c1b373778e6"
 
-"@types/materialize-css@^0.97.32":
+"@types/materialize-css@^0.97.33":
   version "0.97.33"
   resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.33.tgz#c0532a837231df20835a52f9074820f553a18a06"
   dependencies:

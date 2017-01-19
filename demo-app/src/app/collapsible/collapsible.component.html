@@ -1,0 +1,252 @@
+<h3>Collapsible</h3>
+
+<h5 class="thin">Accordion</h5>
+
+<div class="row">
+
+  <mz-collapsible class="col s12 m8 l6" mode="accordion">
+
+    <mz-collapsible-item *ngFor="let item of simpleCollapsibleItems">
+      <mz-collapsible-item-header>{{ item.header }}</mz-collapsible-item-header>
+      <mz-collapsible-item-body><p>{{ item.body }}</p></mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+  </mz-collapsible>
+
+  <p class="col s12 m4 l6">
+    Simple basic collapsible with datas from the component.
+  </p>
+</div>
+
+<h5 class="thin">Expandable</h5>
+
+<div class="row">
+
+  <mz-collapsible class="col s12 m8 l6" [mode]="'expandable'">
+
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>First</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+    
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Second</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Third</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+  </mz-collapsible>
+
+  <p class="col s12 m4 l6">
+    Collapsible with expandable behavior style defined by <code class="language-markup">mode</code> input property.
+  </p>
+</div>
+
+<h5 class="thin">Popout</h5>
+
+<div class="row">
+
+  <mz-collapsible class="col s12 m8 l6"
+    [mode]="'accordion'"
+    [popout]="true"
+  >
+
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>First</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+    
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Second</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Third</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+  </mz-collapsible>
+
+  <p class="col s12 m4 l6">
+    A popout animation can be added to the collapsible when an item is clicked using <code class="language-markup">popout</code> input property.
+  </p>
+</div>
+
+<h5 class="thin">Preselected Section</h5>
+
+<div class="row">
+
+  <mz-collapsible class="col s12 m8 l6" [mode]="'expandable'">
+
+    <mz-collapsible-item [active]="true">
+      <mz-collapsible-item-header>First</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+    
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Second</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+    <mz-collapsible-item>
+      <mz-collapsible-item-header>Third</mz-collapsible-item-header>
+      <mz-collapsible-item-body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </mz-collapsible-item-body>
+    </mz-collapsible-item>
+
+  </mz-collapsible>
+
+  <p class="col s12 m4 l6">
+    Preopen a section from a Collapsible using <code class="language-markup">active</code> input property on <code class="language-markup">mz-collapsible-item</code>.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5>HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-collapsible
+  [mode]="expandable"
+  [onClose]="closeFunctionCallback"
+  [onOpen]="openFunctionCallback"
+  [popout]="true"
+  >
+  &lt;mz-collapsible-item>
+    &lt;mz-collapsible-item-header [active]="true">
+      First
+    &lt;/mz-collapsible-item-header>
+    &lt;mz-collapsible-item-body>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    &lt;/mz-collapsible-item-body>
+  &lt;/mz-collapsible-item>
+&lt;/mz-collapsible>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="thin">Properties</h5>
+
+  <div class="section">
+    <h6>mz-collapsible</h6>
+
+    <p>
+      Collapsibles can be customized using the following properties on the <code class="language-markup">mz-collapsible</code> element.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property" class="property">Property</th>
+          <th data-field="mandatory" class="center mandatoory">Mandatory</th>
+          <th data-field="type" class="center type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value" class="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="property">mode</td>
+          <td class="center mandatory"><mz-icon [icon]="'close'"></mz-icon></td>
+          <td class="center type">string</td>
+          <td>Collapsible behavior style, could be <code class="language-markup">accordion</code> or <code class="language-markup">expandable</code></td>
+          <td class="default-value">accordion</td>
+        </tr>
+        <tr>
+          <td class="property">onClose</td>
+          <td class="center mandatory"><mz-icon [icon]="'close'"></mz-icon></td>
+          <td class="center type">Function</td>
+          <td>Function that will be called when a collapsible section is closed</td>
+          <td class="default-value"></td>
+        </tr>
+        <tr>
+          <td class="property">onOpen</td>
+          <td class="center mandatory"><mz-icon [icon]="'close'"></mz-icon></td>
+          <td class="center type">Function</td>
+          <td>Function that will be called when a collapsible section is opened</td>
+          <td class="default-value"></td>
+        </tr>      
+        <tr>
+          <td class="property">popout</td>
+          <td class="center mandatory"><mz-icon [icon]="'close'"></mz-icon></td>
+          <td class="center type">boolean</td>
+          <td>Add popout animation when an item is clicked to show its section</td>
+          <td class="default-value">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h6>mz-collapsible-item</h6>
+
+    <p>
+      <code class="language-markup">mz-collapsible-item</code> will transclude any contents.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property" class="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type" class="center type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value" class="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="property">active</td>
+          <td class="center mandatory"><mz-icon [icon]="'close'"></mz-icon></td>
+          <td class="center type">boolean</td>
+          <td>Preopen the item section from the collapsible</td>
+          <td class="default-value">false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
