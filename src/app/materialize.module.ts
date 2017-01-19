@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import * as Button from './button/button.component';
+import * as Button from './button';
 import * as Card from './card/card.component';
 import * as Icon from './icon/icon.component';
 import * as Input from './input';
@@ -12,7 +12,7 @@ import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 
 const MZ_COMPONENTS = [
-  Button.MzButtonComponent,
+  Button.MzButtonDirective,
   Card.MzCardActionDirective,
   Card.MzCardComponent,
   Card.MzCardContentDirective,
