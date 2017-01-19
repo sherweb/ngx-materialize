@@ -8,6 +8,7 @@ import { InputComponent } from './input/input.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ProgressComponent } from './progress/progress.component';
+import { SelectComponent } from './select/select.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
@@ -23,6 +24,7 @@ export const ROUTES: Routes = [
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },
   { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax' } },
   { path: 'progress', component: ProgressComponent, data: { icon: 'timer-sand', text: 'Progress' } },
+  { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select' } },
   { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav' } },
   { path: 'spinner', component: SpinnerComponent, data: { icon: 'reload', text: 'Spinner' } },
 
