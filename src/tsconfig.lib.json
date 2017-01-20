@@ -14,6 +14,13 @@
       "../node_modules/@types"
     ]
   },
+  "include": [
+    "../inline-template/**/*"
+  ],
+  "exclude": [
+    "../inline-template/app.*",
+    "../inline-template/**/*.spec.ts"
+  ],
   "angularCompilerOptions": {
     "strictMetadataEmit": true
   }
