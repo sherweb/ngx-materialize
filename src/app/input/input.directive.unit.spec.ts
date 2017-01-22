@@ -1,5 +1,5 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { MzInputDirective } from './input.directive';
 
@@ -131,7 +131,9 @@ describe('MzInputDirective:unit', () => {
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(console.error).toHaveBeenCalledWith('Input must be place inside an [mz-input-container] tag', mockInputElement);
+        expect(console.error).toHaveBeenCalledWith(
+          'Input with mz-input directive must be place inside an [mz-input-container] tag',
+          mockInputElement);
       });
 
       it('should not call handle methods', () => {
@@ -170,7 +172,7 @@ describe('MzInputDirective:unit', () => {
         spyOn(directive, 'handleAutocomplete').and.callFake(() => callOrder.push('handleAutocomplete'));
       });
 
-      it('should call handle properties method in the right order', () => {
+      it('should call handle property  methods in the right order', () => {
 
         const mockInputContainerElement = { inputContainer: true, length: 1 };
 
