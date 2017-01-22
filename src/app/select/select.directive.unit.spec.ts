@@ -155,7 +155,9 @@ describe('MzSelectDirective:unit', () => {
         directive.selectContainerElement = <any>mockSelectContainerElement;
         directive.handleProperties();
 
-        expect(console.error).toHaveBeenCalledWith('Select must be place inside an [mz-select-container] tag', mockSelectElement);
+        expect(console.error).toHaveBeenCalledWith(
+          'Select with mz-select directive must be place inside a [mz-select-container] tag',
+          mockSelectElement);
       });
 
       it('should not call handle methods', () => {
