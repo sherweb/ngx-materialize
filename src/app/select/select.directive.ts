@@ -47,7 +47,7 @@ export class MzSelectDirective implements AfterViewInit, OnInit, OnDestroy {
 
   handleProperties() {
     if (this.selectContainerElement.length === 0) {
-      console.error('Select must be place inside an [mz-select-container] tag', this.selectElement);
+      console.error('Select with mz-select directive must be place inside a [mz-select-container] tag', this.selectElement);
       return;
     }
 
