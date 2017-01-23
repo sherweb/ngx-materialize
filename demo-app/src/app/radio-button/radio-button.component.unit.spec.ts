@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MzInputContainerComponent } from './input-container.component';
+import { RadioButtonComponent } from './radio-button.component';
 
-describe('MzInputContainerComponent:unit', () => {
-  let component: MzInputContainerComponent;
-  let fixture: ComponentFixture<MzInputContainerComponent>;
+describe('RadioButtonComponent:unit', () => {
+  let component: RadioButtonComponent;
+  let fixture: ComponentFixture<RadioButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MzInputContainerComponent],
+      declarations: [RadioButtonComponent],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MzInputContainerComponent);
+    fixture = TestBed.createComponent(RadioButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

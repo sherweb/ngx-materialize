@@ -8,6 +8,7 @@ import * as Input from './input';
 import * as Navbar from './navbar';
 import * as Parallax from './parallax/parallax.component';
 import * as Progress from './progress/progress.component';
+import * as RadioButton from './radio-button';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 
@@ -26,6 +27,8 @@ const MZ_COMPONENTS = [
   Navbar.MzNavbarItemContainerComponent,
   Parallax.MzParallaxComponent,
   Progress.MzProgressComponent,
+  RadioButton.MzRadioButtonContainerComponent,
+  RadioButton.MzRadioButtonDirective,
   Sidenav.MzSidenavCollapsibleComponent,
   Sidenav.MzSidenavCollapsibleContentDirective,
   Sidenav.MzSidenavCollapsibleHeaderDirective,

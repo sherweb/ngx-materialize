@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
-import { InputComponent } from './input.component';
+import { RadioButtonComponent } from './radio-button.component';
 
 @NgModule({
   imports: [
@@ -11,6 +11,6 @@ import { InputComponent } from './input.component';
     CommonModule,
     MaterializeModule.forRoot(),
   ],
-  declarations: [InputComponent],
+  declarations: [RadioButtonComponent],
 })
-export class InputModule { }
+export class RadioButtonModule { }

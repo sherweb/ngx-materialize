@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
-import { MaterializeModule } from 'ng2-materialize';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { MaterializeModule } from 'ng2-materialize';
 
 import { ROUTES } from './app.routes';
 
@@ -16,6 +16,7 @@ import { InputModule } from './input/input.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
+import { RadioButtonModule } from './radio-button/radio-button.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
@@ -37,6 +38,7 @@ import { SpinnerModule } from './spinner/spinner.module';
     NavbarModule,
     ParallaxModule,
     ProgressModule,
+    RadioButtonModule,
     SidenavModule,
     SpinnerModule,
   ],
