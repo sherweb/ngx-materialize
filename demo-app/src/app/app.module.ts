@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
-import { MaterializeModule } from 'ng2-materialize';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { MaterializeModule } from 'ng2-materialize';
 
 import { ROUTES } from './app.routes';
 
@@ -18,6 +18,7 @@ import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
+import { TextareaModule } from './textarea/textarea.module';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { SpinnerModule } from './spinner/spinner.module';
     ProgressModule,
     SidenavModule,
     SpinnerModule,
+    TextareaModule,
   ],
   declarations: [AppComponent],
   providers: [],

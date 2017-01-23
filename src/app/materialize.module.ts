@@ -10,6 +10,7 @@ import * as Parallax from './parallax/parallax.component';
 import * as Progress from './progress/progress.component';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
+import * as Textarea from './textarea';
 
 const MZ_COMPONENTS = [
   Button.MzButtonComponent,
@@ -35,6 +36,9 @@ const MZ_COMPONENTS = [
   Sidenav.MzSidenavLinkComponent,
   Sidenav.MzSidenavSubheaderComponent,
   Spinner.MzSpinnerComponent,
+  Textarea.MzTextareaDirective,
+  Textarea.MzTextareaPrefixDirective,
+  Textarea.MzTextareaContainerComponent,
 ];
 
 @NgModule({

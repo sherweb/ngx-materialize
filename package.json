@@ -61,6 +61,6 @@
   },
   "peerDependencies": {
     "materialize-css": "^0.97.8",
-    "mdi": "^1.7.22"
+    "mdi": "^1.8.36"
   }
 }

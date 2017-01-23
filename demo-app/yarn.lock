@@ -3604,9 +3604,9 @@ md5-o-matic@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/md5-o-matic/-/md5-o-matic-0.1.1.tgz#822bccd65e117c514fab176b25945d54100a03c3"
 
-mdi@^1.7.22:
-  version "1.7.22"
-  resolved "https://registry.yarnpkg.com/mdi/-/mdi-1.7.22.tgz#b01ff825a91c19d388b033ea768e17ff6e7a0904"
+mdi@^1.8.36:
+  version "1.8.36"
+  resolved "https://registry.yarnpkg.com/mdi/-/mdi-1.8.36.tgz#2e3eb6525636e1a8b331a5ec94bb22965072f4c5"
 
 mdurl@~1.0.0:
   version "1.0.1"
@@ -5678,21 +5678,7 @@ tslint-microsoft-contrib@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-4.0.0.tgz#7e00a56c1417251d3f91a880efcc43361a69fb2a"
 
-tslint@^4.0.0, tslint@^4.0.2:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.2.0.tgz#b9f5c5b871b784ab2f4809e704ade42d62f523ad"
-  dependencies:
-    babel-code-frame "^6.20.0"
-    colors "^1.1.2"
-    diff "^3.0.1"
-    findup-sync "~0.3.0"
-    glob "^7.1.1"
-    optimist "~0.6.0"
-    resolve "^1.1.7"
-    underscore.string "^3.3.4"
-    update-notifier "^1.0.2"
-
-tslint@^4.3.1:
+tslint@^4.0.0, tslint@^4.0.2, tslint@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.3.1.tgz#28f679c53ca4b273688bcb6fcf0dde7ff1bb2169"
   dependencies:
