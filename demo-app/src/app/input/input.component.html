@@ -2,13 +2,13 @@
 
 <div class="section">
   <p>
-    Ng2-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-input</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element. Take note that the input <u>must be</u> contained inside a <code class="language-markup">mz-input-container</code> component otherwise an error will be shown in the console.
+    Ng2-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-input</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
   </p>
 </div>
 
 <div class="section">
 
-  <h5 class="thin">Basic input</h5>
+  <h5 class="light">Basic input</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -56,7 +56,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Inline input</h5>
+  <h5 class="light">Inline input</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -83,7 +83,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Disabled input</h5>
+  <h5 class="light">Disabled input</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -104,7 +104,7 @@
 
 <div class="section">
 
-  <h5 class="thin">HTML5 input type</h5>
+  <h5 class="light">HTML5 input type</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -124,7 +124,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Validate</h5>
+  <h5 class="light">Validate</h5>
 
   <div class="row">
 
@@ -157,7 +157,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Error/Success Messages</h5>
+  <h5 class="light">Error/Success Messages</h5>
 
   <div class="row">
 
@@ -194,13 +194,13 @@
 
 <div class="section">
 
-  <h5 class="thin">Icon Prefixes</h5>
+  <h5 class="light">Icon Prefixes</h5>
 
   <div class="row m-valign-wrapper">
 
     <mz-input-container class="col s12 m6">
       <mz-icon mz-input-prefix
-        [icon]="'phone'">
+        [mdiIcon]="'phone'">
       </mz-icon>
       <input mz-input
         [label]="'Phone'"
@@ -217,7 +217,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Character Count</h5>
+  <h5 class="light">Character Count</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -238,7 +238,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Autocomplete</h5>
+  <h5 class="light">Autocomplete</h5>
 
   <div class="row m-valign-wrapper">
 
@@ -258,16 +258,16 @@
 
 <div class="section">
 
-  <h5 class="thin">HTML Structure</h5>
+  <h5 class="light">HTML Structure</h5>
 
   <p>
-    The input element must be contained inside the <code class="language-markup">mz-input-container</code> component otherwise an error will be shown in the console.
+    The input element <b>must be</b> contained inside the <code class="language-markup">mz-input-container</code> component otherwise an error will be shown in the console.
   </p>
 
   <app-code-snippet>
 &lt;mz-input-container class="col s12">
   &lt;mz-icon mz-input-prefix
-    [icon]="'mail'">
+    [mdiIcon]="'mail'">
   &lt;/mz-icon>
   &lt;input mz-input
     [label]="'Email'"
@@ -284,7 +284,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Properties - mz-input-container</h5>
+  <h5 class="light">Properties - mz-input-container</h5>
 
   <p>
     The <code class="language-markup">mz-input-container</code> component can be customized using the following properties.
@@ -313,7 +313,7 @@
 
 <div class="section">
 
-  <h5 class="thin">Properties - input</h5>
+  <h5 class="light">Properties - input</h5>
 
   <p>
     The input can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-input</code> directive.

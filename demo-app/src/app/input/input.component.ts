@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Renderer, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
 

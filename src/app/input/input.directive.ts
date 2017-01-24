@@ -37,7 +37,7 @@ export class MzInputDirective implements OnInit {
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.setAttribute('for', this.id);
+    labelElement.for = this.id;
 
     this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
 
@@ -46,7 +46,7 @@ export class MzInputDirective implements OnInit {
 
   handleProperties() {
     if (this.inputContainerElement.length === 0) {
-      console.error('Input must be place inside an [mz-input-container] tag', this.inputElement);
+      console.error('Input with mz-input directive must be placed inside an [mz-input-container] tag', this.inputElement);
       return;
     }
 

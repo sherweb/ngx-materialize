@@ -31,7 +31,7 @@
     "highlightjs": "^9.8.0",
     "jquery": "^2.2.4",
     "materialize-css": "^0.97.8",
-    "mdi": "^1.7.22",
+    "mdi": "^1.8.36",
     "ng2-materialize": "file:../",
     "rxjs": "5.0.1",
     "ts-helpers": "^1.1.1",

@@ -55,12 +55,22 @@ describe('MzParallaxComponent:unit', () => {
 
     it('shoul initialize parallax using jquery', () => {
 
-      const parallaxSpy = spyOn($.fn, 'parallax');
+      const mockJQueryParallaxNativeElement = { parallax: true };
+
+      spyOn(component.renderer, 'invokeElementMethod');
+
+      spyOn(window, '$').and.callFake((selector: any) => {
+        return selector === component.parallax.nativeElement
+          ? mockJQueryParallaxNativeElement
+          : {};
+      });
 
       component.ngAfterViewInit();
 
-      expect(parallaxSpy).toHaveBeenCalledTimes(1);
-      expect(parallaxSpy.calls.mostRecent().object.context).toBe(component.parallax.nativeElement);
+      expect(component.renderer.invokeElementMethod)
+        .toHaveBeenCalledWith(
+          mockJQueryParallaxNativeElement,
+          'parallax');
     });
   });
 });
