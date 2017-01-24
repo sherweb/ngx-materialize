@@ -4,7 +4,7 @@ import { MzInputContainerComponent } from './input-container.component';
 
 describe('MzInputContainerComponent:unit', () => {
   let component: MzInputContainerComponent;
-  let fixture: ComponentFixture<InputContainerComponent>;
+  let fixture: ComponentFixture<MzInputContainerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

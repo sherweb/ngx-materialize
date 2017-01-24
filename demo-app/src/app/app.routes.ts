@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -19,6 +20,7 @@ export const ROUTES: Routes = [
   // components routes
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button' } },
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card' } },
+  { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox' } },
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon' } },
   { path: 'input', component: InputComponent, data: { icon: 'cursor-text', text: 'Input' } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },

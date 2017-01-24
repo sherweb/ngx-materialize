@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import * as Button from './button/button.component';
 import * as Card from './card/card.component';
+import * as Checkbox from './checkbox';
 import * as Icon from './icon/icon.component';
 import * as Input from './input';
 import * as Navbar from './navbar';
@@ -18,6 +19,8 @@ const MZ_COMPONENTS = [
   Card.MzCardComponent,
   Card.MzCardContentDirective,
   Card.MzCardTitleDirective,
+  Checkbox.MzCheckboxContainerComponent,
+  Checkbox.MzCheckboxDirective,
   Icon.MzIconComponent,
   Input.MzInputContainerComponent,
   Input.MzInputDirective,

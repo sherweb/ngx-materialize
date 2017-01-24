@@ -10,6 +10,7 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { ButtonModule } from './button/button.module';
 import { CardModule } from './card/card.module';
+import { CheckboxModule } from './checkbox/checkbox.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -32,6 +33,7 @@ import { SpinnerModule } from './spinner/spinner.module';
     // component modules
     ButtonModule,
     CardModule,
+    CheckboxModule,
     HomeModule,
     IconModule,
     InputModule,
