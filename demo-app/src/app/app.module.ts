@@ -17,6 +17,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
 import { RadioButtonModule } from './radio-button/radio-button.module';
+import { SelectModule } from './select/select.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
@@ -39,6 +40,7 @@ import { SpinnerModule } from './spinner/spinner.module';
     ParallaxModule,
     ProgressModule,
     RadioButtonModule,
+    SelectModule,
     SidenavModule,
     SpinnerModule,
   ],
