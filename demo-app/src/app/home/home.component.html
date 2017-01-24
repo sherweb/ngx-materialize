@@ -40,6 +40,10 @@
 
   <h5 class="light">Installation</h5>
 
+  <p>
+    The following commands will add Ng2-Materialize library to your <code class="language-markup">package.json</code> file along it dependencies: Materialize CSS, jQuery and Mdi (Mdi icons library is optional as your are free to use the icon library of your choice).
+  </p>
+
 <app-code-snippet>
 npm install --save ng2-materialize
 npm install --save materialize-css jquery@2.2.4 mdi
@@ -61,24 +65,8 @@ npm install --save materialize-css jquery@2.2.4 mdi
 ],
 </app-code-snippet>
 
-<p>
-  Currently, Materialize is not provided by this library, you need to install and link it in your application.
-</p>
-
-<app-code-snippet>
-npm install --save materialize-css
-</app-code-snippet>
-
   <p>
     See also <a href="https://github.com/angular/angular-cli#3rd-party-library-installation" target="_blank">Angular-CLI 3rd Party Library Installation</a> and <a href="https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g" target="_blank">Using Materialize CSS with your Angular 2 Angular-CLI App</a>.
-  </p>
-
-  <h6 class="light">Note</h6>
-  <p>
-    Currently, we have an issue with the compiler-cli (ngc) and inline templates. That's why this library is temporarly distributed with source in plain TypeScript and it will be transpiled and <code class="language-markup">.metadata.json</code> created with your application.
-  </p>
-  <p>
-    We use this library with Angular-CLI and it works well, but at this time, we can not guarantee that it works in all environments.
   </p>
 </div>
 
@@ -115,12 +103,17 @@ export class HomeModule &#123; }
   <ul class="browser-default">
     <li>Button</li>
     <li>Card</li>
+    <li>Checkbox</li>
     <li>Icon</li>
+    <li>Input</li>
     <li>Navbar</li>
     <li>Parallax</li>
     <li>Progress</li>
+    <li>Radio-Button</li>
+    <li>Select</li>
     <li>Sidenav</li>
     <li>Spinner</li>
+    <li>Textarea</li>
   </ul>
 </div>
 
