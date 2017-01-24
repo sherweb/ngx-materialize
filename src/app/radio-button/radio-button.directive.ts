@@ -41,7 +41,7 @@ export class MzRadioButtonDirective implements OnInit {
 
   handleProperties() {
     if (this.inputContainerElement.length === 0) {
-      console.error('Radio Button must be place inside a [mz-radio-button-container] tag', this.inputElement);
+      console.error('Radio Button must be placed inside a [mz-radio-button-container] tag', this.inputElement);
       return;
     }
 

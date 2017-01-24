@@ -131,7 +131,7 @@ describe('MzInputDirective:unit', () => {
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(console.error).toHaveBeenCalledWith('Input must be place inside an [mz-input-container] tag', mockInputElement);
+        expect(console.error).toHaveBeenCalledWith('Input must be placed inside an [mz-input-container] tag', mockInputElement);
       });
 
       it('should not call handle methods', () => {

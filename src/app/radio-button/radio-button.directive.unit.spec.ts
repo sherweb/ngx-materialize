@@ -131,7 +131,9 @@ describe('MzRadioButtonDirective:unit', () => {
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(console.error).toHaveBeenCalledWith('Radio Button must be place inside a [mz-radio-button-container] tag', mockInputElement);
+        expect(console.error).toHaveBeenCalledWith(
+          'Radio Button must be placed inside a [mz-radio-button-container] tag',
+          mockInputElement);
       });
 
       it('should not call handle methods', () => {
