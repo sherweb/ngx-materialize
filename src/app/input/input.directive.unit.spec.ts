@@ -1,5 +1,5 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { MzInputDirective } from './input.directive';
 
@@ -86,7 +86,7 @@ describe('MzInputDirective:unit', () => {
       const inputId = 'input-id';
       const mockInputContainerElement = { inputContainer: true };
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.setAttribute('for', inputId);
+      mockLabelElement.for = inputId;
 
       directive.id = inputId;
       directive.inputContainerElement = <any>mockInputContainerElement;
@@ -99,7 +99,7 @@ describe('MzInputDirective:unit', () => {
 
       const inputId = 'input-id';
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.setAttribute('for', inputId);
+      mockLabelElement.for = inputId;
 
       const mockJQueryLabelElement = { jQueryLabelElement: true };
 
@@ -131,10 +131,15 @@ describe('MzInputDirective:unit', () => {
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(console.error).toHaveBeenCalledWith('Input must be placed inside an [mz-input-container] tag', mockInputElement);
+        expect(console.error).toHaveBeenCalledWith(
+          'Input with mz-input directive must be placed inside an [mz-input-container] tag',
+          mockInputElement);
       });
 
       it('should not call handle methods', () => {
+
+        // avoid error to be shown in console while running tests
+        spyOn(console, 'error');
 
         const mockInputContainerElement = { inputContainer: true, length: 0 };
 
@@ -170,7 +175,7 @@ describe('MzInputDirective:unit', () => {
         spyOn(directive, 'handleAutocomplete').and.callFake(() => callOrder.push('handleAutocomplete'));
       });
 
-      it('should call handle properties method in the right order', () => {
+      it('should call handle property  methods in the right order', () => {
 
         const mockInputContainerElement = { inputContainer: true, length: 1 };
 
