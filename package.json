@@ -4,7 +4,6 @@
   "license": "UNLICENSED",
   "angular-cli": {},
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
     "clean": "rimraf -- dist inline-template node_modules",
@@ -15,7 +14,7 @@
     "start": "cd demo-app && npm start",
     "test": "ng test",
     "prebuild": "rimraf -- dist inline-template src/node_modules",
-    "build": "gulp && ngc -p src/tsconfig.json",
+    "build": "gulp && ngc -p src/tsconfig.lib.json",
     "postbuild": "rimraf -- src/inline-template"
   },
   "dependencies": {},

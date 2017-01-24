@@ -86,7 +86,7 @@ describe('MzInputDirective:unit', () => {
       const inputId = 'input-id';
       const mockInputContainerElement = { inputContainer: true };
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.setAttribute('for', inputId);
+      mockLabelElement.for = inputId;
 
       directive.id = inputId;
       directive.inputContainerElement = <any>mockInputContainerElement;
@@ -99,7 +99,7 @@ describe('MzInputDirective:unit', () => {
 
       const inputId = 'input-id';
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.setAttribute('for', inputId);
+      mockLabelElement.for = inputId;
 
       const mockJQueryLabelElement = { jQueryLabelElement: true };
 
@@ -137,6 +137,9 @@ describe('MzInputDirective:unit', () => {
       });
 
       it('should not call handle methods', () => {
+
+        // avoid error to be shown in console while running tests
+        spyOn(console, 'error');
 
         const mockInputContainerElement = { inputContainer: true, length: 0 };
 
