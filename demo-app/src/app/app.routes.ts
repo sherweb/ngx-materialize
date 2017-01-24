@@ -13,6 +13,7 @@ import { RadioButtonComponent } from './radio-button/radio-button.component';
 import { SelectComponent } from './select/select.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { TextareaComponent } from './textarea/textarea.component';
 
 export const ROUTES: Routes = [
   // home route
@@ -23,7 +24,7 @@ export const ROUTES: Routes = [
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card' } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox' } },
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon' } },
-  { path: 'input', component: InputComponent, data: { icon: 'cursor-text', text: 'Input' } },
+  { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input' } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },
   { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax' } },
   { path: 'progress', component: ProgressComponent, data: { icon: 'timer-sand', text: 'Progress' } },
@@ -31,6 +32,7 @@ export const ROUTES: Routes = [
   { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select' } },
   { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav' } },
   { path: 'spinner', component: SpinnerComponent, data: { icon: 'reload', text: 'Spinner' } },
+  { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea' } },
 
   // redirect to home when route does not exists (must be last route)
   { path: '**', redirectTo: 'home' },

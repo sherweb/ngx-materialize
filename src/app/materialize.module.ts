@@ -13,6 +13,7 @@ import * as RadioButton from './radio-button';
 import * as Select from './select';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
+import * as Textarea from './textarea';
 
 const MZ_COMPONENTS = [
   Button.MzButtonComponent,
@@ -44,6 +45,9 @@ const MZ_COMPONENTS = [
   Sidenav.MzSidenavLinkComponent,
   Sidenav.MzSidenavSubheaderComponent,
   Spinner.MzSpinnerComponent,
+  Textarea.MzTextareaDirective,
+  Textarea.MzTextareaPrefixDirective,
+  Textarea.MzTextareaContainerComponent,
 ];
 
 @NgModule({

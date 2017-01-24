@@ -1,0 +1,233 @@
+<h3>Textarea</h3>
+
+<div class="section">
+  <p>
+    Ng2-Materialize leverage the use of the native HTML textarea by using the <code class="language-markup">mz-textarea</code> directive directly on the textarea element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native textarea element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic textarea</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <textarea mz-textarea
+        [label]="'Label'"
+        id="basic-textarea"
+        placeholder="Placeholder"></textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      Label and placeholder can be combined using both <code class="language-markup">label</code> and <code class="language-markup">placeholder</code> properties.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <textarea mz-textarea
+        [label]="'Label as placeholder'"
+        id="basic-textarea-label"></textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      To use the floating label directly as a placeholder provide only the <code class="language-markup">label</code> property.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <textarea mz-textarea
+        id="basic-textarea-placeholder"
+        placeholder="Placeholder"></textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      You can omit the floating label and use only a placeholder by providing only the <code class="language-markup">placeholder</code> property.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Inline textarea</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Textarea can be inline:
+
+      <mz-textarea-container [inline]="true">
+        <textarea mz-textarea
+          [label]="'Inline'"
+          id="inline-textarea"
+          value="I am inline"></textarea>
+      </mz-textarea-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the textarea inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-textarea-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled textarea</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <textarea mz-textarea
+        [label]="'Disabled'"
+        id="disabled-textarea"
+        disabled>Lorem ipsum dolor sit amet, sed aliquet quam, dapibus fusce wisi leo, ultricies mauris dui dui sollicitudin sed. Sodales nulla viverra quis cursus ad nullam, mauris ipsum, ultrices quis odio odio ut velit sed, rhoncus ac nam.</textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      Disable the textarea by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Icon Prefixes</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <mz-icon mz-textarea-prefix
+        [mdiIcon]="'message-reply-text'">
+      </mz-icon>
+      <textarea mz-textarea
+        [label]="'Comment'"
+        id="comment-textarea"></textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      To use an icon prefix add the icon inside the <code class="language-markup">mz-textarea-container</code> component with the <code class="language-markup">mz-textarea-prefix</code> directive on the icon tag.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Character Count</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-textarea-container class="col s12 m6">
+      <textarea mz-textarea
+        [label]="'Character Count'"
+        length="150"
+        id="character-count-textarea">A character count appears when you set focus on this textarea</textarea>
+    </mz-textarea-container>
+
+    <p class="col s12 m6">
+      You can add a character count on textarea focus using the native property <code class="language-markup">length</code> with the number of restricted characters.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The textarea element must be contained inside the <code class="language-markup">mz-textarea-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-textarea-container>
+  &lt;mz-icon mz-textarea-prefix
+    [mdiIcon]="'message-reply-text'">
+  &lt;/mz-icon>
+  &lt;textarea mz-textarea
+    [label]="'Comment'"
+    id="comment-textarea"
+    placeholder="Enter your comment"
+    length="150">&lt;/textarea>
+&lt;/mz-textarea-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties - mz-textarea-container</h5>
+
+  <p>
+    The <code class="language-markup">mz-textarea-container</code> component can be customized using the following properties.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>inline</td>
+        <td>boolean</td>
+        <td>Show textarea inline</td>
+        <td>false</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties - textarea</h5>
+
+  <p>
+    The textarea can be customized using the following properties on the <code class="language-markup">textarea</code> element when adding <code class="language-markup">mz-textarea</code> directive.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>Id of the textarea</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>string</td>
+        <td>Floating label</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>length</td>
+        <td>number</td>
+        <td>Show character count</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>placeholder</td>
+        <td>string</td>
+        <td>Show placeholder</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
