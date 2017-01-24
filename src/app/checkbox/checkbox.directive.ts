@@ -41,7 +41,7 @@ export class MzCheckboxDirective implements OnInit {
 
   handleProperties() {
     if (this.checkboxContainerElement.length === 0) {
-      console.error('Input with mz-checkbox directive must be place inside a [mz-checkbox-container] tag', this.checkboxElement);
+      console.error('Input with mz-checkbox directive must be placed inside a [mz-checkbox-container] tag', this.checkboxElement);
       return;
     }
 

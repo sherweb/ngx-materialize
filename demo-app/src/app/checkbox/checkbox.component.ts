@@ -20,7 +20,7 @@ export class CheckboxComponent implements AfterViewInit {
   forceIndeterminate() {
     const checkboxElements = $('#indeterminate-checkbox, #filledin-indeterminate-checkbox');
     checkboxElements.each((index, element) => {
-      this.renderer.setElementProperty(element, 'indeterminate', 'true');
+      this.renderer.setElementProperty(element, 'indeterminate', true);
     });
   }
 }

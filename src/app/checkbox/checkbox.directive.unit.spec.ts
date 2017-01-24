@@ -132,7 +132,7 @@ describe('MzCheckboxDirective:unit', () => {
         directive.handleProperties();
 
         expect(console.error).toHaveBeenCalledWith(
-          'Input with mz-checkbox directive must be place inside a [mz-checkbox-container] tag',
+          'Input with mz-checkbox directive must be placed inside a [mz-checkbox-container] tag',
           mockCheckboxElement);
       });
 

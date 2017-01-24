@@ -132,7 +132,7 @@ describe('MzInputDirective:unit', () => {
         directive.handleProperties();
 
         expect(console.error).toHaveBeenCalledWith(
-          'Input with mz-input directive must be place inside an [mz-input-container] tag',
+          'Input with mz-input directive must be placed inside an [mz-input-container] tag',
           mockInputElement);
       });
 
