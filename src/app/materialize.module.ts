@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import * as Button from './button/button.component';
+import * as Button from './button';
 import * as Card from './card/card.component';
 import * as Checkbox from './checkbox';
 import * as Icon from './icon/icon.component';
@@ -16,7 +16,7 @@ import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
 
 const MZ_COMPONENTS = [
-  Button.MzButtonComponent,
+  Button.MzButtonDirective,
   Card.MzCardActionDirective,
   Card.MzCardComponent,
   Card.MzCardContentDirective,
