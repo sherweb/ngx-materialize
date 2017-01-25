@@ -22,11 +22,9 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
   @Input() large: boolean;
   @Input() noWaves: boolean;
 
-  private handlers: Object;
-
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    super();
+  }
 
   ngOnInit() {
     this.initMaterialize();

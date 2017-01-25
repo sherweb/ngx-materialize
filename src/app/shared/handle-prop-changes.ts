@@ -1,9 +1,9 @@
-import { OnChanges } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 
 export class HandlePropChanges implements OnChanges {
-  private handlers: Object;
+  protected handlers: Object;
 
-  ngOnChanges(changes: SimpleChange) {
+  ngOnChanges(changes: SimpleChanges) {
     if (this.handlers) {
       this.handleProperties(changes);
     }
