@@ -86,7 +86,7 @@ describe('MzInputDirective:unit', () => {
       const inputId = 'input-id';
       const mockInputContainerElement = { inputContainer: true };
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.for = inputId;
+      mockLabelElement.setAttribute('for', inputId);
 
       directive.id = inputId;
       directive.inputContainerElement = <any>mockInputContainerElement;
@@ -99,7 +99,7 @@ describe('MzInputDirective:unit', () => {
 
       const inputId = 'input-id';
       const mockLabelElement = document.createElement('label');
-      mockLabelElement.for = inputId;
+      mockLabelElement.setAttribute('for', inputId);
 
       const mockJQueryLabelElement = { jQueryLabelElement: true };
 

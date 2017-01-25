@@ -65,10 +65,10 @@ export class MzSelectDirective implements AfterViewInit, OnInit, OnDestroy {
   handlePlaceholder() {
     if (this.placeholder) {
       const placeholderText = document.createTextNode(this.placeholder);
-      const placeholderOption = <any>document.createElement('option');
+      const placeholderOption = document.createElement('option');
       placeholderOption.disabled = true;
       placeholderOption.selected = true;
-      placeholderOption.append(placeholderText);
+      placeholderOption.appendChild(placeholderText);
 
       this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
     }
