@@ -1,12 +1,13 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { MzTestWrapperComponent, buildComponent } from '../shared/test-wrapper';
+import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import {
     MzCollapsibleComponent,
     MzCollapsibleItemBodyDirective,
     MzCollapsibleItemComponent,
-    MzCollapsibleItemHeaderDirective } from './';
+    MzCollapsibleItemHeaderDirective,
+} from './';
 
 describe('MzCollapsibleComponent:view', () => {
 
@@ -72,7 +73,7 @@ describe('MzCollapsibleComponent:view', () => {
       });
     }));
 
-    fit('should transclude collapsible item', fakeAsync(() => {
+    it('should transclude collapsible item', fakeAsync(() => {
 
       buildComponent<MzCollapsibleComponent>(`
         <mz-collapsible>

@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
-import { MzTestWrapperComponent, buildComponent } from '../../shared/test-wrapper';
+import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
 import { MzCollapsibleItemComponent } from './collapsible-item.component';
 
 describe('MzCollapsibleItemComponent:view', () => {
@@ -24,6 +24,14 @@ describe('MzCollapsibleItemComponent:view', () => {
       return nativeElement.querySelector('mz-collapsible-item');
     }
 
+    function collapsibleItemBody(): HTMLElement {
+      return nativeElement.querySelector('.collapsible-body');
+    }
+
+    function collapsibleItemHeader(): HTMLElement {
+      return nativeElement.querySelector('.collapsible-header');
+    }
+
     it('should display a collapsible item', async(() => {
 
       buildComponent<MzCollapsibleItemComponent>(`<mz-collapsible-item>some-text</mz-collapsible-item>`).then((fixture) => {
@@ -35,51 +43,72 @@ describe('MzCollapsibleItemComponent:view', () => {
       });
     }));
 
-    it('should have active class when active property is provided', async(() => {
+    describe('body', () => {
 
-      buildComponent<MzCollapsibleItemComponent>(`<mz-collapsible-item [active]="'true'"></mz-collapsible-item>`).then((fixture) => {
+      it('should transclude content', async(() => {
 
-        nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        buildComponent<MzCollapsibleItemComponent>(`
+          <mz-collapsible-item>
+            <mz-collapsible-item-body><p class="some-class-body">some-body</p></mz-collapsible-item-body>
+          </mz-collapsible-item>
+        `).then((fixture) => {
 
-        expect(nativeElement.querySelector('.collapsible-header').classList).toContain('active');
-      });
-    }));
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
 
-    it('should not have active class when active prop is not provided', async(() => {
+          const transcludeContentBody = collapsibleItemBody().querySelector('p');
 
-      buildComponent<MzCollapsibleItemComponent>(`<mz-collapsible-item></mz-collapsible-item>`).then((fixture) => {
+          expect(transcludeContentBody).toBeTruthy();
+          expect(transcludeContentBody.classList).toContain('some-class-body');
+          expect(transcludeContentBody.innerHTML.trim()).toBe('some-body');
+          expect(collapsibleItemBody().parentElement.nodeName).toBe(collapsibleItem().nodeName);
+        });
+      }));
+    });
 
-        nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+    describe('header', () => {
 
-        expect(nativeElement.querySelector('.collapsible-header').classList).not.toContain('active');
-      });
-    }));
+      it('should have active class when active property is provided', async(() => {
 
-    it('should transclude content', async(() => {
+        buildComponent<MzCollapsibleItemComponent>(`<mz-collapsible-item [active]="'true'"></mz-collapsible-item>`).then((fixture) => {
 
-      buildComponent<MzCollapsibleItemComponent>(`
-        <mz-collapsible-item>
-          <mz-collapsible-item-header><span class="some-class-header">some-header</span></mz-collapsible-item-header>
-          <mz-collapsible-item-body><p class="some-class-body">some-body</p></mz-collapsible-item-body>
-        </mz-collapsible-item>
-      `).then((fixture) => {
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
 
-        nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+          expect(collapsibleItemHeader().classList).toContain('active');
+        });
+      }));
 
-        const transcludeContentBody = collapsibleItem().querySelector('.collapsible-body p');
-        const transcludeContentHeader = collapsibleItem().querySelector('.collapsible-header span');
+      it('should not have active class when active property is not provided', async(() => {
 
-        expect(transcludeContentBody).toBeTruthy();
-        expect(transcludeContentBody.classList).toContain('some-class-body');
-        expect(transcludeContentBody.innerHTML.trim()).toBe('some-body');
+        buildComponent<MzCollapsibleItemComponent>(`<mz-collapsible-item></mz-collapsible-item>`).then((fixture) => {
 
-        expect(transcludeContentHeader).toBeTruthy();
-        expect(transcludeContentHeader.classList).toContain('some-class-header');
-        expect(transcludeContentHeader.innerHTML.trim()).toBe('some-header');
-      });
-    }));
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
+
+          expect(collapsibleItemHeader().classList).not.toContain('active');
+        });
+      }));
+
+      it('should transclude content', async(() => {
+
+        buildComponent<MzCollapsibleItemComponent>(`
+          <mz-collapsible-item>
+            <mz-collapsible-item-header><span class="some-class-header">some-header</span></mz-collapsible-item-header>
+          </mz-collapsible-item>
+        `).then((fixture) => {
+
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
+
+          const transcludeContentHeader = collapsibleItemHeader().querySelector('span');
+
+          expect(transcludeContentHeader).toBeTruthy();
+          expect(transcludeContentHeader.classList).toContain('some-class-header');
+          expect(transcludeContentHeader.innerHTML.trim()).toBe('some-header');
+          expect(collapsibleItemHeader().parentElement.nodeName).toBe(collapsibleItem().nodeName);
+        });
+      }));
+    });
   });
 });

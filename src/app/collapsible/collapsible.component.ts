@@ -1,4 +1,3 @@
-import { MzCollapsibleItemComponent } from './collapsible-item/collapsible-item.component';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -10,6 +9,7 @@ import {
   QueryList,
   Renderer,
   ViewChild } from '@angular/core';
+import { MzCollapsibleItemComponent } from './collapsible-item/collapsible-item.component';
 
 @Component({
   selector: 'mz-collapsible',
@@ -29,8 +29,11 @@ export class MzCollapsibleComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.handleDataCollapsible();
+    this.initCollapsible();
+  }
 
-    let options: Materialize.CollapsibleOptions = {
+  initCollapsible() {
+    const options: Materialize.CollapsibleOptions = {
       accordion: false,
       onClose: this.onClose,
       onOpen: this.onOpen,
@@ -39,10 +42,13 @@ export class MzCollapsibleComponent implements AfterViewInit {
     // need setTimeout otherwise loading directly on the page cause an error
     setTimeout(() => this.renderer.invokeElementMethod($(this.collapsible.nativeElement), 'collapsible', [options]));
 
+    // forcing changes detection for unit test
     this.changeDetectorRef.detectChanges();
   }
 
   handleDataCollapsible() {
-    this.renderer.setElementAttribute(this.collapsible.nativeElement, 'data-collapsible', this.mode);
+    if (this.mode) {
+      this.renderer.setElementAttribute(this.collapsible.nativeElement, 'data-collapsible', this.mode);
+    }
   }
 }

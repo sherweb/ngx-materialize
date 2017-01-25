@@ -13,7 +13,7 @@ import {
 export class MzCollapsibleItemComponent implements AfterViewInit {
   @Input() active: boolean;
 
-  public innerHTML = '';
+  innerHTML: string;
 
   constructor(public element: ElementRef) { }
 
@@ -22,7 +22,7 @@ export class MzCollapsibleItemComponent implements AfterViewInit {
   }
 }
 
-// Declare the tags to avoid error: '<mz-collapsible-x>' is not a known element
+// Declare the tags to avoid error: '<mz-collapsible-item-x>' is not a known element
 // https://github.com/angular/angular/issues/11251
 // tslint:disable: directive-selector
 @Directive({ selector: 'mz-collapsible-item-body' }) export class MzCollapsibleItemBodyDirective { }
