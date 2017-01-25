@@ -4,6 +4,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import * as Button from './button';
 import * as Card from './card/card.component';
 import * as Checkbox from './checkbox';
+import * as Collapsible from './collapsible';
 import * as Icon from './icon/icon.component';
 import * as Input from './input';
 import * as Navbar from './navbar';
@@ -23,6 +24,10 @@ const MZ_COMPONENTS = [
   Card.MzCardTitleDirective,
   Checkbox.MzCheckboxContainerComponent,
   Checkbox.MzCheckboxDirective,
+  Collapsible.MzCollapsibleComponent,
+  Collapsible.MzCollapsibleItemBodyDirective,
+  Collapsible.MzCollapsibleItemComponent,
+  Collapsible.MzCollapsibleItemHeaderDirective,
   Icon.MzIconComponent,
   Input.MzInputContainerComponent,
   Input.MzInputDirective,

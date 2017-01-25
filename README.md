@@ -75,6 +75,7 @@ export class HomeModule { }
 ## Available components
 * Button
 * Card
+* Collapsible
 * Icon
 * Navbar
 * Parallax

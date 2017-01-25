@@ -1,0 +1,8 @@
+<ul #collapsible 
+  class="collapsible" 
+  [class.popout]="popout"
+>
+
+  <li *ngFor="let item of items" [innerHTML]="item.innerHTML"></li>
+
+</ul>
