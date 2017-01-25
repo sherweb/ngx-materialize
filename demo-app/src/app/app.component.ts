@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/filter';
 
 import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
-import { Router, Route, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',

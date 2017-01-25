@@ -4,7 +4,7 @@ This library is an [Angular 2](https://angular.io/) wrap around [Materialize](ht
 
 The purpose of this library is to simplify the usage within the Angular framework.
 
-## Why ng2-materialize ?
+## Why ng2-materialize?
 
 We are aware that alternatives exposing Material Design components already exist. But in our case, we want to rely on a stable css framework that does not depend on a specific js framework.
 
@@ -18,24 +18,25 @@ The following commands will add Ng2-Materialize library to your `package.json` f
 
 ```
 npm install --save ng2-materialize
-
 npm install --save materialize-css jquery@2.2.4 mdi
 ```
 
 Don't forget to include jQuery, Materialize and Mdi into your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
+
 #### angular-cli.json
+
 ```diff
- "styles": [
-   "styles.scss",
-+  "../node_modules/materialize-css/bin/materialize.css",
-+  "../node_modules/mdi/css/materialdesignicons.css"
- ],
- "scripts": [
-+  "../node_modules/jquery/dist/jquery.js",
-+  "../node_modules/materialize-css/bin/materialize.js"
- ],
+"styles": [
+  "styles.scss",
++ "../node_modules/materialize-css/bin/materialize.css",
++ "../node_modules/mdi/css/materialdesignicons.css"
+],
+"scripts": [
++ "../node_modules/jquery/dist/jquery.js",
++ "../node_modules/materialize-css/bin/materialize.js"
+],
 ```
 
 See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli#3rd-party-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
@@ -59,10 +60,10 @@ import { HomeComponent } from './home.component';
   declarations: [ HomeComponent ],
 })
 export class HomeModule { }
-
 ```
 
 ## Available components
+
 * Button
 * Card
 * Checkbox
