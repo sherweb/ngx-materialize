@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './select-container.component.html',
   styleUrls: ['./select-container.component.scss'],
 })
-export class MzSelectContainerComponent implements OnInit { }
+export class MzSelectContainerComponent { }
