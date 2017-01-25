@@ -3,10 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import * as Button from './button';
 import * as Card from './card/card.component';
-<<<<<<< HEAD
 import * as Checkbox from './checkbox';
-=======
->>>>>>> c0a2086542e24eb7dbccb6028f99aeaeb7cd4188
 import * as Collapsible from './collapsible';
 import * as Icon from './icon/icon.component';
 import * as Input from './input';

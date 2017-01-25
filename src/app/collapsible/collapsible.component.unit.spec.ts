@@ -1,6 +1,4 @@
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { MzCollapsibleComponent } from './collapsible.component';
 
@@ -115,7 +113,7 @@ describe('MzCollapsibleComponent:unit', () => {
 
       component.initCollapsible();
 
-      expect(component.changeDetectorRef.detectChanges).toHaveBeenCalledWith();
+      expect(component.changeDetectorRef.detectChanges).toHaveBeenCalled();
     });
   });
 });
