@@ -67,6 +67,7 @@ export class HomeModule { }
 * Button
 * Card
 * Checkbox
+* Collapsible
 * Icon
 * Input
 * Navbar

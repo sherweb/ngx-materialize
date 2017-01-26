@@ -78,9 +78,9 @@
   version "2.0.37"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.37.tgz#dae31d21864fb9de34ba145f7f161c1b373778e6"
 
-"@types/materialize-css@^0.97.32":
-  version "0.97.33"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.33.tgz#c0532a837231df20835a52f9074820f553a18a06"
+"@types/materialize-css@^0.97.34":
+  version "0.97.34"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.34.tgz#6111c7d874265eb1a12b1a000a616b2eb7390eea"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"
@@ -5823,21 +5823,7 @@ tslint-microsoft-contrib@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-4.0.0.tgz#7e00a56c1417251d3f91a880efcc43361a69fb2a"
 
-tslint@^4.0.0, tslint@^4.0.2:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.2.0.tgz#b9f5c5b871b784ab2f4809e704ade42d62f523ad"
-  dependencies:
-    babel-code-frame "^6.20.0"
-    colors "^1.1.2"
-    diff "^3.0.1"
-    findup-sync "~0.3.0"
-    glob "^7.1.1"
-    optimist "~0.6.0"
-    resolve "^1.1.7"
-    underscore.string "^3.3.4"
-    update-notifier "^1.0.2"
-
-tslint@^4.3.1:
+tslint@^4.0.0, tslint@^4.0.2, tslint@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.3.1.tgz#28f679c53ca4b273688bcb6fcf0dde7ff1bb2169"
   dependencies:

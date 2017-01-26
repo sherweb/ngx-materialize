@@ -12,9 +12,35 @@ table {
             font-weight: 500;
           }
         }
+                  
+        td.default-value,
+        th.default-value {
+          width: 10%;
+        }
+
+        td.mandatory,
+        th.mandatory {
+          width: 5%;
+        }
+
+        td.property,
+        th.property {
+          width: 15%;
+        }
+
+        td.type,
+        th.type {
+          width: 15%;
+        }
       }
     }
   }
+}
+
+.rotate90 {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .section {

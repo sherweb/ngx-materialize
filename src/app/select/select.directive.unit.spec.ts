@@ -249,7 +249,7 @@ describe('MzSelectDirective:unit', () => {
       const mockPlaceholderOption = document.createElement('option');
       mockPlaceholderOption.disabled = true;
       mockPlaceholderOption.selected = true;
-      mockPlaceholderOption.append(mockPlaceholderText);
+      mockPlaceholderOption.appendChild(mockPlaceholderText);
 
       directive.selectElement = <any>mockSelectElement;
       directive.placeholder = placeholder;

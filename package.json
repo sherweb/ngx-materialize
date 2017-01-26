@@ -30,7 +30,7 @@
     "@angular/router": "^3.3.1",
     "@angular/tsc-wrapped": "0.5.0",
     "@types/jasmine": "2.5.38",
-    "@types/materialize-css": "^0.97.32",
+    "@types/materialize-css": "^0.97.33",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~2.0.0-beta.1",

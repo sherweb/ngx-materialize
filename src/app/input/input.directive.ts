@@ -37,7 +37,7 @@ export class MzInputDirective implements OnInit {
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.for = this.id;
+    labelElement.setAttribute('for', this.id);
 
     this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
 

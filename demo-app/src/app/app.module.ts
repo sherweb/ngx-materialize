@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from './button/button.module';
 import { CardModule } from './card/card.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { CollapsibleModule } from './collapsible/collapsible.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -36,6 +37,7 @@ import { TextareaModule } from './textarea/textarea.module';
     ButtonModule,
     CardModule,
     CheckboxModule,
+    CollapsibleModule,
     HomeModule,
     IconModule,
     InputModule,
