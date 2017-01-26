@@ -139,7 +139,7 @@
   <h5 class="light">HTML Structure</h5>
 
   <p>
-    The textarea element must be contained inside the <code class="language-markup">mz-textarea-container</code> component otherwise an error will be shown in the console.
+    The textarea element <b>must be</b> contained inside the <code class="language-markup">mz-textarea-container</code> component otherwise an error will be shown in the console.
   </p>
 
   <app-code-snippet>
@@ -158,76 +158,88 @@
 
 <div class="section">
 
-  <h5 class="light">Properties - mz-textarea-container</h5>
+  <h5 class="light">Properties</h5>
 
-  <p>
-    The <code class="language-markup">mz-textarea-container</code> component can be customized using the following properties.
-  </p>
+  <div class="section">
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
+    <h6 class="bold">mz-textarea-container</h6>
 
-    <tbody>
-      <tr>
-        <td>inline</td>
-        <td>boolean</td>
-        <td>Show textarea inline</td>
-        <td>false</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <p>
+      The <code class="language-markup">mz-textarea-container</code> component can be customized using the following properties.
+    </p>
 
-<div class="section">
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
 
-  <h5 class="light">Properties - textarea</h5>
+      <tbody>
+        <tr>
+          <td>inline</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>boolean</td>
+          <td>Show textarea inline</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <p>
-    The textarea can be customized using the following properties on the <code class="language-markup">textarea</code> element when adding <code class="language-markup">mz-textarea</code> directive.
-  </p>
+  <div class="section">
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
+    <h6 class="bold">mz-textarea</h6>
 
-    <tbody>
-      <tr>
-        <td>id</td>
-        <td>string</td>
-        <td>Id of the textarea</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>string</td>
-        <td>Floating label</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>length</td>
-        <td>number</td>
-        <td>Show character count</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>placeholder</td>
-        <td>string</td>
-        <td>Show placeholder</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+    <p>
+      Textareas can be customized using the following properties on the <code class="language-markup">textarea</code> element when adding <code class="language-markup">mz-textarea</code> directive.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>id</td>
+          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Id of the textarea</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Floating label</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>length</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>number</td>
+          <td>Show character count</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>placeholder</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Show placeholder</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

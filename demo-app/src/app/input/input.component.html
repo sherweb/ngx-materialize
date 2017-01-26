@@ -284,106 +284,123 @@
 
 <div class="section">
 
-  <h5 class="light">Properties - mz-input-container</h5>
+  <h5 class="light">Properties</h5>
 
-  <p>
-    The <code class="language-markup">mz-input-container</code> component can be customized using the following properties.
-  </p>
+  <div class="section">
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
+    <h6 class="bold">mz-input-container</h6>
 
-    <tbody>
-      <tr>
-        <td>inline</td>
-        <td>boolean</td>
-        <td>Show input inline</td>
-        <td>false</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <p>
+      The <code class="language-markup">mz-input-container</code> component can be customized using the following properties.
+    </p>
 
-<div class="section">
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
 
-  <h5 class="light">Properties - input</h5>
+      <tbody>
+        <tr>
+          <td>inline</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>boolean</td>
+          <td>Show input inline</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <p>
-    The input can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-input</code> directive.
-  </p>
+  <div class="section">
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
+    <h6 class="bold">mz-input</h6>
 
-    <tbody>
-      <tr>
-        <td>autocomplete</td>
-        <td>&#123; data: &#123; [key: string]: string } }</td>
-        <td>Suggest possible values</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>dataError</td>
-        <td>string</td>
-        <td>Invalid message</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>dataSuccess</td>
-        <td>string</td>
-        <td>Valid message</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>id</td>
-        <td>string</td>
-        <td>Id of the input</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>string</td>
-        <td>Floating label</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>length</td>
-        <td>number</td>
-        <td>Show character count</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>placeholder</td>
-        <td>string</td>
-        <td>Show placeholder</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>type</td>
-        <td>string</td>
-        <td>HTML5 input type</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>validate</td>
-        <td>boolean</td>
-        <td>Activate HTML5 validation</td>
-        <td>false</td>
-      </tr>
-    </tbody>
-  </table>
+    <p>
+      Inputs can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-input</code> directive.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>autocomplete</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>&#123; data: &#123; [key: string]: string } }</td>
+          <td>Suggest possible values</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>dataError</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Invalid message</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>dataSuccess</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Valid message</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Id of the input</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Floating label</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>length</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>number</td>
+          <td>Show character count</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>placeholder</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
+          <td>Show placeholder</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td>string</td>
+          <td>HTML5 input type</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>validate</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>boolean</td>
+          <td>Activate HTML5 validation</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

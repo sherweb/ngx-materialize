@@ -98,4 +98,4 @@ Make sure that :
 - Unit tests pass
 - Linter passes
 
-And you are ready to go.
+And you are ready to go!

@@ -110,6 +110,7 @@
     <thead>
       <tr>
         <th data-field="property">Property</th>
+        <th data-field="mandatory" class="center mandatory">Mandatory</th>
         <th data-field="type">Type</th>
         <th data-field="description">Description</th>
         <th data-field="default-value">Default value</th>
@@ -119,30 +120,35 @@
     <tbody>
       <tr>
         <td>icon</td>
+        <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon> or <b>mdiIcon</b></td>
         <td>string</td>
         <td>The name of the icon</td>
         <td></td>
       </tr>
       <tr>
         <td>iconAlign</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>string</td>
         <td>Alignement of the icon</td>
         <td></td>
       </tr>
       <tr>
         <td>iconClass</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>string</td>
         <td>Icon css class to be applied on the icon</td>
         <td></td>
       </tr>
       <tr>
         <td>mdiIcon</td>
+        <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon> or <b>icon</b></td>
         <td>string</td>
         <td>The name of the material design icon (mdi)</td>
         <td></td>
       </tr>
       <tr>
         <td>mdiIconSize</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>string</td>
         <td>Icon size to be applied on the icon, could be <code class="language-markup">24px</code>, <code class="language-markup">36px</code>, or <code class="language-markup">48px</code></td>
         <td>24px</td>

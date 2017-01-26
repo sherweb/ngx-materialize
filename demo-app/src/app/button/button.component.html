@@ -3,7 +3,7 @@
 <h5 class="light">Basic button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button>
       button
@@ -18,7 +18,7 @@
 <h5 class="light">Styled button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button
       class="red"
@@ -35,7 +35,7 @@
 <h5 class="light">Styled text button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button
       class="yellow-text"
@@ -52,7 +52,7 @@
 <h5 class="light">Large button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button
       [large]="true"
@@ -103,7 +103,7 @@
 <h5 class="light">Flat & float button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button
       [flat]="true"
@@ -121,7 +121,7 @@
 <h5 class="light">Button with left icon</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button>
       <mz-icon [icon]="'cloud'" [iconAlign]="'left'"></mz-icon>
@@ -137,7 +137,7 @@
 <h5 class="light">Button with right icon</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button>
       <mz-icon [icon]="'cloud'" [iconAlign]="'right'"></mz-icon>
@@ -153,7 +153,7 @@
 <h5 class="light">Button with styled icon</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button>
       <mz-icon [icon]="'cloud'" [iconAlign]="'left'" [iconClass]="'red-text'"></mz-icon>
@@ -169,7 +169,7 @@
 <h5 class="light">Button with Material Design Icon (mdi)</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button>
       <mz-icon [mdiIcon]="'owl'" [iconAlign]="'left'"></mz-icon>
@@ -185,7 +185,7 @@
 <h5 class="light">Disabled button</h5>
 
 <div class="row valign-wrapper">
-  
+
   <div class="col s12 m3">
     <button mz-button
       [disabled]="true"
@@ -238,13 +238,14 @@
   <h5 class="light">Properties</h5>
 
   <p>
-    Buttons can be customized using the following properties on the <code class="language-markup">mz-button</code> element.
+    The button can be customized using the following properties on the <code class="language-markup">button</code> element when adding <code class="language-markup">mz-button</code> directive.
   </p>
 
   <table class="striped responsive-table">
     <thead>
       <tr>
         <th data-field="property">Property</th>
+        <th data-field="mandatory" class="mandatory center">Mandatory</th>
         <th data-field="type">Type</th>
         <th data-field="description">Description</th>
         <th data-field="default-value">Default value</th>
@@ -254,24 +255,28 @@
     <tbody>
       <tr>
         <td>disabled</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>boolean</td>
         <td>Button will be disabled</td>
         <td>false</td>
       </tr>
       <tr>
         <td>flat</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>boolean</td>
         <td>Button will have flat style</td>
         <td>false</td>
       </tr>
       <tr>
         <td>float</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>boolean</td>
         <td>Button will have float style</td>
         <td>false</td>
       </tr>
       <tr>
         <td>large</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>boolean</td>
         <td>Button will have large style</td>
         <td>false</td>
