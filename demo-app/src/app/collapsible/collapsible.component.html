@@ -1,6 +1,6 @@
 <h3>Collapsible</h3>
 
-<h5 class="thin">Accordion</h5>
+<h5 class="light">Accordion</h5>
 
 <div class="row">
 
@@ -18,7 +18,7 @@
   </p>
 </div>
 
-<h5 class="thin">Expandable</h5>
+<h5 class="light">Expandable</h5>
 
 <div class="row">
 
@@ -32,7 +32,7 @@
         </p>
       </mz-collapsible-item-body>
     </mz-collapsible-item>
-    
+
     <mz-collapsible-item>
       <mz-collapsible-item-header>Second</mz-collapsible-item-header>
       <mz-collapsible-item-body>
@@ -58,7 +58,7 @@
   </p>
 </div>
 
-<h5 class="thin">Popout</h5>
+<h5 class="light">Popout</h5>
 
 <div class="row">
 
@@ -75,7 +75,7 @@
         </p>
       </mz-collapsible-item-body>
     </mz-collapsible-item>
-    
+
     <mz-collapsible-item>
       <mz-collapsible-item-header>Second</mz-collapsible-item-header>
       <mz-collapsible-item-body>
@@ -101,7 +101,7 @@
   </p>
 </div>
 
-<h5 class="thin">Preselected Section</h5>
+<h5 class="light">Preselected Section</h5>
 
 <div class="row">
 
@@ -115,7 +115,7 @@
         </p>
       </mz-collapsible-item-body>
     </mz-collapsible-item>
-    
+
     <mz-collapsible-item>
       <mz-collapsible-item-header>Second</mz-collapsible-item-header>
       <mz-collapsible-item-body>
@@ -143,15 +143,14 @@
 
 <div class="section">
 
-  <h5>HTML Structure</h5>
+  <h5 class="light">HTML Structure</h5>
 
 <app-code-snippet>
 &lt;mz-collapsible
   [mode]="'expandable'"
   [onClose]="closeFunctionCallback"
   [onOpen]="openFunctionCallback"
-  [popout]="true"
-  >
+  [popout]="true">
   &lt;mz-collapsible-item>
     &lt;mz-collapsible-item-header [active]="true">
       First
@@ -167,10 +166,11 @@
 
 <div class="section">
 
-  <h5 class="thin">Properties</h5>
+  <h5 class="light">Properties</h5>
 
   <div class="section">
-    <h6>mz-collapsible</h6>
+
+    <h6 class="bold">mz-collapsible</h6>
 
     <p>
       Collapsibles can be customized using the following properties on the <code class="language-markup">mz-collapsible</code> element.
@@ -181,47 +181,48 @@
         <tr>
           <th data-field="property" class="property">Property</th>
           <th data-field="mandatory" class="center mandatory">Mandatory</th>
-          <th data-field="type" class="center type">Type</th>
+          <th data-field="type">Type</th>
           <th data-field="description">Description</th>
-          <th data-field="default-value" class="default-value">Default value</th>
+          <th data-field="default-value">Default value</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td>mode</td>
-          <td class="center"><mz-icon [icon]="'close'"></mz-icon></td>
-          <td class="center">string</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>string</td>
           <td>Collapsible behavior style, could be <code class="language-markup">accordion</code> or <code class="language-markup">expandable</code></td>
-          <td class="default-value">accordion</td>
+          <td>accordion</td>
         </tr>
         <tr>
           <td>onClose</td>
-          <td class="center"><mz-icon [icon]="'close'"></mz-icon></td>
-          <td class="center">Function</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>Function</td>
           <td>Function that will be called when a collapsible section is closed</td>
-          <td class="default-value"></td>
+          <td></td>
         </tr>
         <tr>
           <td>onOpen</td>
-          <td class="center"><mz-icon [icon]="'close'"></mz-icon></td>
-          <td class="center">Function</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>Function</td>
           <td>Function that will be called when a collapsible section is opened</td>
-          <td class="default-value"></td>
-        </tr>      
+          <td></td>
+        </tr>
         <tr>
           <td>popout</td>
-          <td class="center"><mz-icon [icon]="'close'"></mz-icon></td>
-          <td class="center">boolean</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td>boolean</td>
           <td>Add popout animation when an item is clicked to show its section</td>
-          <td class="default-value">false</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="section">
-    <h6>mz-collapsible-item</h6>
+
+    <h6 class="bold">mz-collapsible-item</h6>
 
     <p>
       <code class="language-markup">mz-collapsible-item</code> will transclude any contents.
@@ -231,20 +232,20 @@
       <thead>
         <tr>
           <th data-field="property">Property</th>
-          <th data-field="mandatory" class="center">Mandatory</th>
-          <th data-field="type" class="center">Type</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
           <th data-field="description">Description</th>
-          <th data-field="default-value" class="default-value">Default value</th>
+          <th data-field="default-value">Default value</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
           <td>active</td>
-          <td class="center"><mz-icon [icon]="'close'"></mz-icon></td>
-          <td class="center">boolean</td>
+          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td >boolean</td>
           <td>Preopen the item section from the collapsible</td>
-          <td class="default-value">false</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>

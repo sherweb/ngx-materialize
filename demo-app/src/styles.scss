@@ -1,11 +1,26 @@
 @import "./_variables";
 
-code[class*="language-"] {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 0.1em;
-  color: #000;
-  padding: 0.1em 0.3em;
-  margin: 0 0.05em;
+/* Utility classes */
+
+.rotate90 {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* Page structure */
+
+.section {
+  padding-top: 0 !important;
+
+  > .section {
+    margin-top: 16px;
+  }
+
+  > p:last-child,
+  > .row:last-child {
+    margin-bottom: 0 !important;
+  }
 }
 
 table {
@@ -20,45 +35,12 @@ table {
             font-weight: 500;
           }
         }
-                  
-        td.default-value,
-        th.default-value {
-          width: 10%;
-        }
-
-        td.mandatory,
-        th.mandatory {
-          width: 5%;
-        }
-
-        td.property,
-        th.property {
-          width: 15%;
-        }
-
-        td.type,
-        th.type {
-          width: 15%;
-        }
       }
     }
   }
 }
 
-.rotate90 {
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-.section {
-  padding-top: 0 !important;
-
-  > p:last-child,
-  > .row:last-child {
-    margin-bottom: 0 !important;
-  }
-}
+/* Application loading */
 
 .preloader-container {
   position: absolute;
@@ -67,7 +49,62 @@ table {
   text-align: center;
 }
 
+/* Code highlight */
+
+code[class*="language-"] {
+  color: #000 !important;
+  text-shadow: none !important;
+}
+
+:not(pre) > code {
+  background: rgba(0, 0, 0, 0.07) !important;
+  border-radius: 2px !important;
+  padding: 0.1em 0.3em !important;
+  margin: 0 0.05em !important;
+}
+
+/* Angular2-Markdown override */
+
+markdown {
+  h1 { font-size: 2.92rem; }
+  h2 { font-size: 2.28rem; }
+  h3 { font-size: 1.64rem; }
+  h4 { font-size: 1.32em; }
+  h5 { font-size: 1.16rem; }
+  h6 { font-size: 1.00rem; }
+
+  // code section
+  pre {
+    background: rgba(0, 0, 0, 0.07) !important;
+    border-radius: 2px;
+    padding: 1em;
+  }
+
+
+  ul {
+    padding-left: 40px !important;
+
+    li {
+      list-style-type: disc !important;
+    }
+  }
+}
+
+/* Materialize-CSS override */
+
+h6 {
+  font-size: 1.2rem !important;
+}
+
 /* Materialize-CSS addons */
+
+.bold {
+  font-weight: 500;
+}
+
+.bolder {
+  font-weight: 600;
+}
 
 .m-valign-wrapper {
   @media #{$medium-and-up} {

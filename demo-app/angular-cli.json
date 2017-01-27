@@ -21,7 +21,8 @@
         "styles.scss",
         "../node_modules/materialize-css/bin/materialize.css",
         "../node_modules/mdi/css/materialdesignicons.css",
-        "../node_modules/highlightjs/styles/default.css"
+        "../node_modules/highlightjs/styles/default.css",
+        "../node_modules/prismjs/themes/prism.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
