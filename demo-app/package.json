@@ -1,7 +1,7 @@
 {
   "name": "demo-app",
   "version": "0.0.1",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "angular-cli": {},
   "scripts": {
     "build": "ng build --dev",
