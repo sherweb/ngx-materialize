@@ -99,3 +99,7 @@ Make sure that :
 - Linter passes
 
 And you are ready to go!
+
+## Credits
+
+Thanks to [Ali Mohammadi](https://github.com/ayalma) for donating the npm package name.
