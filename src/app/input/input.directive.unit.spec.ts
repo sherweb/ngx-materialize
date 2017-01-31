@@ -1,6 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzInputDirective } from './input.directive';
 
 describe('MzInputDirective:unit', () => {
@@ -26,8 +27,17 @@ describe('MzInputDirective:unit', () => {
 
     beforeEach(() => {
       callOrder = [];
+      spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
+    });
+
+    it('should call initHandlers method', () => {
+
+      directive.ngOnInit();
+
+      expect(directive.initHandlers).toHaveBeenCalled();
+      expect(callOrder[0]).toBe('initHandlers');
     });
 
     it('should call initElements method', () => {
@@ -35,7 +45,7 @@ describe('MzInputDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.initElements).toHaveBeenCalled();
-      expect(callOrder[0]).toBe('initElements');
+      expect(callOrder[1]).toBe('initElements');
     });
 
     it('should call handleProperties method', () => {
@@ -43,7 +53,38 @@ describe('MzInputDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[1]).toBe('handleProperties');
+      expect(callOrder[2]).toBe('handleProperties');
+    });
+  });
+
+  describe('initHandlers', () => {
+
+    it('should initialize handlers correctly', () => {
+
+      const handlers = {
+        autocomplete: 'handleAutocomplete',
+        dataError: 'handleDataError',
+        dataSuccess: 'handleDataSuccess',
+        label: 'handleLabel',
+        length: 'handleLength',
+        placeholder: 'handlePlaceholder',
+        validate: 'handleValidate',
+      };
+
+      directive.initHandlers();
+
+      expect(Object.keys(directive.handlers).length).toBe(Object.keys(handlers).length);
+
+      Object.keys(handlers).forEach(key => {
+
+        const handler = handlers[key];
+
+        spyOn(directive, handler);
+
+        directive[handler]();
+
+        expect(directive[handler]).toHaveBeenCalled();
+      });
     });
   });
 
@@ -136,276 +177,89 @@ describe('MzInputDirective:unit', () => {
           mockInputElement);
       });
 
-      it('should not call handle methods', () => {
+      it('should not call HandlePropChanges.executePropHandlers', () => {
 
         // avoid error to be shown in console while running tests
         spyOn(console, 'error');
 
-        const mockInputContainerElement = { inputContainer: true, length: 0 };
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
-        spyOn(directive, 'handleLabel');
-        spyOn(directive, 'handleValidate');
-        spyOn(directive, 'handleDataError');
-        spyOn(directive, 'handleDataSuccess');
-        spyOn(directive, 'handleLength');
-        spyOn(directive, 'handleAutocomplete');
+        const mockInputContainerElement = { inputContainer: true, length: 0 };
 
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).not.toHaveBeenCalled();
-        expect(directive.handleValidate).not.toHaveBeenCalled();
-        expect(directive.handleDataError).not.toHaveBeenCalled();
-        expect(directive.handleDataSuccess).not.toHaveBeenCalled();
-        expect(directive.handleLength).not.toHaveBeenCalled();
-        expect(directive.handleAutocomplete).not.toHaveBeenCalled();
+        expect(HandlePropChanges.prototype.executePropHandlers).not.toHaveBeenCalled();
       });
     });
 
     describe('input wrapped inside mz-input-container', () => {
-      let callOrder: string[];
 
-      beforeEach(() => {
-        callOrder = [];
-        spyOn(directive, 'handleLabel').and.callFake(() => callOrder.push('handleLabel'));
-        spyOn(directive, 'handleValidate').and.callFake(() => callOrder.push('handleValidate'));
-        spyOn(directive, 'handleDataError').and.callFake(() => callOrder.push('handleDataError'));
-        spyOn(directive, 'handleDataSuccess').and.callFake(() => callOrder.push('handleDataSuccess'));
-        spyOn(directive, 'handleLength').and.callFake(() => callOrder.push('handleLength'));
-        spyOn(directive, 'handleAutocomplete').and.callFake(() => callOrder.push('handleAutocomplete'));
-      });
+      it('should call HandlePropChanges.executePropHandlers', () => {
 
-      it('should call handle property  methods in the right order', () => {
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
         const mockInputContainerElement = { inputContainer: true, length: 1 };
 
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).toHaveBeenCalled();
-        expect(callOrder[0]).toBe('handleLabel');
-
-        expect(directive.handleValidate).toHaveBeenCalled();
-        expect(callOrder[1]).toBe('handleValidate');
-
-        expect(directive.handleDataError).toHaveBeenCalled();
-        expect(callOrder[2]).toBe('handleDataError');
-
-        expect(directive.handleDataSuccess).toHaveBeenCalled();
-        expect(callOrder[3]).toBe('handleDataSuccess');
-
-        expect(directive.handleLength).toHaveBeenCalled();
-        expect(callOrder[4]).toBe('handleLength');
-
-        expect(directive.handleAutocomplete).toHaveBeenCalled();
-        expect(callOrder[5]).toBe('handleAutocomplete');
+        expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
       });
-    });
-  });
-
-  describe('handleLabel', () => {
-
-    it('should add active css class on label element when placeholder is provided', () => {
-
-      spyOn(renderer, 'setElementClass');
-
-      const mockLabelElement = { label: true };
-
-      directive.placeholder = 'placeholder-x';
-      directive.labelElement = <any>[mockLabelElement];
-      directive.handleLabel();
-
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
-    });
-
-    it('should add active css class on label element when input element has a value', () => {
-
-      spyOn(renderer, 'setElementClass');
-
-      const mockInputElement = { input: true, val: () => 'input-value' };
-      const mockLabelElement = { label: true };
-
-      directive.inputElement = <any>mockInputElement;
-      directive.labelElement = <any>[mockLabelElement];
-      directive.handleLabel();
-
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
-    });
-
-    it('should append text to label element when provided', () => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      const label = 'label-x';
-      const mockInputElement = { input: true, val: () => null };
-      const mockLabelElement = { label: true };
-      const mockLabelText = document.createTextNode(label);
-
-      directive.inputElement = <any>mockInputElement;
-      directive.labelElement = <any>mockLabelElement;
-      directive.label = label;
-      directive.handleLabel();
-
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'append', [mockLabelText]);
-    });
-
-    it('should not append label text when none is provided', () => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      const mockInputElement = { input: true, val: () => null };
-
-      directive.inputElement = <any>mockInputElement;
-      directive.handleLabel();
-
-      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handleValidate', () => {
-
-    it('should add validate css class on input element when validate is true', () => {
-
-      spyOn(renderer, 'setElementClass');
-
-      const mockInputElement = { input: true };
-
-      directive.inputElement = <any>[mockInputElement];
-      directive.validate = true;
-      directive.handleValidate();
-
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'validate', true);
-    });
-
-    it('should not add validate css class on input element when validate is false', () => {
-
-      spyOn(renderer, 'setElementClass');
-
-      directive.validate = false;
-      directive.handleValidate();
-
-      expect(renderer.setElementClass).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handleDataError', () => {
-
-    it('should add data-error attribute on label element when dataError is provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      const dataError = 'data-error-x';
-      const mockLabelElement = { label: true };
-
-      directive.labelElement = <any>[mockLabelElement];
-      directive.dataError = dataError;
-      directive.handleDataError();
-
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-error', dataError);
-    });
-
-    it('should not add data-error attribute on label element when dataError is not provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      directive.handleDataError();
-
-      expect(renderer.setElementAttribute).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handleDataSuccess', () => {
-
-    it('should add data-success attribute on label element when dataSuccess is provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      const dataSuccess = 'data-success-x';
-      const mockLabelElement = { label: true };
-
-      directive.labelElement = <any>[mockLabelElement];
-      directive.dataSuccess = dataSuccess;
-      directive.handleDataSuccess();
-
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-success', dataSuccess);
-    });
-
-    it('should not add data-success attribute on label element when dataSuccess is not provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      directive.handleDataSuccess();
-
-      expect(renderer.setElementAttribute).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('handleLength', () => {
-
-    it('should add length attribute on input element when length is provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      const length = 100;
-      const mockInputElement = { input: true };
-
-      directive.inputElement = <any>[mockInputElement];
-      directive.length = length;
-      directive.handleLength();
-
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'length', length.toString());
-    });
-
-    it('should invoke characterCounter method on input element when length is provided', () => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      const length = 100;
-      const mockInputElement = { input: true };
-
-      directive.inputElement = <any>mockInputElement;
-      directive.length = length;
-      directive.handleLength();
-
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'characterCounter');
-    });
-
-    it('should not add length attribute on input element when length is not provided', () => {
-
-      spyOn(renderer, 'setElementAttribute');
-
-      directive.handleLength();
-
-      expect(renderer.setElementAttribute).not.toHaveBeenCalledWith();
-    });
-
-    it('should not invoke characterCounter method on input element when length is not provided', () => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      directive.handleLength();
-
-      expect(renderer.invokeElementMethod).not.toHaveBeenCalledWith();
     });
   });
 
   describe('handleAutocomplete', () => {
 
-    function forceSetTimeoutEnd() {
-      tick(1); // force setTimeout execution
-    }
-
-    it('should add autocomplete css class on input element when autocomplete is provided', () => {
+    it('should add autocomplete css class on input element when autocomplete.data.length > 0', () => {
 
       spyOn(renderer, 'setElementClass');
 
       const mockInputElement = { input: true };
 
       directive.inputElement = <any>[mockInputElement];
-      directive.autocomplete = {};
+      directive.autocomplete = { data: { 'value-x': null } };
       directive.handleAutocomplete();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'autocomplete', true);
+    });
+
+    it('should remove autocomplete css class on input element when autocomplete is not provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.handleAutocomplete();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'autocomplete', false);
+    });
+
+    it('should remove autocomplete css class on input element when autocomplete.data is null', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.autocomplete = { data: null };
+      directive.handleAutocomplete();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'autocomplete', false);
+    });
+
+    it('should remove autocomplete css class on input element when autocomplete.data.length == 0', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.autocomplete = { data: {} };
+      directive.handleAutocomplete();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'autocomplete', false);
     });
 
     it('should invoke autocomplete method on input element when autocomplete is provided', fakeAsync(() => {
@@ -425,29 +279,440 @@ describe('MzInputDirective:unit', () => {
       directive.autocomplete = autocomplete;
       directive.handleAutocomplete();
 
-      forceSetTimeoutEnd();
+      tick(1);
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'autocomplete', [autocomplete]);
     }));
+  });
 
-    it('should not add autocomplete css class on input element when autocomplete is not provided', () => {
+  describe('handleDataError', () => {
 
-      spyOn(renderer, 'setElementClass');
+    it('should add data-error attribute on label element when dataError is provided', () => {
 
-      directive.handleAutocomplete();
+      spyOn(renderer, 'setElementAttribute');
 
-      expect(renderer.setElementClass).not.toHaveBeenCalled();
+      const dataError = 'data-error-x';
+      const mockLabelElement = { label: true };
+
+      directive.labelElement = <any>[mockLabelElement];
+      directive.dataError = dataError;
+      directive.handleDataError();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-error', dataError);
     });
 
-    it('should not invoke autocomplete method on input element when autocomplete is not provided', fakeAsync(() => {
+    it('should remove data-error attribute on label element when dataError is not provided', () => {
+
+      spyOn(renderer, 'setElementAttribute');
+
+      const mockLabelElement = { label: true };
+
+      directive.labelElement = <any>[mockLabelElement];
+      directive.handleDataError();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-error', undefined);
+    });
+  });
+
+  describe('handleDataSuccess', () => {
+
+    it('should add data-success attribute on label element when dataSuccess is provided', () => {
+
+      spyOn(renderer, 'setElementAttribute');
+
+      const dataSuccess = 'data-success-x';
+      const mockLabelElement = { label: true };
+
+      directive.labelElement = <any>[mockLabelElement];
+      directive.dataSuccess = dataSuccess;
+      directive.handleDataSuccess();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-success', dataSuccess);
+    });
+
+    it('should remove data-success attribute on label element when dataSuccess is not provided', () => {
+
+      spyOn(renderer, 'setElementAttribute');
+
+      const mockLabelElement = { label: true };
+
+      directive.labelElement = <any>[mockLabelElement];
+      directive.handleDataSuccess();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockLabelElement, 'data-success', undefined);
+    });
+  });
+
+  describe('handleLabel', () => {
+
+    it('should invoke text method to label element when label is provided', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
-      directive.handleAutocomplete();
+      const label = 'label-x';
+      const mockInputElement = { input: true, val: () => null };
+      const mockLabelElement = { label: true };
 
-      forceSetTimeoutEnd();
+      directive.inputElement = <any>mockInputElement;
+      directive.labelElement = <any>mockLabelElement;
+      directive.label = label;
+      directive.handleLabel();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [label]);
+    });
+
+    it('should invoke text method to label element when label is not provided', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockInputElement = { input: true, val: () => null };
+      const mockLabelElement = { label: true };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.labelElement = <any>mockLabelElement;
+      directive.handleLabel();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [undefined]);
+    });
+  });
+
+  describe('handleLength', () => {
+
+    it('should add length attribute on input element when length is provided', () => {
+
+      spyOn(renderer, 'setElementAttribute');
+
+      const length = 100;
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.length = length;
+      directive.handleLength();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'length', length.toString());
+    });
+
+    it('should remove length attribute on input element when length is not provided', () => {
+
+      spyOn(directive, 'removeCharacterCount');
+      spyOn(renderer, 'setElementAttribute');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.handleLength();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'length', null);
+    });
+
+    it('should call setCharacterCount method when length is provided', () => {
+
+      spyOn(directive, 'setCharacterCount');
+
+      const length = 100;
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.length = length;
+      directive.handleLength();
+
+      expect(directive.setCharacterCount).toHaveBeenCalled();
+    });
+
+    it('should not call setCharacterCount method when length is not provided', () => {
+
+      spyOn(directive, 'removeCharacterCount');
+      spyOn(directive, 'setCharacterCount');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.handleLength();
+
+      expect(directive.setCharacterCount).not.toHaveBeenCalled();
+    });
+
+    it('should call removeCharacterCount method when length is not provided', () => {
+
+      spyOn(directive, 'removeCharacterCount');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.handleLength();
+
+      expect(directive.removeCharacterCount).toHaveBeenCalled();
+    });
+
+    it('should not call removeCharacterCount method when length is provided', () => {
+
+      spyOn(directive, 'removeCharacterCount');
+      spyOn(directive, 'setCharacterCount');
+
+      const length = 100;
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.length = length;
+      directive.handleLength();
+
+      expect(directive.removeCharacterCount).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('handlePlaceholder', () => {
+
+    it('should add placeholder attribute on input element when placeholder is provided', () => {
+
+      spyOn(renderer, 'setElementAttribute');
+
+      const placeholder = 'placeholder-x';
+      const mockInputElement = { input: true };
+      const mockLabelElement = { label: true };
+
+      directive.placeholder = placeholder;
+      directive.inputElement = <any>[mockInputElement];
+      directive.labelElement = <any>[mockLabelElement];
+      directive.handlePlaceholder();
+
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'placeholder', placeholder);
+    });
+
+    it('should remove placeholder attribute on input element when placeholder is undefined/null/empty', () => {
+
+      const spySetElementAttribute = spyOn(renderer, 'setElementAttribute');
+
+      [undefined, null, ''].forEach(value => {
+
+        const mockInputElement = { input: true };
+        const mockLabelElement = { label: true };
+
+        directive.placeholder = value;
+        directive.inputElement = <any>[mockInputElement];
+        directive.labelElement = <any>[mockLabelElement];
+        directive.handlePlaceholder();
+
+        expect(spySetElementAttribute).toHaveBeenCalledWith(mockInputElement, 'placeholder', null);
+
+        spySetElementAttribute.calls.reset();
+      });
+    });
+
+    it('should add active css class on label element when placeholder is provided', fakeAsync(() => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+      const mockLabelElement = { label: true };
+
+      directive.placeholder = 'placeholder-x';
+      directive.inputElement = <any>[mockInputElement];
+      directive.labelElement = <any>[mockLabelElement];
+      directive.handlePlaceholder();
+
+      tick(1);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
+    }));
+
+    it('should add active css class on label element when input element has a value', fakeAsync(() => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true, value: 'value-x' };
+      const mockLabelElement = { label: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.labelElement = <any>[mockLabelElement];
+      directive.handlePlaceholder();
+
+      tick(1);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
+    }));
+
+    it('should remove active css class on label element when placeholder and input element have no value', fakeAsync(() => {
+
+      const spySetElementClass = spyOn(renderer, 'setElementClass');
+
+      [undefined, null, ''].forEach(value => {
+
+        const mockInputElement = { input: true, value: value };
+        const mockLabelElement = { label: true };
+
+        directive.placeholder = value;
+        directive.inputElement = <any>[mockInputElement];
+        directive.labelElement = <any>[mockLabelElement];
+
+        directive.handlePlaceholder();
+
+        tick(1);
+
+        expect(spySetElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', false);
+
+        spySetElementClass.calls.reset();
+      });
+    }));
+  });
+
+  describe('handleValidate', () => {
+
+    it('should add validate css class on input element when validate is true', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.validate = true;
+      directive.handleValidate();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'validate', true);
+    });
+
+    it('should remove validate css class on input element when validate is false', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.validate = false;
+      directive.handleValidate();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'validate', false);
+    });
+
+    it('should force validation when validate is true', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.validate = true;
+      directive.handleValidate();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'trigger', ['blur']);
+    });
+
+    it('should not force validation when validate is false', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.validate = false;
+      directive.handleValidate();
 
       expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+    });
+
+    it('should call removeValidationClasses when validate is false', () => {
+
+      spyOn(directive, 'removeValidationClasses');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.validate = false;
+      directive.handleValidate();
+
+      expect(directive.removeValidationClasses).toHaveBeenCalled();
+    });
+
+    it('should not call removeValidationClasses when validate is true', () => {
+
+      spyOn(directive, 'removeValidationClasses');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.validate = true;
+      directive.handleValidate();
+
+      expect(directive.removeValidationClasses).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('setCharacterCount', () => {
+
+    it('should invoke characterCounter method on input element', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.setCharacterCount();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'characterCounter');
+    });
+
+    it('should force validation on input element', fakeAsync(() => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.setCharacterCount();
+
+      tick(1);
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'trigger', ['input']);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'trigger', ['blur']);
     }));
+  });
+
+  describe('removeCharacterCount', () => {
+
+    it('should remove character-counter element', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockCharacterCounterElement = { characterCounter: true };
+      const mockInputElement = { input: true, siblings: () => null };
+
+      spyOn(mockInputElement, 'siblings').and.callFake((selector: string) => {
+        return selector === '.character-counter'
+          ? mockCharacterCounterElement
+          : {};
+      });
+
+      directive.inputElement = <any>mockInputElement;
+      directive.removeCharacterCount();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockCharacterCounterElement, 'remove');
+    });
+
+    it('should call removeValidationClasses method', () => {
+
+      spyOn(directive, 'removeValidationClasses');
+
+      const mockInputElement = { input: true, siblings: () => null };
+
+      directive.inputElement = <any>mockInputElement;
+      directive.removeCharacterCount();
+
+      expect(directive.removeValidationClasses).toHaveBeenCalled();
+    });
+  });
+
+  describe('removeValidationClasses', () => {
+
+    it('should remove valid and invalid css classes on input element', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.removeValidationClasses();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'invalid', false);
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'valid', false);
+    });
   });
 });

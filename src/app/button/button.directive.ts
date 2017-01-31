@@ -27,10 +27,9 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
   }
 
   ngOnInit() {
-    this.initMaterialize();
     this.initHandlers();
-
-    this.handleProperties();
+    this.initMaterialize();
+    super.executePropHandlers();
   }
 
   initMaterialize() {

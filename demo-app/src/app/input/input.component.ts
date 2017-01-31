@@ -25,9 +25,7 @@ export class InputComponent implements AfterViewInit, OnInit {
 
   forceValidate() {
     // need setTimeout otherwise loading directly on the page doesn't trigger the validation
-    setTimeout(() => {
-      this.renderer.invokeElementMethod($('#valid-input, #invalid-input'), 'trigger', ['blur']);
-    });
+    setTimeout(() => this.renderer.invokeElementMethod($('#valid-input, #invalid-input'), 'trigger', ['blur']));
   }
 
   setAutocomplete() {

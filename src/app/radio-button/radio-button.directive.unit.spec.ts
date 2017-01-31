@@ -1,6 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzRadioButtonDirective } from './radio-button.directive';
 
 describe('MzRadioButtonDirective:unit', () => {
@@ -26,8 +27,17 @@ describe('MzRadioButtonDirective:unit', () => {
 
     beforeEach(() => {
       callOrder = [];
+      spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
+    });
+
+    it('should call initHandlers method', () => {
+
+      directive.ngOnInit();
+
+      expect(directive.initHandlers).toHaveBeenCalled();
+      expect(callOrder[0]).toBe('initHandlers');
     });
 
     it('should call initElements method', () => {
@@ -35,7 +45,7 @@ describe('MzRadioButtonDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.initElements).toHaveBeenCalled();
-      expect(callOrder[0]).toBe('initElements');
+      expect(callOrder[1]).toBe('initElements');
     });
 
     it('should call handleProperties method', () => {
@@ -43,7 +53,33 @@ describe('MzRadioButtonDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[1]).toBe('handleProperties');
+      expect(callOrder[2]).toBe('handleProperties');
+    });
+  });
+
+  describe('initHandlers', () => {
+
+    it('should initialize handlers correctly', () => {
+
+      const handlers = {
+        label: 'handleLabel',
+        withGap: 'handleWithGap',
+      };
+
+      directive.initHandlers();
+
+      expect(Object.keys(directive.handlers).length).toBe(Object.keys(handlers).length);
+
+      Object.keys(handlers).forEach(key => {
+
+        const handler = handlers[key];
+
+        spyOn(directive, handler);
+
+        directive[handler]();
+
+        expect(directive[handler]).toHaveBeenCalled();
+      });
     });
   });
 
@@ -118,7 +154,7 @@ describe('MzRadioButtonDirective:unit', () => {
 
   describe('handleProperties', () => {
 
-    describe('input not wrapped inside mz-input-container', () => {
+    describe('radio-button not wrapped inside mz-radio-button-container', () => {
 
       it('should log an error in the console', () => {
 
@@ -136,78 +172,64 @@ describe('MzRadioButtonDirective:unit', () => {
           mockInputElement);
       });
 
-      it('should not call handle methods', () => {
-
-        const mockInputContainerElement = { inputContainer: true, length: 0 };
+      it('should not call HandlePropChanges.executePropHandlers', () => {
 
         // avoid error to be shown in console while running tests
         spyOn(console, 'error');
 
-        spyOn(directive, 'handleLabel');
-        spyOn(directive, 'handleWithGap');
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
+
+        const mockInputContainerElement = { inputContainer: true, length: 0 };
 
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).not.toHaveBeenCalled();
-        expect(directive.handleWithGap).not.toHaveBeenCalled();
+        expect(HandlePropChanges.prototype.executePropHandlers).not.toHaveBeenCalled();
       });
     });
 
-    describe('input wrapped inside mz-input-container', () => {
-      let callOrder: string[];
+    describe('radio-button wrapped inside mz-radio-button-container', () => {
 
-      beforeEach(() => {
-        callOrder = [];
-        spyOn(directive, 'handleLabel').and.callFake(() => callOrder.push('handleLabel'));
-        spyOn(directive, 'handleWithGap').and.callFake(() => callOrder.push('handleWithGap'));
-      });
+      it('should call HandlePropChanges.executePropHandlers', () => {
 
-      it('should call handle properties method in the right order', () => {
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
         const mockInputContainerElement = { inputContainer: true, length: 1 };
 
         directive.inputContainerElement = <any>mockInputContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).toHaveBeenCalled();
-        expect(callOrder[0]).toBe('handleLabel');
-
-        expect(directive.handleWithGap).toHaveBeenCalled();
-        expect(callOrder[1]).toBe('handleWithGap');
+        expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
       });
     });
   });
 
   describe('handleLabel', () => {
 
-    it('should append text to label element when provided', () => {
+    it('should invoke text method to label element when label is provided', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
       const label = 'label-x';
-      const mockInputElement = { input: true, val: () => null };
       const mockLabelElement = { label: true };
-      const mockLabelText = document.createTextNode(label);
 
-      directive.inputElement = <any>mockInputElement;
       directive.labelElement = <any>mockLabelElement;
       directive.label = label;
       directive.handleLabel();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'append', [mockLabelText]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [label]);
     });
 
-    it('should not append label text when none is provided', () => {
+    it('should invoke text method when label is not provided', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
-      const mockInputElement = { input: true, val: () => null };
+      const mockLabelElement = { label: true };
 
-      directive.inputElement = <any>mockInputElement;
+      directive.labelElement = <any>mockLabelElement;
       directive.handleLabel();
 
-      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [undefined]);
     });
   });
 
@@ -230,10 +252,13 @@ describe('MzRadioButtonDirective:unit', () => {
 
       spyOn(renderer, 'setElementClass');
 
+      const mockInputElement = { input: true };
+
+      directive.inputElement = <any>[mockInputElement];
       directive.withGap = false;
       directive.handleWithGap();
 
-      expect(renderer.setElementClass).not.toHaveBeenCalled();
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockInputElement, 'with-gap', false);
     });
   });
 });

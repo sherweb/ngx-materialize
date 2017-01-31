@@ -1,4 +1,37 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-  "typescript.check.workspaceVersion": false
+// Editor
+
+  // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
+  "editor.tabSize": 2,
+
+  // Controls whether the editor should render indent guides
+  "editor.renderIndentGuides": true,
+
+// Files
+
+  // When enabled, will trim trailing whitespace when you save a file.
+  "files.trimTrailingWhitespace": true,
+
+// Search
+
+  // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the file.exclude setting.
+  "search.exclude": {
+      "**/.tmp": true,
+      "**/dist": true,
+      "**/inline-template": true
+  },
+
+// Typescript
+
+  // Don't check TypeScript version on workspace
+  "typescript.check.workspaceVersion": false,
+
+// Relative Path extension
+
+  // Excludes the extension from the relative path url (Useful for systemjs imports).
+  "relativePath.removeExtension": true,
+
+  // Removes the leading ./ character when the path is pointing to a parent folder.
+  "relativePath.removeLeadingDot": true
 }
