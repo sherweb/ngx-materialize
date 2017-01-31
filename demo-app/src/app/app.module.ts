@@ -8,6 +8,7 @@ import { MaterializeModule } from 'ng2-materialize';
 import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
+import { BadgeModule } from './badge/badge.module';
 import { ButtonModule } from './button/button.module';
 import { CardModule } from './card/card.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
@@ -34,6 +35,7 @@ import { TextareaModule } from './textarea/textarea.module';
     RouterModule.forRoot(ROUTES),
 
     // component modules
+    BadgeModule,
     ButtonModule,
     CardModule,
     CheckboxModule,

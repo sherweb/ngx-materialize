@@ -1,0 +1,130 @@
+<h3>Badge</h3>
+
+<div class="section">
+  <h5 class="light">Basic badge</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge [value]=4></mz-badge>
+
+    <p class="col s12 m10">
+      Badge doesn't have any particular style by default. Only the value is displayed.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Customized badge captions</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [new]="true">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Setting the <code class="language-markup">new</code> property to true will give a background to the badge.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [new]="true"
+      [badgeClass]="'red'">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Badge background color can be set in the <code class="language-markup">badgeClass</code> property. All of the materialize color class are available. 
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [caption]="'My caption'">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Custom caption can be used for the badge using the <code class="language-markup">caption</code> property
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [caption]="'My caption'"
+      [badgeClass]="'blue'"
+      [new]="true">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Custom caption can be used in combinaison with a custom background
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+    <app-code-snippet>
+&lt;mz-badge
+  [value]="4"
+  [caption]="'My caption'"
+  [badgeClass]="'blue'"
+  [new]="true">
+&lt;/mz-badge>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Badges can be customized using the following properties on the <code class="language-markup">mz-badge</code> element.
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th data-field="property">Property</th>
+        <th data-field="mandatory" class="center mandatory">Mandatory</th>
+        <th data-field="type">Type</th>
+        <th data-field="description">Description</th>
+        <th data-field="default-value">Default value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>value</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>number</td>
+        <td>The number to display inside the badge</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>new</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>boolean</td>
+        <td>If the background must be displayed</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>badgeClass</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>string</td>
+        <td>Color class for the background. Should be used in combinaison with the <code class="language-markup">new</code> property</td>
+        <td>The 'teal lighten-1' color will be used by default when the <code class="language-markup">new</code> property is set to true</td>
+      </tr>
+      <tr>
+        <td>caption</td>
+        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>boolean</td>
+        <td>Custom caption to display next to the value</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
-import { SpinnerComponent } from './spinner.component';
+import { BadgeComponent } from './badge.component';
 
 @NgModule({
   imports: [
@@ -11,6 +11,6 @@ import { SpinnerComponent } from './spinner.component';
     CommonModule,
     MaterializeModule.forRoot(),
   ],
-  declarations: [SpinnerComponent],
+  declarations: [BadgeComponent],
 })
-export class SpinnerModule { }
+export class BadgeModule { }
