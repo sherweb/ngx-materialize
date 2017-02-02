@@ -3714,9 +3714,9 @@ matcher-collection@^1.0.0:
   dependencies:
     minimatch "^3.0.2"
 
-materialize-css@^0.97.8:
-  version "0.97.8"
-  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.97.8.tgz#e39ce2056785b0c4e9cd4847c2cdf153e19c47cf"
+materialize-css@^0.98.0:
+  version "0.98.0"
+  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.98.0.tgz#aa612c031c0b22d6e7faa8fcdd405e54ad44d278"
   dependencies:
     hammerjs "^2.0.4"
     jquery "^2.1.4"

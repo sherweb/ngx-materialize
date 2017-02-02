@@ -46,7 +46,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-junit-reporter": "^1.2.0",
     "karma-remap-istanbul": "^0.2.1",
-    "materialize-css": "^0.97.8",
+    "materialize-css": "^0.98.0",
     "protractor": "~4.0.13",
     "reflect-metadata": "0.1.8",
     "rimraf": "^2.5.4",
@@ -60,7 +60,7 @@
     "zone.js": "^0.7.2"
   },
   "peerDependencies": {
-    "materialize-css": "^0.97.8",
+    "materialize-css": "^0.98.0",
     "mdi": "^1.8.36"
   }
 }
