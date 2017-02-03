@@ -4,7 +4,7 @@
   <h5 class="light">Basic badge</h5>
 
   <div class="row m-valign-wrapper">
-    <mz-badge [value]=4></mz-badge>
+    <mz-badge [value]="4"></mz-badge>
 
     <p class="col s12 m10">
       Badge doesn't have any particular style by default. Only the value is displayed.
@@ -28,12 +28,11 @@
   <div class="row m-valign-wrapper">
     <mz-badge
       [value]="4"
-      [new]="true"
       [badgeClass]="'red'">
     </mz-badge>
 
     <p class="col s12 m10">
-      Badge background color can be set in the <code class="language-markup">badgeClass</code> property. All of the materialize color class are available. 
+      Badge background color can be set in the <code class="language-markup">badgeClass</code> property. All of the materialize color classes are available. 
     </p>
   </div>
 
@@ -44,7 +43,7 @@
     </mz-badge>
 
     <p class="col s12 m10">
-      Custom caption can be used for the badge using the <code class="language-markup">caption</code> property
+      Custom caption can be used for the badge using the <code class="language-markup">caption</code> property.
     </p>
   </div>
 
@@ -57,7 +56,7 @@
     </mz-badge>
 
     <p class="col s12 m10">
-      Custom caption can be used in combinaison with a custom background
+      Custom caption can be used in combinaison with a custom background.
     </p>
   </div>
 </div>
@@ -114,8 +113,8 @@
         <td>badgeClass</td>
         <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
         <td>string</td>
-        <td>Color class for the background. Should be used in combinaison with the <code class="language-markup">new</code> property</td>
-        <td>The 'teal lighten-1' color will be used by default when the <code class="language-markup">new</code> property is set to true</td>
+        <td>Color class for the background</td>
+        <td>Default color will be used when the <code class="language-markup">new</code> property is <code class="language-markup">true</code></td>
       </tr>
       <tr>
         <td>caption</td>
