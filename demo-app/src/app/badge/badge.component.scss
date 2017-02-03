@@ -1,0 +1,11 @@
+@import "../../_route-animation-host";
+
+#{'/deep/'} {
+  span.badge {
+    float: left;
+
+    &:not(.new) {
+      padding: 0;
+    }
+  }
+}

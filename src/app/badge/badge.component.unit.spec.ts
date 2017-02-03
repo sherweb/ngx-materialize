@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { MzBadgeComponent } from './badge.component';
 
-describe('CheckboxComponent', () => {
-  let component: CheckboxComponent;
-  let fixture: ComponentFixture<CheckboxComponent>;
+describe('MzBadgeComponent:unit', () => {
+  let component: MzBadgeComponent;
+  let fixture: ComponentFixture<MzBadgeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxComponent ],
+      declarations: [ MzBadgeComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(MzBadgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

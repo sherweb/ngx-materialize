@@ -1,0 +1,6 @@
+<span #badge
+  class="badge {{ badgeClass }}"
+  [class.new]="new || !!badgeClass"
+  [attr.data-badge-caption]="caption">
+  {{ value }}
+</span>
