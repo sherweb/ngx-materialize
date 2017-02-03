@@ -1,6 +1,20 @@
 @import "../_variables";
 
 header {
+  #{'/deep/'} {
+    .sidenav-background,
+    .sidenav-button {
+      background: #333333 !important;
+    }
+
+    .sidenav-button {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 24;
+    }
+  }
+
   .sidenav-header {
     background: rgba(0,0,0,0.14);
     display: block;
@@ -22,13 +36,6 @@ header {
     background: rgba(0,0,0,0.14);
     font-weight: 200;
     padding: 14px;
-  }
-
-  .sidenav-button {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 24;
   }
 }
 

@@ -1,13 +1,13 @@
+@import '../../_variables';
+
+$logo-wont-fit: "only screen and (max-width: 430px)" !default;
+
 .header-background {
-  background: rgba(0,0,0,0.14);
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-  box-shadow: 0 -1px 3px rgba(0,0,0,0.07) inset;
+  box-shadow: 0 -1px 32px rgba(0, 0, 0, 0.33) inset;
   position: absolute;
   left: 0;
   top: 0;
-  height: 245px;
   width: 100%;
-  z-index: -1;
 }
 
 .header-content {
@@ -17,6 +17,11 @@
 
 .angular-logo {
   max-height: 175px;
+
+  @media #{$logo-wont-fit} {
+    max-height: 140px;
+    margin-left: calc(50% - 162px);
+  }
 }
 
 .plus-logo {
@@ -31,4 +36,8 @@
 .materialize-logo {
   margin: 14px;
   max-height: 125px;
+
+  @media #{$logo-wont-fit} {
+    max-height: 90px;
+  }
 }
