@@ -1,34 +1,61 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer,
+} from '@angular/core';
+
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: 'select[mzSelect], select[mz-select]',
 })
-export class MzSelectDirective implements AfterViewInit, OnInit, OnDestroy {
+export class MzSelectDirective extends HandlePropChanges implements AfterViewInit, OnInit, OnDestroy {
   // native properties
+  @Input() disabled: boolean;
   @Input() placeholder: string;
 
   // directive properties
   @Input() label: string;
 
+  // push back selected value to ngModelChange
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+
   labelElement: JQuery;
   selectElement: JQuery;
   selectContainerElement: JQuery;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    super();
+  }
 
   ngOnInit() {
+    this.initHandlers();
     this.initElements();
     this.handleProperties();
   }
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
   }
 
   ngOnDestroy() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select', ['destroy']);
+    this.selectElement.off();
+  }
+
+  initHandlers() {
+    this.handlers = {
+      disabled: () => this.handleDisabled(),
+      label: () => this.handleLabel(),
+      placeholder: () => this.handlePlaceholder(),
+    };
   }
 
   initElements() {
@@ -51,26 +78,47 @@ export class MzSelectDirective implements AfterViewInit, OnInit, OnDestroy {
       return;
     }
 
-    this.handleLabel();
-    this.handlePlaceholder();
+    super.executePropHandlers();
+  }
+
+  handleDisabled() {
+    this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
+    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
   }
 
   handleLabel() {
-    if (this.label) {
-      const labelText = document.createTextNode(this.label);
-      this.renderer.invokeElementMethod(this.labelElement, 'append', [labelText]);
+    if (this.label != null) {
+      this.renderer.invokeElementMethod(this.labelElement, 'text', [this.label]);
     }
   }
 
   handlePlaceholder() {
-    if (this.placeholder) {
-      const placeholderText = document.createTextNode(this.placeholder);
-      const placeholderOption = document.createElement('option');
-      placeholderOption.disabled = true;
-      placeholderOption.selected = true;
-      placeholderOption.appendChild(placeholderText);
+    const placeholderElement = this.selectElement.children(':disabled').first();
 
-      this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
+    // if placeholder element exists
+    if (placeholderElement.length > 0) {
+
+      if (this.placeholder) {
+        // update existing placeholder element
+        this.renderer.invokeElementMethod(placeholderElement, 'text', [this.placeholder]);
+      } else {
+        // remove existing placeholder element
+        this.renderer.invokeElementMethod(placeholderElement, 'remove');
+      }
+
+      this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    } else {
+
+      if (this.placeholder) {
+        // add placeholder element
+        const placeholderText = document.createTextNode(this.placeholder);
+        const placeholderOption = document.createElement('option');
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        placeholderOption.appendChild(placeholderText);
+
+        this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
+      }
     }
   }
 }

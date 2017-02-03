@@ -4,6 +4,7 @@ import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
+import { FormBindingComponent } from './form-binding/form-binding.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -25,6 +26,7 @@ export const ROUTES: Routes = [
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card' } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox' } },
   { path: 'collapsible', component: CollapsibleComponent, data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible' } },
+  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Form Binding' } },
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon' } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input' } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },

@@ -96,6 +96,11 @@ h6 {
   font-size: 1.2rem !important;
 }
 
+.input-field:not(.inline) {
+    display: inline-block;
+    width: 100%;
+}
+
 /* Materialize-CSS addons */
 
 .bold {

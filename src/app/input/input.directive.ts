@@ -1,15 +1,17 @@
 import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
+
 @Directive({
   selector: 'input[mzInput], input[mz-input]',
 })
-export class MzInputDirective implements OnInit {
+export class MzInputDirective extends HandlePropChanges implements OnInit {
   // native properties
   @Input() id: string;
   @Input() placeholder: string;
 
   // directive properties
-  @Input() autocomplete: Object;
+  @Input() autocomplete: { data: { [key: string]: string } };
   @Input() dataError: string;
   @Input() dataSuccess: string;
   @Input() label: string;
@@ -20,13 +22,26 @@ export class MzInputDirective implements OnInit {
   inputContainerElement: JQuery;
   labelElement: JQuery;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    super();
+  }
 
   ngOnInit() {
+    this.initHandlers();
     this.initElements();
     this.handleProperties();
+  }
+
+  initHandlers() {
+    this.handlers = {
+      autocomplete: () => this.handleAutocomplete(),
+      dataError: () => this.handleDataError(),
+      dataSuccess: () => this.handleDataSuccess(),
+      label: () => this.handleLabel(),
+      length: () => this.handleLength(),
+      placeholder: () => this.handlePlaceholder(),
+      validate: () => this.handleValidate(),
+    };
   }
 
   initElements() {
@@ -50,56 +65,88 @@ export class MzInputDirective implements OnInit {
       return;
     }
 
-    this.handleLabel();
-    this.handleValidate();
-    this.handleDataError();
-    this.handleDataSuccess();
-    this.handleLength();
-    this.handleAutocomplete();
+    super.executePropHandlers();
   }
 
-  handleLabel() {
-    if (this.placeholder || this.inputElement.val()) {
-      this.renderer.setElementClass(this.labelElement[0], 'active', true);
-    }
+  handleAutocomplete() {
+    const isAutocomplete = this.autocomplete != null
+      && this.autocomplete.data != null
+      && Object.keys(this.autocomplete.data).length > 0;
 
-    if (this.label) {
-      const labelText = document.createTextNode(this.label);
-      this.renderer.invokeElementMethod(this.labelElement, 'append', [labelText]);
-    }
-  }
+    this.renderer.setElementClass(this.inputElement[0], 'autocomplete', isAutocomplete);
 
-  handleValidate() {
-    if (this.validate) {
-      this.renderer.setElementClass(this.inputElement[0], 'validate', true);
+    if (this.autocomplete != null) {
+      // need setTimeout otherwise loading directly on the page cause an error
+      setTimeout(() => this.renderer.invokeElementMethod(this.inputElement, 'autocomplete', [this.autocomplete]));
     }
   }
 
   handleDataError() {
-    if (this.dataError) {
-      this.renderer.setElementAttribute(this.labelElement[0], 'data-error', this.dataError);
-    }
+    this.renderer.setElementAttribute(this.labelElement[0], 'data-error', this.dataError);
   }
 
   handleDataSuccess() {
-    if (this.dataSuccess) {
-      this.renderer.setElementAttribute(this.labelElement[0], 'data-success', this.dataSuccess);
-    }
+    this.renderer.setElementAttribute(this.labelElement[0], 'data-success', this.dataSuccess);
+  }
+
+  handleLabel() {
+    this.renderer.invokeElementMethod(this.labelElement, 'text', [this.label]);
   }
 
   handleLength() {
-    if (this.length) {
-      this.renderer.setElementAttribute(this.inputElement[0], 'length', this.length.toString());
-      this.renderer.invokeElementMethod(this.inputElement, 'characterCounter');
+    const length = this.length ? this.length.toString() : null;
+
+    this.renderer.setElementAttribute(this.inputElement[0], 'length', length);
+
+    if (length) {
+      this.setCharacterCount();
+    } else {
+      this.removeCharacterCount();
     }
   }
 
-  handleAutocomplete() {
-    if (this.autocomplete) {
-      this.renderer.setElementClass(this.inputElement[0], 'autocomplete', true);
+  handlePlaceholder() {
+    const placeholder = !!this.placeholder ? this.placeholder : null;
+    this.renderer.setElementAttribute(this.inputElement[0], 'placeholder', placeholder);
 
-      // need setTimeout otherwise loading directly on the page cause an error
-      setTimeout(() => this.renderer.invokeElementMethod(this.inputElement, 'autocomplete', [this.autocomplete]), 0);
+    setTimeout(() => {
+      const inputValue = (<HTMLInputElement>this.inputElement[0]).value;
+      const isActive = !!this.placeholder || !!inputValue;
+      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
+    });
+  }
+
+  handleValidate() {
+    this.renderer.setElementClass(this.inputElement[0], 'validate', this.validate);
+
+    if (this.validate) {
+      // force validation
+      this.renderer.invokeElementMethod(this.inputElement, 'trigger', ['blur']);
+    } else {
+      this.removeValidationClasses();
     }
+  }
+
+  setCharacterCount() {
+    this.renderer.invokeElementMethod(this.inputElement, 'characterCounter');
+
+    // force validation
+    // need setTimeout otherwise it wont trigger validation right away
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(this.inputElement, 'trigger', ['input']);
+      this.renderer.invokeElementMethod(this.inputElement, 'trigger', ['blur']);
+    });
+  }
+
+  removeCharacterCount() {
+    this.renderer.invokeElementMethod(this.inputElement.siblings('.character-counter'), 'remove');
+
+    this.removeValidationClasses();
+  }
+
+  removeValidationClasses() {
+    // reset valid/invalid state
+    this.renderer.setElementClass(this.inputElement[0], 'invalid', false);
+    this.renderer.setElementClass(this.inputElement[0], 'valid', false);
   }
 }

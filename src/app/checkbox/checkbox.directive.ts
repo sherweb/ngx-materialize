@@ -1,9 +1,11 @@
 import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
+
 @Directive({
   selector: 'input[mzCheckbox], input[mz-checkbox]',
 })
-export class MzCheckboxDirective implements OnInit {
+export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
   // native properties
   @Input() id: string;
 
@@ -15,13 +17,21 @@ export class MzCheckboxDirective implements OnInit {
   checkboxContainerElement: JQuery;
   labelElement: JQuery;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    super();
+  }
 
   ngOnInit() {
+    this.initHandlers();
     this.initElements();
     this.handleProperties();
+  }
+
+  initHandlers() {
+    this.handlers = {
+      filledIn: () => this.handleFilledIn(),
+      label: () => this.handleLabel(),
+    };
   }
 
   initElements() {
@@ -45,20 +55,14 @@ export class MzCheckboxDirective implements OnInit {
       return;
     }
 
-    this.handleLabel();
-    this.handleFilledIn();
+    super.executePropHandlers();
   }
 
   handleLabel() {
-    if (this.label) {
-      const labelText = document.createTextNode(this.label);
-      this.renderer.invokeElementMethod(this.labelElement, 'append', [labelText]);
-    }
+    this.renderer.invokeElementMethod(this.labelElement, 'text', [this.label]);
   }
 
   handleFilledIn() {
-    if (this.filledIn) {
-      this.renderer.setElementClass(this.checkboxElement[0], 'filled-in', true);
-    }
+    this.renderer.setElementClass(this.checkboxElement[0], 'filled-in', this.filledIn);
   }
 }

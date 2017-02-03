@@ -1,6 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzSelectDirective } from './select.directive';
 
 describe('MzSelectDirective:unit', () => {
@@ -26,8 +27,17 @@ describe('MzSelectDirective:unit', () => {
 
     beforeEach(() => {
       callOrder = [];
+      spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
+    });
+
+    it('should call initHandlers method', () => {
+
+      directive.ngOnInit();
+
+      expect(directive.initHandlers).toHaveBeenCalled();
+      expect(callOrder[0]).toBe('initHandlers');
     });
 
     it('should call initElements method', () => {
@@ -35,7 +45,7 @@ describe('MzSelectDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.initElements).toHaveBeenCalled();
-      expect(callOrder[0]).toBe('initElements');
+      expect(callOrder[1]).toBe('initElements');
     });
 
     it('should call handleProperties method', () => {
@@ -43,7 +53,7 @@ describe('MzSelectDirective:unit', () => {
       directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[1]).toBe('handleProperties');
+      expect(callOrder[2]).toBe('handleProperties');
     });
   });
 
@@ -51,14 +61,38 @@ describe('MzSelectDirective:unit', () => {
 
     it('should invoke material_select method on select element for initialization', () => {
 
-      const mockSelectElement = { select: true };
+      const mockSelectElement = { select: true, on: () => null };
 
       spyOn(renderer, 'invokeElementMethod');
 
-      directive.selectElement = mockSelectElement;
+      directive.selectElement = <any>mockSelectElement;
       directive.ngAfterViewInit();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
+    });
+
+    it('should attach event handler for onChange on select element to emit on ngModelChange', () => {
+
+      let onChangeHandler: Function;
+      const mockSelectElement = { select: true, on: () => null };
+
+      spyOn(mockSelectElement, 'on').and.callFake((events: string, handler: Function) => {
+        onChangeHandler = handler;
+      });
+
+      spyOn(directive.ngModelChange, 'emit');
+
+      directive.selectElement = <any>mockSelectElement;
+      directive.ngAfterViewInit();
+
+      expect(mockSelectElement.on).toHaveBeenCalledWith('change', jasmine.any(Function));
+
+      const mockValue = 'value-x';
+      const mockEvent = { target: { value: mockValue } };
+
+      onChangeHandler(mockEvent);
+
+      expect(directive.ngModelChange.emit).toHaveBeenCalledWith(mockValue);
     });
   });
 
@@ -66,14 +100,53 @@ describe('MzSelectDirective:unit', () => {
 
     it('should invoke material_select method on select element to destroy it', () => {
 
-      const mockSelectElement = { select: true };
+      const mockSelectElement = { select: true, off: () => null };
 
       spyOn(renderer, 'invokeElementMethod');
 
-      directive.selectElement = mockSelectElement;
+      directive.selectElement = <any>mockSelectElement;
       directive.ngOnDestroy();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select', ['destroy']);
+    });
+
+    it('should remove event handlers on select', () => {
+
+      const mockSelectElement = { select: true, off: () => null };
+
+      spyOn(mockSelectElement, 'off');
+
+      directive.selectElement = <any>mockSelectElement;
+      directive.ngOnDestroy();
+
+      expect(mockSelectElement.off).toHaveBeenCalled();
+    });
+  });
+
+  describe('initHandlers', () => {
+
+    it('should initialize handlers correctly', () => {
+
+      const handlers = {
+        disabled: 'handleDisabled',
+        label: 'handleLabel',
+        placeholder: 'handlePlaceholder',
+      };
+
+      directive.initHandlers();
+
+      expect(Object.keys(directive.handlers).length).toBe(Object.keys(handlers).length);
+
+      Object.keys(handlers).forEach(key => {
+
+        const handler = handlers[key];
+
+        spyOn(directive, handler);
+
+        directive[handler]();
+
+        expect(directive[handler]).toHaveBeenCalled();
+      });
     });
   });
 
@@ -160,75 +233,104 @@ describe('MzSelectDirective:unit', () => {
           mockSelectElement);
       });
 
-      it('should not call handle methods', () => {
-
-        const mockSelectContainerElement = { selectContainer: true, length: 0 };
+      it('should not call HandlePropChanges.executePropHandlers', () => {
 
         // avoid error to be shown in console while running tests
         spyOn(console, 'error');
 
-        spyOn(directive, 'handleLabel');
-        spyOn(directive, 'handlePlaceholder');
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
+
+        const mockSelectContainerElement = { selectContainer: true, length: 0 };
 
         directive.selectContainerElement = <any>mockSelectContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).not.toHaveBeenCalled();
-        expect(directive.handlePlaceholder).not.toHaveBeenCalled();
+        expect(HandlePropChanges.prototype.executePropHandlers).not.toHaveBeenCalled();
       });
     });
 
     describe('select wrapped inside mz-select-container', () => {
-      let callOrder: string[];
 
-      beforeEach(() => {
-        callOrder = [];
-        spyOn(directive, 'handleLabel').and.callFake(() => callOrder.push('handleLabel'));
-        spyOn(directive, 'handlePlaceholder').and.callFake(() => callOrder.push('handlePlaceholder'));
-      });
+      it('should call HandlePropChanges.executePropHandlers', () => {
 
-      it('should call handle properties method in the right order', () => {
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
         const mockSelectContainerElement = { selectContainer: true, length: 1 };
 
         directive.selectContainerElement = <any>mockSelectContainerElement;
         directive.handleProperties();
 
-        expect(directive.handleLabel).toHaveBeenCalled();
-        expect(callOrder[0]).toBe('handleLabel');
-
-        expect(directive.handlePlaceholder).toHaveBeenCalled();
-        expect(callOrder[1]).toBe('handlePlaceholder');
+        expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('handleDisabled', () => {
+
+    it('should set disabled property on select element when disabled is true', () => {
+
+      const mockSelectElement = [{ select: true }];
+
+      spyOn(renderer, 'setElementProperty');
+
+      directive.disabled = true;
+      directive.selectElement = <any>mockSelectElement;
+      directive.handleDisabled();
+
+      expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', true);
+    });
+
+    it('should set disabled property on select element when disabled is undefined/null/false', () => {
+
+      const mockSelectElement = [{ select: true }];
+
+      const spySetElementProperty = spyOn(renderer, 'setElementProperty');
+
+      [undefined, null, false].forEach(value => {
+
+        directive.disabled = value;
+        directive.selectElement = <any>mockSelectElement;
+        directive.handleDisabled();
+
+        expect(spySetElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', false);
+
+        spySetElementProperty.calls.reset();
+      });
+    });
+
+    it('should invoke material_select method on select element to reinitialize', () => {
+
+      const mockSelectElement = [{ select: true }];
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      directive.selectElement = <any>mockSelectElement;
+      directive.handleDisabled();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
     });
   });
 
   describe('handleLabel', () => {
 
-    it('should append text to label element when provided', () => {
+    it('should invoke text method to label element when label is provided', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
       const label = 'label-x';
-      const mockSelectElement = { select: true };
       const mockLabelElement = { label: true };
-      const mockLabelText = document.createTextNode(label);
 
-      directive.selectElement = <any>mockSelectElement;
       directive.labelElement = <any>mockLabelElement;
       directive.label = label;
       directive.handleLabel();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'append', [mockLabelText]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [label]);
     });
 
-    it('should not append label text when none is provided', () => {
+    it('should not invoke text method when label is not provided', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
-      const mockSelectElement = { select: true };
-
-      directive.selectElement = <any>mockSelectElement;
       directive.handleLabel();
 
       expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
@@ -237,34 +339,106 @@ describe('MzSelectDirective:unit', () => {
 
   describe('handlePlaceholder', () => {
 
-    it('should insert placeholder when provided', () => {
+    describe('existing placeholder element', () => {
 
-      spyOn(renderer, 'invokeElementMethod');
+      const mockPlaceholderElement = [
+        { placeholder: true },
+      ];
+      const mockSelectChildrenDisabled = {
+        children: true,
+        first: () => mockPlaceholderElement,
+      };
+      const mockSelectElement = {
+        select: true,
+        children: (selector: string) => {
+          return selector === ':disabled'
+            ? mockSelectChildrenDisabled
+            : {};
+        },
+      };
 
-      const placeholder = 'placeholder-x';
-      const mockSelectFirstChildrenElement = { firstChildren: true };
-      const mockSelectChildrenElement = { first: () => mockSelectFirstChildrenElement };
-      const mockSelectElement = { select: true, children: () => mockSelectChildrenElement };
-      const mockPlaceholderText = document.createTextNode(placeholder);
-      const mockPlaceholderOption = document.createElement('option');
-      mockPlaceholderOption.disabled = true;
-      mockPlaceholderOption.selected = true;
-      mockPlaceholderOption.appendChild(mockPlaceholderText);
+      it('should be updated when placeholder is provided', () => {
 
-      directive.selectElement = <any>mockSelectElement;
-      directive.placeholder = placeholder;
-      directive.handlePlaceholder();
+        const spyInvokeElementMethod = spyOn(renderer, 'invokeElementMethod');
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectFirstChildrenElement, 'before', [mockPlaceholderOption]);
+        const mockPlaceholder = 'placeholder-x';
+
+        directive.placeholder = mockPlaceholder;
+        directive.selectElement = <any>mockSelectElement;
+        directive.handlePlaceholder();
+
+        expect(spyInvokeElementMethod.calls.allArgs()).toEqual([
+          [ mockPlaceholderElement, 'text', [mockPlaceholder] ], // update existing placeholder element
+          [ mockSelectElement, 'material_select' ],              // reinitialize select element
+        ]);
+      });
+
+      it('should be removed when placeholder is not provided or empty', () => {
+
+        const spyInvokeElementMethod = spyOn(renderer, 'invokeElementMethod');
+
+        directive.selectElement = <any>mockSelectElement;
+        directive.handlePlaceholder();
+
+        expect(spyInvokeElementMethod.calls.allArgs()).toEqual([
+          [ mockPlaceholderElement, 'remove' ],     // remove existing placeholder element
+          [ mockSelectElement, 'material_select' ], // reinitialize select element
+        ]);
+      });
     });
 
-    it('should not insert placeholder when none is provided', () => {
+    describe('non existing placeholder element', () => {
 
-      spyOn(renderer, 'invokeElementMethod');
+      const mockSelectChildrenDisabled = {
+        children: true,
+        first: () => [],
+      };
+      const mockSelectChildrenFirst = [{ option: 'option-x' }];
+      const mockSelectChildren = {
+        children: true,
+        first: () => mockSelectChildrenFirst,
+      };
+      const mockSelectElement = {
+        select: true,
+        children: (selector: string) => {
+          switch (selector) {
+            case ':disabled':
+              return mockSelectChildrenDisabled;
+            case undefined:
+              return mockSelectChildren;
+            default:
+              return {};
+          }
+        },
+      };
 
-      directive.handlePlaceholder();
+      it('should be inserted when placeholder is provided', () => {
 
-      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+        spyOn(renderer, 'invokeElementMethod');
+
+        const mockPlaceholder = 'placeholder-x';
+        const mockPlaceholderText = document.createTextNode(mockPlaceholder);
+        const mockPlaceholderOption = document.createElement('option');
+        mockPlaceholderOption.disabled = true;
+        mockPlaceholderOption.selected = true;
+        mockPlaceholderOption.appendChild(mockPlaceholderText);
+
+        directive.selectElement = <any>mockSelectElement;
+        directive.placeholder = mockPlaceholder;
+        directive.handlePlaceholder();
+
+        expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectChildrenFirst, 'before', [mockPlaceholderOption]);
+      });
+
+      it('should not be inserted when placeholder is not provided', () => {
+
+        spyOn(renderer, 'invokeElementMethod');
+
+        directive.selectElement = <any>mockSelectElement;
+        directive.handlePlaceholder();
+
+        expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+      });
     });
   });
 });
