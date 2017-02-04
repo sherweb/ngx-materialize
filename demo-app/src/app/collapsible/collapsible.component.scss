@@ -1,1 +1,5 @@
 @import "../../_route-animation-host";
+
+#{'/deep/'} .collapsible-body {
+  background: rgba(255,255,255,0.87);
+}
