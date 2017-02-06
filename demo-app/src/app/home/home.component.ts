@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  navigateToGibhub() {
+  navigateToGithub() {
     window.location.href = 'https://github.com/sherweb/ng2-materialize';
   }
 }
