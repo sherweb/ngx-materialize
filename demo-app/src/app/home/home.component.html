@@ -6,6 +6,12 @@
   <img class="angular-logo" src="assets/angular.png">
   <mz-icon class="plus-logo" [mdiIcon]="'plus'"></mz-icon>
   <img class="materialize-logo" src="assets/materialize.png">
+
+  <button mz-button
+    class="github-button"
+    (click)="navigateToGibhub()">
+    <mz-icon [mdiIcon]="'github-circle'" [iconAlign]="'left'"></mz-icon>Github
+  </button>
 </div>
 
 <markdown path="README.md"></markdown>

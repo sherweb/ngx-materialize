@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent { }
+export class HomeComponent {
+  navigateToGibhub() {
+    window.location.href = 'https://github.com/sherweb/ng2-materialize';
+  }
+}

@@ -1,6 +1,6 @@
 @import '../../_variables';
 
-$logo-wont-fit: "only screen and (max-width: 430px)" !default;
+$logo-resize: "only screen and (max-width: 650px)" !default;
 
 .header-background {
   box-shadow: 0 -1px 32px rgba(0, 0, 0, 0.33) inset;
@@ -11,14 +11,25 @@ $logo-wont-fit: "only screen and (max-width: 430px)" !default;
 }
 
 .header-content {
+  position: relative;
   height: 176px;
   margin-bottom: 76px;
+}
+
+.github-button {
+  position: absolute;
+  bottom: -56px;
+  right: 0;
+
+  @media #{$logo-resize} {
+    right: calc(50% - 75px);
+  }
 }
 
 .angular-logo {
   max-height: 175px;
 
-  @media #{$logo-wont-fit} {
+  @media #{$logo-resize} {
     max-height: 140px;
     margin-left: calc(50% - 162px);
   }
@@ -37,7 +48,7 @@ $logo-wont-fit: "only screen and (max-width: 430px)" !default;
   margin: 14px;
   max-height: 125px;
 
-  @media #{$logo-wont-fit} {
+  @media #{$logo-resize} {
     max-height: 90px;
   }
 }
