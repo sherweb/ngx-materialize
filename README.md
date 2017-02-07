@@ -14,7 +14,7 @@ If you want to use a component that is not yet implemented, simply wrap the exis
 
 ## Installation
 
-The following commands will add Ng2-Materialize library to your `package.json` file along it dependencies: Materialize CSS, jQuery and Mdi (Mdi icons library is optional as your are free to use the icon library of your choice).
+The following commands will add Ng2-Materialize library to your `package.json` file along with it dependencies: Materialize CSS, jQuery and Mdi (Mdi icons library is optional as your are free to use the icon library of your choice).
 
 ```
 npm install --save ng2-materialize
@@ -43,7 +43,7 @@ See also [Angular CLI 3rd Party Library Installation](https://github.com/angular
 
 ## Usage
 
-You must import `MaterializeModule` inside your module to be able to use materialize components.
+You must import `MaterializeModule` inside your module to be able to use Materialize components.
 
 ```diff
 import { CommonModule } from '@angular/common';
@@ -64,6 +64,7 @@ export class HomeModule { }
 
 ## Available components
 
+* Badge
 * Button
 * Card
 * Checkbox
@@ -81,11 +82,11 @@ export class HomeModule { }
 
 ## Demo application
 
-A demo application is available, please refer to the `./demo-app` folder and his [README](./demo-app/README.md).
+A demo application is available, please refer to the `./demo-app` folder and its [README](./demo-app/README.md).
 
 ## Road map
 
-We (at SherWeb) are currently wrapping the components we need, and unfortunately we can't provide a specific road map.
+We (at SherWeb) are currently wrapping the components we need, and unfortunately we cannot provide a specific road map.
 
 If some components are missing, feel free to contribute.
 
