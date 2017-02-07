@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MarkdownModule } from 'angular2-markdown';
+import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
@@ -10,7 +10,7 @@ import { HomeComponent } from './home.component';
   imports: [
     CodeSnippetModule,
     CommonModule,
-    MarkdownModule.forRoot(),
+    MarkdownToHtmlModule.forRoot(),
     MaterializeModule.forRoot(),
   ],
   declarations: [ HomeComponent ],
