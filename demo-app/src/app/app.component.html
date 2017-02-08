@@ -20,11 +20,10 @@
 
       <mz-sidenav-link *ngFor="let route of groupedRoute.routes">
         <a class="waves-effect white-text" [routerLink]="route.path" *ngIf="route.data">
-          <i class="mdi mdi-{{ route.data.icon }} mdi-24px {{ route.data.class }} grey-text lighten-5"></i>{{ route.data.text }}
+          <i mz-icon-mdi [icon]='route.data.icon' class="{{ route.data.class }} grey-text lighten-5"></i>{{ route.data.text }}
         </a>
       </mz-sidenav-link>
     </template>
-
   </mz-sidenav>
 
   <button mz-button
@@ -32,7 +31,7 @@
     id="btn-sidenav"
     [float]="true"
     [large]="true">
-    <mz-icon [mdiIcon]="'menu'"></mz-icon>
+    <i mz-icon-mdi [icon]="'menu'"></i>
   </button>
 </header>
 

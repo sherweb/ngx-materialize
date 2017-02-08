@@ -199,9 +199,9 @@
   <div class="row m-valign-wrapper">
 
     <mz-input-container class="col s12 m6">
-      <mz-icon mz-input-prefix
-        [mdiIcon]="'phone'">
-      </mz-icon>
+      <i mz-icon-mdi mz-input-prefix
+        [icon]="'phone'">
+      </i>
       <input mz-input
         [label]="'Phone'"
         id="phone-input"
@@ -266,9 +266,9 @@
 
   <app-code-snippet>
 &lt;mz-input-container class="col s12">
-  &lt;mz-icon mz-input-prefix
-    [mdiIcon]="'mail'">
-  &lt;/mz-icon>
+  &lt;i mz-icon-mdi mz-input-prefix
+    [icon]="'mail'">
+  &lt;i>
   &lt;input mz-input
     [label]="'Email'"
     [validate]="true"
@@ -308,7 +308,7 @@
       <tbody>
         <tr>
           <td>inline</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>boolean</td>
           <td>Show input inline</td>
           <td>false</td>
@@ -339,63 +339,63 @@
       <tbody>
         <tr>
           <td>autocomplete</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>&#123; data: &#123; [key: string]: string }, limit: number }</td>
           <td>Suggest possible values</td>
           <td></td>
         </tr>
         <tr>
           <td>dataError</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Invalid message</td>
           <td></td>
         </tr>
         <tr>
           <td>dataSuccess</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Valid message</td>
           <td></td>
         </tr>
         <tr>
           <td>id</td>
-          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
           <td>string</td>
           <td>Id of the input</td>
           <td></td>
         </tr>
         <tr>
           <td>label</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Floating label</td>
           <td></td>
         </tr>
         <tr>
           <td>length</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>number</td>
           <td>Show character count</td>
           <td></td>
         </tr>
         <tr>
           <td>placeholder</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Show placeholder</td>
           <td></td>
         </tr>
         <tr>
           <td>type</td>
-          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
           <td>string</td>
           <td>HTML5 input type</td>
           <td></td>
         </tr>
         <tr>
           <td>validate</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>boolean</td>
           <td>Activate HTML5 validation</td>
           <td>false</td>

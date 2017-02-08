@@ -6,7 +6,7 @@ import * as Button from './button';
 import * as Card from './card/card.component';
 import * as Checkbox from './checkbox';
 import * as Collapsible from './collapsible';
-import * as Icon from './icon/icon.component';
+import * as Icon from './icon';
 import * as Input from './input';
 import * as Navbar from './navbar';
 import * as Parallax from './parallax/parallax.component';
@@ -30,7 +30,8 @@ const MZ_COMPONENTS = [
   Collapsible.MzCollapsibleItemBodyDirective,
   Collapsible.MzCollapsibleItemComponent,
   Collapsible.MzCollapsibleItemHeaderDirective,
-  Icon.MzIconComponent,
+  Icon.MzIconDirective,
+  Icon.MzIconMdiDirective,
   Input.MzInputContainerComponent,
   Input.MzInputDirective,
   Input.MzInputPrefixDirective,

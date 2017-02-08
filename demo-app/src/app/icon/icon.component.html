@@ -2,7 +2,7 @@
 
 <div class="section">
   <p>
-    The <code class="language-markup">mz-icon</code> component support both <a href="https://material.io/icons/" target="_blank">Material Icons</a> and <a href="https://materialdesignicons.com/" target="_blank">Material Design Icons</a>. Its use is not mandatory, but it provides an easy icons integration.
+    The <code class="language-markup">mz-icon</code> directive support <a href="https://material.io/icons/" target="_blank">Material Icons</a> and the <code class="language-markup">mz-icon-mdi</code> directive <a href="https://materialdesignicons.com/" target="_blank">Material Design Icons</a>. Its use is not mandatory, but it provides an easy icons integration.
   </p>
 
   <p>
@@ -16,10 +16,10 @@
   <h6><a href="https://material.io/icons/" target="_blank">https://material.io/icons/</a></h6>
 
   <div class="row m-valign-wrapper">
-    <mz-icon
+    <i mz-icon
       class="col s12 m2"
-      [icon]="'cloud'">
-    </mz-icon>
+      [icon]="icon" *ngIf="icon != 'alarm'">
+    </i>
 
     <p class="col s12 m10">
       <code class="language-markup">icon</code> property as <code class="language-markup">cloud</code>
@@ -27,24 +27,24 @@
   </div>
 
   <div class="row m-valign-wrapper">
-    <mz-icon
+    <i mz-icon
       class="col s12 m2"
       [icon]="'cloud'"
-      [iconClass]="'medium'">
-    </mz-icon>
+      [size]="'medium'">
+    </i>
 
     <p class="col s12 m10">
-      <code class="language-markup">iconClass</code> property as <code class="language-markup">medium</code>
+      <code class="language-markup">size</code> property as <code class="language-markup">medium</code>
     </p>
   </div>
 
   <h5 class="light">HTML Structure</h5>
 
   <app-code-snippet>
-&lt;mz-icon
+&lt;i mz-icon
   [icon]="'cloud'"
-  [iconClass]="'medium'">
-&lt;/mz-icon>
+  [size]="'medium'">
+&lt;/i>
   </app-code-snippet>
 </div>
 
@@ -54,47 +54,46 @@
   <h6><a href="https://materialdesignicons.com/" target="_blank">https://materialdesignicons.com/</a></h6>
 
   <div class="row m-valign-wrapper">
-    <mz-icon
+    <i mz-icon-mdi
       class="col s12 m2"
-      [mdiIcon]="'sword'">
-    </mz-icon>
+      [icon]="'sword'">
+    </i>
 
     <p class="col s12 m10">
-      <code class="language-markup">mdiIcon</code> property as <code class="language-markup">sword</code>
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code>
     </p>
   </div>
 
   <div class="row m-valign-wrapper">
-    <mz-icon
-      class="col s12 m2"
-      [iconClass]="'red-text'"
-      [mdiIcon]="'puzzle'">
-    </mz-icon>
+    <i mz-icon-mdi
+      class="col s12 m2 red-text"
+      [icon]="'puzzle'">
+    </i>
 
     <p class="col s12 m10">
-    <code class="language-markup">iconClass</code> property as <code class="language-markup">red-text</code>
+    <code class="language-markup">class</code> property as <code class="language-markup">red-text</code>
     </p>
   </div>
 
   <div class="row m-valign-wrapper">
-    <mz-icon
+    <i mz-icon-mdi
       class="col s12 m2"
-      [mdiIcon]="'puzzle'"
-      [mdiIconSize]="'36px'">
-    </mz-icon>
+      [icon]="'puzzle'"
+      [size]="'36px'">
+    </i>
 
     <p class="col s12 m10">
-      <code class="language-markup">mdiIconSize</code> property as <code class="language-markup">36px</code>
+      <code class="language-markup">size</code> property as <code class="language-markup">36px</code>
     </p>
   </div>
 
   <h5 class="light">HTML Structure</h5>
 
   <app-code-snippet>
-&lt;mz-icon
-  [mdiIcon]="'puzzle'"
-  [mdiIconSize]="'36px'">
-&lt;/mz-icon>
+&lt;i mz-icon-mdi
+  [icon]="'puzzle'"
+  [size]="'36px'">
+&lt;/i>
   </app-code-snippet>
 </div>
 
@@ -103,7 +102,7 @@
   <h5 class="light">Properties</h5>
 
   <p>
-    Icons can be customized using the following properties on the <code class="language-markup">mz-icon</code> element.
+    Icons can be customized using the following properties on the <code class="language-markup">i</code> element when using the directive <code class="language-markup">mz-icon</code> or <code class="language-markup">mz-icon-mdi</code>.
   </p>
 
   <table class="striped responsive-table">
@@ -119,39 +118,25 @@
 
     <tbody>
       <tr>
-        <td>icon</td>
-        <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon> or <b>mdiIcon</b></td>
-        <td>string</td>
-        <td>The name of the icon</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>iconAlign</td>
-        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>align</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
         <td>string</td>
         <td>Alignement of the icon</td>
         <td></td>
       </tr>
       <tr>
-        <td>iconClass</td>
-        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+        <td>icon</td>
+        <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
         <td>string</td>
-        <td>Icon css class to be applied on the icon</td>
+        <td>The name of the icon</td>
         <td></td>
       </tr>
       <tr>
-        <td>mdiIcon</td>
-        <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon> or <b>icon</b></td>
+        <td>size</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
         <td>string</td>
-        <td>The name of the material design icon (mdi)</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>mdiIconSize</td>
-        <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
-        <td>string</td>
-        <td>Icon size to be applied on the icon, could be <code class="language-markup">24px</code>, <code class="language-markup">36px</code>, or <code class="language-markup">48px</code></td>
-        <td>24px</td>
+        <td>Icon size to be applied on the icon. <br />For <code class="language-markup">mz-icon</code> directive <code class="language-markup">tiny</code>, <code class="language-markup">small</code>, <code class="language-markup">medium</code> and <code class="language-markup">large</code>.<br /> For <code class="language-markup">mz-icon-mdi</code> directive it could be could be <code class="language-markup">24px</code>, <code class="language-markup">36px</code>, or <code class="language-markup">48px</code></td>
+        <td>Default value for <code class="language-markup">mz-icon-mdi</code> is <code class="language-markup">24px</code></td>
       </tr>
     </tbody>
   </table>

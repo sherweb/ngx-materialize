@@ -165,7 +165,7 @@
 //     it('should have transcluded icon and text', async(() => {
 //       buildComponent<MzButtonComponent>(`
 //         <mz-button>
-//           <mz-icon [icon]="'cloud'"></mz-icon>
+//           <i mz-icon-mdi [icon]="'cloud'"></i>
 //           button
 //         </mz-button>
 //       `).then((fixture) => {
