@@ -19,18 +19,17 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { TextareaComponent } from './textarea/textarea.component';
 
 // sections name
-const formControls = 'Form controls';
-const formBinding = 'Form binding';
-const navigation = 'Navigation';
+const formControls = 'Form Controls';
 const layout = 'Layout';
 const loading = 'Loading';
-const indicator = 'Indicator';
+const indicator = 'Indicators';
 
 export const ROUTES: Routes = [
   // home route
   { path: 'home', component: HomeComponent },
 
   // components routes - Form controls
+  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Binding', section: formControls } },
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },
@@ -38,18 +37,13 @@ export const ROUTES: Routes = [
   { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },
   { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
 
-  // components routes - Form binding
-  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Form Binding', section: formBinding } },
-
-  // components routes - Navigation
-  { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav', section: navigation } },
-
   // components routes - Layout
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },
   { path: 'collapsible', component: CollapsibleComponent,
     data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar', section: layout } },
   { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax', section: layout } },
+  { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav', section: layout } },
 
   // components routes - Loading
   { path: 'progress', component: ProgressComponent, data: { icon: 'timer-sand', text: 'Progress', section: loading } },

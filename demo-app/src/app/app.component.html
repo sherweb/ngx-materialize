@@ -13,9 +13,9 @@
       <h5 class="materialize-name center-align white-text">ng2-materialize</h5>
     </mz-sidenav-header>
 
-    <template ngFor let-groupedRoute="$implicit" [ngForOf]="groupedRoutes">
+    <template ngFor let-groupedRoute [ngForOf]="groupedRoutes">
       <mz-sidenav-subheader>
-        <span class="grey-text lighten-4">{{ groupedRoute.key }}</span>
+        <span class="grey-text lighten-4">{{ groupedRoute.section }}</span>
       </mz-sidenav-subheader>
 
       <mz-sidenav-link *ngFor="let route of groupedRoute.routes">
