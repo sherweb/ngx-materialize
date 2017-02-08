@@ -18,27 +18,46 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TextareaComponent } from './textarea/textarea.component';
 
+// sections name
+const formControls = 'Form controls';
+const formBinding = 'Form binding';
+const navigation = 'Navigation';
+const layout = 'Layout';
+const loading = 'Loading';
+const indicator = 'Indicator';
+
 export const ROUTES: Routes = [
   // home route
-  { path: 'home', component: HomeComponent, data: { icon: 'home', text: 'Home' } },
+  { path: 'home', component: HomeComponent },
 
-  // components routes
-  { path: 'badge', component: BadgeComponent, data: { icon: 'numeric-2-box-outline', text: 'Badge' } },
-  { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button' } },
-  { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card' } },
-  { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox' } },
-  { path: 'collapsible', component: CollapsibleComponent, data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible' } },
-  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Form Binding' } },
-  { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon' } },
-  { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input' } },
-  { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar' } },
-  { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax' } },
-  { path: 'progress', component: ProgressComponent, data: { icon: 'timer-sand', text: 'Progress' } },
-  { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button' } },
-  { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select' } },
-  { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav' } },
-  { path: 'spinner', component: SpinnerComponent, data: { icon: 'reload', text: 'Spinner' } },
-  { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea' } },
+  // components routes - Form controls
+  { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
+  { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
+  { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },
+  { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button', section: formControls } },
+  { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },
+  { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
+
+  // components routes - Form binding
+  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Form Binding', section: formBinding } },
+
+  // components routes - Navigation
+  { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav', section: navigation } },
+
+  // components routes - Layout
+  { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },
+  { path: 'collapsible', component: CollapsibleComponent,
+    data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
+  { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar', section: layout } },
+  { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax', section: layout } },
+
+  // components routes - Loading
+  { path: 'progress', component: ProgressComponent, data: { icon: 'timer-sand', text: 'Progress', section: loading } },
+  { path: 'spinner', component: SpinnerComponent, data: { icon: 'reload', text: 'Spinner', section: loading } },
+
+  // components routes - Indicator
+  { path: 'badge', component: BadgeComponent, data: { icon: 'numeric-2-box-outline', text: 'Badge', section: indicator } },
+  { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon', section: indicator } },
 
   // redirect to home when route does not exists (must be last route)
   { path: '**', redirectTo: 'home' },
