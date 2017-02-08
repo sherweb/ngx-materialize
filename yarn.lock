@@ -75,10 +75,10 @@
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
 
 "@types/jquery@*":
-  version "2.0.37"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.37.tgz#dae31d21864fb9de34ba145f7f161c1b373778e6"
+  version "2.0.40"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.40.tgz#acdd69e29b74cdec15dc3c074bcb064bc1b87213"
 
-"@types/materialize-css@^0.97.33":
+"@types/materialize-css@^0.97.34":
   version "0.97.34"
   resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.34.tgz#6111c7d874265eb1a12b1a000a616b2eb7390eea"
   dependencies:
@@ -3053,7 +3053,7 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-jquery@^2.1.4, jquery@^2.2.4:
+jquery@^2.1.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 

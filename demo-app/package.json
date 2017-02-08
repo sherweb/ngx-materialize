@@ -29,8 +29,6 @@
     "@angular/router": "^3.3.1",
     "core-js": "^2.4.1",
     "highlightjs": "^9.8.0",
-    "jquery": "^2.2.4",
-    "materialize-css": "^0.98.0",
     "mdi": "^1.8.36",
     "ng2-markdown-to-html": "^0.0.4",
     "ng2-materialize": "file:../",

@@ -18,7 +18,7 @@ The following commands will add Ng2-Materialize library to your `package.json` f
 
 ```
 npm install --save ng2-materialize
-npm install --save materialize-css jquery@2.2.4 mdi
+npm install --save mdi    #optional
 ```
 
 Don't forget to include jQuery, Materialize and Mdi into your application.
