@@ -6,11 +6,11 @@ The purpose of this library is to simplify the usage within the Angular framewor
 
 ## Why ng2-materialize?
 
-We are aware that alternatives exposing Material Design components already exist. But in our case, we want to rely on a stable css framework that does not depend on a specific js framework.
+We are aware that alternatives exposing Material Design components already exist. But, in our case, we want to rely on a stable css framework that does not depend on a specific js framework.
 
-With [Materialize](http://materializecss.com/) we already know the possibilities that this framework offers, it remains to wrap in Angular component the Materialize components that we want to use.
+We already know the possibilities Materialize offers. What is left to do is to wrap components that we want to use in Angular component.
 
-If you want to use a component that is not yet implemented, simply wrap the existing Materialize that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2 components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
+If you want to use a component that is not yet implemented, simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2 components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
 
 ## Installation
 
@@ -21,7 +21,7 @@ npm install --save ng2-materialize
 npm install --save mdi    #optional
 ```
 
-Don't forget to include jQuery, Materialize and Mdi into your application.
+Don't forget to include jQuery, Materialize, and Mdi in your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
@@ -86,7 +86,7 @@ A demo application is available, please refer to the `./demo-app` folder and its
 
 ## Road map
 
-We (at SherWeb) are currently wrapping the components we need, and unfortunately we cannot provide a specific road map.
+We (at SherWeb) are currently wrapping the components as we need them, and unfortunately, we cannot provide a specific road map.
 
 If some components are missing, feel free to contribute.
 
