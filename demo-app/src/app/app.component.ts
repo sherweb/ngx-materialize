@@ -3,7 +3,7 @@ import 'rxjs/add/operator/filter';
 import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
 
-type SectionRoutesPair = {section: string, routes: Route[]};
+type SectionRoutesPair = { section: string, routes: Route[] };
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,11 @@ type SectionRoutesPair = {section: string, routes: Route[]};
 export class AppComponent implements OnInit {
   public groupedRoutes: Array<SectionRoutesPair>;
 
-  constructor(private router: Router, private renderer: Renderer, private elementRef: ElementRef) { }
+  constructor(
+    private router: Router,
+    private renderer: Renderer,
+    private elementRef: ElementRef,
+  ) { }
 
   ngOnInit(): void {
     this.populateSideNavWithRoutesGroupedBySections();
@@ -23,9 +27,9 @@ export class AppComponent implements OnInit {
   populateSideNavWithRoutesGroupedBySections() {
     // Take all routes with data and group them by sections
     this.groupedRoutes = this.router.config.reduce<Array<SectionRoutesPair>>(
-      (returnValues, currentValue: any) => { // currentValue is a route. But, if typed, doesn't compile because of the 'data.section' access
+      (returnValues, currentValue) => {
         if (currentValue.data) {
-          const section = currentValue.data.section;
+          const section = currentValue.data['section'];
           const existingSection = returnValues.find((r) => r && r.section === section);
 
           if (existingSection) {
