@@ -3828,9 +3828,9 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng2-markdown-to-html@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/ng2-markdown-to-html/-/ng2-markdown-to-html-0.0.4.tgz#b462591c54e9183a47d00c50e3a5a30cec274642"
+ng2-markdown-to-html@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/ng2-markdown-to-html/-/ng2-markdown-to-html-0.0.7.tgz#8fdf97316895f3d01d993bf99e75c4c25035304b"
   dependencies:
     "@angular/common" "^2.3.1"
     "@angular/compiler" "^2.3.1"
@@ -3851,9 +3851,6 @@ ng2-markdown-to-html@^0.0.4:
 
 "ng2-materialize@file:../":
   version "0.1.0"
-  dependencies:
-    "@types/materialize-css" "^0.97.34"
-    materialize-css "^0.98.0"
 
 no-case@^2.2.0:
   version "2.3.0"
