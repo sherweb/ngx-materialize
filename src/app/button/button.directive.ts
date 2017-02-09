@@ -32,10 +32,6 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
     super.executePropHandlers();
   }
 
-  initMaterialize() {
-    this.renderer.setElementClass(this.elementRef.nativeElement, 'btn', true);
-  }
-
   initHandlers() {
     this.handlers = {
       disabled: () => this.handleDisabled(),
@@ -44,6 +40,10 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
       large: () => this.handleLarge(),
       noWaves: () => this.handleNoWaves(),
     };
+  }
+
+  initMaterialize() {
+    this.renderer.setElementClass(this.elementRef.nativeElement, 'btn', true);
   }
 
   handleDisabled() {
