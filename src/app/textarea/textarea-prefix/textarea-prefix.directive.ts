@@ -1,9 +1,7 @@
 import { Directive, ElementRef, OnInit, Renderer } from '@angular/core';
 
 @Directive({
-  selector: `
-    i[mzTextareaPrefix], i[mz-textarea-prefix],
-    mz-icon[MzTextareaPrefix], mz-icon[mz-textarea-prefix]`,
+  selector: 'i[mzTextareaPrefix], i[mz-textarea-prefix]',
 })
 export class MzTextareaPrefixDirective implements OnInit {
 

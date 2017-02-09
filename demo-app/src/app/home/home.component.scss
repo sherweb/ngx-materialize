@@ -35,13 +35,10 @@ $logo-resize: "only screen and (max-width: 650px)" !default;
   }
 }
 
-.plus-logo {
-  margin: 0 -58px;
+.plus-logo.mdi:before {
   color: rgba(255,255,255,0.75);
-
-  #{'/deep/'} .mdi:before {
-    font-size: 116px;
-  }
+  font-size: 116px;
+  margin: 0 -58px;
 }
 
 .materialize-logo {

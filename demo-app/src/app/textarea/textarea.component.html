@@ -101,9 +101,9 @@
   <div class="row m-valign-wrapper">
 
     <mz-textarea-container class="col s12 m6">
-      <mz-icon mz-textarea-prefix
-        [mdiIcon]="'message-reply-text'">
-      </mz-icon>
+      <i mz-icon-mdi mz-textarea-prefix
+        [icon]="'message-reply-text'">
+      </i>
       <textarea mz-textarea
         [label]="'Comment'"
         id="comment-textarea"></textarea>
@@ -144,9 +144,9 @@
 
   <app-code-snippet>
 &lt;mz-textarea-container>
-  &lt;mz-icon mz-textarea-prefix
-    [mdiIcon]="'message-reply-text'">
-  &lt;/mz-icon>
+  &lt;i mz-icon-mdi mz-textarea-prefix
+    [icon]="'message-reply-text'">
+  &lt;i>
   &lt;textarea mz-textarea
     [label]="'Comment'"
     id="comment-textarea"
@@ -182,7 +182,7 @@
       <tbody>
         <tr>
           <td>inline</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>boolean</td>
           <td>Show textarea inline</td>
           <td>false</td>
@@ -213,28 +213,28 @@
       <tbody>
         <tr>
           <td>id</td>
-          <td class="center"><mz-icon [mdiIcon]="'check'" [iconClass]="'green-text'"></mz-icon></td>
+          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
           <td>string</td>
           <td>Id of the textarea</td>
           <td></td>
         </tr>
         <tr>
           <td>label</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Floating label</td>
           <td></td>
         </tr>
         <tr>
           <td>length</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>number</td>
           <td>Show character count</td>
           <td></td>
         </tr>
         <tr>
           <td>placeholder</td>
-          <td class="center"><mz-icon [mdiIcon]="'minus'" [iconClass]="'grey-text'"></mz-icon></td>
+          <td class="center"><i mz-icon-mdi [icon]="'minus'"></i></td>
           <td>string</td>
           <td>Show placeholder</td>
           <td></td>
