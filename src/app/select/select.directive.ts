@@ -42,6 +42,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    this.ngModelChange.emit(this.selectElement.val());
     this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
   }
 
@@ -79,6 +80,16 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     }
 
     super.executePropHandlers();
+
+    this.selectFirstItem();
+  }
+
+  selectFirstItem() {
+    const firstItem = this.selectElement.children().first();
+
+    if (firstItem.length > 0) {
+      firstItem[0].setAttribute('selected', 'true');
+    }
   }
 
   handleDisabled() {
@@ -114,7 +125,6 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         const placeholderText = document.createTextNode(this.placeholder);
         const placeholderOption = document.createElement('option');
         placeholderOption.disabled = true;
-        placeholderOption.selected = true;
         placeholderOption.appendChild(placeholderText);
 
         this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);

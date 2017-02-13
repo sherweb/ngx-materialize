@@ -61,7 +61,7 @@ describe('MzSelectDirective:unit', () => {
 
     it('should invoke material_select method on select element for initialization', () => {
 
-      const mockSelectElement = { select: true, on: () => null };
+      const mockSelectElement = { select: true, on: () => null, val: () => null };
 
       spyOn(renderer, 'invokeElementMethod');
 
@@ -71,10 +71,23 @@ describe('MzSelectDirective:unit', () => {
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
     });
 
+    it('should invoke ngModelChange.emit with currently selected value', () => {
+
+      const value = 'patate';
+      const mockSelectElement = { select: true, on: () => null, val: () => value };
+
+      spyOn(directive.ngModelChange, 'emit');
+
+      directive.selectElement = <any>mockSelectElement;
+      directive.ngAfterViewInit();
+
+      expect(directive.ngModelChange.emit).toHaveBeenCalledWith(value);
+    });
+
     it('should attach event handler for onChange on select element to emit on ngModelChange', () => {
 
       let onChangeHandler: Function;
-      const mockSelectElement = { select: true, on: () => null };
+      const mockSelectElement = { select: true, on: () => null, val: () => null };
 
       spyOn(mockSelectElement, 'on').and.callFake((events: string, handler: Function) => {
         onChangeHandler = handler;
@@ -256,11 +269,28 @@ describe('MzSelectDirective:unit', () => {
         spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
         const mockSelectContainerElement = { selectContainer: true, length: 1 };
+        const mockSelectElement = { children: () => $({ length: 0 }) };
 
         directive.selectContainerElement = <any>mockSelectContainerElement;
+        directive.selectElement = <any>mockSelectElement;
         directive.handleProperties();
 
         expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
+      });
+
+      it('should call selectFirstItem', () => {
+
+        spyOn(HandlePropChanges.prototype, 'executePropHandlers');
+        spyOn(directive, 'selectFirstItem');
+
+        const mockSelectContainerElement = { selectContainer: true, length: 1 };
+        const mockSelectElement = { children: () => $({ length: 0 }) };
+
+        directive.selectContainerElement = <any>mockSelectContainerElement;
+        directive.selectElement = <any>mockSelectElement;
+        directive.handleProperties();
+
+        expect(directive.selectFirstItem).toHaveBeenCalled();
       });
     });
   });
@@ -420,7 +450,6 @@ describe('MzSelectDirective:unit', () => {
         const mockPlaceholderText = document.createTextNode(mockPlaceholder);
         const mockPlaceholderOption = document.createElement('option');
         mockPlaceholderOption.disabled = true;
-        mockPlaceholderOption.selected = true;
         mockPlaceholderOption.appendChild(mockPlaceholderText);
 
         directive.selectElement = <any>mockSelectElement;
@@ -438,6 +467,21 @@ describe('MzSelectDirective:unit', () => {
         directive.handlePlaceholder();
 
         expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('selectFirstItem', () => {
+
+      it('should set the selected attribute of the first item to true', () => {
+
+        const foo = { length: 1, setAttribute: () => null };
+        const mockSelectElement = { children: () => $(foo) };
+        spyOn(foo, 'setAttribute');
+
+        directive.selectElement = <any>mockSelectElement;
+        directive.selectFirstItem();
+
+        expect(foo.setAttribute).toHaveBeenCalledWith('selected', 'true');
       });
     });
   });
