@@ -444,7 +444,7 @@ describe('MzSelectDirective:unit', () => {
 
       it('should be inserted when placeholder is provided', () => {
 
-        spyOn(renderer, 'invokeElementMethod');
+        const spy = spyOn(renderer, 'invokeElementMethod');
 
         const mockPlaceholder = 'placeholder-x';
         const mockPlaceholderText = document.createTextNode(mockPlaceholder);
@@ -456,7 +456,10 @@ describe('MzSelectDirective:unit', () => {
         directive.placeholder = mockPlaceholder;
         directive.handlePlaceholder();
 
-        expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectChildrenFirst, 'before', [mockPlaceholderOption]);
+        expect(spy.calls.allArgs()).toEqual([
+          [ mockSelectChildrenFirst, 'before', [mockPlaceholderOption] ],     // add placeholder element
+          [ mockSelectElement, 'material_select' ], // reinitialize select element
+        ]);
       });
 
       it('should not be inserted when placeholder is not provided', () => {
@@ -466,7 +469,7 @@ describe('MzSelectDirective:unit', () => {
         directive.selectElement = <any>mockSelectElement;
         directive.handlePlaceholder();
 
-        expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+        expect(renderer.invokeElementMethod).not.toHaveBeenCalledWith(jasmine.any(Object), 'before', jasmine.any(Array));
       });
     });
 

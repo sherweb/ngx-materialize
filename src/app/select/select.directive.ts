@@ -114,10 +114,9 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         this.renderer.invokeElementMethod(placeholderElement, 'text', [this.placeholder]);
       } else {
         // remove existing placeholder element
+        // TODO: This may change the selectElement.val but doesn't trigger the on change event. Doing it manually raise exception
         this.renderer.invokeElementMethod(placeholderElement, 'remove');
       }
-
-      this.renderer.invokeElementMethod(this.selectElement, 'material_select');
     } else {
 
       if (this.placeholder) {
@@ -130,5 +129,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
       }
     }
+
+    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
   }
 }
