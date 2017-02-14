@@ -6,6 +6,7 @@ import * as Button from './button';
 import * as Card from './card/card.component';
 import * as Checkbox from './checkbox';
 import * as Collapsible from './collapsible';
+import * as Dropdown from './dropdown';
 import * as Icon from './icon';
 import * as Input from './input';
 import * as Navbar from './navbar';
@@ -30,6 +31,9 @@ const MZ_COMPONENTS = [
   Collapsible.MzCollapsibleItemBodyDirective,
   Collapsible.MzCollapsibleItemComponent,
   Collapsible.MzCollapsibleItemHeaderDirective,
+  Dropdown.MzDropdownComponent,
+  Dropdown.MzDropdownDividerComponent,
+  Dropdown.MzDropdownItemComponent,
   Icon.MzIconDirective,
   Icon.MzIconMdiDirective,
   Input.MzInputContainerComponent,

@@ -78,9 +78,9 @@
   version "2.0.40"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.40.tgz#acdd69e29b74cdec15dc3c074bcb064bc1b87213"
 
-"@types/materialize-css@^0.97.34":
-  version "0.97.34"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.34.tgz#6111c7d874265eb1a12b1a000a616b2eb7390eea"
+"@types/materialize-css@^0.98.0":
+  version "0.98.0"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.98.0.tgz#8d514647c1d92e2bc5ec7aea0c1f13c408be61e5"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"

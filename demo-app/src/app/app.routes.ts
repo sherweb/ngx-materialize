@@ -5,6 +5,7 @@ import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormBindingComponent } from './form-binding/form-binding.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
@@ -41,6 +42,7 @@ export const ROUTES: Routes = [
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },
   { path: 'collapsible', component: CollapsibleComponent,
     data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
+  { path: 'dropdowm', component: DropdownComponent, data: { icon: 'dots-vertical', text: 'Dropdown', section: layout } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar', section: layout } },
   { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax', section: layout } },
   { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav', section: layout } },

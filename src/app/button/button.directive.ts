@@ -13,7 +13,11 @@ import { Observable } from 'rxjs';
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
-  selector: 'button[mz-button], button[mzButton]',
+  selector: `
+    a[mz-button],
+    a[mzButton],
+    button[mz-button],
+    button[mzButton]`,
 })
 export class MzButtonDirective extends HandlePropChanges implements OnInit {
   @Input() disabled: boolean;

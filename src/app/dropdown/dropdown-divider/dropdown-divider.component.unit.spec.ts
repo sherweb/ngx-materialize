@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapsibleComponent } from './collapsible.component';
+import { MzDropdownDividerComponent } from './dropdown-divider.component';
 
-describe('CollapsibleComponent:unit', () => {
-  let component: CollapsibleComponent;
-  let fixture: ComponentFixture<CollapsibleComponent>;
+describe('MzDropdownDividerComponent:unit', () => {
+  let component: MzDropdownDividerComponent;
+  let fixture: ComponentFixture<MzDropdownDividerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CollapsibleComponent ],
+      declarations: [ MzDropdownDividerComponent ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CollapsibleComponent);
+    fixture = TestBed.createComponent(MzDropdownDividerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

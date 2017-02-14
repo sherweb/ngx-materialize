@@ -13,6 +13,7 @@ import { ButtonModule } from './button/button.module';
 import { CardModule } from './card/card.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
+import { DropdownModule } from './dropdown/dropdown.module';
 import { FormBindingModule } from './form-binding/form-binding.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
@@ -41,6 +42,7 @@ import { TextareaModule } from './textarea/textarea.module';
     CardModule,
     CheckboxModule,
     CollapsibleModule,
+    DropdownModule,
     FormBindingModule,
     HomeModule,
     IconModule,

@@ -2,6 +2,7 @@ export * from './button';
 export * from './card';
 export * from './checkbox';
 export * from './collapsible';
+export * from './dropdown';
 export * from './icon';
 export * from './input';
 export * from './materialize.module';

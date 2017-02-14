@@ -1,0 +1,275 @@
+<h3>Dropdown</h3>
+
+<h5 class="light">Basic dropdown</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <a mz-button id="btn-dropdown-basic" href="#">Dropdown</a>
+
+    <mz-dropdown
+      [id]="'dropdown-basic'"
+      [dropdownButtonId]="'btn-dropdown-basic'"
+    >
+      <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+      <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+      <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Simple basic dropdown.
+  </p>
+</div>
+
+<h5 class="light">Divider</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <a mz-button id="btn-dropdown-divider" href="#">Dropdown</a>
+
+    <mz-dropdown
+      [id]="'dropdown-divider'"
+      [dropdownButtonId]="'btn-dropdown-divider'"
+    >
+      <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Dropdown with divider between each <code class="language-markup">mz-dropdown-item</code>.
+  </p>
+</div>
+
+<h5 class="light">Dropdown with options</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <a mz-button id="btn-dropdown-with-options" href="#">Dropdown button with long text</a>
+
+    <mz-dropdown
+      [id]="'dropdown-with-options'"
+      [align]="'right'"
+      [constrainWidth]="false"
+      [belowOrigin]="true"
+      [hover]="true"
+      [dropdownButtonId]="'btn-dropdown-with-options'"
+    >
+      <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Dropdown with <code class="language-markup">hover</code>, <code class="language-markup">align</code> right, without <code class="language-markup">constrainWidth</code> and <code class="language-markup">belowOrigin</code>.
+  </p>
+</div>
+
+<h5 class="light">Programatically trigger event</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <a mz-button id="btn-dropdown-programatically" href="#">Dropdown</a>
+
+    <mz-dropdown #dropdown
+      [id]="'dropdown-programatically'"
+      [dropdownButtonId]="'btn-dropdown-programatically'"
+    >
+      <mz-dropdown-item><a href="#!">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="#!">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+
+    <button mz-button (click)="dropdown.open()">Open</button>
+
+    <button mz-button (click)="dropdown.close()">Close</button>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Open and close a dropdown programatically.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-dropdown
+  [id]="'dropdown-demo'"
+  [align]="'left'"
+  [belowOrign]="false"
+  [constrainWidth]="true"
+  [dropdownButtonId]="'btn-dropdown-demo'"
+  [gutter]="true"
+  [hover]="true"
+  [inDuration]="300"
+  [outDuration]="300"
+  [stopPropagation]="true"
+>
+  &lt;mz-dropdown-item>&lt;a href="#!">One&lt;/a>&lt;/mz-dropdown-item>
+  &lt;mz-dropdown-item>&lt;a href="#!">Two&lt;/a>&lt;/mz-dropdown-item>
+  &lt;mz-dropdown-divider>&lt;/mz-dropdown-divider>
+  &lt;mz-dropdown-item>&lt;a href="#!">Three&lt;/a>&lt;/mz-dropdown-item>
+&lt;/mz-collapsible>
+
+&lt;a mz-button id="btn-dropdown-demo" href="#">Dropdown&lt;/a>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <p>
+      Dropdown can be customized using the following properties on the <code class="language-markup">mz-dropdown</code> element.
+    </p>
+
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th data-field="property" class="property">Property</th>
+          <th data-field="mandatory" class="center mandatory">Mandatory</th>
+          <th data-field="type">Type</th>
+          <th data-field="description">Description</th>
+          <th data-field="default-value">Default value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>align</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>string</td>
+          <td>Choose the edge the menu is aligned to could be <code class="language-markup">left</code> or <code class="language-markup">right</code></td>
+          <td>left</td>
+        </tr>
+        <tr>
+          <td>belowOrign</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>boolean</td>
+          <td>Show the drowdown below the button activator</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>constrainWidth</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>boolean</td>
+          <td>Display the ConstrainWidth to the size of the dropdown button activator</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>dropdownButtonId</td>
+          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
+          <td>string</td>
+          <td>Id of the dropdown button</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>gutter</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>number</td>
+          <td>Defines the spacing from the aligned edge</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>hover</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>boolean</td>
+          <td>Open the dropdown on hover</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>id</td>
+          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
+          <td>string</td>
+          <td>Id of the dropdown element</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>inDuration</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>number</td>
+          <td>Duration of the transition enter in milliseconds</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>outDuration</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>number</td>
+          <td>Duration of the transition out in milliseconds</td>
+          <td>225</td>
+        </tr>
+        <tr>
+          <td>stopPropagation</td>
+          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+          <td>boolean</td>
+          <td>Stops the event propagating from the dropdown origin click handler</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+
+    <h5 class="light">Methods</h5>
+
+    <div class="section">
+
+      <h6 class="bold">open</h6>
+
+      <p>
+        Open the dropdown.
+      </p>
+
+      <app-code-snippet>
+        #dropwdown.open();
+      </app-code-snippet>
+
+      <div class="section">
+        <h6 class="bold">Returns</h6>
+
+        <p>
+          void
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+
+      <h6 class="bold">close</h6>
+
+      <p>
+        Close the dropdown.
+      </p>
+
+      <app-code-snippet>
+        #dropwdown.close();
+      </app-code-snippet>
+
+      <div class="section">
+        <h6 class="bold">Returns</h6>
+
+        <p>
+          void
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

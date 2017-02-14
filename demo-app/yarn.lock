@@ -82,16 +82,9 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.0.28.tgz#44ba754e9fa51432583e8eb30a7c4dd249b52faa"
 
-"@types/materialize-css@^0.97.32":
-  version "0.97.33"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.33.tgz#c0532a837231df20835a52f9074820f553a18a06"
-  dependencies:
-    "@types/jquery" "*"
-    "@types/pickadate" "*"
-
-"@types/materialize-css@^0.97.34":
-  version "0.97.34"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.34.tgz#6111c7d874265eb1a12b1a000a616b2eb7390eea"
+"@types/materialize-css@^0.98.0":
+  version "0.98.0"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.98.0.tgz#8d514647c1d92e2bc5ec7aea0c1f13c408be61e5"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"
@@ -3851,9 +3844,6 @@ ng2-markdown-to-html@^0.0.4:
 
 "ng2-materialize@file:../":
   version "0.1.0"
-  dependencies:
-    "@types/materialize-css" "^0.97.34"
-    materialize-css "^0.98.0"
 
 no-case@^2.2.0:
   version "2.3.0"
