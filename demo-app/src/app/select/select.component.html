@@ -15,7 +15,7 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Label'"
-        placeholder="Placeholder"
+        [placeholder]="'Placeholder'"
       >
         <option>Option 1</option>
         <option>Option 2</option>
@@ -32,7 +32,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
-        placeholder="Placeholder"
+        [placeholder]="'Placeholder'"
       >
         <option>Option 1</option>
         <option>Option 2</option>
@@ -55,8 +55,8 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Label'"
-        placeholder="Placeholder"
-        multiple
+        [placeholder]="'Placeholder'"
+        [multiple]="true"
       >
         <option>Option 1</option>
         <option>Option 2</option>
@@ -65,7 +65,7 @@
     </mz-select-container>
 
     <p class="col s12 m6">
-      You can add the property <code class="language-markup">mulitple</code> to get the multiple select and select several options
+      You can add the property <code class="language-markup">multiple</code> to get the multiple select and select several options
     </p>
   </div>
 </div>
@@ -79,7 +79,7 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Label'"
-        placeholder="Placeholder"
+        [placeholder]="'Placeholder'"
       >
         <optgroup label="Group 1">
           <option value="1">Option 1</option>
@@ -107,7 +107,7 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Images in select'"
-        placeholder="Choose your option"
+        [placeholder]="'Choose your option'"
       >
         <option data-icon="assets/select-icon-1.jpg" class="circle">Option 1</option>
         <option data-icon="assets/select-icon-2.jpg" class="circle">Option 2</option>
@@ -125,7 +125,7 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Images in select'"
-        placeholder="Choose your option"
+        [placeholder]="'Choose your option'"
       >
         <option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1</option>
         <option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2</option>
@@ -148,8 +148,8 @@
     <mz-select-container class="col s12 m6">
       <select mz-select
         [label]="'Label'"
-        placeholder="Placeholder"
-        disabled
+        [placeholder]="'Placeholder'"
+        [disabled]="true"
       >
         <option>Option 1</option>
         <option>Option 2</option>
@@ -221,6 +221,20 @@
         <td>string</td>
         <td>Show placeholder</td>
         <td></td>
+      </tr>
+      <tr>
+        <td>multiple</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+        <td>boolean</td>
+        <td>Allow to select multiple elements</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+        <td>boolean</td>
+        <td>Disable the select</td>
+        <td>false</td>
       </tr>
     </tbody>
   </table>
