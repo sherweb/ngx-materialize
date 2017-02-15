@@ -96,7 +96,7 @@ export class MzInputDirective extends HandlePropChanges implements OnInit {
   handleLength() {
     const length = this.length ? this.length.toString() : null;
 
-    this.renderer.setElementAttribute(this.inputElement[0], 'length', length);
+    this.renderer.setElementAttribute(this.inputElement[0], 'data-length', length);
 
     if (length) {
       this.setCharacterCount();
