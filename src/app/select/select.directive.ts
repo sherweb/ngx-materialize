@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
@@ -30,7 +31,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   selectElement: JQuery;
   selectContainerElement: JQuery;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer, private changeDetectorRef: ChangeDetectorRef) {
     super();
   }
 
@@ -42,6 +43,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    this.ngModelChange.emit(this.selectElement.val());
     this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
   }
 
@@ -79,6 +81,16 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     }
 
     super.executePropHandlers();
+
+    this.selectFirstItem();
+  }
+
+  selectFirstItem() {
+    const firstItem = this.selectElement.children().first();
+
+    if (firstItem.length > 0) {
+      firstItem[0].setAttribute('selected', 'true');
+    }
   }
 
   handleDisabled() {
@@ -104,9 +116,12 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
       } else {
         // remove existing placeholder element
         this.renderer.invokeElementMethod(placeholderElement, 'remove');
-      }
 
-      this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+        // Force trigger change event since it's not triggered when value change programmatically
+        this.renderer.invokeElementMethod(this.selectElement, 'change');
+        // Required if we don't want exception "Expression has changed after it was checked." https://github.com/angular/angular/issues/6005
+        this.changeDetectorRef.detectChanges();
+      }
     } else {
 
       if (this.placeholder) {
@@ -114,11 +129,12 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         const placeholderText = document.createTextNode(this.placeholder);
         const placeholderOption = document.createElement('option');
         placeholderOption.disabled = true;
-        placeholderOption.selected = true;
         placeholderOption.appendChild(placeholderText);
 
         this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
       }
     }
+
+    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
   }
 }
