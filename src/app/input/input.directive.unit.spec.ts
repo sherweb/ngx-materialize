@@ -378,7 +378,7 @@ describe('MzInputDirective:unit', () => {
 
   describe('handleLength', () => {
 
-    it('should add length attribute on input element when length is provided', () => {
+    it('should add data-length attribute on input element when length is provided', () => {
 
       spyOn(renderer, 'setElementAttribute');
 
@@ -389,10 +389,10 @@ describe('MzInputDirective:unit', () => {
       directive.length = length;
       directive.handleLength();
 
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'length', length.toString());
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'data-length', length.toString());
     });
 
-    it('should remove length attribute on input element when length is not provided', () => {
+    it('should remove data-length attribute on input element when length is not provided', () => {
 
       spyOn(directive, 'removeCharacterCount');
       spyOn(renderer, 'setElementAttribute');
@@ -402,7 +402,7 @@ describe('MzInputDirective:unit', () => {
       directive.inputElement = <any>[mockInputElement];
       directive.handleLength();
 
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'length', null);
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'data-length', null);
     });
 
     it('should call setCharacterCount method when length is provided', () => {

@@ -76,7 +76,7 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
   handleLength() {
     const length = this.length ? this.length.toString() : null;
 
-    this.renderer.setElementAttribute(this.textareaElement[0], 'length', length);
+    this.renderer.setElementAttribute(this.textareaElement[0], 'data-length', length);
 
     if (length) {
       this.setCharacterCount();
