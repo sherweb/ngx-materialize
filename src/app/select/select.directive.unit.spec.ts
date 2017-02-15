@@ -1,4 +1,4 @@
-import { ElementRef, Renderer } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Renderer } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
@@ -8,18 +8,20 @@ describe('MzSelectDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
 
+  let changeDetectorRef: ChangeDetectorRef;
   let directive: MzSelectDirective;
   let renderer: Renderer;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [ChangeDetectorRef, Renderer],
     });
   });
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzSelectDirective(mockElementRef, renderer);
+    changeDetectorRef = TestBed.get(ChangeDetectorRef);
+    directive = new MzSelectDirective(mockElementRef, renderer, changeDetectorRef);
   });
 
   describe('ngOnInit', () => {
@@ -73,7 +75,7 @@ describe('MzSelectDirective:unit', () => {
 
     it('should invoke ngModelChange.emit with currently selected value', () => {
 
-      const value = 'patate';
+      const value = 'value';
       const mockSelectElement = { select: true, on: () => null, val: () => value };
 
       spyOn(directive.ngModelChange, 'emit');
@@ -406,14 +408,17 @@ describe('MzSelectDirective:unit', () => {
       it('should be removed when placeholder is not provided or empty', () => {
 
         const spyInvokeElementMethod = spyOn(renderer, 'invokeElementMethod');
+        spyOn(changeDetectorRef, 'detectChanges');
 
         directive.selectElement = <any>mockSelectElement;
         directive.handlePlaceholder();
 
         expect(spyInvokeElementMethod.calls.allArgs()).toEqual([
           [ mockPlaceholderElement, 'remove' ],     // remove existing placeholder element
+          [ mockSelectElement, 'change' ], // force trigger change event
           [ mockSelectElement, 'material_select' ], // reinitialize select element
         ]);
+        expect(changeDetectorRef.detectChanges).toHaveBeenCalled();
       });
     });
 
@@ -477,14 +482,14 @@ describe('MzSelectDirective:unit', () => {
 
       it('should set the selected attribute of the first item to true', () => {
 
-        const foo = { length: 1, setAttribute: () => null };
-        const mockSelectElement = { children: () => $(foo) };
-        spyOn(foo, 'setAttribute');
+        const selectElementChildren = { length: 1, setAttribute: () => null };
+        const mockSelectElement = { children: () => $(selectElementChildren) };
+        spyOn(selectElementChildren, 'setAttribute');
 
         directive.selectElement = <any>mockSelectElement;
         directive.selectFirstItem();
 
-        expect(foo.setAttribute).toHaveBeenCalledWith('selected', 'true');
+        expect(selectElementChildren.setAttribute).toHaveBeenCalledWith('selected', 'true');
       });
     });
   });

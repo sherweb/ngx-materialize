@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
@@ -30,7 +31,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   selectElement: JQuery;
   selectContainerElement: JQuery;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer, private changeDetectorRef: ChangeDetectorRef) {
     super();
   }
 
@@ -114,8 +115,12 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         this.renderer.invokeElementMethod(placeholderElement, 'text', [this.placeholder]);
       } else {
         // remove existing placeholder element
-        // TODO: This may change the selectElement.val but doesn't trigger the on change event. Doing it manually raise exception
         this.renderer.invokeElementMethod(placeholderElement, 'remove');
+
+        // Force trigger change event since it's not triggered when value change programmatically
+        this.renderer.invokeElementMethod(this.selectElement, 'change');
+        // Required if we don't want exception "Expression has changed after it was checked." https://github.com/angular/angular/issues/6005
+        this.changeDetectorRef.detectChanges();
       }
     } else {
 
