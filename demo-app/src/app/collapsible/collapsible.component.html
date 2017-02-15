@@ -7,7 +7,7 @@
   <mz-collapsible class="col s12 m8 l6" mode="accordion">
 
     <mz-collapsible-item *ngFor="let item of simpleCollapsibleItems">
-      <mz-collapsible-item-header>{{ item.header }}</mz-collapsible-item-header>
+      <mz-collapsible-item-header><i mz-icon-mdi [icon]="item.icon"></i>{{ item.header }}</mz-collapsible-item-header>
       <mz-collapsible-item-body><p>{{ item.body }}</p></mz-collapsible-item-body>
     </mz-collapsible-item>
 
