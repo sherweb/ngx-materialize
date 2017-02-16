@@ -95,11 +95,7 @@ markdown-to-html {
     display: none !important;
   }
 
-  .readme-demo-logo {
-    display: initial !important;
-  }
-
-  .readme-summary {
+  .readme-summary > p {
     text-align: left !important;
   }
 }
