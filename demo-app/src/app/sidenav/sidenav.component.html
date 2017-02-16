@@ -54,7 +54,11 @@
     <mz-sidenav-divider></mz-sidenav-divider>
 
     <mz-sidenav-link>
-      <a><i class="mdi mdi-cloud mdi-24px"></i>Third Link With Icon</a>
+      <a><i mz-icon-mdi [icon]="'cloud'"></i>Third Link With Icon</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link>
+      <a mz-icon-mdi [icon]="'cloud'">Fourth Link With Icon</a>
     </mz-sidenav-link>
 
     <mz-sidenav-divider></mz-sidenav-divider>
@@ -86,7 +90,7 @@
     <mz-sidenav-collapsible>
 
       <mz-sidenav-collapsible-header>
-        Collapsible With Carret<i class="caret mdi mdi-menu-right mdi-24px"></i>
+        <i mz-icon-mdi [icon]="'menu-right'" class="caret"></i>Collapsible With Carret
       </mz-sidenav-collapsible-header>
 
       <mz-sidenav-collapsible-content>
@@ -108,13 +112,13 @@
     <mz-sidenav-collapsible>
 
       <mz-sidenav-collapsible-header>
-        <i class="mdi mdi-cloud mdi-24px"></i>Collapsible With Icon
+        <i mz-icon-mdi [icon]="'cloud'"></i>Collapsible With Icon
       </mz-sidenav-collapsible-header>
 
       <mz-sidenav-collapsible-content>
 
         <mz-sidenav-link>
-          <a class="waves-effect">First Link</a>
+          <a class="waves-effect"><i mz-icon-mdi [icon]="'cloud'"></i>Link</a>
         </mz-sidenav-link>
 
         <mz-sidenav-link>
@@ -170,7 +174,7 @@
 &lt;mz-sidenav>
   &lt;mz-sidenav-collapsible>
     &lt;mz-sidenav-collapsible-header>
-      Collapsible
+       &lt;i mz-icon-mdi [icon]="'menu-right'" class="caret">&lt;/i>Collapsible
     &lt;/mz-sidenav-collapsible-header>
     &lt;mz-sidenav-collapsible-content>
       &lt;mz-sidenav-link>

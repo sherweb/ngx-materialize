@@ -9,11 +9,14 @@ import {
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
-  selector: 'i[mz-icon-mdi], i[mzIconMdi]',
+  selector: '[mz-icon-mdi], [mzIconMdi]',
+
 })
 export class MzIconMdiDirective extends HandlePropChanges implements AfterViewInit {
   @Input() align: string;
+  @Input() flip: string;
   @Input() icon: string;
+  @Input() rotate: string;
   @Input() size: string;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
@@ -29,7 +32,9 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
   initHandlers() {
     this.handlers = {
       align: () => this.handleAlign(),
+      flip: () => this.handleFlip(),
       icon: () => this.handleIcon(),
+      rotate: () => this.handleRotate(),
       size: () => this.handleSize(),
     };
   }
@@ -42,8 +47,16 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
     this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
   }
 
+  handleFlip() {
+    this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-flip-' + this.flip, !!this.flip);
+  }
+
   handleIcon() {
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-' + this.icon, true);
+  }
+
+  handleRotate() {
+    this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-rotate-' + this.rotate, !!this.rotate);
   }
 
   handleSize() {

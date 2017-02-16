@@ -63,7 +63,9 @@ describe('MzIconMdiDirective:unit', () => {
 
       const handlers = {
          align: 'handleAlign',
+         flip: 'handleFlip',
          icon: 'handleIcon',
+         rotate: 'handleRotate',
          size: 'handleSize',
       };
 
@@ -118,6 +120,29 @@ describe('MzIconMdiDirective:unit', () => {
     });
   });
 
+  describe('handleFlip', () => {
+
+    it('should add flip css class when flip is provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      directive.flip = 'vertical';
+
+      directive.handleFlip();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-flip-' + directive.flip, true);
+    });
+
+    it('should not add flip css class when flip is not provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      directive.handleFlip();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-flip-' + directive.flip, false);
+    });
+  });
+
   describe('handleIcon', () => {
 
     it('should add icon to the icon tag class attribute', () => {
@@ -129,6 +154,29 @@ describe('MzIconMdiDirective:unit', () => {
       directive.handleIcon();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-' + directive.icon, true);
+    });
+  });
+
+  describe('handleRotate', () => {
+
+    it('should add rotate css class when flip is provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      directive.rotate = '90';
+
+      directive.handleRotate();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-rotate-' + directive.rotate, true);
+    });
+
+    it('should not add rotate css class when flip is not provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      directive.handleRotate();
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-rotate-' + directive.rotate, false);
     });
   });
 
