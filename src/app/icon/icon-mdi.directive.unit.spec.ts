@@ -2,7 +2,7 @@ import { ElementRef, Renderer } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
-import { MzIconMdiDirective } from './iconmdi.directive';
+import { MzIconMdiDirective } from './icon-mdi.directive';
 
 describe('MzIconMdiDirective:unit', () => {
 
