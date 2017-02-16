@@ -1,7 +1,7 @@
-<div class="readme-github-logo" style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 24px; padding-bottom: 16px; text-align: center;">
-  <img src="assets/ng2-materialize-circle.png">
-  <h1 style="margin: 0 0 16px; text-align: center;">ng2-materialize</h1>
-  <div style="text-align: center;">
+<div class="readme-github-logo center border-bottom border-gray-dark pb-3 mb-3">
+  <img src="https://github.com/sherweb/ng2-materialize/blob/master/demo-app/src/assets/ng2-materialize-circle.png">
+  <h1 class="center m-3 mt-0">ng2-materialize</h1>
+  <div class="center">
     <a href="https://circleci.com/gh/sherweb/ng2-materialize">
       <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
     </a>
@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="readme-demo-logo" style="display: none;">
+<div class="readme-demo-logo d-none" style="display: none;">
   <h1 style="display: inline-block; margin: 0 8px 9px 0;">ng2-materialize</h1>
   <a href="https://circleci.com/gh/sherweb/ng2-materialize">
     <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
@@ -27,7 +27,7 @@
   </a>
 </div>
 
-<div class="readme-summary" style="text-align: center;">
+<div class="readme-summary center">
   <p>
     This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="https://angular.io/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
