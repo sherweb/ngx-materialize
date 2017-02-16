@@ -60,7 +60,7 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ],
 ```
 
-See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli#3rd-party-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
+See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli/wiki/overview#global-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
 
 ## Usage
 
