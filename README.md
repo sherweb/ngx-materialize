@@ -51,8 +51,8 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ```diff
 "styles": [
   "styles.scss",
-+ "../node_modules/materialize-css/bin/materialize.css",
-+ "../node_modules/mdi/css/materialdesignicons.css"
++ "../node_modules/materialize-css/dist/css/materialize.css",
++ "../node_modules/mdi/css/materialdesignicons.css"   #optional
 ],
 "scripts": [
 + "../node_modules/jquery/dist/jquery.js",
