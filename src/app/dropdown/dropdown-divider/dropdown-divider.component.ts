@@ -5,7 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './dropdown-divider.component.html',
   styleUrls: ['./dropdown-divider.component.scss'],
 })
-export class MzDropdownDividerComponent {
-
-  constructor() { }
-}
+export class MzDropdownDividerComponent { }

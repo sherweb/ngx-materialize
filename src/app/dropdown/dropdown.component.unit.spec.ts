@@ -161,15 +161,8 @@ describe('MzDropdownComponent:unit', () => {
         stopPropagation: true,
       };
 
+      Object.assign(component, options);
       component.align = options.alignment;
-      component.belowOrigin = options.belowOrigin;
-      component.dropdownButtonElement = <any>[mockElementRef];
-      component.constrainWidth = options.constrainWidth;
-      component.gutter = options.gutter;
-      component.hover = options.hover;
-      component.inDuration = options.inDuration;
-      component.outDuration = options.outDuration;
-      component.stopPropagation = options.stopPropagation;
 
       component.handleDropdown();
 

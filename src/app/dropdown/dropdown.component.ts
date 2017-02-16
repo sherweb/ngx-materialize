@@ -28,7 +28,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
 
   dropdownButtonElement: JQuery;
 
-  constructor(public elementRef: ElementRef, public renderer: Renderer) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {
     super();
    }
 
@@ -87,6 +87,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
     this.handleDataActivates();
     this.handleDropdown();
   }
+
   open() {
     setTimeout(() => this.renderer.invokeElementMethod(this.dropdownButtonElement, 'dropdown', ['open']));
   }

@@ -1,4 +1,3 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MzDropdownItemComponent } from './dropdown-item.component';
