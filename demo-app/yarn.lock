@@ -82,20 +82,6 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.0.28.tgz#44ba754e9fa51432583e8eb30a7c4dd249b52faa"
 
-"@types/materialize-css@^0.97.32":
-  version "0.97.33"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.33.tgz#c0532a837231df20835a52f9074820f553a18a06"
-  dependencies:
-    "@types/jquery" "*"
-    "@types/pickadate" "*"
-
-"@types/materialize-css@^0.97.34":
-  version "0.97.34"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.97.34.tgz#6111c7d874265eb1a12b1a000a616b2eb7390eea"
-  dependencies:
-    "@types/jquery" "*"
-    "@types/pickadate" "*"
-
 "@types/node@^6.0.42", "@types/node@^6.0.46":
   version "6.0.56"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.56.tgz#12bc7fff825e72807f55dcbce17e9db6177713dd"
