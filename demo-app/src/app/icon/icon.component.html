@@ -42,6 +42,7 @@
 
   <app-code-snippet>
 &lt;i mz-icon
+  [align]="'right'"
   [icon]="'cloud'"
   [size]="'medium'">
 &lt;/i>
@@ -87,11 +88,52 @@
     </p>
   </div>
 
+  <div class="row m-valign-wrapper">
+    <i mz-icon-mdi
+      class="col s12 m2"
+      [flip]="'horizontal'"
+      [icon]="'sword'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code> and <code class="language-markup">horizontal</code> flip
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon-mdi
+      class="col s12 m2"
+      [icon]="'sword'"
+      [rotate]="'180'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code> and <code class="language-markup">rotate</code> to 90 degree
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <a mz-icon-mdi
+      class="col s12 m2"
+      [icon]="'puzzle'"
+      [size]="'18px'"
+      href="#">
+      Link
+    </a>
+
+    <p class="col s12 m10">
+      <code class="language-markup">mz-icon-mdi</code> directive added to <code class="language-markup">a</code> tag
+    </p>
+  </div>
+
   <h5 class="light">HTML Structure</h5>
 
   <app-code-snippet>
 &lt;i mz-icon-mdi
+  [align]="'right'"
+  [flip]="'vertical'"
   [icon]="'puzzle'"
+  [rotate]="'45'"
   [size]="'36px'">
 &lt;/i>
   </app-code-snippet>
@@ -121,7 +163,14 @@
         <td>align</td>
         <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
         <td>string</td>
-        <td>Alignement of the icon</td>
+        <td>Alignement of the icon. It could be <code class="language-markup">center</code>, <code class="language-markup">left</code> or <code class="language-markup">right</code></td>
+        <td>left</td>
+      </tr>
+      <tr>
+        <td>flip</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+        <td>string</td>
+        <td>Flip the icon. It could be <code class="language-markup">horizontal</code> or <code class="language-markup">vertical</code><br /><strong>(Only for <code class="language-markup">mz-icon-mdi</code>)</strong>
         <td></td>
       </tr>
       <tr>
@@ -132,10 +181,18 @@
         <td></td>
       </tr>
       <tr>
+        <td>rotate</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+        <td>string</td>
+        <td>Rotate the icon by 45 degree increments. It could be <code class="language-markup">45</code>, <code class="language-markup">90</code>, <code class="language-markup">135</code>, <code class="language-markup">180</code>, <code class="language-markup">225</code>,
+        <code class="language-markup">270</code> or <code class="language-markup">315</code><br /><strong>(Only for <code class="language-markup">mz-icon-mdi</code>)</strong>
+        <td></td>
+      </tr>
+      <tr>
         <td>size</td>
         <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
         <td>string</td>
-        <td>Icon size to be applied on the icon. <br />For <code class="language-markup">mz-icon</code> directive <code class="language-markup">tiny</code>, <code class="language-markup">small</code>, <code class="language-markup">medium</code> and <code class="language-markup">large</code>.<br /> For <code class="language-markup">mz-icon-mdi</code> directive it could be could be <code class="language-markup">24px</code>, <code class="language-markup">36px</code>, or <code class="language-markup">48px</code></td>
+        <td>Icon size to be applied on the icon. <br />For <code class="language-markup">mz-icon</code> directive <code class="language-markup">tiny</code>, <code class="language-markup">small</code>, <code class="language-markup">medium</code> and <code class="language-markup">large</code>.<br /> For <code class="language-markup">mz-icon-mdi</code> directive it could be could be <code class="language-markup">18px</code>, <code class="language-markup">24px</code>, <code class="language-markup">36px</code>, or <code class="language-markup">48px</code></td>
         <td>Default value for <code class="language-markup">mz-icon-mdi</code> is <code class="language-markup">24px</code></td>
       </tr>
     </tbody>

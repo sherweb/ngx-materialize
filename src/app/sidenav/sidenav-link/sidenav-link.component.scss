@@ -1,9 +1,15 @@
 :host #{'/deep/'} {
+  a[class*="mdi-"]::before {
+    color: rgba(0, 0, 0, 0.54);
+    margin: -1px 1.5rem 0 0;
+    vertical-align: middle;
+  }
+
   a {
     i,
     i.material-icons,
     i[class*="mdi-"] {
-      margin-right: 1.5em;
+      margin: -1px 1.5rem 0 0;
 
       &::before {
         vertical-align: middle;
