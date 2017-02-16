@@ -2,6 +2,7 @@
 *.ngstyle.ts
 *.ngsummary.json
 *.spec.ts
+/.editorconfig
 /.vscode
 /angular-cli.json
 /app/shared/test-wrapper
@@ -9,8 +10,10 @@
 /demo-app
 /e2e
 /gulpfile.js
+/index.ts
 /karma.conf.js
 /protractor.conf.js
+/src
 /test-results.xml
 /tslint-formatters
 /tslint.json

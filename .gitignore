@@ -20,9 +20,7 @@
 /.sass-cache
 /connect.lock
 /coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
+*.log
 /typings
 test-results.xml
 
