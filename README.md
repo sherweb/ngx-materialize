@@ -14,7 +14,6 @@
       </a>
     </div>
   </p>
-  <hr>
 </div>
 
 <div class="readme-summary">
