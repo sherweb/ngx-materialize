@@ -74,6 +74,7 @@ markdown-to-html {
   h6 { font-size: 1.00rem; }
 
   // code section
+
   pre {
     background: rgba(0, 0, 0, 0.07) !important;
     border-radius: 2px;
@@ -86,6 +87,16 @@ markdown-to-html {
     li {
       list-style-type: disc !important;
     }
+  }
+
+  // readme.md hide/show (demo vs github)
+
+  .readme-github-logo {
+    display: none !important;
+  }
+
+  .readme-summary > p {
+    text-align: left !important;
   }
 }
 
