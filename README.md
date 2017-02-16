@@ -56,7 +56,7 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ],
 "scripts": [
 + "../node_modules/jquery/dist/jquery.js",
-+ "../node_modules/materialize-css/bin/materialize.js"
++ "../node_modules/materialize-css/dist/js/materialize.js"
 ],
 ```
 

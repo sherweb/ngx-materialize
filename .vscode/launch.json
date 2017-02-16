@@ -1,0 +1,34 @@
+{
+  // Use IntelliSense to learn about possible Node.js debug attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome against localhost, with sourcemaps",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}",
+      "diagnosticLogging": true,
+      "sourceMapPathOverrides": {
+          "webpack:///../*": "${webRoot}/*"
+      },
+      "userDataDir": "${workspaceRoot}/out/chrome"
+    },
+    {
+      "name": "Attach to Chrome, with sourcemaps",
+      "type": "chrome",
+      "request": "attach",
+      "url": "http://localhost:4200/home",
+      "port": 9222,
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}",
+      "diagnosticLogging": true,
+      "sourceMapPathOverrides": {
+          "webpack:///../*": "${webRoot}/*"
+      }
+    }
+  ]
+}
