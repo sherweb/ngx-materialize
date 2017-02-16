@@ -1,2 +1,2 @@
+export * from './icon-mdi.directive';
 export * from './icon.directive';
-export * from './iconmdi.directive';
