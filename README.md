@@ -1,8 +1,8 @@
 <div class="readme-github-logo">
-  <p class="center">
+  <p align="center">
     <img src="https://github.com/sherweb/ng2-materialize/blob/master/demo-app/src/assets/ng2-materialize-circle.png">
-    <h1 class="center">ng2-materialize</h1>
-    <div class="center">
+    <h1 align="center">ng2-materialize</h1>
+    <div align="center">
       <a href="https://circleci.com/gh/sherweb/ng2-materialize">
         <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
       </a>
@@ -18,10 +18,10 @@
 </div>
 
 <div class="readme-summary">
-  <p class="center">
+  <p align="center">
     This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="https://angular.io/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
-  <p class="center">
+  <p align="center">
     The purpose of this library is to simplify the usage within the Angular framework.
   </p>
 </div>
