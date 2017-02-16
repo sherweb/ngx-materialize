@@ -1,8 +1,40 @@
-# ng2-materialize [![CircleCI](https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955)](https://circleci.com/gh/sherweb/ng2-materialize) [![version](https://img.shields.io/npm/v/ng2-materialize.svg?style=flat)](https://www.npmjs.com/package/ng2-materialize) [![npm](https://img.shields.io/npm/l/ng2-materialize.svg)](https://opensource.org/licenses/Apache-2.0)
+<div class="readme-github-logo" style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 24px; padding-bottom: 16px; text-align: center;">
+  <img src="assets/ng2-materialize-circle.png">
+  <h1 style="margin: 0 0 16px; text-align: center;">ng2-materialize</h1>
+  <div style="text-align: center;">
+    <a href="https://circleci.com/gh/sherweb/ng2-materialize">
+      <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
+    </a>
+    <a href="https://www.npmjs.com/package/ng2-materialize">
+      <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
+    </a>
+    <a href="https://opensource.org/licenses/Apache-2.0">
+      <img alt="License" src="https://img.shields.io/npm/l/ng2-materialize.svg">
+    </a>
+  </div>
+</div>
 
-This library is an [Angular 2](https://angular.io/) wrap around [Materialize](http://materializecss.com/) library, a responsive CSS/JS framework that implements Material Design specifications from Google.
+<div class="readme-demo-logo" style="display: none;">
+  <h1 style="display: inline-block; margin: 0 8px 9px 0;">ng2-materialize</h1>
+  <a href="https://circleci.com/gh/sherweb/ng2-materialize">
+    <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
+  </a>
+  <a href="https://www.npmjs.com/package/ng2-materialize">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
+  </a>
+  <a href="https://opensource.org/licenses/Apache-2.0">
+    <img alt="License" src="https://img.shields.io/npm/l/ng2-materialize.svg">
+  </a>
+</div>
 
-The purpose of this library is to simplify the usage within the Angular framework.
+<div class="readme-summary" style="text-align: center;">
+  <p>
+    This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="https://angular.io/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
+  </p>
+  <p>
+    The purpose of this library is to simplify the usage within the Angular framework.
+  </p>
+</div>
 
 ## Why ng2-materialize?
 
