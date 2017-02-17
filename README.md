@@ -1,19 +1,19 @@
 <div class="readme-github-logo">
   <p align="center">
-    <img src="https://github.com/sherweb/ng2-materialize/blob/master/demo-app/src/assets/ng2-materialize-circle.png">
-    <h1 align="center">ng2-materialize</h1>
-    <div align="center">
-      <a href="https://circleci.com/gh/sherweb/ng2-materialize">
-        <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
-      </a>
-      <a href="https://www.npmjs.com/package/ng2-materialize">
-        <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
-      </a>
-      <a href="https://opensource.org/licenses/Apache-2.0">
-        <img alt="License" src="https://img.shields.io/npm/l/ng2-materialize.svg">
-      </a>
-    </div>
+    <img src="https://github.com/sherweb/ng2-materialize/raw/master/demo-app/src/assets/ng2-materialize-circle.png">
   </p>
+  <h1 align="center">ng2-materialize</h1>
+  <div align="center">
+    <a href="https://circleci.com/gh/sherweb/ng2-materialize">
+      <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
+    </a>
+    <a href="https://www.npmjs.com/package/ng2-materialize">
+      <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
+    </a>
+    <a href="https://opensource.org/licenses/Apache-2.0">
+      <img alt="License" src="https://img.shields.io/npm/l/ng2-materialize.svg">
+    </a>
+  </div>
 </div>
 
 <div class="readme-summary">
