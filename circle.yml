@@ -37,6 +37,6 @@ test:
 
 deployment:
   production:
-    branch: demo-deployment
+    branch: master
     commands:
       - cd demo-app && yarn install && yarn gh-pages:deploy
