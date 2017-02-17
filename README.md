@@ -23,6 +23,9 @@
   <p align="center">
     The purpose of this library is to simplify the usage within the Angular framework.
   </p>
+  <p align="center">
+    Demo and documentation : <a href="https://sherweb.github.io/ng2-materialize/">https://sherweb.github.io/ng2-materialize/</a>
+  </p>
 </div>
 
 ## Why ng2-materialize?
@@ -104,7 +107,7 @@ export class HomeModule { }
 
 ## Demo application
 
-A demo application is available, please refer to the `./demo-app` folder and its [README](./demo-app/README.md).
+A demo application is available at [https://sherweb.github.io/ng2-materialize/](https://sherweb.github.io/ng2-materialize/), or refer to the `./demo-app` folder and its [README](./demo-app/README.md).
 
 ## Road map
 
