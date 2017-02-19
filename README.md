@@ -18,7 +18,7 @@
 
 <div class="readme-summary">
   <p align="center">
-    This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="https://angular.io/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
+    This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
   <p align="center">
     The purpose of this library is to simplify the usage within the Angular framework.
