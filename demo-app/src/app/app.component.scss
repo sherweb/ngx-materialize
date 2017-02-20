@@ -2,6 +2,10 @@
 
 header {
   #{'/deep/'} {
+    .side-nav {
+      padding-bottom: 0;
+    }
+
     .sidenav-background,
     .sidenav-button {
       background: #333333 !important;
@@ -57,5 +61,13 @@ main {
     @media #{$large-and-up} {
       margin: 0 3%;
     }
+  }
+}
+
+/* mCustomScrollbar override */
+
+#{'/deep/'} {
+  .mCustomScrollBox {
+    padding-bottom: 30px;
   }
 }
