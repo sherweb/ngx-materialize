@@ -5,7 +5,6 @@ type ScrollElement = string | JQuery | HTMLElement;
 @Injectable()
 export class MalihuScrollbarService {
 
-
   constructor() { }
 
   initScrollbar(element: ScrollElement, options: MCustomScrollbar.CustomScrollbarOptions) {
