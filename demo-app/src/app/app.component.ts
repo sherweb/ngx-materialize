@@ -1,7 +1,10 @@
 import 'rxjs/add/operator/filter';
 
-import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer, ViewChild } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
+import { MzSidenavComponent } from 'ng2-materialize';
+
+import { MalihuScrollbarService } from './shared/malihu-scrollbar/services/malihu-scrollbar.service';
 
 type SectionRoutesPair = { section: string, routes: Route[] };
 
@@ -10,18 +13,39 @@ type SectionRoutesPair = { section: string, routes: Route[] };
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  public groupedRoutes: Array<SectionRoutesPair>;
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('sidenav') sidenav: MzSidenavComponent;
+
+  groupedRoutes: Array<SectionRoutesPair>;
+  scrollElement: JQuery;
 
   constructor(
     private router: Router,
     private renderer: Renderer,
     private elementRef: ElementRef,
+    private mScrollbarService: MalihuScrollbarService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.populateSideNavWithRoutesGroupedBySections();
     this.setNavigationEndEvent();
+  }
+
+  ngAfterViewInit() {
+    this.initElement();
+    this.initScrollbar();
+  }
+
+  ngOnDestroy() {
+    this.mScrollbarService.destroy(this.scrollElement);
+  }
+
+  initElement() {
+    this.scrollElement = $(`#${this.sidenav.id}`);
+  }
+
+  initScrollbar() {
+    this.mScrollbarService.initScrollbar(this.scrollElement, { axis: 'y', theme: 'minimal', scrollInertia: 100 });
   }
 
   populateSideNavWithRoutesGroupedBySections() {

@@ -23,6 +23,7 @@ import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
 import { RadioButtonModule } from './radio-button/radio-button.module';
 import { SelectModule } from './select/select.module';
+import { MalihuScrollbarModule } from './shared/malihu-scrollbar/malihu-scrollbar.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { TextareaModule } from './textarea/textarea.module';
@@ -47,6 +48,7 @@ import { TextareaModule } from './textarea/textarea.module';
     HomeModule,
     IconModule,
     InputModule,
+    MalihuScrollbarModule,
     NavbarModule,
     ParallaxModule,
     ProgressModule,
