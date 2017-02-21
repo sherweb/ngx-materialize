@@ -24,7 +24,7 @@ describe('MzSelectContainerComponent:view', () => {
 
     it('should transclude correctly', async(() => {
 
-      buildComponent<MzInputContainerComponent>(`
+      buildComponent<MzSelectContainerComponent>(`
         <mz-select-container>
           content-x
         </mz-select-container>
