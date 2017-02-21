@@ -89,6 +89,12 @@
     "@types/jquery" "*"
     "@types/pickadate" "*"
 
+"@types/mcustomscrollbar@^2.8.30":
+  version "2.8.30"
+  resolved "https://registry.yarnpkg.com/@types/mcustomscrollbar/-/mcustomscrollbar-2.8.30.tgz#cff2b214f746ed0b1f6d330a3a9cfa16b3f401d8"
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/node@^6.0.42", "@types/node@^6.0.46":
   version "6.0.63"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.63.tgz#e08acbbd5946e0e95990b1c76f3ce5b7882a48eb"
@@ -2956,6 +2962,10 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
+jquery-mousewheel@>=3.0.6:
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
+
 jquery@^2.1.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
@@ -3586,6 +3596,12 @@ make-error@^1.1.1, make-error@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.2.1.tgz#9a6dfb4844423b9f145806728d05c6e935670e75"
 
+malihu-custom-scrollbar-plugin@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/malihu-custom-scrollbar-plugin/-/malihu-custom-scrollbar-plugin-3.1.5.tgz#310cecc5e59415a1c29e9dfb5d2b6e01d66a29ef"
+  dependencies:
+    jquery-mousewheel ">=3.0.6"
+
 map-limit@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/map-limit/-/map-limit-0.0.1.tgz#eb7961031c0f0e8d001bf2d56fab685d58822f38"
@@ -3871,7 +3887,7 @@ ng2-markdown-to-html@^0.0.7:
     zone.js "^0.7.2"
 
 "ng2-materialize@file:../":
-  version "1.1.0"
+  version "1.1.1"
   dependencies:
     "@types/materialize-css" "^0.98.0"
     materialize-css "^0.98.0"
