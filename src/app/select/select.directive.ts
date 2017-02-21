@@ -23,6 +23,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   // directive properties
   @Input() label: string;
+  @Input() filledIn: boolean;
 
   // push back selected value to ngModelChange
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
@@ -30,6 +31,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   labelElement: JQuery;
   selectElement: JQuery;
   selectContainerElement: JQuery;
+  checkboxElements: JQuery;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer, private changeDetectorRef: ChangeDetectorRef) {
     super();
@@ -45,6 +47,9 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
     this.ngModelChange.emit(this.selectElement.val());
     this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
+
+    // Need to be done after view init or else the multi-select checkbox are not yet in the DOM
+    this.initFilledIn();
   }
 
   ngOnDestroy() {
@@ -64,6 +69,12 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     this.selectElement = $(this.elementRef.nativeElement);
     this.selectContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
     this.labelElement = this.createLabelElement();
+  }
+
+  initFilledIn() {
+    this.checkboxElements = this.selectContainerElement.find(':checkbox');
+    this.handlers['filledIn'] = () => this.handleFilledIn();
+    this.handleFilledIn();
   }
 
   createLabelElement() {
@@ -101,6 +112,14 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   handleLabel() {
     if (this.label != null) {
       this.renderer.invokeElementMethod(this.labelElement, 'text', [this.label]);
+    }
+  }
+
+  handleFilledIn() {
+    if (this.checkboxElements.length > 0) {
+      this.checkboxElements.toArray().forEach(checkboxElement => {
+        this.renderer.setElementClass(checkboxElement, 'filled-in', !!this.filledIn);
+      });
     }
   }
 

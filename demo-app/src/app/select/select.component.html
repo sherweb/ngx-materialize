@@ -68,6 +68,26 @@
       You can add the property <code class="language-markup">multiple</code> to get the multiple select and select several options
     </p>
   </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+        [multiple]="true"
+        [filledIn]="true"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      The <code class="language-markup">filledIn</code> property can be set to true when using multiple select
+    </p>
+  </div>
 </div>
 
 <div class="section">
@@ -227,6 +247,13 @@
         <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
         <td>boolean</td>
         <td>Allow to select multiple elements</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>filledIn</td>
+        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
+        <td>boolean</td>
+        <td>Display checkbox of a multiple select with the filled in style</td>
         <td>false</td>
       </tr>
       <tr>

@@ -60,14 +60,18 @@ describe('MzSelectDirective:unit', () => {
   });
 
   describe('ngAfterViewInit', () => {
+     const value = 'value';
+     const mockSelectElement = { select: true, on: () => null, val: () => value };
+
+    beforeEach(() => {
+      directive.selectElement = <any>mockSelectElement;
+      spyOn(directive, 'initFilledIn');
+    });
 
     it('should invoke material_select method on select element for initialization', () => {
 
-      const mockSelectElement = { select: true, on: () => null, val: () => null };
-
       spyOn(renderer, 'invokeElementMethod');
 
-      directive.selectElement = <any>mockSelectElement;
       directive.ngAfterViewInit();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
@@ -75,12 +79,8 @@ describe('MzSelectDirective:unit', () => {
 
     it('should invoke ngModelChange.emit with currently selected value', () => {
 
-      const value = 'value';
-      const mockSelectElement = { select: true, on: () => null, val: () => value };
-
       spyOn(directive.ngModelChange, 'emit');
 
-      directive.selectElement = <any>mockSelectElement;
       directive.ngAfterViewInit();
 
       expect(directive.ngModelChange.emit).toHaveBeenCalledWith(value);
@@ -89,7 +89,6 @@ describe('MzSelectDirective:unit', () => {
     it('should attach event handler for onChange on select element to emit on ngModelChange', () => {
 
       let onChangeHandler: Function;
-      const mockSelectElement = { select: true, on: () => null, val: () => null };
 
       spyOn(mockSelectElement, 'on').and.callFake((events: string, handler: Function) => {
         onChangeHandler = handler;
@@ -97,7 +96,6 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(directive.ngModelChange, 'emit');
 
-      directive.selectElement = <any>mockSelectElement;
       directive.ngAfterViewInit();
 
       expect(mockSelectElement.on).toHaveBeenCalledWith('change', jasmine.any(Function));
@@ -108,6 +106,49 @@ describe('MzSelectDirective:unit', () => {
       onChangeHandler(mockEvent);
 
       expect(directive.ngModelChange.emit).toHaveBeenCalledWith(mockValue);
+    });
+
+    it('should call initFilledIn', () => {
+
+      directive.ngAfterViewInit();
+
+      expect(directive.initFilledIn).toHaveBeenCalled();
+    });
+  });
+
+  describe('initFilledIn', () => {
+
+    it('should initialize FilledIn handler and call handler once', () => {
+      const mockSelectContainerElement = { find: () => null };
+      directive.selectContainerElement = <any>mockSelectContainerElement;
+
+      spyOn(directive, 'handleFilledIn');
+
+      directive.initHandlers();
+      directive.initFilledIn();
+
+      directive.handlers['filledIn']();
+
+      // Once from initFilledIn and once from the handlers test call
+      expect(directive['handleFilledIn']).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('handleFilledIn', () => {
+
+    it('should add filled-in class when filledIn property is set', () => {
+      const element1 = {};
+      const element2 = {};
+      const mockCheckboxElements = { length: 2, toArray: () => [ element1, element2] };
+      directive.checkboxElements = <any>mockCheckboxElements;
+      directive.filledIn = true;
+
+      spyOn(renderer, 'setElementClass');
+
+      directive.handleFilledIn();
+
+      expect(renderer['setElementClass']).toHaveBeenCalledWith(element1, 'filled-in', true);
+      expect(renderer['setElementClass']).toHaveBeenCalledWith(element2, 'filled-in', true);
     });
   });
 
