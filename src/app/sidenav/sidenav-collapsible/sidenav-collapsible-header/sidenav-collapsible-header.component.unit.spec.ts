@@ -8,7 +8,7 @@ describe('MzSidenavCollapsibleHeaderComponent:unit', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MzSidenavCollapsibleHeaderComponent ]
+      declarations: [ MzSidenavCollapsibleHeaderComponent ],
     })
     .compileComponents();
   }));
