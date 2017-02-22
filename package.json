@@ -30,8 +30,7 @@
     "test": "ng test",
     "prebuild": "rimraf -- dist inline-template src/node_modules",
     "build": "gulp && ngc -p src/tsconfig.lib.json",
-    "postbuild": "rimraf -- src/inline-template",
-    "prepublish": "npm run build"
+    "postbuild": "rimraf -- src/inline-template"
   },
   "dependencies": {
     "@types/materialize-css": "^0.98.0",

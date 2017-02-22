@@ -50,7 +50,7 @@ const MZ_COMPONENTS = [
   Select.MzSelectDirective,
   Sidenav.MzSidenavCollapsibleComponent,
   Sidenav.MzSidenavCollapsibleContentDirective,
-  Sidenav.MzSidenavCollapsibleHeaderDirective,
+  Sidenav.MzSidenavCollapsibleHeaderComponent,
   Sidenav.MzSidenavComponent,
   Sidenav.MzSidenavDividerComponent,
   Sidenav.MzSidenavHeaderComponent,
