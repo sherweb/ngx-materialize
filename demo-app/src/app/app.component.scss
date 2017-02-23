@@ -67,6 +67,16 @@ main {
 /* mCustomScrollbar override */
 
 #{'/deep/'} {
+  .mCSB_dragger_bar {
+    width: 8px !important;
+    border-radius: 0px !important;
+  }
+
+  .mCSB_scrollTools_vertical {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+  }
+
   .mCustomScrollBox {
     padding-bottom: 30px;
   }
