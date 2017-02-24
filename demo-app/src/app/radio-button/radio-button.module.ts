@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
+import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
 import { RadioButtonComponent } from './radio-button.component';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { RadioButtonComponent } from './radio-button.component';
     CodeSnippetModule,
     CommonModule,
     MaterializeModule.forRoot(),
+    PropertiesTableModule,
   ],
   declarations: [RadioButtonComponent],
 })

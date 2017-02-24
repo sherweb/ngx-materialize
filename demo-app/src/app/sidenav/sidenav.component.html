@@ -198,67 +198,7 @@
     Side navigation can be customized using the following properties on the <code class="language-markup">mz-sidenav</code> element.
   </p>
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="mandatory" class="center mandatory">Mandatory</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>backgroundClass</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>string</td>
-        <td>Allow css class to be applied on the sidenav</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>collapseButtonId</td>
-        <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
-        <td>string</td>
-        <td>Id of the collapse button</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>closeOnClick</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Closes side-nav on link clicks, useful for non-fixed navigation</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>edge</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>string</td>
-        <td>Choose the horizontal side navigation opening origin, could be <code class="language-markup">left</code> or <code class="language-markup">right</code></td>
-        <td>left</td>
-      </tr>
-      <tr>
-        <td>fixed</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Side navigation will be fixed on small and medium resolution screen while hidden on small resolution</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>id</td>
-        <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
-        <td>string</td>
-        <td>Id of the side navigation</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>width</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>number</td>
-        <td>Side navigation width</td>
-        <td>300</td>
-      </tr>
-    </tbody>
-  </table>
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
 </div>

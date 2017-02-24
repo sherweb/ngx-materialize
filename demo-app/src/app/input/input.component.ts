@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, Renderer } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-input',
@@ -10,6 +11,64 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
   animations: [ROUTE_ANIMATION],
 })
 export class InputComponent implements AfterViewInit, OnInit {
+
+  inputContainerProperties: IPropertyRow[] = [
+    { name: 'inline',
+      mandatory: false,
+      type: 'boolean',
+      description: `Show input inline`,
+      defaultValue: `false`,
+    },
+  ];
+
+  inputProperties: IPropertyRow[] = [
+    { name: 'autocomplete',
+      mandatory: false,
+      type: '{ data: { [key: string]: string }, limit: number }',
+      description: `Suggest possible values`,
+    },
+    { name: 'dataError',
+      mandatory: false,
+      type: 'string',
+      description: `Invalid message`,
+    },
+    { name: 'dataSuccess',
+      mandatory: false,
+      type: 'string',
+      description: `Valid message`,
+    },
+    { name: 'id',
+      mandatory: true,
+      type: 'string',
+      description: `Id of the input`,
+    },
+    { name: 'label',
+      mandatory: false,
+      type: 'string',
+      description: `Floating label`,
+    },
+    { name: 'length',
+      mandatory: false,
+      type: 'number',
+      description: `Show character count`,
+    },
+    { name: 'placeholder',
+      mandatory: false,
+      type: 'string',
+      description: `Show placeholder`,
+    },
+    { name: 'type',
+      mandatory: true,
+      type: 'string',
+      description: `HTML5 input type`,
+    },
+    { name: 'validate',
+      mandatory: false,
+      type: 'boolean',
+      description: `Activate HTML5 validation`,
+      defaultValue: `false`,
+    },
+  ];
 
   autocomplete: { data: { [key: string]: string } };
 

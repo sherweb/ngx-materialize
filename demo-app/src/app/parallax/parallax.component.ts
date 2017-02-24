@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-parallax',
@@ -9,4 +10,13 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
   host: ROUTE_ANIMATION_HOST, // tslint:disable-line:use-host-property-decorator
   animations: [ROUTE_ANIMATION],
 })
-export class ParallaxComponent { }
+export class ParallaxComponent {
+  properties: IPropertyRow[] = [
+    { name: 'height',
+      mandatory: false,
+      type: 'number',
+      description: `Parallax container height in pixels`,
+      defaultValue: `500`,
+    },
+  ];
+}

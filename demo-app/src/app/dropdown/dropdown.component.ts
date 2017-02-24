@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-dropdown',
@@ -9,4 +10,66 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
   host: ROUTE_ANIMATION_HOST, // tslint:disable-line:use-host-property-decorator
   animations: [ROUTE_ANIMATION],
 })
-export class DropdownComponent { }
+export class DropdownComponent {
+  properties: IPropertyRow[] = [
+    { name: 'align',
+      mandatory: false,
+      type: 'string',
+      description: `Choose the edge the menu is aligned to could be <code class="language-markup">left</code>
+        or <code class="language-markup">right</code>`,
+      defaultValue: `left`,
+    },
+    { name: 'belowOrign',
+      mandatory: false,
+      type: 'boolean',
+      description: `Show the drowdown below the button activator`,
+      defaultValue: `false`,
+    },
+    { name: 'constrainWidth',
+      mandatory: false,
+      type: 'boolean',
+      description: `Display the ConstrainWidth to the size of the dropdown button activator`,
+      defaultValue: `true`,
+    },
+    { name: 'dropdownButtonId',
+      mandatory: true,
+      type: 'string',
+      description: `Id of the dropdown button`,
+    },
+    { name: 'gutter',
+      mandatory: false,
+      type: 'number',
+      description: `Defines the spacing from the aligned edge`,
+      defaultValue: `0`,
+    },
+    { name: 'hover',
+      mandatory: false,
+      type: 'boolean',
+      description: `Open the dropdown on hover`,
+      defaultValue: `false`,
+    },
+    { name: 'id',
+      mandatory: true,
+      type: 'string',
+      description: `Id of the dropdown element`,
+    },
+    { name: 'inDuration',
+      mandatory: false,
+      type: 'number',
+      description: `Duration of the transition enter in milliseconds`,
+      defaultValue: `300`,
+    },
+    { name: 'outDuration',
+      mandatory: false,
+      type: 'number',
+      description: `Duration of the transition out in milliseconds`,
+      defaultValue: `225`,
+    },
+    { name: 'stopPropagation',
+      mandatory: false,
+      type: 'boolean',
+      description: `Stops the event propagating from the dropdown origin click handler`,
+      defaultValue: `false`,
+    },
+  ];
+}

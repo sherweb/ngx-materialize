@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-progress',
@@ -10,6 +11,24 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
   animations: [ROUTE_ANIMATION],
 })
 export class ProgressComponent implements OnInit, OnDestroy {
+  properties: IPropertyRow[] = [
+    { name: 'backgroundClass',
+      mandatory: false,
+      type: 'string',
+      description: `Background css class to be applied on the progress`,
+    },
+    { name: 'percentage',
+      mandatory: false,
+      type: 'number',
+      description: `Percentage of progress completion`,
+    },
+    { name: 'progressClass',
+      mandatory: false,
+      type: 'string',
+      description: `Progress css class to be applied on the progress`,
+    },
+  ];
+
   private _setIntervalId: NodeJS.Timer;
   private _interval: number = 25;
   public determinate: number = 25;
