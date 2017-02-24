@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Renderer } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-checkbox',
@@ -10,6 +11,24 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
   animations: [ROUTE_ANIMATION],
 })
 export class CheckboxComponent implements AfterViewInit {
+  properties: IPropertyRow[] = [
+    { name: 'id',
+      mandatory: true,
+      type: 'string',
+      description: `Id of the checkbox`,
+    },
+    { name: 'label',
+      mandatory: false,
+      type: 'string',
+      description: `Label text`,
+    },
+    { name: 'filledIn',
+      mandatory: false,
+      type: 'boolean',
+      description: `Show filled in checkbox style`,
+      defaultValue: `false`,
+    },
+  ];
 
   constructor(private renderer: Renderer) { }
 

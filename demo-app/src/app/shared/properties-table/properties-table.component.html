@@ -1,0 +1,27 @@
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+      <th data-field="property">Property</th>
+      <th data-field="mandatory" class="center mandatory">Mandatory</th>
+      <th data-field="type">Type</th>
+      <th data-field="description">Description</th>
+      <th data-field="default-value">Default value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let property of properties">
+      <td>{{ property.name }}</td>
+      <td
+        class="center"
+        [class.grey-text]="!property.mandatory"
+        [class.green-text]="property.mandatory">
+        <i mz-icon-mdi class="hide-on-med-and-down" [size]="'24px'" [icon]="property.mandatory ? 'check' : 'minus'"></i>
+        <i mz-icon-mdi class="hide-on-large-only" [size]="'16px'" [icon]="property.mandatory ? 'check' : 'minus'"></i>
+      </td>
+      <td>{{ property.type }}</td>
+      <td [innerHTML]="property.description"></td>
+      <td [innerHTML]="property.defaultValue"></td>
+    </tr>
+  </tbody>
+</table>

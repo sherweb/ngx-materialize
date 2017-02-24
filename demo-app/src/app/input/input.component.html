@@ -294,27 +294,9 @@
       The <code class="language-markup">mz-input-container</code> component can be customized using the following properties.
     </p>
 
-    <table class="striped responsive-table">
-      <thead>
-        <tr>
-          <th data-field="property">Property</th>
-          <th data-field="mandatory" class="center mandatory">Mandatory</th>
-          <th data-field="type">Type</th>
-          <th data-field="description">Description</th>
-          <th data-field="default-value">Default value</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>inline</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>boolean</td>
-          <td>Show input inline</td>
-          <td>false</td>
-        </tr>
-      </tbody>
-    </table>
+    <app-properties-table
+      [properties]="inputContainerProperties">
+    </app-properties-table>
   </div>
 
   <div class="section">
@@ -325,82 +307,8 @@
       Inputs can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-input</code> directive.
     </p>
 
-    <table class="striped responsive-table">
-      <thead>
-        <tr>
-          <th data-field="property">Property</th>
-          <th data-field="mandatory" class="center mandatory">Mandatory</th>
-          <th data-field="type">Type</th>
-          <th data-field="description">Description</th>
-          <th data-field="default-value">Default value</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>autocomplete</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>&#123; data: &#123; [key: string]: string }, limit: number }</td>
-          <td>Suggest possible values</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>dataError</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>string</td>
-          <td>Invalid message</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>dataSuccess</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>string</td>
-          <td>Valid message</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>id</td>
-          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
-          <td>string</td>
-          <td>Id of the input</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>label</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>string</td>
-          <td>Floating label</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>length</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>number</td>
-          <td>Show character count</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>placeholder</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>string</td>
-          <td>Show placeholder</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>type</td>
-          <td class="center green-text"><i mz-icon-mdi [icon]="'check'"></i></td>
-          <td>string</td>
-          <td>HTML5 input type</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>validate</td>
-          <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-          <td>boolean</td>
-          <td>Activate HTML5 validation</td>
-          <td>false</td>
-        </tr>
-      </tbody>
-    </table>
+    <app-properties-table
+      [properties]="inputProperties">
+    </app-properties-table>
   </div>
 </div>

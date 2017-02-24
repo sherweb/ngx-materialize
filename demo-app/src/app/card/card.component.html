@@ -126,39 +126,7 @@
     Cards can be customized using the following properties on the <code class="language-markup">mz-card</code> element.
   </p>
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="mandatory" class="mandatory center">Mandatory</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>backgroundClass</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>string</td>
-        <td>Background css class to be applied on the card</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>hoverable</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Box-shadow css animnation on card rollover</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>textClass</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>string</td>
-        <td>Text css class to be applied on the card</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
 </div>

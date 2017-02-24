@@ -83,47 +83,7 @@
     Badges can be customized using the following properties on the <code class="language-markup">mz-badge</code> element.
   </p>
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="mandatory" class="center mandatory">Mandatory</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>value</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>number</td>
-        <td>The number to display inside the badge</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>new</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>If the background must be displayed</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>badgeClass</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>string</td>
-        <td>Color class for the background</td>
-        <td>Default color will be used when the <code class="language-markup">new</code> property is <code class="language-markup">true</code></td>
-      </tr>
-      <tr>
-        <td>caption</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Custom caption to display next to the value</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
 </div>
