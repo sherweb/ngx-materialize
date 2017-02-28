@@ -256,46 +256,7 @@
     The button can be customized using the following properties on the <code class="language-markup">button</code> element when adding <code class="language-markup">mz-button</code> directive.
   </p>
 
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th data-field="property">Property</th>
-        <th data-field="mandatory" class="mandatory center">Mandatory</th>
-        <th data-field="type">Type</th>
-        <th data-field="description">Description</th>
-        <th data-field="default-value">Default value</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>disabled</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Button will be disabled</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>flat</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Button will have flat style</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>float</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Button will have float style</td>
-        <td>false</td>
-      </tr>
-      <tr>
-        <td>large</td>
-        <td class="center grey-text"><i mz-icon-mdi [icon]="'minus'"></i></td>
-        <td>boolean</td>
-        <td>Button will have large style</td>
-        <td>false</td>
-      </tr>
-    </tbody>
-  </table>
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
 </div>
