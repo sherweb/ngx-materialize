@@ -14,6 +14,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="basic-select"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
       >
@@ -32,6 +33,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="basic-select-placeholder"
         [placeholder]="'Placeholder'"
       >
         <option>Option 1</option>
@@ -54,6 +56,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="multiple-select"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
         [multiple]="true"
@@ -73,6 +76,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="multiple-select-filledin"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
         [multiple]="true"
@@ -98,6 +102,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="option-groups-select"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
       >
@@ -126,6 +131,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="circle-select"
         [label]="'Images in select'"
         [placeholder]="'Choose your option'"
       >
@@ -144,6 +150,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="circle-left-select"
         [label]="'Images in select'"
         [placeholder]="'Choose your option'"
       >
@@ -167,6 +174,7 @@
 
     <mz-select-container class="col s12 m6">
       <select mz-select
+        id="disabled-select"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
         [disabled]="true"
@@ -195,7 +203,8 @@
 &lt;mz-select-container>
   &lt;select mz-select
     [label]="'Label'"
-    placeholder="Placeholder">
+    [placeholder]="Placeholder"
+    id="options-select">
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
       &lt;option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2&lt;/option>

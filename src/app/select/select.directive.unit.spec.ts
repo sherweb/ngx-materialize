@@ -242,9 +242,12 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
+      const selectId = 'select-id';
       const mockSelectContainerElement = { selectContainer: true };
       const mockLabelElement = document.createElement('label');
+      mockLabelElement.setAttribute('for', selectId);
 
+      directive.id = selectId;
       directive.selectContainerElement = <any>mockSelectContainerElement;
       directive.createLabelElement();
 
@@ -253,7 +256,9 @@ describe('MzSelectDirective:unit', () => {
 
     it('should return the newly created element', () => {
 
+      const selectId = 'select-id';
       const mockLabelElement = document.createElement('label');
+      mockLabelElement.setAttribute('for', selectId);
 
       const mockJQueryLabelElement = { jQueryLabelElement: true };
 
@@ -263,6 +268,7 @@ describe('MzSelectDirective:unit', () => {
           : {};
       });
 
+      directive.id = selectId;
       const jQuerylabelElement = directive.createLabelElement();
 
       expect(jQuerylabelElement).toBe(mockJQueryLabelElement);
