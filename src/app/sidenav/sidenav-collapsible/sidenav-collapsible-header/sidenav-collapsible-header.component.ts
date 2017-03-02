@@ -7,7 +7,7 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 })
 export class MzSidenavCollapsibleHeaderComponent implements AfterViewInit {
 
- innerHTML: string;
+  innerHTML: string;
 
   constructor(public element: ElementRef) { }
 
