@@ -18,6 +18,7 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
 })
 export class MzSelectDirective extends HandlePropChanges implements AfterViewInit, OnInit, OnDestroy {
   // native properties
+  @Input() id: string;
   @Input() disabled: boolean;
   @Input() placeholder: string;
 
@@ -79,6 +80,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   createLabelElement() {
     const labelElement = document.createElement('label');
+    labelElement.setAttribute('for', this.id);
 
     this.renderer.invokeElementMethod(this.selectContainerElement, 'append', [labelElement]);
 
