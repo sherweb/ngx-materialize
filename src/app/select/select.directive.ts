@@ -41,10 +41,11 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   ngOnInit() {
     this.initHandlers();
     this.initElements();
-    this.handleProperties();
   }
 
   ngAfterViewInit() {
+    this.handleProperties();
+
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
     this.ngModelChange.emit(this.selectElement.val());
     this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
