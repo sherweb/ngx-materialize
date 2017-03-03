@@ -1,8 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
-import { MzSidenavCollapsibleComponent } from './sidenav-collapsible.component';
+import { MzSidenavCollapsibleComponent, MzSidenavCollapsibleHeaderComponent } from './';
 
 describe('MzSidenavCollapsibleComponent:view', () => {
 
@@ -10,11 +10,16 @@ describe('MzSidenavCollapsibleComponent:view', () => {
     TestBed.configureTestingModule({
       declarations: [
         MzSidenavCollapsibleComponent,
+        MzSidenavCollapsibleHeaderComponent,
         MzTestWrapperComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
   }));
+
+  function forceSetTimeoutEnd() {
+    tick(1 * 1000000); // todo: understand why 1 is not working (setTimeOut is set to 0)
+  }
 
   describe('mz-sidenav-collapsible', () => {
 
@@ -24,16 +29,18 @@ describe('MzSidenavCollapsibleComponent:view', () => {
       return nativeElement.querySelector('mz-sidenav-collapsible');
     }
 
-    it('should display correctly', async(() => {
+    it('should display correctly', fakeAsync(() => {
 
       buildComponent<MzSidenavCollapsibleComponent>(`
         <mz-sidenav-collapsible>
-          <mz-sidenav-collapsible-header></mz-sidenav-collapsible-header>
+          <mz-sidenav-collapsible-header>some-text</mz-sidenav-collapsible-header>
           <mz-sidenav-collapsible-content></mz-sidenav-collapsible-content>
         </mz-sidenav-collapsible>`).then(fixture => {
 
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
+
+        forceSetTimeoutEnd();
 
         const mzSidenavCollapsible = sidenavCollapsible().children[0];
         expect(mzSidenavCollapsible.nodeName).toBe('LI');
@@ -59,12 +66,7 @@ describe('MzSidenavCollapsibleComponent:view', () => {
         expect(collapsibleHeader.classList.length).toBe(2);
         expect(collapsibleHeader.classList).toContain('collapsible-header');
         expect(collapsibleHeader.classList).toContain('waves-effect');
-        expect(collapsibleHeader.children.length).toBe(1);
-
-        const mzSidenavCollapsibleHeader = collapsibleHeader.children[0];
-        expect(mzSidenavCollapsibleHeader.nodeName).toBe('MZ-SIDENAV-COLLAPSIBLE-HEADER');
-        expect(mzSidenavCollapsibleHeader.classList.length).toBe(0);
-        expect(mzSidenavCollapsibleHeader.children.length).toBe(0);
+        expect(collapsibleHeader.innerHTML).toBe('some-text');
 
         // collapsible-body
         const collapsibleBody = li.children[1];
@@ -93,7 +95,7 @@ describe('MzSidenavCollapsibleComponent:view', () => {
       return nativeElement.querySelector('.collapsible-header');
     }
 
-    it('should transclude correctly', async(() => {
+    it('should transclude correctly', fakeAsync(() => {
 
       buildComponent<MzSidenavCollapsibleComponent>(`
         <mz-sidenav-collapsible>
@@ -104,6 +106,8 @@ describe('MzSidenavCollapsibleComponent:view', () => {
 
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
+
+        forceSetTimeoutEnd();
 
         expect(collapsibleHeader().innerText.trim()).toBe('header-x');
       });

@@ -7,18 +7,6 @@
 :host #{'/deep/'} {
   .collapsible-header {
 
-    a[class*="mdi-"],
-    i.material-icons,
-    i[class*="mdi-"], {
-      /* Fix for mz-sidenav-collapsible-header content who does not get icon CSS from li > a > i */
-      float: left;
-      height: 48px;
-      line-height: 48px;
-      margin: -1px 1.5rem 0 0;
-      width: 24px;
-      color: rgba(0, 0, 0, 0.54);
-    }
-
     i {
       color: rgba(0,0,0,0.54);
     }

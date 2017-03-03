@@ -9,6 +9,7 @@ import {
   QueryList,
   Renderer,
   ViewChild } from '@angular/core';
+
 import { MzCollapsibleItemComponent } from './collapsible-item/collapsible-item.component';
 
 @Component({
