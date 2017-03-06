@@ -49,7 +49,7 @@ Don't forget to include jQuery, Materialize, and Mdi in your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
-#### angular-cli.json
+#### .angular-cli.json
 
 ```diff
 "styles": [
@@ -61,6 +61,36 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 + "../node_modules/jquery/dist/jquery.js",
 + "../node_modules/materialize-css/dist/js/materialize.js"
 ],
+```
+
+#### tsconfig
+
+```diff
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "../out-tsc/app",
+    "target": "es5",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [
++      "jquery",
++      "materialize-css"
+    ]
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}
 ```
 
 See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli/wiki/overview#global-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
