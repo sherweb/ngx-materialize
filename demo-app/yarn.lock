@@ -5807,6 +5807,10 @@ weak-map@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/weak-map/-/weak-map-1.0.0.tgz#b66e56a9df0bd25a76bbf1b514db129080614a37"
 
+web-animations-js@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/web-animations-js/-/web-animations-js-2.2.2.tgz#7c3aa5382c5eade70cd206880d56a37869630638"
+
 webdriver-js-extender@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/webdriver-js-extender/-/webdriver-js-extender-1.0.0.tgz#81c533a9e33d5bfb597b4e63e2cdb25b54777515"
