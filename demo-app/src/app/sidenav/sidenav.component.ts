@@ -54,8 +54,6 @@ export class SidenavComponent {
     },
   ];
 
-  @ViewChild('codeSample') codeSample: ElementRef;
-
   // Hide sidenav-demo during route animation
   @HostListener('@routeAnimation.start', ['$event']) onRouteAnimationStart(event: Event) {
     $('#sidenav-demo').css('display', 'none');
