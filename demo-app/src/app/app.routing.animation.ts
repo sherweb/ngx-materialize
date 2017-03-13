@@ -16,9 +16,10 @@
  **/
 import {
   animate,
+  style,
   transition,
   trigger,
-  style } from '@angular/core';
+} from '@angular/core';
 
 export const ROUTE_ANIMATION_HOST = { '[@routeAnimation]': 'true' };
 

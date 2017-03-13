@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
-import { ROUTES } from './app.routes';
+import { ROUTES } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { BadgeModule } from './badge/badge.module';

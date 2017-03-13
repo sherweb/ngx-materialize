@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 
 @Component({
   selector: 'app-form-binding',
@@ -11,36 +11,36 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
 })
 export class FormBindingComponent {
 
-  inputLabel: string = 'Label';
-  inputPlaceholder: string = 'Placeholder';
-  inputValidate: boolean = false;
-  inputDataSuccess: string = 'Email is valid';
-  inputDataError: string = 'Email is invalid';
-  inputDisabled: boolean = false;
+  inputLabel = 'Label';
+  inputPlaceholder = 'Placeholder';
+  inputValidate = false;
+  inputDataSuccess = 'Email is valid';
+  inputDataError = 'Email is invalid';
+  inputDisabled = false;
   inputLength: number;
-  inputValue: string = 'Value test';
+  inputValue = 'Value test';
 
-  selectLabel: string = 'Label';
-  selectPlaceholder: string = 'Placeholder';
-  selectDisabled: boolean = false;
+  selectLabel = 'Label';
+  selectPlaceholder = 'Placeholder';
+  selectDisabled = false;
   selectValue: string;
 
-  checkboxLabel: string = 'Label';
-  checkboxFilledIn: boolean = false;
-  checkboxDisabled: boolean = false;
-  checkboxValue: boolean = true;
+  checkboxLabel = 'Label';
+  checkboxFilledIn = false;
+  checkboxDisabled = false;
+  checkboxValue = true;
 
-  radioOption1Label: string = 'Option 1';
-  radioOption2Label: string = 'Option 2';
-  radioWithGap: boolean = false;
-  radioDisabled: boolean = false;
-  radioValue: string = 'Option 1';
+  radioOption1Label = 'Option 1';
+  radioOption2Label = 'Option 2';
+  radioWithGap = false;
+  radioDisabled = false;
+  radioValue = 'Option 1';
 
-  textareaLabel: string = 'Label';
-  textareaPlaceholder: string = 'Placeholder';
-  textareaDisabled: boolean = false;
+  textareaLabel = 'Label';
+  textareaPlaceholder = 'Placeholder';
+  textareaDisabled = false;
   textareaLength: number;
-  textareaValue: string = 'Lorem ipsum dolor sit amet, sed aliquet quam, dapibus fusce wisi leo,'
+  textareaValue = 'Lorem ipsum dolor sit amet, sed aliquet quam, dapibus fusce wisi leo,'
     + ' ultricies mauris dui dui sollicitudin sed. Sodales nulla viverra quis cursus ad nullam, mauris'
     + ' ipsum, ultrices quis odio odio ut velit sed, rhoncus ac nam.';
 }
