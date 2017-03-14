@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Renderer } from '@angular/core';
 
-import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({

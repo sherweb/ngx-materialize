@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routes.animation';
+import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
@@ -30,8 +30,8 @@ export class ProgressComponent implements OnInit, OnDestroy {
   ];
 
   private _setIntervalId: NodeJS.Timer;
-  private _interval: number = 25;
-  public determinate: number = 25;
+  private _interval = 25;
+  public determinate = 25;
 
   ngOnInit() {
     this._setIntervalId =
