@@ -29,6 +29,19 @@ export class FormBindingComponent {
   checkboxFilledIn = false;
   checkboxDisabled = false;
   checkboxValue = true;
+  selectLabel = 'Label';
+  selectPlaceholder = 'Placeholder';
+  selectDisabled = false;
+  selectOptions: Array<string> = ['Option 1', 'Option 2', 'Option 3'];
+  selectValue: string;
+
+  selectMultipleOptions: Array<string> = ['Option 1', 'Option 2', 'Option 3'];
+  selectMultipleValues: Array<string> = ['Option 1', 'Option 2'];
+
+  checkboxLabel = 'Label';
+  checkboxFilledIn = false;
+  checkboxDisabled = false;
+  checkboxValue = true;
 
   radioOption1Label = 'Option 1';
   radioOption2Label = 'Option 2';

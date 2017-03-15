@@ -26,15 +26,18 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   @Input() label: string;
   @Input() filledIn: boolean;
 
-  // push back selected value to ngModelChange
-  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
-
   labelElement: JQuery;
   selectElement: JQuery;
   selectContainerElement: JQuery;
   checkboxElements: JQuery;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer, private changeDetectorRef: ChangeDetectorRef) {
+  suspend = false;
+
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
     super();
   }
 
@@ -46,8 +49,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
-    this.ngModelChange.emit(this.selectElement.val());
-    this.selectElement.on('change', ($event: any) => this.ngModelChange.emit($event.target.value));
+
+    this.initOnChange();
 
     // Need to be done after view init or else the multi-select checkbox are not yet in the DOM
     this.initFilledIn();
@@ -78,6 +81,29 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     this.handleFilledIn();
   }
 
+  /**
+   * Trigger the native change event from select element instead of the JQuery.
+   * An issue on Github is open about this problem : https://github.com/Dogfalo/materialize/issues/2843
+   * This method should be removed when this issue is revolved.
+   */
+  initOnChange() {
+    this.selectElement.on('change', ($event: any) => {
+      if (!this.suspend) {
+        this.suspend = true;
+
+        const event = document.createEvent('CustomEvent');
+        event.initCustomEvent('change', true, false, $event.target.value);
+
+        this.renderer.invokeElementMethod(this.selectElement[0], 'dispatchEvent', [event]);
+      }
+    });
+
+    // Stop the propagation of change event
+    this.selectElement[0].addEventListener('change', () => {
+      this.suspend = false;
+    });
+  }
+
   createLabelElement() {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
@@ -101,7 +127,9 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   selectFirstItem() {
     const firstItem = this.selectElement.children().first();
 
-    if (firstItem.length > 0) {
+    if (firstItem.length > 0 &&
+      this.selectElement.children('option[selected]').length === 0 &&
+      !this.selectElement[0].hasAttribute('multiple')) {
       firstItem[0].setAttribute('selected', 'true');
     }
   }
@@ -152,7 +180,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         placeholderOption.disabled = true;
         placeholderOption.appendChild(placeholderText);
 
-        this.renderer.invokeElementMethod(this.selectElement.children().first(), 'before', [placeholderOption]);
+        this.renderer.invokeElementMethod(this.selectElement, 'prepend', [placeholderOption]);
       }
     }
 
