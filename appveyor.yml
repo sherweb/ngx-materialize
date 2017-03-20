@@ -1,6 +1,6 @@
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
 
 environment:
   matrix:
@@ -26,5 +26,5 @@ after_test:
 build: off
 
 cache:
- - node_modules
- - "%LOCALAPPDATA%/Yarn"
+  - node_modules
+  - "%LOCALAPPDATA%/Yarn"
