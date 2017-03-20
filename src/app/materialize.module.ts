@@ -18,6 +18,8 @@ import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
 
+import { ToastModule } from './toast/toast.module';
+
 const MZ_COMPONENTS = [
   Badge.MzBadgeComponent,
   Button.MzButtonDirective,
@@ -63,7 +65,13 @@ const MZ_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    // angular modules
+    CommonModule,
+
+    // materialize modules
+    ToastModule,
+  ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
 })

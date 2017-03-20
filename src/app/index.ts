@@ -14,3 +14,4 @@ export * from './select';
 export * from './sidenav';
 export * from './spinner';
 export * from './textarea';
+export * from './toast';
