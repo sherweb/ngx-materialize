@@ -17,6 +17,7 @@ import * as Select from './select';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
+import * as Toast from './toast';
 import * as Tooltip from './tooltip';
 
 const MZ_COMPONENTS = [
@@ -64,10 +65,17 @@ const MZ_COMPONENTS = [
   Tooltip.MzTooltipDirective,
 ];
 
+const MZ_PROVIDERS = [
+  Toast.MzToastService,
+];
+
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+  ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
+  providers: MZ_PROVIDERS,
 })
 export class MaterializeModule {
   static forRoot(): ModuleWithProviders {

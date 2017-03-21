@@ -18,6 +18,7 @@ import { SelectComponent } from './select/select.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 // sections name
@@ -55,6 +56,7 @@ export const ROUTES: Routes = [
   // components routes - Indicator
   { path: 'badge', component: BadgeComponent, data: { icon: 'numeric-2-box-outline', text: 'Badge', section: indicator } },
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon', section: indicator } },
+  { path: 'toast', component: ToastComponent, data: { icon: 'tooltip-text', text: 'Toast', section: indicator } },
   { path: 'tooltip', component: TooltipComponent, data: { icon: 'tooltip', text: 'Tooltip', section: indicator } },
 
   // redirect to home when route does not exists (must be last route)
