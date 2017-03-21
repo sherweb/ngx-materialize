@@ -1,7 +1,7 @@
 <h3>Toast</h3>
 
 <p>
-  Materialize provides a toast implementation that will automatically be placed and sized according to the screen size of your device. Toasts are triggered programmaticaly using the service <code class="language-markup">ToastService</code> and can be customized through the parameters of the method <code class="language-markup">show</code>.
+  Materialize provides a toast implementation that will be automatically placed and sized according to the device's screen resolution. Toasts are programmatically triggered using the service <code class="language-markup">MzToastService</code> and can be customized through the parameters of the method <code class="language-markup">show</code>.
 </p>
 
 <div class="section">
@@ -31,7 +31,7 @@
     </div>
 
     <p class="col s12 m9">
-      Toasts can be customized by providing a class name to the <code class="language-markup">ToastService</code>
+      Toasts can be customized by providing a class name to the <code class="language-markup">MzToastService</code>
     </p>
   </div>
 </div>
@@ -73,7 +73,7 @@
   <h5 class="light">HTML Structure</h5>
 
   <p>
-    To trigger a toast you must use the service <code class="language-markup">ToastService</code> and invoke <code class="language-markup">show</code> method with the desired parameters. A common example is to add the click event to a button to trigger the toast as shown below.
+    To trigger a toast you must use the service <code class="language-markup">MzToastService</code> and invoke <code class="language-markup">show</code> method with the desired parameters. A common example is to add the click event to a button to trigger the toast as shown below.
   </p>
 
   <p class="bold">example.component.html</p>
@@ -86,7 +86,7 @@
 
   <app-code-snippet>
 constructor(
-  private toastService: ToastService,
+  private toastService: MzToastService,
 ) &#123; &#125;
 
 showToast() &#123;

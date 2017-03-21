@@ -1,18 +1,18 @@
 import { inject, TestBed } from '@angular/core/testing';
 
-import { ToastService } from './toast.service';
+import { MzToastService } from './toast.service';
 
-describe('ToastService:unit', () => {
-  let toastService: ToastService;
+describe('MzToastService:unit', () => {
+  let toastService: MzToastService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ToastService],
+      providers: [MzToastService],
     });
   });
 
   beforeEach(() => {
-    toastService = TestBed.get(ToastService);
+    toastService = TestBed.get(MzToastService);
   });
 
   describe('show', () => {
