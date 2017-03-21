@@ -6,11 +6,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2016"
+      "es2016",
+      "dom"
     ],
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "baseUrl": "",
     "types": [
       "jasmine",
@@ -22,6 +23,7 @@
     "test.ts"
   ],
   "include": [
-    "app/**/*.spec.ts"
+    "app/**/*.spec.ts",
+    "app/**/*.d.ts"
   ]
 }
