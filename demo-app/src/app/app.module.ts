@@ -27,6 +27,7 @@ import { SelectModule } from './select/select.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { TextareaModule } from './textarea/textarea.module';
+import { TooltipModule } from './tooltip/tooltip.module';
 
 @NgModule({
   imports: [
@@ -57,6 +58,7 @@ import { TextareaModule } from './textarea/textarea.module';
     SidenavModule,
     SpinnerModule,
     TextareaModule,
+    TooltipModule,
   ],
   declarations: [AppComponent],
   providers: [],

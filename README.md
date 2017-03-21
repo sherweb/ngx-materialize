@@ -137,6 +137,8 @@ export class HomeModule { }
 * Sidenav
 * Spinner
 * Textarea
+* Toast
+* Tooltip
 
 ## Demo application
 

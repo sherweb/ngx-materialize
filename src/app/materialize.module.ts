@@ -17,6 +17,7 @@ import * as Select from './select';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
+import * as Tooltip from './tooltip';
 
 const MZ_COMPONENTS = [
   Badge.MzBadgeComponent,
@@ -60,6 +61,7 @@ const MZ_COMPONENTS = [
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
+  Tooltip.MzTooltipDirective,
 ];
 
 @NgModule({
