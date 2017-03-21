@@ -17,6 +17,7 @@ import * as Select from './select';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
+import * as Toast from './toast';
 
 const MZ_COMPONENTS = [
   Badge.MzBadgeComponent,
@@ -62,10 +63,17 @@ const MZ_COMPONENTS = [
   Textarea.MzTextareaContainerComponent,
 ];
 
+const MZ_PROVIDERS = [
+  Toast.MzToastService,
+];
+
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+  ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
+  providers: MZ_PROVIDERS,
 })
 export class MaterializeModule {
   static forRoot(): ModuleWithProviders {

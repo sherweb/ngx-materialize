@@ -14,6 +14,7 @@
     "baseUrl": "",
     "types": [
       "jasmine",
+      "materialize-css",
       "node"
     ]
   },
