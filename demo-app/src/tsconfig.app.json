@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
+    "sourceMap": true,
     "declaration": false,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
-    "mapRoot": "./",
-    "module": "es6",
-    "moduleResolution": "node",
-    "outDir": "../dist/out-tsc",
-    "sourceMap": false,
     "target": "es5",
-    "typeRoots": [
-      "../node_modules/@types"
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [
+      "jquery",
+      "materialize-css",
+      "mcustomscrollbar",
+      "node",
+      "prismjs"
     ],
     "paths": {
       "@angular/common": ["../node_modules/@angular/common"],
@@ -29,6 +35,7 @@
     "strictMetadataEmit": true
   },
   "exclude": [
-    "test.ts"
+    "test.ts",
+    "**/*.spec.ts"
   ]
 }

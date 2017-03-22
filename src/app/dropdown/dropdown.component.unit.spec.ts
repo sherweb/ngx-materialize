@@ -70,7 +70,7 @@ describe('MzDropdownComponent:unit', () => {
 
     it('should invoke close method', fakeAsync(() => {
 
-      spyOn(component.renderer, 'invokeElementMethod');
+      spyOn(renderer, 'invokeElementMethod');
 
       component.dropdownButtonElement = mockElementRef.nativeElement;
 
@@ -78,7 +78,7 @@ describe('MzDropdownComponent:unit', () => {
 
       forceSetTimeoutEnd();
 
-      expect(component.renderer.invokeElementMethod).toHaveBeenCalledWith(mockElementRef.nativeElement, 'dropdown', ['close']);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockElementRef.nativeElement, 'dropdown', ['close']);
     }));
   });
 
@@ -133,13 +133,13 @@ describe('MzDropdownComponent:unit', () => {
 
     it('should add attribute data-activates', () => {
 
-      spyOn(component.renderer, 'setElementAttribute');
+      spyOn(renderer, 'setElementAttribute');
 
       component.dropdownButtonElement = <any>[mockElementRef];
       component.id = 'dropdownId';
       component.handleDataActivates();
 
-      expect(component.renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-activates', component.id);
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-activates', component.id);
     });
   });
 
@@ -148,7 +148,7 @@ describe('MzDropdownComponent:unit', () => {
     it('should invoke dropdown method with all options provided', () => {
 
       spyOn(component, 'validateProperties');
-      spyOn(component.renderer, 'invokeElementMethod');
+      spyOn(renderer, 'invokeElementMethod');
 
       const options: Materialize.DropDownOptions = {
         alignment: 'left',
@@ -167,7 +167,7 @@ describe('MzDropdownComponent:unit', () => {
       component.handleDropdown();
 
       expect(component.validateProperties).toHaveBeenCalled();
-      expect(component.renderer.invokeElementMethod).toHaveBeenCalledWith(component.dropdownButtonElement, 'dropdown', [options]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(component.dropdownButtonElement, 'dropdown', [options]);
     });
   });
 
@@ -198,7 +198,7 @@ describe('MzDropdownComponent:unit', () => {
 
     it('should invoke open method', fakeAsync(() => {
 
-      spyOn(component.renderer, 'invokeElementMethod');
+      spyOn(renderer, 'invokeElementMethod');
 
       component.dropdownButtonElement = <any>[mockElementRef.nativeElement];
 
@@ -206,7 +206,7 @@ describe('MzDropdownComponent:unit', () => {
 
       forceSetTimeoutEnd();
 
-      expect(component.renderer.invokeElementMethod).toHaveBeenCalledWith(component.dropdownButtonElement, 'dropdown', ['open']);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(component.dropdownButtonElement, 'dropdown', ['open']);
     }));
   });
 
@@ -217,7 +217,7 @@ describe('MzDropdownComponent:unit', () => {
 
       expect(() => { component.validateProperties(); }).toThrowError(
         'Attribute [dropdownButtonId] from mz-dropdown is required and should be an existing element. ' +
-        component.elementRef.nativeElement);
+        mockElementRef.nativeElement);
     });
 
     it('should throw an error when id is not provided', () => {
@@ -226,7 +226,7 @@ describe('MzDropdownComponent:unit', () => {
 
       expect(() => { component.validateProperties(); }).toThrowError(
         'Attribute [id] from mz-dropdown is required. ' +
-        component.elementRef.nativeElement);
+        mockElementRef.nativeElement);
     });
   });
 });

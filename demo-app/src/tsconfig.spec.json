@@ -6,21 +6,41 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [
-      "es2016"
+      "es2016",
+      "dom"
     ],
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "baseUrl": "",
     "types": [
       "jasmine",
-      "node"
-    ]
+      "jquery",
+      "materialize-css",
+      "mcustomscrollbar",
+      "node",
+      "prismjs"
+    ],
+    "paths": {
+      "@angular/common": ["../node_modules/@angular/common"],
+      "@angular/compiler": ["../node_modules/@angular/compiler"],
+      "@angular/core": ["../node_modules/@angular/core"],
+      "@angular/forms": ["../node_modules/@angular/forms"],
+      "@angular/http": ["../node_modules/@angular/http"],
+      "@angular/platform-browser": ["../node_modules/@angular/platform-browser"],
+      "@angular/platform-browser-dynamic": ["../node_modules/@angular/platform-browser-dynamic"],
+      "@angular/router": ["../node_modules/@angular/router"],
+      "oidc-client": ["../node_modules/oidc-client"],
+      "rxjs/Observable": ["../node_modules/rxjs/Observable"],
+      "rxjs/Observable/ErrorObservable": ["../node_modules/rxjs/Observable/ErrorObservable"],
+      "rxjs/add/observable/of": ["../node_modules/rxjs/add/observable/of"]
+    }
   },
   "files": [
     "test.ts"
   ],
   "include": [
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*.d.ts"
   ]
 }
