@@ -28,6 +28,7 @@ import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { TextareaModule } from './textarea/textarea.module';
 import { ToastModule } from './toast/toast.module';
+import { TooltipModule } from './tooltip/tooltip.module';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { ToastModule } from './toast/toast.module';
     SpinnerModule,
     TextareaModule,
     ToastModule,
+    TooltipModule,
   ],
   declarations: [AppComponent],
   providers: [],

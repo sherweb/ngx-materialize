@@ -18,6 +18,7 @@ import * as Sidenav from './sidenav';
 import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
 import * as Toast from './toast';
+import * as Tooltip from './tooltip';
 
 const MZ_COMPONENTS = [
   Badge.MzBadgeComponent,
@@ -61,6 +62,7 @@ const MZ_COMPONENTS = [
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
+  Tooltip.MzTooltipDirective,
 ];
 
 const MZ_PROVIDERS = [
