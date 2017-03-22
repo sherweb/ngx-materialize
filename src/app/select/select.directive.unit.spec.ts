@@ -65,11 +65,11 @@ describe('MzSelectDirective:unit', () => {
 
     beforeEach(() => {
       directive.selectElement = <any>mockSelectElement;
+      spyOn(directive, 'initOnChange');
       spyOn(directive, 'initFilledIn');
     });
 
     it('should invoke material_select method on select element for initialization', () => {
-
       spyOn(renderer, 'invokeElementMethod');
 
       directive.ngAfterViewInit();
@@ -77,39 +77,13 @@ describe('MzSelectDirective:unit', () => {
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
     });
 
-    it('should invoke ngModelChange.emit with currently selected value', () => {
-
-      spyOn(directive.ngModelChange, 'emit');
-
+    it('should call initOnChange', () => {
       directive.ngAfterViewInit();
 
-      expect(directive.ngModelChange.emit).toHaveBeenCalledWith(value);
-    });
-
-    it('should attach event handler for onChange on select element to emit on ngModelChange', () => {
-
-      let onChangeHandler: Function;
-
-      spyOn(mockSelectElement, 'on').and.callFake((events: string, handler: Function) => {
-        onChangeHandler = handler;
-      });
-
-      spyOn(directive.ngModelChange, 'emit');
-
-      directive.ngAfterViewInit();
-
-      expect(mockSelectElement.on).toHaveBeenCalledWith('change', jasmine.any(Function));
-
-      const mockValue = 'value-x';
-      const mockEvent = { target: { value: mockValue } };
-
-      onChangeHandler(mockEvent);
-
-      expect(directive.ngModelChange.emit).toHaveBeenCalledWith(mockValue);
+      expect(directive.initFilledIn).toHaveBeenCalled();
     });
 
     it('should call initFilledIn', () => {
-
       directive.ngAfterViewInit();
 
       expect(directive.initFilledIn).toHaveBeenCalled();
@@ -131,6 +105,101 @@ describe('MzSelectDirective:unit', () => {
 
       // Once from initFilledIn and once from the handlers test call
       expect(directive['handleFilledIn']).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('initOnChange', () => {
+
+    beforeEach(() => {
+      const mockSelect = document
+        .createElement('select')
+        .appendChild(document.createElement('option'));
+
+      directive.selectElement = $(mockSelect);
+    });
+
+    it('should register a change event', () => {
+      spyOn(directive.selectElement, 'on');
+
+      directive.initOnChange();
+
+      expect(directive.selectElement.on).toHaveBeenCalledWith('change', jasmine.any(Function));
+    });
+
+    it('should suspend propagation after a change event', () => {
+      spyOn(directive.selectElement, 'on').and.callFake((eventName, callback) => {
+        const mockEvent = { target: { value: null } };
+        callback(mockEvent);
+      });
+
+      expect(directive.suspend).toBe(false);
+
+      directive.initOnChange();
+
+      expect(directive.suspend).toBe(true);
+    });
+
+    it('should dispatch change event on native select', () => {
+      const onChange = jasmine.createSpy('onChange');
+
+      directive.selectElement[0].addEventListener('change', onChange);
+
+      spyOn(renderer, 'invokeElementMethod').and.callFake((element, method, params) => {
+        element[method](...params);
+      });
+
+      spyOn(directive.selectElement, 'on').and.callFake((eventName, callback) => {
+        const mockEvent = { target: { value: null } };
+        callback(mockEvent);
+      });
+
+      directive.initOnChange();
+
+      expect(onChange).toHaveBeenCalled();
+    });
+
+    it('should not dispatch event if suspend is true', () => {
+      directive.suspend = true;
+
+      const onChange = jasmine.createSpy('onChange');
+
+      directive.selectElement[0].addEventListener('change', onChange);
+
+      spyOn(renderer, 'invokeElementMethod').and.callFake((element, method, params) => {
+        element[method](...params);
+      });
+
+      spyOn(directive.selectElement, 'on').and.callFake((eventName, callback) => {
+        const mockEvent = { target: { value: null } };
+        callback(mockEvent);
+      });
+
+      directive.initOnChange();
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it('should register a change event on select to stop propagation', () => {
+      spyOn(directive.selectElement[0], 'addEventListener');
+
+      directive.initOnChange();
+
+      expect(directive.selectElement[0].addEventListener).toHaveBeenCalledWith('change', jasmine.any(Function));
+    });
+
+    it('should stop propagation on select change', () => {
+      let onChangeCallback: Function;
+
+      spyOn(directive.selectElement[0], 'addEventListener').and.callFake((eventName, callback: Function) => {
+        onChangeCallback = callback;
+      });
+
+      directive.suspend = true;
+
+      directive.initOnChange();
+      onChangeCallback();
+
+      expect(directive.suspend).toBe(false);
     });
   });
 
@@ -327,10 +396,10 @@ describe('MzSelectDirective:unit', () => {
         expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
       });
 
-      it('should call selectFirstItem', () => {
+      it('should call selectFirstOption', () => {
 
         spyOn(HandlePropChanges.prototype, 'executePropHandlers');
-        spyOn(directive, 'selectFirstItem');
+        spyOn(directive, 'selectFirstOption');
 
         const mockSelectContainerElement = { selectContainer: true, length: 1 };
         const mockSelectElement = { children: () => $({ length: 0 }) };
@@ -339,7 +408,7 @@ describe('MzSelectDirective:unit', () => {
         directive.selectElement = <any>mockSelectElement;
         directive.handleProperties();
 
-        expect(directive.selectFirstItem).toHaveBeenCalled();
+        expect(directive.selectFirstOption).toHaveBeenCalled();
       });
     });
   });
@@ -509,7 +578,7 @@ describe('MzSelectDirective:unit', () => {
         directive.handlePlaceholder();
 
         expect(spy.calls.allArgs()).toEqual([
-          [ mockSelectChildrenFirst, 'before', [mockPlaceholderOption] ],     // add placeholder element
+          [ mockSelectElement, 'prepend', [mockPlaceholderOption] ],     // add placeholder element
           [ mockSelectElement, 'material_select' ], // reinitialize select element
         ]);
       });
@@ -525,18 +594,47 @@ describe('MzSelectDirective:unit', () => {
       });
     });
 
-    describe('selectFirstItem', () => {
+    describe('selectFirstOption', () => {
 
-      it('should set the selected attribute of the first item to true', () => {
+      it('should set the selected attribute of the first option to true', () => {
+        const mockSelect = document.createElement('select');
+        const mockOption = document.createElement('option');
+        mockSelect.appendChild(mockOption);
 
-        const selectElementChildren = { length: 1, setAttribute: () => null };
-        const mockSelectElement = { children: () => $(selectElementChildren) };
-        spyOn(selectElementChildren, 'setAttribute');
+        spyOn(mockOption, 'setAttribute');
 
-        directive.selectElement = <any>mockSelectElement;
-        directive.selectFirstItem();
+        directive.selectElement = $(mockSelect);
+        directive.selectFirstOption();
 
-        expect(selectElementChildren.setAttribute).toHaveBeenCalledWith('selected', 'true');
+        expect(mockOption.setAttribute).toHaveBeenCalledWith('selected', 'true');
+      });
+
+      it('should not set the selected attribute of the first option to true if an option is already selected', () => {
+        const mockSelect = document.createElement('select');
+        const mockOption = document.createElement('option');
+        mockOption.setAttribute('selected', 'true');
+        mockSelect.appendChild(mockOption);
+
+        spyOn(mockOption, 'setAttribute');
+
+        directive.selectElement = $(mockSelect);
+        directive.selectFirstOption();
+
+        expect(mockOption.setAttribute).not.toHaveBeenCalled();
+      });
+
+      it('should not set the selected attribute of the first option to true if the select is multiple', () => {
+        const mockSelect = document.createElement('select');
+        mockSelect.setAttribute('multiple', 'true');
+        const mockOption = document.createElement('option');
+        mockSelect.appendChild(mockOption);
+
+        spyOn(mockOption, 'setAttribute');
+
+        directive.selectElement = $(mockSelect);
+        directive.selectFirstOption();
+
+        expect(mockOption.setAttribute).not.toHaveBeenCalled();
       });
     });
   });

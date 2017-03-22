@@ -87,14 +87,14 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
    * This method should be removed when this issue is revolved.
    */
   initOnChange() {
-    this.selectElement.on('change', ($event: any) => {
+    this.selectElement.on('change', (event: any) => {
       if (!this.suspend) {
         this.suspend = true;
 
-        const event = document.createEvent('CustomEvent');
-        event.initCustomEvent('change', true, false, $event.target.value);
+        const customEvent = document.createEvent('CustomEvent');
+        customEvent.initCustomEvent('change', true, false, event.target.value);
 
-        this.renderer.invokeElementMethod(this.selectElement[0], 'dispatchEvent', [event]);
+        this.renderer.invokeElementMethod(this.selectElement[0], 'dispatchEvent', [customEvent]);
       }
     });
 
@@ -121,16 +121,17 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
     super.executePropHandlers();
 
-    this.selectFirstItem();
+    this.selectFirstOption();
   }
 
-  selectFirstItem() {
-    const firstItem = this.selectElement.children().first();
+  selectFirstOption() {
+    const firstOptionElement = this.selectElement.children().first();
 
-    if (firstItem.length > 0 &&
-      this.selectElement.children('option[selected]').length === 0 &&
-      !this.selectElement[0].hasAttribute('multiple')) {
-      firstItem[0].setAttribute('selected', 'true');
+    if (firstOptionElement.length > 0
+      && this.selectElement.children('option[selected]').length === 0
+      && !this.selectElement[0].hasAttribute('multiple')
+    ) {
+      firstOptionElement[0].setAttribute('selected', 'true');
     }
   }
 
