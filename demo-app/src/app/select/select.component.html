@@ -204,7 +204,33 @@
   &lt;select mz-select
     [label]="'Label'"
     [placeholder]="Placeholder"
-    id="options-select">
+    id="options-select"
+  >
+    &lt;optgroup label="Group 1">
+      &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
+      &lt;option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2&lt;/option>
+    &lt;/optgroup>
+    &lt;optgroup label="Group 2">
+      &lt;option data-icon="assets/select-icon-3.jpg" class="left circle">Option 3&lt;/option>
+    &lt;/optgroup>
+  &lt;/select>
+&lt;/mz-select-container>
+  </app-code-snippet>
+</div>
+
+
+<div class="section">
+
+  <h5 class="light">Multiple</h5>
+
+  <app-code-snippet>
+&lt;mz-select-container>
+  &lt;select mz-select
+    [label]="'Label'"
+    [placeholder]="Placeholder"
+    id="options-select"
+    multiple
+  >
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
       &lt;option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2&lt;/option>

@@ -110,9 +110,7 @@
           [disabled]="selectDisabled"
           [(ngModel)]="selectValue"
         >
-          <option>Option 1</option>
-          <option>Option 2</option>
-          <option>Option 3</option>
+          <option *ngFor="let selectOption of selectOptions" [selected]="selectOption === selectValue">{{ selectOption }}</option>
         </select>
       </mz-select-container>
     </div>
@@ -146,6 +144,35 @@
 
       <p>
         Selected value: {{ selectValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Multiple Select</h5>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+        <select mz-select
+          id="select-multiple"
+          [label]="'Label'"
+          [placeholder]="'Placeholder'"
+          [(ngModel)]="selectMultipleValues"
+          multiple
+        >
+          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [selected]="selectMultipleValues.includes(selectMultipleOption)">{{ selectMultipleOption }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <div class="col s12 m6">
+      <p>
+        Selected values: {{ selectMultipleValues | json }}
       </p>
     </div>
   </div>
