@@ -11,6 +11,17 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class TextareaComponent {
+
+  // playground
+  textareaLabel = 'Label';
+  textareaPlaceholder = 'Placeholder';
+  textareaDisabled = false;
+  textareaLength: number;
+  textareaValue = 'Lorem ipsum dolor sit amet, sed aliquet quam, dapibus fusce wisi leo,'
+    + ' ultricies mauris dui dui sollicitudin sed. Sodales nulla viverra quis cursus ad nullam, mauris'
+    + ' ipsum, ultrices quis odio odio ut velit sed, rhoncus ac nam.';
+
+  // table properties
   textareaContainerProperties: IPropertyRow[] = [
     { name: 'inline',
       mandatory: false,

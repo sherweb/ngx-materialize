@@ -6,7 +6,6 @@ import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
-import { FormBindingComponent } from './form-binding/form-binding.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -32,7 +31,6 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
 
   // components routes - Form controls
-  { path: 'form-binding', component: FormBindingComponent, data: { icon: 'code-brackets', text: 'Binding', section: formControls } },
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },

@@ -193,6 +193,89 @@
 
 <div class="section">
 
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-select</code> directive makes the form-control completely dynamic. Change the configuration below and see how the select reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+        <select mz-select
+          id="select"
+          [label]="selectLabel"
+          [placeholder]="selectPlaceholder"
+          [disabled]="selectDisabled"
+          [(ngModel)]="selectValue"
+        >
+          <option *ngFor="let selectOption of selectOptions" [selected]="selectOption === selectValue">{{ selectOption }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="select-label"
+          [label]="'Label'"
+          [(ngModel)]="selectLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="select-placeholder"
+          [label]="'Placeholder'"
+          [(ngModel)]="selectPlaceholder"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="select-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="selectDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Selected value: {{ selectValue }}
+      </p>
+    </div>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+        <select mz-select
+          id="select-multiple"
+          [label]="'Label'"
+          [placeholder]="'Placeholder'"
+          [(ngModel)]="selectMultipleValues"
+          multiple
+        >
+          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [selected]="selectMultipleValues.includes(selectMultipleOption)">{{ selectMultipleOption }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <div class="col s12 m6">
+      <p>
+        Selected values: {{ selectMultipleValues | json }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">HTML Structure</h5>
 
   <p>
