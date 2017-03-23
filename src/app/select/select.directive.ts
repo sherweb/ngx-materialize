@@ -52,7 +52,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
     this.initOnChange();
 
-    // Need to be done after view init or else the multi-select checkbox are not yet in the DOM
+    // Need to be done after view init or else the multi-select are not yet in the DOM
+    this.initMultiple();
     this.initFilledIn();
   }
 
@@ -79,6 +80,23 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     this.checkboxElements = this.selectContainerElement.find(':checkbox');
     this.handlers['filledIn'] = () => this.handleFilledIn();
     this.handleFilledIn();
+  }
+
+  /**
+   * Force NgModel value(s) to be selected correctly on multiple select as NgModel
+   * is not supported yet by Angular 2 on multiple select and cause selected values
+   * to be out of sync when changing values in Materialize select
+   */
+  initMultiple() {
+    if (this.selectElement[0].hasAttribute('multiple')) {
+      const selectedOptions = this.selectElement
+        .find('option')
+        .toArray()
+        .filter((element: HTMLOptionElement) => element.selected)
+        .map((element: HTMLOptionElement) => element.value);
+      // setTimeout is needed to this fix to work
+      setTimeout(() => this.selectElement.val(selectedOptions));
+    }
   }
 
   /**
