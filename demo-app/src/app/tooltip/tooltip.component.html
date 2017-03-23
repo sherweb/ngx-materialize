@@ -72,7 +72,7 @@
   <h5 class="light">Playground</h5>
 
   <p>
-    The input properties of the <code class="language-markup">mz-tooltip</code> directive makes the tooltip completely dynamic. Change the configuration below and see how the tooltip will react.
+    The input properties of the <code class="language-markup">mz-tooltip</code> directive makes the tooltip completely dynamic. Change the configuration below and see how the tooltip reacts.
   </p>
 
   <div class="row">
@@ -81,7 +81,7 @@
       <button mz-button mz-tooltip [tooltip]="tooltip" [position]="position" [delay]="delay" [html]="html">Tooltip</button>
     </div>
 
-    <p class="col s12 m7">
+    <div class="col s12 m7">
       <mz-input-container>
         <input mz-input
           id="tooltip-text"
@@ -121,7 +121,7 @@
           [(ngModel)]="html"
           type="checkbox">
       </mz-checkbox-container>
-    </p>
+    </div>
   </div>
 </div>
 

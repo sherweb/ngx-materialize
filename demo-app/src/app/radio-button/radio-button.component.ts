@@ -11,6 +11,15 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class RadioButtonComponent {
+
+  // playground
+  radioOption1Label = 'Option 1';
+  radioOption2Label = 'Option 2';
+  radioWithGap = false;
+  radioDisabled = false;
+  radioValue = this.radioOption1Label;
+
+  // table properties
   properties: IPropertyRow[] = [
     { name: 'id',
       mandatory: true,

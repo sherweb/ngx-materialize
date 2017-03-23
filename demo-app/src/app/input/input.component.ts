@@ -12,12 +12,26 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
 })
 export class InputComponent implements AfterViewInit, OnInit {
 
+  // autocomplete
+  autocomplete: { data: { [key: string]: string } };
+
+  // playground
+  inputLabel = 'Label';
+  inputPlaceholder = 'Placeholder';
+  inputValidate = false;
+  inputDataSuccess = 'Email is valid';
+  inputDataError = 'Email is invalid';
+  inputDisabled = false;
+  inputLength: number;
+  inputValue = 'Value test';
+
+  // table properties
   inputContainerProperties: IPropertyRow[] = [
     { name: 'inline',
       mandatory: false,
       type: 'boolean',
-      description: `Show input inline`,
-      defaultValue: `false`,
+      description: 'Show input inline',
+      defaultValue: 'false',
     },
   ];
 
@@ -69,8 +83,6 @@ export class InputComponent implements AfterViewInit, OnInit {
       defaultValue: `false`,
     },
   ];
-
-  autocomplete: { data: { [key: string]: string } };
 
   constructor(private renderer: Renderer) { }
 

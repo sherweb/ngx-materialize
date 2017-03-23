@@ -11,6 +11,14 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class CheckboxComponent implements AfterViewInit {
+
+  // playground
+  checkboxLabel = 'Label';
+  checkboxFilledIn = false;
+  checkboxDisabled = false;
+  checkboxValue = true;
+
+  // table properties
   properties: IPropertyRow[] = [
     { name: 'id',
       mandatory: true,

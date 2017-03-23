@@ -74,6 +74,86 @@
 
 <div class="section">
 
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-radio-button</code> directive makes the form-control completely dynamic. Change the configuration below and see how the radio-button reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          name="radio-group"
+          id="radio-option-1"
+          value="Option 1"
+          [label]="radioOption1Label"
+          [withGap]="radioWithGap"
+          [disabled]="radioDisabled"
+          [(ngModel)]="radioValue"
+          type="radio">
+      </mz-radio-button-container>
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          name="radio-group"
+          id="radio-option-2"
+          value="Option 2"
+          [label]="radioOption2Label"
+          [withGap]="radioWithGap"
+          [disabled]="radioDisabled"
+          [(ngModel)]="radioValue"
+          type="radio">
+      </mz-radio-button-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="radio-label-1"
+          [label]="'Label - Option 1'"
+          [(ngModel)]="radioOption1Label"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="radio-label-2"
+          [label]="'Label - Option 2'"
+          [(ngModel)]="radioOption2Label"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="radio-withgap"
+          [label]="'With Gap'"
+          [filledIn]="true"
+          [(ngModel)]="radioWithGap"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="radio-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="radioDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Radio value: {{ radioValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">HTML Structure</h5>
 
   <p>

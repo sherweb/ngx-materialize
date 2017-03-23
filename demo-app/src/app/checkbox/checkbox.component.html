@@ -121,6 +121,64 @@
 
 <div class="section">
 
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-checkbox</code> directive makes the form-control completely dynamic. Change the configuration below and see how the checkbox reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox"
+          [label]="checkboxLabel"
+          [filledIn]="checkboxFilledIn"
+          [disabled]="checkboxDisabled"
+          [(ngModel)]="checkboxValue"
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="checkbox-label"
+          [label]="'Label'"
+          [(ngModel)]="checkboxLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox-filledIn"
+          [label]="'Filled In'"
+          [filledIn]="true"
+          [(ngModel)]="checkboxFilledIn"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="checkboxDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Checkbox value: {{ checkboxValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">HTML Structure</h5>
 
   <p>

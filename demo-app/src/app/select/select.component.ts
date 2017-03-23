@@ -11,6 +11,18 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class SelectComponent {
+
+  // playground
+  selectLabel = 'Label';
+  selectPlaceholder = 'Placeholder';
+  selectDisabled = false;
+  selectOptions = ['Option 1', 'Option 2', 'Option 3'];
+  selectValue = this.selectOptions[0];
+
+  selectMultipleOptions = ['Option 1', 'Option 2', 'Option 3'];
+  selectMultipleValues = this.selectMultipleOptions.slice(0, 2);
+
+  // table properties
   properties: IPropertyRow[] = [
     { name: 'label',
       mandatory: false,

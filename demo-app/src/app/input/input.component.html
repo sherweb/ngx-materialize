@@ -258,6 +258,100 @@
 
 <div class="section">
 
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-input</code> directive makes the form-control completely dynamic. Change the configuration below and see how the input reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="input"
+          [label]="inputLabel"
+          [placeholder]="inputPlaceholder"
+          [validate]="inputValidate"
+          [dataSuccess]="inputDataSuccess"
+          [dataError]="inputDataError"
+          [disabled]="inputDisabled"
+          [length]="inputLength"
+          [(ngModel)]="inputValue"
+          type="email">
+      </mz-input-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="input-label"
+          [label]="'Label'"
+          [(ngModel)]="inputLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="input-placeholder"
+          [label]="'Placeholder'"
+          [(ngModel)]="inputPlaceholder"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="input-length"
+          [label]="'Length'"
+          [(ngModel)]="inputLength"
+          type="number">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="input-validate"
+          [label]="'Validate as email'"
+          [filledIn]="true"
+          [(ngModel)]="inputValidate"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="input-dataSuccess"
+          [label]="'Validate - Success Message'"
+          [(ngModel)]="inputDataSuccess"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="input-dataError"
+          [label]="'Validate - Error Message'"
+          [(ngModel)]="inputDataError"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="input-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="inputDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Input value: {{ inputValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">HTML Structure</h5>
 
   <p>

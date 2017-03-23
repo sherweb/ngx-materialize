@@ -15,7 +15,6 @@ import { CardModule } from './card/card.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
 import { DropdownModule } from './dropdown/dropdown.module';
-import { FormBindingModule } from './form-binding/form-binding.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -48,7 +47,6 @@ import { TooltipModule } from './tooltip/tooltip.module';
     CheckboxModule,
     CollapsibleModule,
     DropdownModule,
-    FormBindingModule,
     HomeModule,
     IconModule,
     InputModule,
