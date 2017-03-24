@@ -23,6 +23,7 @@
 *.log
 /typings
 test-results.xml
+*.tgz
 
 # e2e
 /e2e/*.js
