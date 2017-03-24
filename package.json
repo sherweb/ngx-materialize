@@ -21,7 +21,8 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {
-    "clean": "rimraf -- dist inline-template node_modules",
+    "clean:build": "rimraf -- dist inline-template",
+    "clean": "npm run clean:build && rimraf -- node_modules",
     "lint": "tslint \"src/**/*.ts\"",
     "ng": "ng",
     "start": "cd demo-app && npm start",
