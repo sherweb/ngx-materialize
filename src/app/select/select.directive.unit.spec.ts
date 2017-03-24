@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, Renderer } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzSelectDirective } from './select.directive';
@@ -67,6 +67,7 @@ describe('MzSelectDirective:unit', () => {
       directive.selectElement = <any>mockSelectElement;
       spyOn(directive, 'initOnChange');
       spyOn(directive, 'initFilledIn');
+      spyOn(directive, 'initMultiple');
     });
 
     it('should invoke material_select method on select element for initialization', () => {
@@ -81,6 +82,12 @@ describe('MzSelectDirective:unit', () => {
       directive.ngAfterViewInit();
 
       expect(directive.initFilledIn).toHaveBeenCalled();
+    });
+
+    it('should call initMultiple', () => {
+      directive.ngAfterViewInit();
+
+      expect(directive.initMultiple).toHaveBeenCalled();
     });
 
     it('should call initFilledIn', () => {
@@ -106,6 +113,62 @@ describe('MzSelectDirective:unit', () => {
       // Once from initFilledIn and once from the handlers test call
       expect(directive['handleFilledIn']).toHaveBeenCalledTimes(2);
     });
+  });
+
+  describe('initMultiple', () => {
+
+    function forceSetTimeoutEnd() {
+      tick(1); // force setTimeout execution
+    }
+
+    function createOption(value: string, selected: boolean) {
+      const option = document.createElement('option');
+      option.selected = selected;
+      option.value = value;
+      return option;
+    }
+
+    it('should set selected values through setTimeout when select is multiple', fakeAsync(() => {
+
+      const mockSelect = document.createElement('select');
+      mockSelect.multiple = true;
+
+      const option1 = createOption('option-1', false);
+      const option2 = createOption('option-2', true);
+      const option3 = createOption('option-3', true);
+
+      mockSelect.appendChild(option1);
+      mockSelect.appendChild(option2);
+      mockSelect.appendChild(option3);
+
+      directive.selectElement = $(mockSelect);
+
+      spyOn(directive.selectElement, 'val');
+
+      directive.initMultiple();
+
+      forceSetTimeoutEnd();
+
+      expect(directive.selectElement.val).toHaveBeenCalledWith([option2.value, option3.value]);
+    }));
+
+    it('should not set selected values when select is not multiple', fakeAsync(() => {
+
+      const mockSelect = document.createElement('select');
+      mockSelect.appendChild(createOption('option-1', false));
+      mockSelect.appendChild(createOption('option-2', false));
+      mockSelect.appendChild(createOption('option-3', true));
+
+      directive.selectElement = $(mockSelect);
+
+      spyOn(directive.selectElement, 'val');
+
+      directive.initMultiple();
+
+      forceSetTimeoutEnd();
+
+      expect(directive.selectElement.val).not.toHaveBeenCalled();
+    }));
   });
 
   describe('initOnChange', () => {
