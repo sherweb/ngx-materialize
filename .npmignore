@@ -1,11 +1,14 @@
+*.log
 *.ngfactory.ts
 *.ngstyle.ts
 *.ngsummary.json
 *.spec.ts
+*.tgz
+/.angular-cli.json
 /.editorconfig
 /.vscode
-/angular-cli.json
 /app/shared/test-wrapper
+/appveyor.yml
 /circle.yml
 /demo-app
 /e2e
@@ -15,5 +18,6 @@
 /protractor.conf.js
 /src
 /test-results.xml
+/tsconfig.json
 /tslint-formatters
 /tslint.json
