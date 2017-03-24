@@ -31,7 +31,6 @@ describe('MzSelectDirective:unit', () => {
       callOrder = [];
       spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
-      spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
     });
 
     it('should call initHandlers method', () => {
@@ -49,14 +48,6 @@ describe('MzSelectDirective:unit', () => {
       expect(directive.initElements).toHaveBeenCalled();
       expect(callOrder[1]).toBe('initElements');
     });
-
-    it('should call handleProperties method', () => {
-
-      directive.ngOnInit();
-
-      expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('handleProperties');
-    });
   });
 
   describe('ngAfterViewInit', () => {
@@ -67,6 +58,14 @@ describe('MzSelectDirective:unit', () => {
       directive.selectElement = <any>mockSelectElement;
       spyOn(directive, 'initOnChange');
       spyOn(directive, 'initFilledIn');
+      spyOn(directive, 'handleProperties');
+    });
+
+    it('should call handleProperties method', () => {
+
+      directive.ngAfterViewInit();
+
+      expect(directive.handleProperties).toHaveBeenCalled();
     });
 
     it('should invoke material_select method on select element for initialization', () => {
