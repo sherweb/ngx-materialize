@@ -66,7 +66,7 @@ describe('MzSidenavCollapsibleComponent:view', () => {
         expect(collapsibleHeader.classList.length).toBe(2);
         expect(collapsibleHeader.classList).toContain('collapsible-header');
         expect(collapsibleHeader.classList).toContain('waves-effect');
-        expect(collapsibleHeader.innerHTML).toBe('some-text');
+        expect(collapsibleHeader.children[0].innerHTML).toBe('some-text');
 
         // collapsible-body
         const collapsibleBody = li.children[1];
