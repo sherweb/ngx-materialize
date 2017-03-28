@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class MzSidenavCollapsibleHeaderComponent implements AfterViewInit {
 
   constructor(
     public element: ElementRef,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
   ) { }
 
   ngAfterViewInit() {

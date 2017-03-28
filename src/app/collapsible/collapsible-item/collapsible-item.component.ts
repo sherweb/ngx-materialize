@@ -4,7 +4,7 @@ import {
   Directive,
   ElementRef,
   Input } from '@angular/core';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'mz-collapsible-item',
@@ -18,7 +18,7 @@ export class MzCollapsibleItemComponent implements AfterViewInit {
 
   constructor(
     public element: ElementRef,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
   ) { }
 
   ngAfterViewInit() {
