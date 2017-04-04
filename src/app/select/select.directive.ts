@@ -1,3 +1,6 @@
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -10,6 +13,7 @@ import {
   Output,
   Renderer,
 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
@@ -33,6 +37,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   suspend = false;
 
+  optionLength: number;
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer,
@@ -49,8 +55,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
-
     this.initOnChange();
+    this.listenOptionChanges();
 
     // Need to be done after view init or else the multi-select are not yet in the DOM
     this.initMultiple();
@@ -204,5 +210,31 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     }
 
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+  }
+
+  optionElementsLength() {
+    const length = this.selectElement[0].querySelectorAll('option').length;
+
+    if (this.placeholder) {
+      return length - 1;
+    }
+
+    return length;
+  }
+
+  listenOptionChanges() {
+    if (this.selectElement[0] && !this.optionLength) {
+      this.optionLength = this.optionElementsLength();
+    }
+
+    Observable.fromEvent($(this.selectElement), 'DOMSubtreeModified')
+      .debounceTime(100)
+      .subscribe(() => {
+        if (this.optionLength !== this.optionElementsLength()) {
+          this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+        }
+
+        this.optionLength = this.optionElementsLength();
+      });
   }
 }

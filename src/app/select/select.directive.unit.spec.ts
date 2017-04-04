@@ -701,4 +701,33 @@ describe('MzSelectDirective:unit', () => {
       });
     });
   });
+
+  describe('optionElementsLength', () => {
+
+    let mockSelect: HTMLSelectElement;
+
+    beforeEach(() => {
+      mockSelect = document.createElement('select');
+      directive.selectElement = $(mockSelect);
+    });
+
+    it('should return the right option length without placeholder', () => {
+      mockSelect.appendChild(document.createElement('option'));
+      mockSelect.appendChild(document.createElement('option'));
+
+      directive.placeholder = undefined;
+
+      expect(directive.optionElementsLength()).toBe(2);
+    });
+
+    it('should return the right option length with placeholder', () => {
+      mockSelect.appendChild(document.createElement('option')); // insert placeholder manually
+      mockSelect.appendChild(document.createElement('option'));
+      mockSelect.appendChild(document.createElement('option'));
+
+      directive.placeholder = 'some-placeholder';
+
+      expect(directive.optionElementsLength()).toBe(2);
+    });
+  });
 });
