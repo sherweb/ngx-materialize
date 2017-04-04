@@ -18,6 +18,8 @@ import { DropdownModule } from './dropdown/dropdown.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
+import { MediaModule } from './media/media.module';
+import { ModalModule } from './modal/modal.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
@@ -50,6 +52,8 @@ import { TooltipModule } from './tooltip/tooltip.module';
     HomeModule,
     IconModule,
     InputModule,
+    MediaModule,
+    ModalModule,
     NavbarModule,
     ParallaxModule,
     ProgressModule,
