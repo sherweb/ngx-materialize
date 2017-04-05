@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
@@ -32,6 +33,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
 @NgModule({
   imports: [
     // external modules
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,

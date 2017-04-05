@@ -1,15 +1,9 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "",
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
-    "module": "es6",
-    "moduleResolution": "node",
     "outDir": "../dist",
-    "sourceMap": true,
-    "target": "es5",
+    "module": "es6",
+    "baseUrl": "",
     "typeRoots": [
       "../node_modules/@types"
     ]
@@ -20,8 +14,5 @@
   "exclude": [
     "../inline-template/app.*",
     "../inline-template/**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true
-  }
+  ]
 }
