@@ -66,8 +66,9 @@ describe('MzSelectDirective:unit', () => {
     beforeEach(() => {
       directive.selectElement = <any>mockSelectElement;
       spyOn(directive, 'initOnChange');
-      spyOn(directive, 'initFilledIn');
+      spyOn(directive, 'listenOptionChanges');
       spyOn(directive, 'initMultiple');
+      spyOn(directive, 'initFilledIn');
     });
 
     it('should invoke material_select method on select element for initialization', () => {
@@ -82,6 +83,12 @@ describe('MzSelectDirective:unit', () => {
       directive.ngAfterViewInit();
 
       expect(directive.initFilledIn).toHaveBeenCalled();
+    });
+
+    it('should call listenOptionChanges', () => {
+      directive.ngAfterViewInit();
+
+      expect(directive.listenOptionChanges).toHaveBeenCalled();
     });
 
     it('should call initMultiple', () => {
@@ -169,6 +176,22 @@ describe('MzSelectDirective:unit', () => {
 
       expect(directive.selectElement.val).not.toHaveBeenCalled();
     }));
+
+    it('should set lastOptions', () => {
+      const mockSelect = document.createElement('select');
+      mockSelect.multiple = true;
+      mockSelect.appendChild(createOption('option-1', false));
+      mockSelect.appendChild(createOption('option-2', false));
+      mockSelect.appendChild(createOption('option-3', true));
+
+      directive.selectElement = $(mockSelect);
+
+      expect(directive.lastOptions).toBe(undefined);
+
+      directive.initMultiple();
+
+      expect(directive.lastOptions).toEqual(Array.from(directive.selectElement[0].children));
+    });
   });
 
   describe('initOnChange', () => {

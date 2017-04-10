@@ -5,6 +5,7 @@ export * from './collapsible';
 export * from './dropdown';
 export * from './icon';
 export * from './input';
+export * from './media';
 export * from './materialize.module';
 export * from './navbar';
 export * from './parallax';

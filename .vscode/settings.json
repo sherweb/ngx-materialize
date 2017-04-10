@@ -34,5 +34,9 @@
 
   // Removes the leading ./ character when the path is pointing to a parent folder.
   "relativePath.removeLeadingDot": true,
+
+// Vscode-Icon extension
+
+  // Enable Angular icons
   "vsicons.presets.angular": true
 }
