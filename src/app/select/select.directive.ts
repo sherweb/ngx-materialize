@@ -1,3 +1,7 @@
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/filter';
+
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -10,6 +14,7 @@ import {
   Output,
   Renderer,
 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
@@ -33,6 +38,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   suspend = false;
 
+  lastOptions: Element[];
+
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer,
@@ -49,8 +56,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   ngAfterViewInit() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
-
     this.initOnChange();
+    this.listenOptionChanges();
 
     // Need to be done after view init or else the multi-select are not yet in the DOM
     this.initMultiple();
@@ -96,6 +103,9 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         .map((element: HTMLOptionElement) => element.value);
       // setTimeout is needed to this fix to work
       setTimeout(() => this.selectElement.val(selectedOptions));
+
+      // prevent close on first multi select change
+      this.lastOptions = Array.from(this.selectElement[0].children);
     }
   }
 
@@ -204,5 +214,28 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     }
 
     this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+  }
+
+  listenOptionChanges() {
+    Observable.fromEvent($(this.selectElement), 'DOMSubtreeModified')
+      .debounceTime(100)
+      .filter((event: JQueryEventObject) => {
+        const currentOptions = Array.from(event.currentTarget.children);
+
+        if (this.lastOptions) {
+          const prevOptions = Array.from(this.lastOptions);
+          this.lastOptions = currentOptions;
+
+          if (prevOptions.length !== currentOptions.length) {
+            return true;
+          } else {
+            return currentOptions.some((option, index) =>
+              !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
+          }
+        } else {
+          return !!(this.lastOptions = currentOptions);
+        }
+      })
+      .subscribe(x => this.renderer.invokeElementMethod(this.selectElement, 'material_select'));
   }
 }

@@ -193,6 +193,28 @@
 
 <div class="section">
 
+  <h5 class="light">Async options</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="async-options-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+      >
+        <option *ngFor="let option of selectAsyncOptions | async" [selected]="option === optionValue">{{ option }}</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      Pass your async options to property <code class="language-markup">options</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">Playground</h5>
 
   <p>

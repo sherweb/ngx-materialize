@@ -12,7 +12,7 @@ import { SelectComponent } from './select.component';
     CodeSnippetModule,
     CommonModule,
     FormsModule,
-    MaterializeModule.forRoot(),
+    MaterializeModule,
     PropertiesTableModule,
   ],
   declarations: [SelectComponent],
