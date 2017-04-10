@@ -38,7 +38,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   suspend = false;
 
-  lastOptions: HTMLCollection;
+  lastOptions: Element[];
 
   constructor(
     private elementRef: ElementRef,
@@ -105,7 +105,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
       setTimeout(() => this.selectElement.val(selectedOptions));
 
       // prevent close on first multi select change
-      this.lastOptions = this.selectElement[0].children;
+      this.lastOptions = Array.from(this.selectElement[0].children);
     }
   }
 
@@ -220,7 +220,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     Observable.fromEvent($(this.selectElement), 'DOMSubtreeModified')
       .debounceTime(100)
       .filter((event: JQueryEventObject) => {
-        const currentOptions: any = Array.from(event.currentTarget.children);
+        const currentOptions = Array.from(event.currentTarget.children);
 
         if (this.lastOptions) {
           const prevOptions = Array.from(this.lastOptions);
@@ -229,7 +229,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
           if (prevOptions.length !== currentOptions.length) {
             return true;
           } else {
-            return currentOptions.some((option: Element, index) =>
+            return currentOptions.some((option, index) =>
               !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
           }
         } else {

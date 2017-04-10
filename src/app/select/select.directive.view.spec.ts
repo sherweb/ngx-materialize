@@ -48,9 +48,7 @@ describe('MzSelectDirective:view', () => {
 
         fixture.detectChanges();
 
-        fixture.whenStable().then(() => {
-          expect(optionLength()).toBe(1 + 2);
-        });
+        expect(optionLength()).toBe(1 + 2);
       });
     }));
   });
