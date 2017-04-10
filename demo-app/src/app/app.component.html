@@ -13,7 +13,7 @@
       <h5 class="materialize-name center-align white-text">ng2-materialize</h5>
     </mz-sidenav-header>
 
-    <template ngFor let-groupedRoute [ngForOf]="groupedRoutes">
+    <ng-template ngFor let-groupedRoute [ngForOf]="groupedRoutes">
       <mz-sidenav-subheader>
         <span class="grey-text lighten-4">{{ groupedRoute.section }}</span>
       </mz-sidenav-subheader>
@@ -23,7 +23,7 @@
           <i mz-icon-mdi [icon]="route.data.icon" class="{{ route.data.class }} grey-text lighten-5"></i>{{ route.data.text }}
         </a>
       </mz-sidenav-link>
-    </template>
+    </ng-template>
   </mz-sidenav>
 
   <button mz-button
