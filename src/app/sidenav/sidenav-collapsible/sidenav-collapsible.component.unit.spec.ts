@@ -40,8 +40,8 @@ describe('MzSidenavCollapsibleComponent:unit', () => {
 
     it('should initialize collapsible using jquery', fakeAsync(() => {
 
-      component.onClose = () => { const close = 'close'; };
-      component.onOpen = () => { const open = 'open'; };
+      component.onClose = () => null;
+      component.onOpen = () => null;
 
       const mockJQueryCollapsibleNativeElement = { collapsible: true };
 
