@@ -4,6 +4,7 @@
     "outDir": "../dist",
     "module": "es6",
     "baseUrl": "",
+    "declaration": true,
     "typeRoots": [
       "../node_modules/@types"
     ]
