@@ -25,7 +25,11 @@ describe('MzModalCloseDirective:unit', () => {
       return nativeElement.querySelector('button[mz-modal-close]');
     }
 
-    it('should trigger close method on modal component', async(() => {
+    function closeLink(): HTMLElement {
+      return nativeElement.querySelector('a[mz-modal-close]');
+    }
+
+    it('should trigger close method on modal component when used on a button', async(() => {
 
       buildComponent<MzModalComponent>(`
         <mz-modal>
@@ -41,6 +45,27 @@ describe('MzModalCloseDirective:unit', () => {
         spyOn(MzModalComponent.prototype, 'close');
 
         closeButton().click();
+
+        expect(MzModalComponent.prototype.close).toHaveBeenCalled();
+      });
+    }));
+
+    it('should trigger close method on modal component when used on a hyperlink', async(() => {
+
+      buildComponent<MzModalComponent>(`
+        <mz-modal>
+          <mz-modal-footer>
+            <a mz-modal-close>Close</a>
+          </mz-modal-footer>
+        </mz-modal>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        spyOn(MzModalComponent.prototype, 'close');
+
+        closeLink().click();
 
         expect(MzModalComponent.prototype.close).toHaveBeenCalled();
       });
