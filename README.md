@@ -119,7 +119,9 @@ import { HomeComponent } from './home.component';
 export class HomeModule { }
 ```
 
-## Available components
+## Available features
+
+### Components
 
 * Badge
 * Button
@@ -129,6 +131,7 @@ export class HomeModule { }
 * Dropdown
 * Icon
 * Input
+* Modal
 * Navbar
 * Parallax
 * Progress
@@ -139,6 +142,10 @@ export class HomeModule { }
 * Textarea
 * Toast
 * Tooltip
+
+### Services
+
+* Media
 
 ## Demo application
 
