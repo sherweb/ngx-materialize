@@ -9,6 +9,8 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
+import { MediaComponent } from './media/media.component';
+import { ModalComponent } from './modal/modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -25,6 +27,7 @@ const formControls = 'Form Controls';
 const layout = 'Layout';
 const loading = 'Loading';
 const indicator = 'Indicators';
+const service = 'Services';
 
 export const ROUTES: Routes = [
   // home route
@@ -43,6 +46,7 @@ export const ROUTES: Routes = [
   { path: 'collapsible', component: CollapsibleComponent,
     data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
   { path: 'dropdown', component: DropdownComponent, data: { icon: 'dots-vertical', text: 'Dropdown', section: layout } },
+  { path: 'modal', component: ModalComponent, data: { icon: 'image-filter-none', text: 'Modal', section: layout } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar', section: layout } },
   { path: 'parallax', component: ParallaxComponent, data: { icon: 'image-area', text: 'Parallax', section: layout } },
   { path: 'sidenav', component: SidenavComponent, data: { icon: 'menu', text: 'Sidenav', section: layout } },
@@ -56,6 +60,9 @@ export const ROUTES: Routes = [
   { path: 'icon', component: IconComponent, data: { icon: 'emoticon-happy', text: 'Icon', section: indicator } },
   { path: 'toast', component: ToastComponent, data: { icon: 'tooltip-text', text: 'Toast', section: indicator } },
   { path: 'tooltip', component: TooltipComponent, data: { icon: 'tooltip', text: 'Tooltip', section: indicator } },
+
+  // components routes - Service
+  { path: 'media', component: MediaComponent, data: { icon: 'monitor', text: 'Media', section: service } },
 
   // redirect to home when route does not exists (must be last route)
   { path: '**', redirectTo: 'home' },

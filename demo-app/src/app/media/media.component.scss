@@ -1,0 +1,49 @@
+@import "../../_route-animation-host";
+
+.json-sample {
+  background: rgba(0,0,0,0.07);
+  border-radius: 2px;
+  margin: 0 0.05em;
+  padding: 1em;
+}
+
+.demo {
+  border-radius: 3px;
+  height: 135px;
+
+  transition: background 0.25s ease-in;
+}
+
+.label {
+  border-radius: 3px;
+  color: white;
+  padding: 4px 8px;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.s-is-active {
+  background: #3cba54;
+}
+
+.m-is-active {
+  background: #f4c20d;
+}
+
+.l-is-active {
+  background: #db3236;
+}
+
+.xl-is-active {
+  background: #4885ed;
+}
+
+.active-true {
+  color: #3cba54;
+}
+
+.active-false {
+  color: #db3236;
+}

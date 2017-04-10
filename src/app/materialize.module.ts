@@ -9,6 +9,8 @@ import * as Collapsible from './collapsible';
 import * as Dropdown from './dropdown';
 import * as Icon from './icon';
 import * as Input from './input';
+import * as Media from './media';
+import * as Modal from './modal';
 import * as Navbar from './navbar';
 import * as Parallax from './parallax/parallax.component';
 import * as Progress from './progress/progress.component';
@@ -41,6 +43,11 @@ const MZ_COMPONENTS = [
   Input.MzInputContainerComponent,
   Input.MzInputDirective,
   Input.MzInputPrefixDirective,
+  Modal.MzModalCloseDirective,
+  Modal.MzModalComponent,
+  Modal.MzModalContentDirective,
+  Modal.MzModalFooterDirective,
+  Modal.MzModalHeaderDirective,
   Navbar.MzNavbarComponent,
   Navbar.MzNavbarItemComponent,
   Navbar.MzNavbarItemContainerComponent,
@@ -66,6 +73,7 @@ const MZ_COMPONENTS = [
 ];
 
 const MZ_PROVIDERS = [
+  Media.MzMediaService,
   Toast.MzToastService,
 ];
 
