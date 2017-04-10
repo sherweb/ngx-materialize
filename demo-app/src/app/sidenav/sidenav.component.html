@@ -172,7 +172,7 @@
 
 <app-code-snippet>
 &lt;mz-sidenav>
-  &lt;mz-sidenav-collapsible>
+  &lt;mz-sidenav-collapsible [onClose]="closeFunctionCallback" [onOpen]="openFunctionCallback">
     &lt;mz-sidenav-collapsible-header>
        &lt;i mz-icon-mdi [icon]="'menu-right'" class="caret">&lt;/i>Collapsible
     &lt;/mz-sidenav-collapsible-header>
@@ -194,11 +194,29 @@
 
   <h5 class="light">Properties</h5>
 
-  <p>
-    Side navigation can be customized using the following properties on the <code class="language-markup">mz-sidenav</code> element.
-  </p>
+  <div class="section">
 
-  <app-properties-table
-    [properties]="properties">
-  </app-properties-table>
+    <h6 class="bold">mz-sidenav</h6>
+
+    <p>
+      Side navigation can be customized using the following properties on the <code class="language-markup">mz-sidenav</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-sidenav-collapsible</h6>
+
+    <p>
+      Collapsibles can be customized using the following properties on the <code class="language-markup">mz-sidenav-collapsible</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavCollapsibleProperties">
+    </app-properties-table>
+  </div>
 </div>

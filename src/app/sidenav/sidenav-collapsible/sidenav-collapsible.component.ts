@@ -4,7 +4,11 @@ import {
   Component,
   ContentChild,
   Directive,
+  ElementRef,
+  Input,
   QueryList,
+  Renderer,
+  ViewChild,
 } from '@angular/core';
 
 import { MzSidenavCollapsibleHeaderComponent } from './sidenav-collapsible-header/sidenav-collapsible-header.component';
@@ -15,11 +19,31 @@ import { MzSidenavCollapsibleHeaderComponent } from './sidenav-collapsible-heade
   styleUrls: ['./sidenav-collapsible.component.scss'],
 })
 export class MzSidenavCollapsibleComponent implements AfterViewInit {
+  @Input() onClose: Function;
+  @Input() onOpen: Function;
+
+  @ViewChild('collapsible') collapsible: ElementRef;
   @ContentChild(MzSidenavCollapsibleHeaderComponent) header: MzSidenavCollapsibleHeaderComponent;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    public changeDetectorRef: ChangeDetectorRef,
+    public renderer: Renderer,
+  ) { }
 
   ngAfterViewInit() {
+    this.initCollapsible();
+  }
+
+  initCollapsible() {
+    const options: Materialize.CollapsibleOptions = {
+      accordion: false,
+      onClose: this.onClose,
+      onOpen: this.onOpen,
+    };
+
+    // need setTimeout otherwise loading directly on the page cause an error
+    setTimeout(() => this.renderer.invokeElementMethod($(this.collapsible.nativeElement), 'collapsible', [options]));
+
     this.changeDetectorRef.detectChanges();
   }
 }
