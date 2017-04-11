@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'ng2-materialize';
 
@@ -9,9 +10,10 @@ import { SidenavComponent } from './sidenav.component';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule.forRoot(),
+    MaterializeModule,
     PropertiesTableModule,
     RouterModule,
   ],

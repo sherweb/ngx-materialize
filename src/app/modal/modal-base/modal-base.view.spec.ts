@@ -5,8 +5,6 @@ import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrappe
 import { MzModalComponent } from '../modal.component';
 import { MzBaseModal } from './modal-base';
 
-declare var ng: any;
-
 @Component({
   selector: 'mz-test-modal',
   template: `<mz-modal></mz-modal>`,

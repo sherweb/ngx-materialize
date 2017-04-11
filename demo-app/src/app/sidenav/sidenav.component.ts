@@ -11,7 +11,20 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class SidenavComponent {
-  properties: IPropertyRow[] = [
+  sidenavCollapsibleProperties: IPropertyRow[] = [
+    { name: 'onClose',
+      mandatory: false,
+      type: 'Function',
+      description: `Function that will be called when a collapsible section is closed`,
+    },
+    { name: 'onOpen',
+      mandatory: false,
+      type: 'Function',
+      description: `Function that will be called when a collapsible section is opened`,
+    },
+  ];
+
+  sidenavProperties: IPropertyRow[] = [
     { name: 'backgroundClass',
       mandatory: false,
       type: 'string',

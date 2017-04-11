@@ -1,6 +1,6 @@
 {
   "name": "ng2-materialize",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "description": "An Angular 2 wrap around Materialize library",
   "license": "Apache-2.0",
   "repository": "sherweb/ng2-materialize",
@@ -29,23 +29,24 @@
     "test": "ng test",
     "prebuild": "rimraf -- dist inline-template src/node_modules",
     "build": "gulp inline-template && ngc -p src/tsconfig.lib.json",
-    "postbuild": "rimraf -- src/inline-template src/node_modules"
+    "postbuild": "rimraf -- src/inline-template src/node_modules",
+    "heroku-postbuild": "cd demo-app && yarn install && yarn run build:prod"
   },
   "dependencies": {
     "@types/materialize-css": "0.98.0",
     "materialize-css": "0.98.1"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0-rc.4",
-    "@angular/common": "^2.4.0",
-    "@angular/compiler": "^2.4.0",
-    "@angular/compiler-cli": "^2.4.0",
-    "@angular/core": "^2.4.0",
-    "@angular/forms": "^2.4.0",
-    "@angular/http": "^2.4.0",
-    "@angular/platform-browser": "^2.4.0",
-    "@angular/platform-browser-dynamic": "^2.4.0",
-    "@angular/router": "^3.4.0",
+    "@angular/cli": "1.0.0",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
     "@angular/tsc-wrapped": "0.5.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
@@ -56,6 +57,7 @@
     "gulp-inline-ng2-template": "^4.0.0",
     "html-minifier": "^3.4.2",
     "jasmine-core": "~2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
@@ -70,10 +72,10 @@
     "rxjs": "^5.1.0",
     "ts-helpers": "^1.1.1",
     "ts-node": "~2.0.0",
-    "tslint": "~4.4.2",
+    "tslint": "~4.5.0",
     "tslint-eslint-rules": "^3.2.3",
     "tslint-microsoft-contrib": "^4.0.0",
-    "typescript": "~2.0.0",
-    "zone.js": "^0.7.6"
+    "typescript": "~2.2.0",
+    "zone.js": "^0.8.4"
   }
 }

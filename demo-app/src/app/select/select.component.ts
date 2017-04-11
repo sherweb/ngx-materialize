@@ -1,4 +1,7 @@
+import 'rxjs/add/operator/delay';
+
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
@@ -47,4 +50,14 @@ export class SelectComponent {
       defaultValue: `false`,
     },
   ];
+
+  selectAsyncOptions = new Observable((observer) => {
+    observer.next([
+      'Option 1',
+      'Option 2',
+      'Option 3',
+      'Option 4',
+    ]);
+    observer.complete();
+  }).delay(500);
 }

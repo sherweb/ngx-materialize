@@ -1,14 +1,6 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
     "target": "es5",
@@ -23,6 +15,7 @@
     ],
     "paths": {
       "@angular/*": ["../node_modules/@angular/*"],
+      "oidc-client": ["../node_modules/oidc-client"],
       "rxjs/*": ["../node_modules/rxjs/*"]
     }
   },

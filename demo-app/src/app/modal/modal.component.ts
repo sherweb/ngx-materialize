@@ -55,8 +55,8 @@ export class ModalComponent implements OnInit {
   ];
 
   constructor(
-    private renderer: Renderer,
     private modalService: MzModalService,
+    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
