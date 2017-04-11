@@ -1,34 +1,44 @@
 import {
+  AfterViewInit,
   Component,
   Directive,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   Renderer,
   ViewChild,
 } from '@angular/core';
+
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Component({
   selector: 'mz-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
-export class MzModalComponent implements OnInit {
+export class MzModalComponent extends HandlePropChanges implements OnInit, AfterViewInit {
   @Input() bottomSheet: boolean;
   @Input() fixedFooter: boolean;
   @Input() fullscreen: boolean;
   @Input() options: Materialize.ModalOptions;
-
+  @Output() onClose = new EventEmitter<void>();
   @ViewChild('modal') modalElementRef: ElementRef;
 
   modalElement: JQuery;
 
-  constructor(
-    public renderer: Renderer,
-  ) { }
+  constructor(public renderer: Renderer) {
+    super();
+  }
 
   ngOnInit() {
+    this.initHandlers();
     this.initElements();
+    this.handleProperties();
+  }
+
+  ngAfterViewInit() {
     this.initModal();
   }
 
@@ -36,8 +46,29 @@ export class MzModalComponent implements OnInit {
     this.modalElement = $(this.modalElementRef.nativeElement);
   }
 
+  initHandlers() {
+    this.handlers = {
+       options: () => this.handleOptions(),
+    };
+  }
+
   initModal() {
     this.renderer.invokeElementMethod(this.modalElement, 'modal', [this.options]);
+  }
+
+  handleProperties() {
+    super.executePropHandlers();
+  }
+
+  handleOptions() {
+    // extend complete function to emit onClose on callback return
+    const originalCompleteFn = this.options && this.options.complete || (() => {});
+    this.options = Object.assign({}, this.options, {
+      complete: () => {
+        originalCompleteFn();
+        this.onClose.emit();
+      },
+    });
   }
 
   open() {

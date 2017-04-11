@@ -1,6 +1,6 @@
 import { Directive, HostListener } from '@angular/core';
 
-import { MzModalComponent } from './modal.component';
+import { MzModalComponent } from '../modal.component';
 
 @Directive({
   selector: 'a[mzModalClose], button[mzModalClose], a[mz-modal-close], button[mz-modal-close]',
