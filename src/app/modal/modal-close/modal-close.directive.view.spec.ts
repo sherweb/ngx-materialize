@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
 
-import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
+import { MzModalComponent, MzModalFooterDirective } from '../modal.component';
 import { MzModalCloseDirective } from './modal-close.directive';
-import { MzModalComponent, MzModalFooterDirective } from './modal.component';
 
-describe('MzModalCloseDirective:unit', () => {
+describe('MzModalCloseDirective:view', () => {
 
    beforeEach(async(() => {
     TestBed.configureTestingModule({

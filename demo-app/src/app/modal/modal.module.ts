@@ -5,6 +5,7 @@ import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
+import { ModalExampleComponent } from './modal-example/modal-example.component';
 import { ModalComponent } from './modal.component';
 
 @NgModule({
@@ -15,6 +16,12 @@ import { ModalComponent } from './modal.component';
     PropertiesTableModule,
     RouterModule,
   ],
-  declarations: [ModalComponent],
+  declarations: [
+    ModalComponent,
+    ModalExampleComponent,
+  ],
+  entryComponents: [
+    ModalExampleComponent,
+  ],
 })
 export class ModalModule { }

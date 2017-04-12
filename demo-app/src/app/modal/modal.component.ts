@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer } from '@angular/core';
+import { MzModalService } from 'ng2-materialize';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
+import { ModalExampleComponent } from './modal-example/modal-example.component';
 
 @Component({
   selector: 'app-modal',
@@ -53,6 +55,7 @@ export class ModalComponent implements OnInit {
   ];
 
   constructor(
+    private modalService: MzModalService,
     private renderer: Renderer,
   ) { }
 
@@ -60,5 +63,9 @@ export class ModalComponent implements OnInit {
     // initialize scrollspy
     const scrollSpy = $('.scrollspy');
     this.renderer.invokeElementMethod(scrollSpy, 'scrollSpy');
+  }
+
+  openServiceModal() {
+    this.modalService.open(ModalExampleComponent);
   }
 }
