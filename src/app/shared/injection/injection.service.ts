@@ -8,14 +8,6 @@ import {
   Type,
 } from '@angular/core';
 
-/**
- * Injection service is a helper to append components
- * dynamically to a known location in the DOM, most
- * noteably for dialogs/tooltips appending to body.
- *
- * @export
- * @class MzInjectionService
- */
 @Injectable()
 export class MzInjectionService {
   private container: ComponentRef<any>;
