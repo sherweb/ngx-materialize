@@ -8,6 +8,7 @@
 /.editorconfig
 /.npmignore
 /.vscode
+/app.json
 /app/shared/test-wrapper
 /appveyor.yml
 /circle.yml
@@ -18,6 +19,7 @@
 /karma.conf.js
 /protractor.conf.js
 /src
+/static.json
 /test-results.xml
 /tsconfig.json
 /tslint-formatters
