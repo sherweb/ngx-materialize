@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'mz-sidenav-collapsible-header',
@@ -7,11 +9,14 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 })
 export class MzSidenavCollapsibleHeaderComponent implements AfterViewInit {
 
-  innerHTML: string;
+  innerHTML: SafeHtml;
 
-  constructor(public element: ElementRef) { }
+  constructor(
+    public element: ElementRef,
+    public sanitizer: DomSanitizer,
+  ) { }
 
   ngAfterViewInit() {
-    this.innerHTML = this.element.nativeElement.innerHTML;
+    this.innerHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.nativeElement.innerHTML);
   }
 }
