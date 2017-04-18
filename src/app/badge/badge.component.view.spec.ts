@@ -27,7 +27,7 @@ describe('MzBadgeComponent:view', () => {
         fixture.detectChanges();
 
         expect(badge()).toBeTruthy();
-        expect(badge().innerText).toBe('2');
+        expect(badge().innerText.trim()).toBe('2');
       });
     }));
 
