@@ -53,6 +53,7 @@
     "clean-css": "^4.0.10",
     "codelyzer": "~2.0.0",
     "core-js": "^2.4.1",
+    "custom-event-polyfill": "^0.3.0",
     "gulp": "^3.9.1",
     "gulp-inline-ng2-template": "^4.0.0",
     "html-minifier": "^3.4.2",
