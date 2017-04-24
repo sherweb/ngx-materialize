@@ -21,7 +21,7 @@
 
 <div class="readme-summary">
   <p align="center">
-    This library is an <a href="https://angular.io/">Angular 2</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
+    This library is an <a href="https://angular.io/">Angular 4</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
   <p align="center">
     The purpose of this library is to simplify the usage within the Angular framework.
@@ -37,7 +37,7 @@ We are aware that alternatives exposing Material Design components already exist
 
 We already know the possibilities Materialize offers. What is left to do is to wrap components that we want to use in Angular component.
 
-If you want to use a component that is not yet implemented, simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2 components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
+If you want to use a component that is not yet implemented, simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 4 components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
 
 ## Installation
 
