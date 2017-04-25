@@ -45,8 +45,7 @@ describe('MzMediaService:unit', () => {
       useCases.forEach(useCase => {
         mockWindowSize(useCase.windowHeight, useCase.windowWidth);
 
-        const event = new CustomEvent('resize');
-        window.dispatchEvent(event);
+        dispatchEvent(new CustomEvent('resize'));
 
         mediaService.media.first().subscribe(media => {
           expect(media.alias).toBe(useCase.alias);
