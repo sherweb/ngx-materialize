@@ -1,25 +1,22 @@
 import {
-  AfterViewInit,
   Component,
   Directive,
   ElementRef,
   Input } from '@angular/core';
+
+ import { MzComponentRemoveHost } from '../../shared/component-remove-host/component-remove-host';
 
 @Component({
   selector: 'mz-collapsible-item',
   templateUrl: './collapsible-item.component.html',
   styleUrls: ['./collapsible-item.component.scss'],
 })
-export class MzCollapsibleItemComponent implements AfterViewInit {
+export class MzCollapsibleItemComponent extends MzComponentRemoveHost {
   @Input() active: boolean;
 
-  innerHTML: string;
-
-  constructor(public element: ElementRef) { }
-
-  ngAfterViewInit() {
-    this.innerHTML = this.element.nativeElement.innerHTML;
-  }
+  constructor(public elementRef: ElementRef) {
+    super(elementRef);
+   }
 }
 
 // Declare the tags to avoid error: '<mz-collapsible-item-x>' is not a known element

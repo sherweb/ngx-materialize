@@ -21,7 +21,7 @@ describe('MzCollapsibleItemComponent:view', () => {
     let nativeElement: any;
 
     function collapsibleItem(): HTMLElement {
-      return nativeElement.querySelector('mz-collapsible-item');
+      return nativeElement.querySelector('li');
     }
 
     function collapsibleItemBody(): HTMLElement {
