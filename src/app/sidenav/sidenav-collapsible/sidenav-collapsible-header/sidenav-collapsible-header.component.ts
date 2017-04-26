@@ -1,17 +1,15 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
+
+import { MzRemoveComponentHost } from '../../../shared/remove-component-host/remove-component-host';
 
 @Component({
   selector: 'mz-sidenav-collapsible-header',
   templateUrl: './sidenav-collapsible-header.component.html',
   styleUrls: ['./sidenav-collapsible-header.component.scss'],
 })
-export class MzSidenavCollapsibleHeaderComponent implements AfterViewInit {
+export class MzSidenavCollapsibleHeaderComponent extends MzRemoveComponentHost {
 
-  innerHTML: string;
-
-  constructor(public element: ElementRef) { }
-
-  ngAfterViewInit() {
-    this.innerHTML = this.element.nativeElement.innerHTML;
-  }
+  constructor(public elementRef: ElementRef) {
+    super(elementRef);
+   }
 }

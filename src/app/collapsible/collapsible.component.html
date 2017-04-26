@@ -2,7 +2,5 @@
   class="collapsible"
   [class.popout]="popout"
 >
-
-  <li *ngFor="let item of items" [innerHTML]="item.innerHTML"></li>
-
+  <ng-content select="mz-collapsible-item"></ng-content>
 </ul>

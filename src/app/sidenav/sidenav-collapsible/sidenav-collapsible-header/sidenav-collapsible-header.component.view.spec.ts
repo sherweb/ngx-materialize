@@ -21,7 +21,7 @@ describe('MzSidenavCollapsibleHeaderComponent:view', () => {
     let nativeElement: any;
 
     function sidenavCollapsibleHeader(): HTMLElement {
-      return nativeElement.querySelector('mz-sidenav-collapsible-header');
+      return nativeElement.querySelector('a.collapsible-header');
     }
 
     it('should display a sidenav collapsible header', async(() => {

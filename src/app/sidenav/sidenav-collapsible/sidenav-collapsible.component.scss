@@ -1,11 +1,7 @@
-.collapsible-header {
-  @media only screen and (min-width: 992px) {
-    padding: 0 32px;
-  }
-}
-
 :host #{'/deep/'} {
   .collapsible-header {
+
+    padding: 0 32px;
 
     i {
       color: rgba(0,0,0,0.54);
@@ -16,10 +12,6 @@
     li {
       a {
         font-weight: initial;
-
-        @media only screen and (min-width: 992px) {
-          padding: 0 48px;
-        }
       }
     }
   }

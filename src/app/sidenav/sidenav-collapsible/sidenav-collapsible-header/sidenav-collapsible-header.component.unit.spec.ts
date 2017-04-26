@@ -22,14 +22,4 @@ describe('MzSidenavCollapsibleHeaderComponent:unit', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  describe('ngAfterViewInit', () => {
-
-    it('should set innerHTML with the native element', () => {
-
-      component.ngAfterViewInit();
-
-      expect(component.innerHTML).toBe(component.element.nativeElement.innerHTML);
-    });
-  });
 });

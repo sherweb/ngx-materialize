@@ -1,7 +1,7 @@
 <li>
   <ul #collapsible class="collapsible collapsible-accordion">
     <li>
-      <a class="collapsible-header waves-effect" *ngIf="header" [innerHTML]="header.innerHTML"></a>
+      <ng-content select="mz-sidenav-collapsible-header"></ng-content>
       <div class="collapsible-body">
         <ul>
           <ng-content select="mz-sidenav-collapsible-content"></ng-content>
