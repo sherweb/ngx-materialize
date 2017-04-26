@@ -1,13 +1,13 @@
 import { Component, ElementRef } from '@angular/core';
 
-import { MzComponentRemoveHost } from '../../../shared/component-remove-host/component-remove-host';
+import { MzRemoveComponentHost } from '../../../shared/remove-component-host/remove-component-host';
 
 @Component({
   selector: 'mz-sidenav-collapsible-header',
   templateUrl: './sidenav-collapsible-header.component.html',
   styleUrls: ['./sidenav-collapsible-header.component.scss'],
 })
-export class MzSidenavCollapsibleHeaderComponent extends MzComponentRemoveHost {
+export class MzSidenavCollapsibleHeaderComponent extends MzRemoveComponentHost {
 
   constructor(public elementRef: ElementRef) {
     super(elementRef);

@@ -1,2 +1,2 @@
-export * from './component-remove-host/component-remove-host';
+export * from './remove-component-host/remove-component-host';
 export * from './injection/injection.service';

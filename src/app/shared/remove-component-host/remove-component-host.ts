@@ -3,7 +3,7 @@ import {
   ElementRef,
 } from '@angular/core';
 
-export abstract class MzComponentRemoveHost implements AfterViewInit {
+export abstract class MzRemoveComponentHost implements AfterViewInit {
 
   public elementRef: ElementRef;
 

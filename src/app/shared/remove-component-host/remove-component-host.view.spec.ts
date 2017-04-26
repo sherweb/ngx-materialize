@@ -3,7 +3,7 @@ import { Component, ElementRef } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
-import { MzComponentRemoveHost } from './component-remove-host';
+import { MzRemoveComponentHost } from './remove-component-host';
 
 @Component({
   selector: `mz-test-remove-host`,
@@ -18,13 +18,13 @@ import { MzComponentRemoveHost } from './component-remove-host';
     <div class="empty">Empty</div>
   `,
 })
-class MzTestRemoveHostComponent extends MzComponentRemoveHost {
+class MzTestRemoveHostComponent extends MzRemoveComponentHost {
   constructor(public elementRef: ElementRef) {
     super(elementRef);
    }
  }
 
-describe('MzComponentRemoveHost:view', () => {
+describe('MzRemoveComponentHost:view', () => {
 
   let nativeElement: any;
 
@@ -37,7 +37,7 @@ describe('MzComponentRemoveHost:view', () => {
     });
   }));
 
-  fdescribe('ngOnInit', () => {
+  describe('ngOnInit', () => {
 
     it('should move children out of the component and delete the component tag', async(() => {
 
@@ -55,7 +55,8 @@ describe('MzComponentRemoveHost:view', () => {
         expect(firstLiElement).toBeTruthy();
         expect(firstLiElement.innerText).toBe('One');
 
-        const secondLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.two');        expect(secondLiElement).toBeTruthy();
+        const secondLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.two');
+        expect(secondLiElement).toBeTruthy();
         expect(secondLiElement.innerText).toBe('Two');
 
         const threeLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.three');

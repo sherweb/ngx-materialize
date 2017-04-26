@@ -4,14 +4,14 @@ import {
   ElementRef,
   Input } from '@angular/core';
 
- import { MzComponentRemoveHost } from '../../shared/component-remove-host/component-remove-host';
+ import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
 
 @Component({
   selector: 'mz-collapsible-item',
   templateUrl: './collapsible-item.component.html',
   styleUrls: ['./collapsible-item.component.scss'],
 })
-export class MzCollapsibleItemComponent extends MzComponentRemoveHost {
+export class MzCollapsibleItemComponent extends MzRemoveComponentHost {
   @Input() active: boolean;
 
   constructor(public elementRef: ElementRef) {
