@@ -11,6 +11,7 @@ import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { MediaComponent } from './media/media.component';
 import { ModalComponent } from './modal/modal.component';
+import { NativeCssClassComponent } from './native-css-class/native-css-class.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -23,6 +24,7 @@ import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 // sections name
+const css = 'CSS';
 const formControls = 'Form Controls';
 const layout = 'Layout';
 const loading = 'Loading';
@@ -32,6 +34,9 @@ const service = 'Services';
 export const ROUTES: Routes = [
   // home route
   { path: 'home', component: HomeComponent },
+
+  // components routes - CSS
+  { path: 'native-css-class', component: NativeCssClassComponent, data: { icon: 'language-css3', text: 'Native CSS Class', section: css } },
 
   // components routes - Form controls
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },

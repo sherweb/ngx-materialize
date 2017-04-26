@@ -21,6 +21,7 @@ import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
 import { MediaModule } from './media/media.module';
 import { ModalModule } from './modal/modal.module';
+import { NativeCssClassModule } from './native-css-class/native-css-class.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { ParallaxModule } from './parallax/parallax.module';
 import { ProgressModule } from './progress/progress.module';
@@ -57,6 +58,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     MediaModule,
     ModalModule,
     NavbarModule,
+    NativeCssClassModule,
     ParallaxModule,
     ProgressModule,
     RadioButtonModule,

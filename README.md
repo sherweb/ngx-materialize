@@ -121,6 +121,8 @@ export class HomeModule { }
 
 ## Available features
 
+ Page listed in [Native CCS Class](./native-css-class) will not be wrapped.
+
 ### Components
 
 * Badge
