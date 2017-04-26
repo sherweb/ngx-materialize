@@ -1,14 +1,14 @@
 import {
   AfterViewInit,
   ElementRef,
+  Inject,
 } from '@angular/core';
 
 export abstract class MzRemoveComponentHost implements AfterViewInit {
 
-  public elementRef: ElementRef;
-
-  constructor(elementRef: ElementRef) {
-  }
+  constructor(
+    @Inject(ElementRef) public elementRef: ElementRef,
+  ) { }
 
   ngAfterViewInit() {
     const nativeElement: HTMLElement = this.elementRef.nativeElement;

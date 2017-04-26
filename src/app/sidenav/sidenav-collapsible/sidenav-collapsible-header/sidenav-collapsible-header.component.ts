@@ -8,8 +8,4 @@ import { MzRemoveComponentHost } from '../../../shared/remove-component-host/rem
   styleUrls: ['./sidenav-collapsible-header.component.scss'],
 })
 export class MzSidenavCollapsibleHeaderComponent extends MzRemoveComponentHost {
-
-  constructor(public elementRef: ElementRef) {
-    super(elementRef);
-   }
 }

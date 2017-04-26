@@ -1,3 +1,5 @@
+// tslint:disable:max-line-length
+
 import { Routes } from '@angular/router';
 
 import { BadgeComponent } from './badge/badge.component';
@@ -5,6 +7,7 @@ import { ButtonComponent } from './button/button.component';
 import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
+import { CollectionComponent } from './collection/collection.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
@@ -43,8 +46,8 @@ export const ROUTES: Routes = [
 
   // components routes - Layout
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },
-  { path: 'collapsible', component: CollapsibleComponent,
-    data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
+  { path: 'collapsible', component: CollapsibleComponent, data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
+  { path: 'collection', component: CollectionComponent, data: { icon: 'view-sequential', text: 'Collection', section: layout } },
   { path: 'dropdown', component: DropdownComponent, data: { icon: 'dots-vertical', text: 'Dropdown', section: layout } },
   { path: 'modal', component: ModalComponent, data: { icon: 'image-filter-none', text: 'Modal', section: layout } },
   { path: 'navbar', component: NavbarComponent, data: { icon: 'view-day', text: 'Navbar', section: layout } },

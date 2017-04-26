@@ -1,7 +1,6 @@
 import {
   Component,
   Directive,
-  ElementRef,
   Input } from '@angular/core';
 
  import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
@@ -13,10 +12,6 @@ import {
 })
 export class MzCollapsibleItemComponent extends MzRemoveComponentHost {
   @Input() active: boolean;
-
-  constructor(public elementRef: ElementRef) {
-    super(elementRef);
-   }
 }
 
 // Declare the tags to avoid error: '<mz-collapsible-item-x>' is not a known element
