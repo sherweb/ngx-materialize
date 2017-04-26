@@ -79,7 +79,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
   initElements() {
     this.selectElement = $(this.elementRef.nativeElement);
-    this.selectContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
+    this.selectContainerElement = $(this.elementRef.nativeElement).parents('.input-field');
     this.labelElement = this.createLabelElement();
   }
 

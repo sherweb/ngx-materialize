@@ -365,7 +365,7 @@ describe('MzSelectDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockSelectElement = { select: true, parent: (selector: string) => {} };
+      const mockSelectElement = { select: true, parents: (selector: string) => {} };
       const mockSelectContainerElement = { selectContainer: true };
       const mockLabelElement = { label: true };
 
@@ -375,7 +375,7 @@ describe('MzSelectDirective:unit', () => {
           : {};
       });
 
-      spyOn(mockSelectElement, 'parent').and.callFake((selector: string): any => {
+      spyOn(mockSelectElement, 'parents').and.callFake((selector: string): any => {
         return selector === '.input-field'
           ? mockSelectContainerElement
           : {};
