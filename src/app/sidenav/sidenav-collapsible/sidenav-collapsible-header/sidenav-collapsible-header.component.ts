@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { MzRemoveComponentHost } from '../../../shared/remove-component-host/remove-component-host';
 
@@ -7,5 +7,4 @@ import { MzRemoveComponentHost } from '../../../shared/remove-component-host/rem
   templateUrl: './sidenav-collapsible-header.component.html',
   styleUrls: ['./sidenav-collapsible-header.component.scss'],
 })
-export class MzSidenavCollapsibleHeaderComponent extends MzRemoveComponentHost {
-}
+export class MzSidenavCollapsibleHeaderComponent extends MzRemoveComponentHost { }
