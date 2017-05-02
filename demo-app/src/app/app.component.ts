@@ -5,7 +5,10 @@ import { NavigationEnd, Route, Router } from '@angular/router';
 import { MzSidenavComponent } from 'ng2-materialize';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
-type SectionRoutesPair = { section: string, routes: Route[] };
+abstract class SectionRoutesPair {
+  section: string;
+  routes: Route[];
+}
 
 @Component({
   selector: 'app-root',

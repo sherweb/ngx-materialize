@@ -1,5 +1,5 @@
 import { Component, ComponentRef, EventEmitter } from '@angular/core';
-import { inject, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { MzInjectionService } from '../../shared/injection/injection.service';
 import { MzBaseModal } from '../modal-base';

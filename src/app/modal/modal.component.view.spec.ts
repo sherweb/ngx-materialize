@@ -1,4 +1,3 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';

@@ -1,5 +1,5 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzButtonDirective } from './button.directive';

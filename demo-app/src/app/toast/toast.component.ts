@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MzToastService } from 'ng2-materialize';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';

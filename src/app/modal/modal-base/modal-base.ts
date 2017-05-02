@@ -1,7 +1,5 @@
 import {
   AfterViewInit,
-  EventEmitter,
-  Output,
   ViewChild,
 } from '@angular/core';
 

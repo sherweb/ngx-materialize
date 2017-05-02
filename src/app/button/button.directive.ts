@@ -1,14 +1,10 @@
 import {
     Directive,
     ElementRef,
-    EventEmitter,
     Input,
     OnInit,
-    Output,
     Renderer,
 } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 

@@ -7,11 +7,9 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
-  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
   Renderer,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';

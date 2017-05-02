@@ -3,7 +3,6 @@ import { Media, MzMediaService } from 'ng2-materialize';
 import { Observable } from 'rxjs/Observable';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
-import { IPropertyRow } from '../shared/properties-table/properties-table.component';
 
 @Component({
   selector: 'app-media',

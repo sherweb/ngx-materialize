@@ -1,5 +1,5 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzTextareaDirective } from './textarea.directive';

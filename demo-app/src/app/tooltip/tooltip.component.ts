@@ -34,7 +34,8 @@ export class TooltipComponent {
     { name: 'position',
       mandatory: false,
       type: 'string',
-      description: 'Set the direction of the tooltip, could be either <code class="language-markup">bottom</code>, <code class="language-markup">top</code>, <code class="language-markup">left</code> or <code class="language-markup">right</code>',
+      description: 'Set the direction of the tooltip, could be either <code class="language-markup">bottom</code>, '
+      + '<code class="language-markup">top</code>, <code class="language-markup">left</code> or <code class="language-markup">right</code>',
       defaultValue: 'bottom',
     },
     { name: 'tooltip',
