@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
-import { NativeCssClassComponent } from './native-css-class.component';
+import { MaterializeCssClassComponent } from './materialize-css-class.component';
 
 @NgModule({
   imports: [
@@ -13,6 +13,6 @@ import { NativeCssClassComponent } from './native-css-class.component';
     CommonModule,
     MaterializeModule,
   ],
-  declarations: [NativeCssClassComponent],
+  declarations: [MaterializeCssClassComponent],
 })
-export class NativeCssClassModule { }
+export class MaterializeCssClassModule { }

@@ -9,9 +9,9 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
+import { MaterializeCssClassComponent } from './materialize-css-class/materialize-css-class.component';
 import { MediaComponent } from './media/media.component';
 import { ModalComponent } from './modal/modal.component';
-import { NativeCssClassComponent } from './native-css-class/native-css-class.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -36,7 +36,8 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
 
   // components routes - CSS
-  { path: 'native-css-class', component: NativeCssClassComponent, data: { icon: 'language-css3', text: 'Native CSS Class', section: css } },
+  /* tslint:disable:max-line-length */
+  { path: 'materialize-css-class', component: MaterializeCssClassComponent, data: { icon: 'language-css3', text: 'Materialize CSS Class', section: css } },
 
   // components routes - Form controls
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
