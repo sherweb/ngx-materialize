@@ -12,6 +12,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
+import { MaterializeCssClassComponent } from './materialize-css-class/materialize-css-class.component';
 import { MediaComponent } from './media/media.component';
 import { ModalComponent } from './modal/modal.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,6 +27,7 @@ import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 // sections name
+const css = 'CSS';
 const formControls = 'Form Controls';
 const layout = 'Layout';
 const loading = 'Loading';
@@ -35,6 +37,10 @@ const service = 'Services';
 export const ROUTES: Routes = [
   // home route
   { path: 'home', component: HomeComponent },
+
+  // components routes - CSS
+  /* tslint:disable:max-line-length */
+  { path: 'materialize-css-class', component: MaterializeCssClassComponent, data: { icon: 'language-css3', text: 'Materialize CSS Class', section: css } },
 
   // components routes - Form controls
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },

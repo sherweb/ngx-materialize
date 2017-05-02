@@ -20,6 +20,7 @@ import { DropdownModule } from './dropdown/dropdown.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
+import { MaterializeCssClassModule } from './materialize-css-class/materialize-css-class.module';
 import { MediaModule } from './media/media.module';
 import { ModalModule } from './modal/modal.module';
 import { NavbarModule } from './navbar/navbar.module';
@@ -56,6 +57,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     HomeModule,
     IconModule,
     InputModule,
+    MaterializeCssClassModule,
     MediaModule,
     ModalModule,
     NavbarModule,

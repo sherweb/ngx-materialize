@@ -1,0 +1,27 @@
+<h3>Native CSS Class</h3>
+
+<div class="section">
+  <p class="col s12 m10">
+    Materialize CSS classes can be used all around your application. For this reason <strong>those CSS classes will not be wrapped into directive</strong>.
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Pages from Materialize</h5>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Page Name</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let page of pages">
+        <td>{{ page.name }}</td>
+        <td><a [href]="page.link" target="blank">{{ page.link }}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
