@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'mz-collection',
@@ -11,7 +11,7 @@ export class MzCollectionComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer,
+    private renderer: Renderer2,
   ) { }
 
   ngOnInit() {
@@ -25,6 +25,8 @@ export class MzCollectionComponent implements OnInit {
   }
 
   initCollectionHeader() {
-    this.renderer.setElementClass(this.collectionElement[0], 'with-header', this.collectionHeaderElement.length > 0);
+    if (this.collectionHeaderElement.length > 0) {
+      this.renderer.addClass(this.collectionElement[0], 'with-header');
+    }
   }
 }
