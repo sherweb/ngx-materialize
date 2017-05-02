@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 
 @Component({
   selector: 'mz-collection',
@@ -6,7 +6,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer } from '@angular
   styleUrls: ['./collection.component.scss'],
 })
 export class MzCollectionComponent implements OnInit {
-
   collectionElement: JQuery;
   collectionHeaderElement: JQuery;
 
@@ -26,6 +25,6 @@ export class MzCollectionComponent implements OnInit {
   }
 
   initCollectionHeader() {
-    this.renderer.setElementClass(this.collectionElement[0], 'with-header', this.collectionHeaderElement != null);
+    this.renderer.setElementClass(this.collectionElement[0], 'with-header', this.collectionHeaderElement.length > 0);
   }
 }

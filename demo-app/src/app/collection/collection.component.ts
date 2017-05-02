@@ -13,14 +13,23 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
 })
 export class CollectionComponent {
 
-  // table properties
-  properties: IPropertyRow[] = [
-    // {
-    //   name: 'delay',
-    //   mandatory: false,
-    //   type: 'number',
-    //   description: 'Delay time in milliseconds before tooltip appears',
-    //   defaultValue: '350',
-    // },
+  collectionItemProperties: IPropertyRow[] = [
+    {
+      name: 'dismissable',
+      mandatory: false,
+      type: 'boolean',
+      description: 'Enable collection item to be swiped away (only for touch enabled devices)',
+      defaultValue: 'false',
+    },
+  ];
+
+  collectionLinkProperties: IPropertyRow[] = [
+    {
+      name: 'active',
+      mandatory: false,
+      type: 'boolean',
+      description: 'Highlight the link item by applying <code class="language-markup">active</code> css class',
+      defaultValue: 'false',
+    },
   ];
 }

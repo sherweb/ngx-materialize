@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
+
+import { MzRemoveComponentHost } from '../../shared/remove-component-host';
 
 @Component({
   selector: 'mz-collection-item',
@@ -8,4 +9,5 @@ import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove
 })
 export class MzCollectionItemComponent extends MzRemoveComponentHost {
   @Input() avatar: boolean;
+  @Input() dismissable: boolean;
 }
