@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
@@ -9,7 +9,6 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   styleUrls: ['./collection.component.scss'],
   host: ROUTE_ANIMATION_HOST, // tslint:disable-line:use-host-property-decorator
   animations: [ROUTE_ANIMATION],
-  encapsulation: ViewEncapsulation.None,
 })
 export class CollectionComponent {
 
