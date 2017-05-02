@@ -22,11 +22,6 @@
       "**/inline-template": true
   },
 
-// Typescript
-
-  // Don't check TypeScript version on workspace
-  "typescript.check.workspaceVersion": false,
-
 // Relative Path extension
 
   // Excludes the extension from the relative path url (Useful for systemjs imports).
