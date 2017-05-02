@@ -1,4 +1,4 @@
-import { async, inject, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import 'rxjs/add/operator/first';
 
 import { MzMediaService } from './media.service';

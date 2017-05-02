@@ -1,7 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzDropdownComponent } from './dropdown.component';
 
 describe('MzDropdownComponent:unit', () => {

@@ -1,5 +1,5 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { MzTextareaPrefixDirective } from './textarea-prefix.directive';
 

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { MzBaseModal, MzModalComponent } from 'ng2-materialize';
+import { MzBaseModal } from 'ng2-materialize';
 
 @Component({
   selector: 'app-modal-example',
   templateUrl: './modal-example.component.html',
   styleUrls: ['./modal-example.component.scss'],
 })
-export class ModalExampleComponent extends MzBaseModal {
-}
+export class ModalExampleComponent extends MzBaseModal { }

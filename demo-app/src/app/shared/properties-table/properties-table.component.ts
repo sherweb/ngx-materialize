@@ -11,7 +11,7 @@ export interface IPropertyRow {
 @Component({
   selector: 'app-properties-table',
   templateUrl: './properties-table.component.html',
-  styleUrls: ['./properties-table.component.scss']
+  styleUrls: ['./properties-table.component.scss'],
 })
 export class PropertiesTableComponent {
   @Input() properties: IPropertyRow[];

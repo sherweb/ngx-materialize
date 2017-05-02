@@ -6,7 +6,6 @@ import {
   Directive,
   ElementRef,
   Input,
-  QueryList,
   Renderer,
   ViewChild,
 } from '@angular/core';

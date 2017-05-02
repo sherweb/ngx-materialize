@@ -107,7 +107,6 @@ describe('MzInjectionService:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        const applicationRef: ApplicationRef = TestBed.get(ApplicationRef);
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
         const location: HTMLElement = nativeElement.querySelector('.location');
 
@@ -162,7 +161,6 @@ describe('MzInjectionService:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        const applicationRef: ApplicationRef = TestBed.get(ApplicationRef);
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
 
         injectionService.setRootViewContainer(fixture.componentRef);
