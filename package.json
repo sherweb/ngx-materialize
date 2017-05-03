@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@types/materialize-css": "0.98.0",
-    "materialize-css": "0.98.1"
+    "materialize-css": "0.98.2"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
