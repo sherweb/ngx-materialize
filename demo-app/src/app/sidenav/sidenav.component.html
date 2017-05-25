@@ -47,6 +47,10 @@
       <a>First Link</a>
     </mz-sidenav-link>
 
+    <mz-sidenav-link [active]="true">
+      <a>Active Link</a>
+    </mz-sidenav-link>
+
     <mz-sidenav-link>
       <a class="waves-effect">Second Link With Waves</a>
     </mz-sidenav-link>
@@ -149,6 +153,10 @@
     &lt;a href="#">First Link&lt;/a>
   &lt;/mz-sidenav-link>
   &lt;mz-sidenav-divider>&lt;/mz-sidenav-divider>
+  &lt;mz-sidenav-link [active]="true">
+    &lt;a href="#">Active Link&lt;/a>
+  &lt;/mz-sidenav-link>
+  &lt;mz-sidenav-divider>&lt;/mz-sidenav-divider>
   &lt;mz-sidenav-link>
     &lt;a href="#" class="waves-effect">Second Link With Waves&lt;/a>
   &lt;/mz-sidenav-link>
@@ -204,6 +212,19 @@
 
     <app-properties-table
       [properties]="sidenavProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-sidenav-link</h6>
+
+    <p>
+      Links can be customized using the following properties on the <code class="language-markup">mz-sidenav-link</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavLinkProperties">
     </app-properties-table>
   </div>
 
