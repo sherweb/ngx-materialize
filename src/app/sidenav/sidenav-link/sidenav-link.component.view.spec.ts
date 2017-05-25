@@ -48,7 +48,8 @@ describe('MzSidenavLinkComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(sidenavLink().classList).toContain('active');
+        const li = sidenavLink().children[0];
+        expect(li.classList).toContain('active');
       });
     }));
 
@@ -59,7 +60,8 @@ describe('MzSidenavLinkComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(sidenavLink().classList).not.toContain('active');
+        const li = sidenavLink().children[0];
+        expect(li.classList).not.toContain('active');
       });
     }));
 
