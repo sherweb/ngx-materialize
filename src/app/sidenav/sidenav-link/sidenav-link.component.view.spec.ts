@@ -41,6 +41,30 @@ describe('MzSidenavLinkComponent:view', () => {
       });
     }));
 
+    it('should have active class when active prop is provided', async(() => {
+
+      buildComponent<MzSidenavLinkComponent>(`<mz-sidenav-link [active]="true"></mz-sidenav-link>`).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        const li = sidenavLink().children[0];
+        expect(li.classList).toContain('active');
+      });
+    }));
+
+    it('should not have active class when active prop is not provided', async(() => {
+
+      buildComponent<MzSidenavLinkComponent>(`<mz-sidenav-link></mz-sidenav-link>`).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        const li = sidenavLink().children[0];
+        expect(li.classList).not.toContain('active');
+      });
+    }));
+
     it('should transclude correctly', async(() => {
 
       buildComponent<MzSidenavLinkComponent>(`

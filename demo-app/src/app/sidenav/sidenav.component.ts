@@ -24,6 +24,15 @@ export class SidenavComponent {
     },
   ];
 
+  sidenavLinkProperties: IPropertyRow[] = [
+    { name: 'active',
+      mandatory: false,
+      type: 'boolean',
+      description: `Denote the current link as active`,
+      defaultValue: `false`,
+    },
+  ];
+
   sidenavProperties: IPropertyRow[] = [
     { name: 'backgroundClass',
       mandatory: false,

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mz-sidenav-link',
@@ -6,4 +6,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./sidenav-link.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class MzSidenavLinkComponent { }
+export class MzSidenavLinkComponent {
+  @Input() active: boolean;
+}
