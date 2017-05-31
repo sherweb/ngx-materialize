@@ -1,3 +1,5 @@
+image: Visual Studio 2017
+
 branches:
   only:
     - master
@@ -6,10 +8,19 @@ environment:
   matrix:
     - nodejs_version: "6"
     - nodejs_version: "7"
+    - nodejs_version: "8"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - nodejs_version: "8"
+
+platform:
+  - x64
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install
+  - yarn install --frozen-lockfile
 
 test_script:
   - node --version

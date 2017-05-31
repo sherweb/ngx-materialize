@@ -3460,9 +3460,9 @@ matcher-collection@^1.0.0:
   dependencies:
     minimatch "^3.0.2"
 
-materialize-css@0.98.1:
-  version "0.98.1"
-  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.98.1.tgz#7276895b2c998b53e26deaa0c23a0484c0851d99"
+materialize-css@0.98.2:
+  version "0.98.2"
+  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.98.2.tgz#f9e4239fd27e2a917a0de379d74d508e2d92ec8e"
   dependencies:
     hammerjs "^2.0.4"
     jquery "^2.1.4"
@@ -3637,10 +3637,10 @@ ng2-markdown-to-html@^1.0.1:
     prismjs "^1.6.0"
 
 "ng2-materialize@file:../":
-  version "1.2.0"
+  version "1.4.1"
   dependencies:
     "@types/materialize-css" "0.98.0"
-    materialize-css "0.98.1"
+    materialize-css "0.98.2"
 
 ngx-malihu-scrollbar@^1.0.0:
   version "1.1.1"
