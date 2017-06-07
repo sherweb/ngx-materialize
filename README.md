@@ -130,6 +130,7 @@ export class HomeModule { }
 * Card
 * Checkbox
 * Collapsible
+* Collection
 * Dropdown
 * Icon
 * Input
