@@ -6,36 +6,32 @@ branches:
 
 environment:
   matrix:
-    - nodejs_version: "6"
     - nodejs_version: "7"
-    - nodejs_version: "8"
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - nodejs_version: "8"
 
 platform:
   - x64
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install --frozen-lockfile
+  - yarn install --frozen-lockfile --no-progress
+  - yarn build
+  - npm pack
+  - 7z x ng2-materialize-*.tgz && 7z x ng2-materialize-*.tar
+  - cd package && yarn link && cd ..
+  - cd demo-app
+  - yarn install --frozen-lockfile --no-progress
+  - yarn link ng2-materialize
 
 test_script:
   - node --version
   - npm --version
   - yarn --version
-  - yarn test -- --single-run --browsers Chrome,Firefox,IE
   - yarn lint
-  - yarn build
-
-after_test:
-  - ps: $wc = New-Object 'System.Net.WebClient'
-  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-results.xml))
+  - yarn build:prod -- --progress false
 
 build: off
 
 cache:
-  - node_modules
+  - node_modules -> yarn.lock
+  - demo-app/node_modules -> demo-app/yarn.lock
   - "%LOCALAPPDATA%/Yarn"
