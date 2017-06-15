@@ -5,6 +5,7 @@
     "module": "commonjs",
     "target": "es5",
     "baseUrl": "",
+    "skipLibCheck": true,
     "types": [
       "jasmine",
       "jquery",
@@ -13,7 +14,8 @@
     ]
   },
   "files": [
-    "test.ts"
+    "test.ts",
+    "typings.d.ts"
   ],
   "include": [
     "app/**/*.spec.ts",
