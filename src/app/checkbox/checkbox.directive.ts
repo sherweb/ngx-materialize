@@ -1,14 +1,11 @@
-import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, Renderer } from '@angular/core';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: 'input[mzCheckbox], input[mz-checkbox]',
 })
-export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
-  // native properties
-  @Input() id: string;
-
+export class MzCheckboxDirective extends HandlePropChanges implements AfterViewInit {
   // directive properties
   @Input() filledIn: boolean;
   @Input() label: string;
@@ -21,7 +18,7 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.initHandlers();
     this.initElements();
     this.handleProperties();
@@ -42,7 +39,7 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.setAttribute('for', this.id);
+    labelElement.setAttribute('for', this.checkboxElement.attr('id'));
 
     this.renderer.invokeElementMethod(this.checkboxContainerElement, 'append', [labelElement]);
 
