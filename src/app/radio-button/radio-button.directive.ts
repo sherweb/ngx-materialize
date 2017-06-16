@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, OnInit, Renderer } from '@angular/core';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
@@ -7,7 +7,7 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
 })
 export class MzRadioButtonDirective extends HandlePropChanges implements OnInit {
   // native properties
-  @Input() id: string;
+  @HostBinding() @Input() id: string;
 
   // directive properties
   @Input() label: string;
