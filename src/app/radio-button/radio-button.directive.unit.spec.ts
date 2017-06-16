@@ -22,7 +22,7 @@ describe('MzRadioButtonDirective:unit', () => {
     directive = new MzRadioButtonDirective(mockElementRef, renderer);
   });
 
-  describe('ngAfterViewInit', () => {
+  describe('ngOnInit', () => {
     let callOrder: string[];
 
     beforeEach(() => {
@@ -34,7 +34,7 @@ describe('MzRadioButtonDirective:unit', () => {
 
     it('should call initHandlers method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.initHandlers).toHaveBeenCalled();
       expect(callOrder[0]).toBe('initHandlers');
@@ -42,7 +42,7 @@ describe('MzRadioButtonDirective:unit', () => {
 
     it('should call initElements method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.initElements).toHaveBeenCalled();
       expect(callOrder[1]).toBe('initElements');
@@ -50,7 +50,7 @@ describe('MzRadioButtonDirective:unit', () => {
 
     it('should call handleProperties method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
       expect(callOrder[2]).toBe('handleProperties');
@@ -120,12 +120,11 @@ describe('MzRadioButtonDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const inputId = 'input-id';
-      const mockInputElement = { input: true, attr: (attributeName: string) => attributeName === 'id' ? inputId : null };
       const mockInputContainerElement = { inputContainer: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
-      directive.inputElement = <any>mockInputElement;
+      directive.id = inputId;
       directive.inputContainerElement = <any>mockInputContainerElement;
       directive.createLabelElement();
 
@@ -135,7 +134,6 @@ describe('MzRadioButtonDirective:unit', () => {
     it('should return the newly created element', () => {
 
       const inputId = 'input-id';
-      const mockInputElement = { input: true, attr: (attributeName: string) => attributeName === 'id' ? inputId : null };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
@@ -147,7 +145,7 @@ describe('MzRadioButtonDirective:unit', () => {
           : {};
       });
 
-      directive.inputElement = <any>mockInputElement;
+      directive.id = inputId;
       const jQuerylabelElement = directive.createLabelElement();
 
       expect(jQuerylabelElement).toBe(mockJQueryLabelElement);
