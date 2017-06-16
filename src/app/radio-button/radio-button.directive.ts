@@ -1,11 +1,14 @@
-import { AfterViewInit, Directive, ElementRef, Input, Renderer } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: 'input[mzRadioButton], input[mz-radio-button]',
 })
-export class MzRadioButtonDirective extends HandlePropChanges implements AfterViewInit {
+export class MzRadioButtonDirective extends HandlePropChanges implements OnInit {
+  // native properties
+  @Input() id: string;
+
   // directive properties
   @Input() label: string;
   @Input() withGap: boolean;
@@ -18,7 +21,7 @@ export class MzRadioButtonDirective extends HandlePropChanges implements AfterVi
     super();
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.initHandlers();
     this.initElements();
     this.handleProperties();
@@ -39,7 +42,7 @@ export class MzRadioButtonDirective extends HandlePropChanges implements AfterVi
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.setAttribute('for', this.inputElement.attr('id'));
+    labelElement.setAttribute('for', this.id);
 
     this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
 
