@@ -21,7 +21,7 @@ export class MzRadioButtonDirective extends HandlePropChanges implements OnInit 
     super();
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.initHandlers();
     this.initElements();
     this.handleProperties();
@@ -42,7 +42,7 @@ export class MzRadioButtonDirective extends HandlePropChanges implements OnInit 
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.setAttribute('for', this.inputElement.attr('id'));
+    labelElement.setAttribute('for', this.id);
 
     this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
 

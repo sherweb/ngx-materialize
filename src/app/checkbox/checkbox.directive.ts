@@ -1,4 +1,4 @@
-mport { Directive, ElementRef, HostBinding, Input, OnInit, Renderer } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, OnInit, Renderer } from '@angular/core';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
@@ -21,7 +21,7 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
     super();
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.initHandlers();
     this.initElements();
     this.handleProperties();
@@ -42,7 +42,7 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
 
   createLabelElement() {
     const labelElement = document.createElement('label');
-    labelElement.setAttribute('for', this.checkboxElement.attr('id'));
+    labelElement.setAttribute('for', this.id);
 
     this.renderer.invokeElementMethod(this.checkboxContainerElement, 'append', [labelElement]);
 

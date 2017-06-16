@@ -22,7 +22,7 @@ describe('MzCheckboxDirective:unit', () => {
     directive = new MzCheckboxDirective(mockElementRef, renderer);
   });
 
-  describe('ngAfterViewInit', () => {
+  describe('ngOnInit', () => {
     let callOrder: string[];
 
     beforeEach(() => {
@@ -34,7 +34,7 @@ describe('MzCheckboxDirective:unit', () => {
 
     it('should call initHandlers method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.initHandlers).toHaveBeenCalled();
       expect(callOrder[0]).toBe('initHandlers');
@@ -42,7 +42,7 @@ describe('MzCheckboxDirective:unit', () => {
 
     it('should call initElements method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.initElements).toHaveBeenCalled();
       expect(callOrder[1]).toBe('initElements');
@@ -50,7 +50,7 @@ describe('MzCheckboxDirective:unit', () => {
 
     it('should call handleProperties method', () => {
 
-      directive.ngAfterViewInit();
+      directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
       expect(callOrder[2]).toBe('handleProperties');
@@ -120,12 +120,11 @@ describe('MzCheckboxDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const checkboxId = 'checkbox-id';
-      const mockCheckboxElement = { checkbox: true, attr: (attributeName: string) => attributeName === 'id' ? checkboxId : null };
       const mockCheckboxContainerElement = { checkboxContainer: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', checkboxId);
 
-      directive.checkboxElement = <any>mockCheckboxElement
+      directive.id = checkboxId;
       directive.checkboxContainerElement = <any>mockCheckboxContainerElement;
       directive.createLabelElement();
 
@@ -135,7 +134,6 @@ describe('MzCheckboxDirective:unit', () => {
     it('should return the newly created element', () => {
 
       const checkboxId = 'checkbox-id';
-      const mockCheckboxElement = { checkbox: true, attr: (attributeName: string) => attributeName === 'id' ? checkboxId : null };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', checkboxId);
 
@@ -147,7 +145,7 @@ describe('MzCheckboxDirective:unit', () => {
           : {};
       });
 
-      directive.checkboxElement = <any>mockCheckboxElement;
+      directive.id = checkboxId;
       const jQuerylabelElement = directive.createLabelElement();
 
       expect(jQuerylabelElement).toBe(mockJQueryLabelElement);
