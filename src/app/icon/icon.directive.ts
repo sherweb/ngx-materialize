@@ -28,9 +28,9 @@ export class MzIconDirective extends HandlePropChanges implements AfterViewInit 
 
   initHandlers() {
     this.handlers = {
-      align: () => this.handleAlign(),
+      align: (previousValue) => this.handleAlign(previousValue),
       icon: () => this.handleIcon(),
-      size: () => this.handleSize(),
+      size: (previousValue) => this.handleSize(previousValue),
     };
   }
 
@@ -38,7 +38,10 @@ export class MzIconDirective extends HandlePropChanges implements AfterViewInit 
     this.renderer.setElementClass(this.elementRef.nativeElement, 'material-icons', true);
   }
 
-  handleAlign() {
+  handleAlign(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
   }
 
@@ -46,7 +49,10 @@ export class MzIconDirective extends HandlePropChanges implements AfterViewInit 
     this.renderer.setElementProperty(this.elementRef.nativeElement, 'innerHTML', this.icon);
   }
 
-  handleSize() {
+  handleSize(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, this.size, !!this.size);
   }
 }
