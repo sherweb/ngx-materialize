@@ -30,12 +30,12 @@
     "core-js": "^2.4.1",
     "highlightjs": "^9.8.0",
     "mdi": "^1.8.36",
-    "ng2-markdown-to-html": "^1.0.1",
+    "ng2-markdown-to-html": "^1.2.1",
     "ng2-materialize": "file:../",
     "ngx-malihu-scrollbar": "^1.0.0",
     "rxjs": "^5.1.0",
     "ts-helpers": "^1.1.1",
-    "web-animations-js": "^2.2.2",
+    "web-animations-js": "^2.2.5",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -62,7 +62,7 @@
     "rimraf": "^2.5.4",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "tslint-eslint-rules": "^3.2.3",
+    "tslint-eslint-rules": "^4.1.0",
     "tslint-microsoft-contrib": "^4.0.0",
     "typescript": "~2.3.3",
     "typings": "^2.0.0",

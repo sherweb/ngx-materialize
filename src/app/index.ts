@@ -18,3 +18,4 @@ export * from './sidenav';
 export * from './spinner';
 export * from './textarea';
 export * from './toast';
+export * from './validation';

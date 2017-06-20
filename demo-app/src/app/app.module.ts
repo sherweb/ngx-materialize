@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MaterializeModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
@@ -17,6 +18,7 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
 import { CollectionModule } from './collection/collection.module';
 import { DropdownModule } from './dropdown/dropdown.module';
+import { FormValidationModule } from './form-validation/form-validation.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -42,6 +44,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     FormsModule,
     HttpModule,
     MalihuScrollbarModule.forRoot(),
+    MarkdownToHtmlModule.forRoot(),
     MaterializeModule.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
@@ -54,6 +57,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     CollapsibleModule,
     CollectionModule,
     DropdownModule,
+    FormValidationModule,
     HomeModule,
     IconModule,
     InputModule,

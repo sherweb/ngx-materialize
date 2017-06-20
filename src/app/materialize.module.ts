@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as Badge from './badge/badge.component';
 import * as Button from './button';
@@ -23,6 +25,7 @@ import * as Spinner from './spinner/spinner.component';
 import * as Textarea from './textarea';
 import * as Toast from './toast';
 import * as Tooltip from './tooltip';
+import * as Validation from './validation';
 
 const MZ_COMPONENTS = [
   Badge.MzBadgeComponent,
@@ -78,6 +81,12 @@ const MZ_COMPONENTS = [
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
   Tooltip.MzTooltipDirective,
+  Validation.MzErrorMessageComponent,
+  Validation.MzValidationComponent,
+];
+
+const MZ_ENTRY_COMPONENTS = [
+  Validation.MzErrorMessageComponent,
 ];
 
 const MZ_PROVIDERS = [
@@ -89,11 +98,14 @@ const MZ_PROVIDERS = [
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
+    FormsModule,
   ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
   providers: MZ_PROVIDERS,
+  entryComponents: MZ_ENTRY_COMPONENTS,
 })
 export class MaterializeModule {
   static forRoot(): ModuleWithProviders {

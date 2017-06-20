@@ -1,0 +1,122 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <mz-input-container class="col s12 m6">
+      <input mz-input mz-validation required
+        id="input-firstname"
+        formControlName="firstName"
+        type="text"
+        [errorMessage]="formErrors.firstName"
+        [label]="'First Name'" />
+    </mz-input-container>
+    <mz-input-container class="col s12 m6">
+      <input mz-input mz-validation required
+        id="input-lastname"
+        formControlName="lastName"
+        type="text"
+        [errorMessage]="formErrors.lastName"
+        [label]="'Last Name'" />
+    </mz-input-container>
+  </div>
+  <div class="row">
+    <mz-input-container class="col s12 m12">
+      <input mz-input mz-validation required
+        id="input-address"
+        formControlName="address"
+        type="text"
+        [errorMessage]="formErrors.address"
+        [label]="'Address 1'" />
+    </mz-input-container>
+  </div>
+  <div class="row">
+    <mz-textarea-container class="col s12 m12">
+      <textarea mz-textarea
+        id="textarea-address2"
+        formControlName="address2"
+        [label]="'Address 2'"
+        [length]="255">
+      </textarea>
+    </mz-textarea-container>
+  </div>
+  <div class="row">
+    <mz-input-container class="col s12 m4">
+      <input mz-input
+        id="input-city"
+        formControlName="city"
+        type="text"
+        [label]="'City'"
+        [length]="10" />
+    </mz-input-container>
+    <mz-select-container class="col s12 m4">
+      <select mz-select mz-validation required
+        id="select-province"
+        formControlName="province"
+        [errorMessage]="formErrors.province"
+        [label]="'Province'"
+        [placeholder]="'Choose your province'">
+        <option *ngFor="let province of provinces" [selected]="province == userForm.controls['province'].value" [ngValue]="province">{{ province.name }}</option>
+      </select>
+    </mz-select-container>
+    <mz-input-container class="col s12 m2">
+      <input mz-input mz-validation
+        id="input-postalcode"
+        formControlName="postalCode"
+        type="text"
+        [errorMessage]="formErrors.postalCode"
+        [label]="'Postal Code'" />
+    </mz-input-container>
+  </div>
+  <div class="row">
+    <h6 class="col s12 m12">Gender</h6>
+  </div>
+  <div class="row">
+    <mz-radio-button-container class="col s12 m3">
+      <input mz-radio-button
+        id="radio-button-gender"
+        formControlName="gender"
+        name="gender"
+        type="radio"
+        value="man"
+        [label]="'Man'"
+        [withGap]="true">
+    </mz-radio-button-container>
+    <mz-radio-button-container class="col s12 m3">
+      <input mz-radio-button
+        id="radio-button-woman"
+        formControlName="gender"
+        name="gender"
+        type="radio"
+        value="woman"
+        [label]="'Woman'"
+        [withGap]="true">
+    </mz-radio-button-container>
+  </div>
+  <div class="row">
+    <h6 class="col s12 m12">How did you hear about us?</h6>
+  </div>
+  <div class="row">
+    <mz-select-container class="col s12 m4">
+      <select mz-select multiple mz-validation required
+        id="select-hear-about-us"
+        formControlName="hearAboutUs"
+        [errorMessage]="formErrors.hearAboutUs"
+        [label]="'How did you hear about us?'"
+        [placeholder]="'Make your choice'">
+        <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.controls['hearAboutUs'].value.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
+      </select>
+    </mz-select-container>
+  </div>
+  <div class="row">
+    <div class="col s12 m12">
+      <mz-checkbox-container>
+        <input mz-checkbox mz-validation required
+          id="checkbox-term-service"
+          formControlName="termService"
+          type="checkbox"
+          [errorMessage]="formErrors.termService"
+          [filledIn]="true"
+          [label]="'I accept the terms of service.'">
+      </mz-checkbox-container>
+    </div>
+  </div>
+  <button mz-button [disabled]="!userForm.valid" type="submit">Submit</button>
+</form>
