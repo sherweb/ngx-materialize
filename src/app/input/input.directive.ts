@@ -1,15 +1,17 @@
-import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/skipWhile';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: 'input[mzInput], input[mz-input]',
 })
-export class MzInputDirective extends HandlePropChanges implements OnInit {
+export class MzInputDirective extends HandlePropChanges implements OnInit, OnDestroy {
   // native properties
   @Input() id: string;
   @Input() placeholder: string;
@@ -24,16 +26,28 @@ export class MzInputDirective extends HandlePropChanges implements OnInit {
 
   inputElement: JQuery;
   inputContainerElement: JQuery;
+  inputValueSubscription: Subscription;
   labelElement: JQuery;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(
+    private elementRef: ElementRef,
+    @Optional() private ngModel: NgModel,
+    private renderer: Renderer,
+  ) {
     super();
   }
 
   ngOnInit() {
     this.initHandlers();
     this.initElements();
+    this.initInputSubscriber();
     this.handleProperties();
+  }
+
+  ngOnDestroy() {
+    if (this.inputValueSubscription) {
+      this.inputValueSubscription.unsubscribe();
+    }
   }
 
   initHandlers() {
@@ -52,6 +66,12 @@ export class MzInputDirective extends HandlePropChanges implements OnInit {
     this.inputElement = $(this.elementRef.nativeElement);
     this.inputContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
     this.labelElement = this.createLabelElement();
+  }
+
+  initInputSubscriber() {
+    if (this.ngModel) {
+      this.inputValueSubscription = this.ngModel.valueChanges.subscribe(() => this.setLabelActive());
+    }
   }
 
   createLabelElement() {
@@ -118,11 +138,7 @@ export class MzInputDirective extends HandlePropChanges implements OnInit {
     const placeholder = !!this.placeholder ? this.placeholder : null;
     this.renderer.setElementAttribute(this.inputElement[0], 'placeholder', placeholder);
 
-    setTimeout(() => {
-      const inputValue = (<HTMLInputElement>this.inputElement[0]).value;
-      const isActive = !!this.placeholder || !!inputValue;
-      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
-    });
+    this.setLabelActive();
   }
 
   handleValidate() {
@@ -144,6 +160,15 @@ export class MzInputDirective extends HandlePropChanges implements OnInit {
     setTimeout(() => {
       this.renderer.invokeElementMethod(this.inputElement, 'trigger', ['input']);
       this.renderer.invokeElementMethod(this.inputElement, 'trigger', ['blur']);
+    });
+  }
+
+  setLabelActive() {
+    // need setTimeout otherwise it wont make label float in some circonstances (forcing validation for example)
+    setTimeout(() => {
+      const inputValue = (<HTMLInputElement>this.inputElement[0]).value;
+      const isActive = !!this.placeholder || !!inputValue;
+      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
     });
   }
 
