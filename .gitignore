@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /documentation
+/package
 /tmp
 /out-tsc
 /out
@@ -36,6 +37,7 @@ testem.log
 /typings
 *.log
 test-results.xml
+*.tar
 *.tgz
 
 # e2e
