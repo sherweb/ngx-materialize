@@ -273,14 +273,21 @@ describe('MzInputDirective:unit', () => {
           Google: 'http://some-image.png',
         },
       };
-      const mockInputElement = { input: true };
+      const mockInputElement = { input: true, autocomplete: undefined };
 
       directive.inputElement = <any>mockInputElement;
       directive.autocomplete = autocomplete;
       directive.handleAutocomplete();
 
-      tick(1);
+      tick(100);
 
+      expect(directive.inputElement['autocomplete']).toBeUndefined();
+      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+
+      mockInputElement.autocomplete = () => null;
+      tick(100);
+
+      expect(directive.inputElement['autocomplete']).toBeDefined();
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'autocomplete', [autocomplete]);
     }));
   });
