@@ -1,5 +1,9 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/skipWhile';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
@@ -96,8 +100,13 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
     this.renderer.setElementClass(this.inputElement[0], 'autocomplete', isAutocomplete);
 
     if (this.autocomplete != null) {
-      // need setTimeout otherwise loading directly on the page cause an error
-      setTimeout(() => this.renderer.invokeElementMethod(this.inputElement, 'autocomplete', [this.autocomplete]));
+      // wait until autocomplete is defined before to invoke
+      // see issue: https://github.com/Dogfalo/materialize/issues/4401
+      Observable
+        .interval(100)
+        .skipWhile(() => !this.inputElement['autocomplete'])
+        .first()
+        .subscribe(() => this.renderer.invokeElementMethod(this.inputElement, 'autocomplete', [this.autocomplete]));
     }
   }
 
