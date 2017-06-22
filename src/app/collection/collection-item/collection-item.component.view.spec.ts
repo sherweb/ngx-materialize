@@ -21,28 +21,6 @@ describe('MzCollectionItemComponent:view', () => {
       return nativeElement.querySelector('mz-collection-item');
     }
 
-    it('should have host element removed', async(() => {
-
-      buildComponent<any>(`
-        <mz-collection-item>
-          collection-item-x
-        </mz-collection-item>
-      `).then((fixture) => {
-
-        nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
-
-        expect(mzCollectionItem()).toBeNull();
-      });
-    }));
-  });
-
-  describe('collection-item', () => {
-
-    function collectionItem(): HTMLElement {
-      return nativeElement.querySelector('div.collection-item');
-    }
-
     it('should transclude correctly', async(() => {
 
       buildComponent<any>(`
@@ -54,7 +32,40 @@ describe('MzCollectionItemComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(collectionItem().innerHTML.trim()).toBe('collection-item-x');
+        expect(mzCollectionItem().innerHTML.trim()).toBe('collection-item-x');
+      });
+    }));
+
+    it('should have display block css style so it can behave like a div', async(() => {
+
+      buildComponent<any>(
+        `<mz-collection-item>
+          collection-item-x
+        </mz-collection-item>`,
+        { avatar: false },
+      ).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(window.getComputedStyle(mzCollectionItem(), null).display).toBe('block');
+      });
+    }));
+
+    it('should have collection-item class applied correctly', async(() => {
+
+      buildComponent<any>(
+        `<mz-collection-item>
+          collection-item-x
+        </mz-collection-item>`,
+        { avatar: false },
+      ).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(mzCollectionItem().classList.length).toBe(1);
+        expect(mzCollectionItem().classList).toContain('collection-item');
       });
     }));
 
@@ -70,16 +81,16 @@ describe('MzCollectionItemComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(collectionItem().classList.length).toBe(1);
-        expect(collectionItem().classList).toContain('collection-item');
-        expect(collectionItem().classList).not.toContain('avatar');
+        expect(mzCollectionItem().classList.length).toBe(1);
+        expect(mzCollectionItem().classList).toContain('collection-item');
+        expect(mzCollectionItem().classList).not.toContain('avatar');
 
         fixture.componentInstance.avatar = true;
         fixture.detectChanges();
 
-        expect(collectionItem().classList.length).toBe(2);
-        expect(collectionItem().classList).toContain('collection-item');
-        expect(collectionItem().classList).toContain('avatar');
+        expect(mzCollectionItem().classList.length).toBe(2);
+        expect(mzCollectionItem().classList).toContain('collection-item');
+        expect(mzCollectionItem().classList).toContain('avatar');
       });
     }));
 
@@ -95,16 +106,16 @@ describe('MzCollectionItemComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(collectionItem().classList.length).toBe(1);
-        expect(collectionItem().classList).toContain('collection-item');
-        expect(collectionItem().classList).not.toContain('dismissable');
+        expect(mzCollectionItem().classList.length).toBe(1);
+        expect(mzCollectionItem().classList).toContain('collection-item');
+        expect(mzCollectionItem().classList).not.toContain('dismissable');
 
         fixture.componentInstance.dismissable = true;
         fixture.detectChanges();
 
-        expect(collectionItem().classList.length).toBe(2);
-        expect(collectionItem().classList).toContain('collection-item');
-        expect(collectionItem().classList).toContain('dismissable');
+        expect(mzCollectionItem().classList.length).toBe(2);
+        expect(mzCollectionItem().classList).toContain('collection-item');
+        expect(mzCollectionItem().classList).toContain('dismissable');
       });
     }));
   });
