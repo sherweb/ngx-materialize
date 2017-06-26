@@ -104,8 +104,8 @@ const MZ_PROVIDERS = [
   ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
-  providers: MZ_PROVIDERS,
   entryComponents: MZ_ENTRY_COMPONENTS,
+  providers: MZ_PROVIDERS,
 })
 export class MaterializeModule {
   static forRoot(): ModuleWithProviders {

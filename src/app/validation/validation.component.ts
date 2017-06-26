@@ -13,9 +13,10 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { FormControl, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import { MzErrorMessageComponent } from './error-message';
+
+import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -35,7 +36,7 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   set required(value: any) { this._required = (value != null && `${value}` !== 'false'); }
 
   // component properties
-  @Input() errorMessage: string;
+  @Input() errorMessageResource: ErrorMessageResource;
 
   errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
   labelElement: HTMLElement;
@@ -85,7 +86,10 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
       // Wait for materialize_select function to be executed when the element has mz-select directive.
       setTimeout(() => {
         const inputSelectDropdownElement = this.nativeElement.parent().children('input.select-dropdown');
-        inputSelectDropdownElement.on('blur', () => this.setValidationState());
+        inputSelectDropdownElement.on('blur', () => {
+          this.ngControl.control.markAsTouched();
+          this.setValidationState();
+        });
       });
     }
 
@@ -95,6 +99,8 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   initErrorMessageComponent() {
     const errorMessageFactory = this.resolver.resolveComponentFactory(MzErrorMessageComponent);
     this.errorMessageComponent = this.viewContainerRef.createComponent(errorMessageFactory);
+    this.errorMessageComponent.instance.errorMessageResource = this.errorMessageResource;
+    this.errorMessageComponent.instance.control = this.ngControl.control;
     this.errorMessageComponent.changeDetectorRef.detectChanges();
 
     const errorMessage = this.nativeElement.parent().children('mz-error-message');
@@ -113,17 +119,24 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   setValidationState() {
     let elementToAddValidation = this.nativeElement;
 
-    this.errorMessageComponent.instance.errorMessage = this.errorMessage;
-
     if (this.isNativeElementSelect()) {
       elementToAddValidation = this.nativeElement.parent().children('input.select-dropdown');
     }
 
-    if (this.ngControl.invalid) {
-      this.renderer2.addClass(elementToAddValidation[0], 'invalid');
+    if (this.ngControl.touched || this.ngControl.dirty) {
+      if (this.ngControl.invalid) {
+        this.renderer2.addClass(elementToAddValidation[0], 'invalid');
+        this.renderer2.removeClass(elementToAddValidation[0], 'valid');
+      } else {
+        this.renderer2.addClass(elementToAddValidation[0], 'valid');
+        this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
+      }
+    } else if (this.ngControl.untouched && this.ngControl.pristine) {
+      if (this.isNativeElementSelect()) {
+        this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
+      }
+
       this.renderer2.removeClass(elementToAddValidation[0], 'valid');
-    } else {
-      this.renderer2.addClass(elementToAddValidation[0], 'valid');
       this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
     }
   }

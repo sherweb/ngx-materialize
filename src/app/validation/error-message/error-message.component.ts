@@ -7,7 +7,13 @@ import {
 import {
   Component,
   Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+
+import { ErrorMessageResource } from './models';
 
 @Component({
   selector: 'mz-error-message',
@@ -28,7 +34,29 @@ import {
     ),
   ],
 })
-export class MzErrorMessageComponent {
+export class MzErrorMessageComponent implements OnDestroy, OnInit {
 
-  @Input() errorMessage: string;
+  @Input() control: AbstractControl;
+  @Input() errorMessageResource: ErrorMessageResource;
+
+  controlStatusChangesSubscription: Subscription;
+  errorMessage = '';
+
+  ngOnInit() {
+    this.buildErrorMessage();
+    this.controlStatusChangesSubscription = this.control.statusChanges.subscribe(() => this.buildErrorMessage());
+  }
+
+  ngOnDestroy(): void {
+    this.controlStatusChangesSubscription.unsubscribe();
+  }
+
+  buildErrorMessage() {
+    this.errorMessage = '';
+    if (this.control.errors) {
+      Object.keys(this.control.errors).forEach(key => {
+        this.errorMessage += this.errorMessageResource[key] + ' ';
+      });
+    }
+  }
 }

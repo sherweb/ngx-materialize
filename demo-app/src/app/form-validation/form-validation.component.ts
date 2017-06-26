@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorMessageResource } from 'ng2-materialize';
 
 import { IPropertyRow } from './../shared/properties-table/properties-table.component';
 import { Province, User } from './models/';
@@ -15,72 +16,50 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation'
 })
 export class FormValidationComponent implements OnInit {
 
-  formErrors = {
-    address: '',
-    address2: '',
-    firstName: '',
-    hearAboutUs: '',
-    lastName: '',
-    postalCode: '',
-    province: '',
-    termService: '',
-  };
-
-    properties: IPropertyRow[] = [
-    { name: 'errorMessage',
+// properties table for demo page
+ errorMessageRessourceProperties: IPropertyRow[] = [
+    {
+      name: 'maxlength',
       mandatory: false,
       type: 'string',
-      description: 'Error message to show when the form control state is invalid',
+      description: 'Max length error message.',
+      defaultValue: '',
+    },
+    {
+      name: 'minlength',
+      mandatory: false,
+      type: 'string',
+      description: 'Min length error message.',
+      defaultValue: '',
+    },
+    {
+      name: 'pattern',
+      mandatory: false,
+      type: 'string',
+      description: 'Pattern error message.',
+      defaultValue: '',
+    },
+    {
+      name: 'required',
+      mandatory: false,
+      type: 'string',
+      description: 'Required error message.',
       defaultValue: '',
     },
   ];
 
-  provinces: Province[] = [
-    { code: 'ab', name: 'Alberta' },
-    { code: 'mb', name: 'Manitoba' },
-    { code: 'ns', name: 'Nova Scotia' },
-    { code: 'nb', name: 'New Brunswick' },
-    { code: 'on', name: 'Ontario' },
-    { code: 'pe', name: 'Prince Edward Island' },
-    { code: 'qc', name: 'Quebec' },
-    { code: 'nl', name: 'Newfoundland and Labrador' },
-    { code: 'nt', name: 'Northwest Territories' },
-    { code: 'nu', name: 'Nunavut' },
-    { code: 'sk', name: 'Saskatchewan' },
-    { code: 'yk', name: 'Yukon' },
+  properties: IPropertyRow[] = [
+    {
+      name: 'errorMessageResource',
+      mandatory: false,
+      type: 'ErrorMessageResource',
+      description: 'Error message resource for a form control.',
+      defaultValue: '',
+    },
   ];
 
-  submitted = false;
-
-  hearAboutUsOptions = [
-    { value: 'event', text: 'Event' },
-    { value: 'facebook', text: 'Facebook' },
-    { value: 'family', text: 'Family' },
-    { value: 'friend', text: 'Friend' },
-    { value: 'search', text: 'Search engine' },
-    { value: 'newspaper', text: 'Newspaper, Magazine' },
-    { value: 'twitter', text: 'Twitter' },
-    { value: 'other', text: 'Other' },
-  ];
-
-  hearAboutUs = null;
-
-  user: User = {
-    address: '',
-    address2: '',
-    city: '',
-    firstName: '',
-    gender: 'man',
-    lastName: '',
-    postalCode: '',
-    province: null,
-  };
-
-  userForm: FormGroup;
-
-  termService = false;
-
-  validationMessages = {
+  // form validation variables
+  errorMessageResources = {
     address: {
       required: 'Address is required.',
     },
@@ -101,6 +80,9 @@ export class FormValidationComponent implements OnInit {
     postalCode: {
       pattern : 'Postal code is invalid.',
     },
+    phoneNumber: {
+      pattern: 'Phone number format is invaild. (XXX-XXX-XXXX)',
+    },
     province: {
       required: 'Province is required.',
     },
@@ -108,6 +90,50 @@ export class FormValidationComponent implements OnInit {
       required: 'You must accept the terms of service before you can proceed.',
     },
   };
+
+  user: User = {
+    address: '',
+    address2: '',
+    city: '',
+    firstName: '',
+    gender: 'man',
+    lastName: '',
+    phoneNumbers: [],
+    postalCode: '',
+    province: null,
+  };
+
+  hearAboutUs = null;
+  submitted = false;
+  userForm: FormGroup;
+  termService = false;
+
+  // fake datas
+  provinces: Province[] = [
+    { code: 'ab', name: 'Alberta' },
+    { code: 'mb', name: 'Manitoba' },
+    { code: 'ns', name: 'Nova Scotia' },
+    { code: 'nb', name: 'New Brunswick' },
+    { code: 'on', name: 'Ontario' },
+    { code: 'pe', name: 'Prince Edward Island' },
+    { code: 'qc', name: 'Quebec' },
+    { code: 'nl', name: 'Newfoundland and Labrador' },
+    { code: 'nt', name: 'Northwest Territories' },
+    { code: 'nu', name: 'Nunavut' },
+    { code: 'sk', name: 'Saskatchewan' },
+    { code: 'yk', name: 'Yukon' },
+  ];
+
+  hearAboutUsOptions = [
+    { value: 'event', text: 'Event' },
+    { value: 'facebook', text: 'Facebook' },
+    { value: 'family', text: 'Family' },
+    { value: 'friend', text: 'Friend' },
+    { value: 'search', text: 'Search engine' },
+    { value: 'newspaper', text: 'Newspaper, Magazine' },
+    { value: 'twitter', text: 'Twitter' },
+    { value: 'other', text: 'Other' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -117,6 +143,15 @@ export class FormValidationComponent implements OnInit {
   ngOnInit() {
     this.renderer.invokeElementMethod($('ul.tabs'), 'tabs', []);
     this.buildForm();
+    this.addPhoneNumber();
+  }
+
+  addPhoneNumber(): void {
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
+    const newPhoneNumberGroup = this.formBuilder.group({
+        phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
+    });
+    phoneNumbersControl.push(newPhoneNumberGroup);
   }
 
   buildForm() {
@@ -133,40 +168,38 @@ export class FormValidationComponent implements OnInit {
       gender: [this.user.gender],
       hearAboutUs: [this.hearAboutUs, Validators.required],
       lastName: [this.user.lastName, Validators.required],
+      phoneNumbers: this.formBuilder.array([]),
       postalCode: [this.user.postalCode, Validators.compose([
-          Validators.pattern('[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]'),
+          Validators.pattern('(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)'),
         ]),
       ],
       province: [this.user.province, Validators.required],
       termService: [this.termService, Validators.required],
     });
+  }
 
-    this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
+  clear() {
+    this.userForm.reset();
 
-    this.onValueChanged();
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
+    for (let i = phoneNumbersControl.length - 1; i > 0; i--) {
+      this.deletePhoneNumber(i);
+    }
+
+    this.userForm.controls['gender'].setValue(this.user.gender);
+  }
+
+  deletePhoneNumber(index: number) {
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
+    phoneNumbersControl.removeAt(index);
+  }
+
+  getPhoneNumbers(): AbstractControl[] {
+    return (<FormArray>this.userForm.get('phoneNumbers')).controls;
   }
 
   onSubmit() {
     this.submitted = true;
     this.user = Object.assign({}, this.userForm.value);
-  }
-
-  onValueChanged(data?: any) {
-    if (!this.userForm) { return; }
-    const form = this.userForm;
-
-    Object.keys(this.formErrors).forEach(field => {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-
-      if (control && !control.valid) {
-        const messages = this.validationMessages[field];
-
-        Object.keys(control.errors).forEach(key => {
-          this.formErrors[field] += messages[key] + ' ';
-        });
-      }
-    });
   }
 }

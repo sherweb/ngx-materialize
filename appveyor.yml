@@ -17,8 +17,9 @@ install:
   - yarn build
   - npm pack
   - 7z x ng2-materialize-*.tgz && 7z x ng2-materialize-*.tar
-  - cd package && yarn link && cd ..
+  - cd package && yarn unlink && yarn link && cd ..
   - cd demo-app
+  - yarn unlink ng2-materialize
   - yarn install --frozen-lockfile --no-progress
   - yarn link ng2-materialize
 

@@ -1,23 +1,40 @@
 <h3>Form validation</h3>
 
 <div class="section">
+
   <p>
     The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>input checkbox</strong> and <strong>select</strong>.
+    The textarea is not yet supported by the directive. For the case of radio button, it will not be supported since in best pratique we always specify a default value.
     The component module must use the <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">Reactive Form</a> to work with the validation directive.
   </p>
+</div>
 
+
+<div class="section">
+  <h5 class="light">Configuration</h5>
   <p>
     <code class="language-markup">ReactiveFormModule</code> should be added in component module or application module.
   </p>
   <markdown-to-html [src]="'app/form-validation/markdown/component.module.diff'"></markdown-to-html>
 
-  <p>
-    <strong>Tips 1</strong>: To disable the browser native validation (example: when you click Enter on any required field), you have to add <code class="language-markup">novalidate</code> attribute to form element.
-  </p>
-  <p>
-    <strong>Tips 2</strong>: To make a field required in form we have to add both the <code class="language-markup">required</code> attribute on HTML element and add <code class="language-markup">Validators.required</code> function
-    as validator function in form control contructor. At the moment there is no method in Angular 2 to get the validator function list applied on a from control.
-  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Tips</h5>
+  <ul class="browser-default">
+    <li>
+      <p>To disable the browser native validation (example: when you click Enter on any required field), you have to add <code class="language-markup">novalidate</code> attribute to form element.</p>
+      <app-code-snippet>
+        &lt;form novalidate>&lt;/form>
+      </app-code-snippet>
+    </li>
+    <li>
+      <p>
+        To make a field required in form we have to add both the <code class="language-markup">required</code> attribute on HTML element and add <code class="language-markup">Validators.required</code> function
+        as validator function in form control contructor. At the moment there is no method in Angular 2 to get the validator function list applied on a from control.
+      </p>
+    </li>
+  </ul>
 </div>
 
 <div class="section">
@@ -32,7 +49,8 @@
     <li>Last Name: Required</li>
     <li>Address 1: Required</li>
     <li>Province: Required</li>
-    <li>Postal Code : Pattern</li>
+    <li>Phone number: Pattern (the input accept this format : XXX-XXX-XXXX)</li>
+    <li>Postal Code : Pattern (the input accept US and Canada postal code)</li>
     <li>Hear about us: Required</li>
     <li>Term of service: Required</li>
   </ul>
@@ -54,7 +72,7 @@
                 id="input-firstname"
                 formControlName="firstName"
                 type="text"
-                [errorMessage]="formErrors.firstName"
+                [errorMessageResource]="errorMessageResources.firstName"
                 [label]="'First Name'" />
             </mz-input-container>
             <mz-input-container class="col s12 m6">
@@ -62,7 +80,7 @@
                 id="input-lastname"
                 formControlName="lastName"
                 type="text"
-                [errorMessage]="formErrors.lastName"
+                [errorMessageResource]="errorMessageResources.lastName"
                 [label]="'Last Name'" />
             </mz-input-container>
           </div>
@@ -72,7 +90,7 @@
                 id="input-address"
                 formControlName="address"
                 type="text"
-                [errorMessage]="formErrors.address"
+                [errorMessageResource]="errorMessageResources.address"
                 [label]="'Address 1'" />
             </mz-input-container>
           </div>
@@ -99,10 +117,10 @@
               <select mz-select mz-validation required
                 id="select-province"
                 formControlName="province"
-                [errorMessage]="formErrors.province"
+                [errorMessageResource]="errorMessageResources.province"
                 [label]="'Province'"
                 [placeholder]="'Choose your province'">
-                <option *ngFor="let province of provinces" [selected]="province == userForm.controls['province'].value" [ngValue]="province">{{ province.name }}</option>
+                <option *ngFor="let province of provinces" [selected]="province == userForm.get('province').value" [ngValue]="province">{{ province.name }}</option>
               </select>
             </mz-select-container>
             <mz-input-container class="col s12 m2">
@@ -110,64 +128,90 @@
                 id="input-postalcode"
                 formControlName="postalCode"
                 type="text"
-                [errorMessage]="formErrors.postalCode"
+                [errorMessageResource]="errorMessageResources.postalCode"
                 [label]="'Postal Code'" />
             </mz-input-container>
           </div>
-          <div class="row">
+          <div class="section">
+            <h6>Phone number</h6>
+            <div class="row" formArrayName="phoneNumbers">
+              <div *ngFor="let phoneNumber of getPhoneNumbers(); let i = index">
+                <mz-input-container class="col s11" [formGroup]="userForm.get('phoneNumbers').at(i)">
+                  <input mz-input mz-validation
+                    id="input-phonenumber-{{i}}"
+                    formControlName="phoneNumber"
+                    type="text"
+                    [errorMessageResource]="errorMessageResources.phoneNumber"
+                    [label]="'Phone number'" />
+                </mz-input-container>
+                <div class="col s1">
+                  <button mz-button *ngIf="i > 0" [flat]="true" [float]="true" (click)="deletePhoneNumber(i)" type="button">
+                    <i mz-icon class="black-text" [icon]="'clear'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button mz-button (click)="addPhoneNumber()" type="button">Add</button>
+            </div>
+          </div>
+
+          <div class="section">
             <h6 class="col s12 m12">Gender</h6>
+            <div class="row">
+              <mz-radio-button-container class="col s12 m3">
+                <input mz-radio-button
+                  id="radio-button-man"
+                  formControlName="gender"
+                  name="gender"
+                  type="radio"
+                  value="man"
+                  [label]="'Man'"
+                  [withGap]="true">
+              </mz-radio-button-container>
+              <mz-radio-button-container class="col s12 m3">
+                <input mz-radio-button
+                  id="radio-button-woman"
+                  formControlName="gender"
+                  name="gender"
+                  type="radio"
+                  value="woman"
+                  [label]="'Woman'"
+                  [withGap]="true">
+              </mz-radio-button-container>
+            </div>
           </div>
-          <div class="row">
-            <mz-radio-button-container class="col s12 m3">
-              <input mz-radio-button
-                id="radio-button-man"
-                formControlName="gender"
-                name="gender"
-                type="radio"
-                value="man"
-                [label]="'Man'"
-                [withGap]="true">
-            </mz-radio-button-container>
-            <mz-radio-button-container class="col s12 m3">
-              <input mz-radio-button
-                id="radio-button-woman"
-                formControlName="gender"
-                name="gender"
-                type="radio"
-                value="woman"
-                [label]="'Woman'"
-                [withGap]="true">
-            </mz-radio-button-container>
-          </div>
-          <div class="row">
+
+          <div class="section">
             <h6 class="col s12 m12">How did you hear about us?</h6>
-          </div>
-          <div class="row">
-            <mz-select-container class="col s12 m4">
-              <select mz-select multiple mz-validation required
-                id="select-hear-about-us"
-                formControlName="hearAboutUs"
-                [errorMessage]="formErrors.hearAboutUs"
-                [label]="'How did you hear about us?'"
-                [placeholder]="'Make your choice'">
-                <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.controls['hearAboutUs'].value?.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
-              </select>
-            </mz-select-container>
-          </div>
-          <div class="row">
-            <div class="col s12 m12">
-              <mz-checkbox-container>
-                <input mz-checkbox mz-validation required
-                  id="checkbox-term-service"
-                  formControlName="termService"
-                  type="checkbox"
-                  [errorMessage]="formErrors.termService"
-                  [filledIn]="true"
-                  [label]="'I accept the terms of service.'">
-              </mz-checkbox-container>
+            <div class="row">
+              <mz-select-container class="col s12 m4">
+                <select mz-select multiple mz-validation required
+                  id="select-hear-about-us"
+                  formControlName="hearAboutUs"
+                  [errorMessageResource]="errorMessageResources.hearAboutUs"
+                  [label]="'How did you hear about us?'"
+                  [placeholder]="'Make your choice'">
+                  <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.get('hearAboutUs').value?.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
+                </select>
+              </mz-select-container>
+            </div>
+            <div class="row">
+              <div class="col s12 m12">
+                <mz-checkbox-container>
+                  <input mz-checkbox mz-validation required
+                    id="checkbox-term-service"
+                    formControlName="termService"
+                    type="checkbox"
+                    [errorMessageResource]="errorMessageResources.termService"
+                    [filledIn]="true"
+                    [label]="'I accept the terms of service.'">
+                </mz-checkbox-container>
+              </div>
             </div>
           </div>
           <button mz-button [disabled]="!userForm.valid" type="submit">Submit</button>
+          <button mz-button (click)="clear()" type="button">Clear</button>
         </form>
 
         <div *ngIf="submitted">
@@ -182,10 +226,23 @@
   </div>
   <div class="section">
     <h5 class="light">Properties</h5>
+    <p>
+       Form control error message can be customized using the following propertie when adding <code class="language-markup">mz-validation</code> directive.
+    </p>
+    <app-properties-table
+      [properties]="properties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+    <h5 class="light">Classes</h5>
     <div class="section">
-      <h6>mz-validation</h6>
+      <h6 class="bold">ErrorMessageResource</h6>
+      <p>
+        This class contains all message error types that can be use in a form control.
+      </p>
       <app-properties-table
-        [properties]="properties">
+        [properties]="errorMessageRessourceProperties">
       </app-properties-table>
     </div>
   </div>

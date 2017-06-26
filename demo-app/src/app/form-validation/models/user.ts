@@ -7,6 +7,7 @@ export abstract class User {
   firstName: string;
   gender: string;
   lastName: string;
+  phoneNumbers: Array<string>;
   postalCode: string;
   province: Province;
 }

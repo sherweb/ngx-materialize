@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 export abstract class Province {
   public code: string;
@@ -13,6 +21,7 @@ export abstract class User {
   public firstName: string;
   public gender: string;
   public lastName: string;
+  public phoneNumbers: Array<string>;
   public postalCode: string;
   public province: Province;
 }
@@ -22,17 +31,38 @@ export abstract class User {
   templateUrl: './form-validation.component.html',
   styleUrls: ['./form-validation.component.scss'],
 })
-export class FormValidationComponent {
+export class FormValidationComponent implements OnInit {
 
-  formErrors = {
-    'address': '',
-    'address2': '',
-    'firstName': '',
-    'hearAboutUs': '',
-    'lastName': '',
-    'postalCode': '',
-    'province': '',
-    'termService': '',
+  errorMessageResources = {
+    address: {
+      required: 'Address is required.',
+    },
+    address2: {
+      required: 'Address2 is required.',
+    },
+    firstName: {
+      required: 'First name is required.',
+      minlength: 'First name must be at least 4 characters long.',
+      maxlength: 'First name cannot be more than 24 characters long.',
+    },
+    hearAboutUs: {
+      required: 'Hear about us is required.',
+    },
+    lastName: {
+      required: 'Last name is required.',
+    },
+    postalCode: {
+      pattern : 'Postal code is invalid.',
+    },
+    phoneNumber: {
+      pattern: 'Phone number format is invaild. (XXX-XXX-XXXX)',
+    },
+    province: {
+      required: 'Province is required.',
+    },
+    termService: {
+      required: 'You must accept the terms of service before you can proceed.',
+    },
   };
 
   provinces: Province[] = [
@@ -63,7 +93,7 @@ export class FormValidationComponent {
     { value: 'other', text: 'Other' },
   ];
 
-  hearAboutUs = [this.hearAboutUsOptions[7]];
+  hearAboutUs = null;
 
   user: User = {
     address: '',
@@ -72,6 +102,7 @@ export class FormValidationComponent {
     firstName: '',
     gender: 'man',
     lastName: '',
+    phoneNumbers: new Array<string>(),
     postalCode: '',
     province: null,
   };
@@ -80,38 +111,22 @@ export class FormValidationComponent {
 
   termService = false;
 
-  validationMessages = {
-    address: {
-      required: 'Address is required.',
-    },
-    address2: {
-      required: 'Address2 is required.',
-    },
-    firstName: {
-      required: 'First name is required.',
-      minlength: 'First name must be at least 4 characters long.',
-      maxlength: 'First name cannot be more than 24 characters long.',
-    },
-    hearAboutUs: {
-      required: 'Hear about us is required.',
-    },
-    lastName: {
-      required: 'Last name is required.',
-    },
-    postalCode: {
-      pattern : 'Postal code is invalid.',
-    },
-    province: {
-      required: 'Province is required.',
-    },
-    termService: {
-      required: 'You must accept the terms of service before you can proceed.',
-    },
-  };
-
   constructor(
     private formBuilder: FormBuilder,
   ) { }
+
+  ngOnInit() {
+    this.buildForm();
+    this.addPhoneNumber();
+  }
+
+  addPhoneNumber(): void {
+    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+    const newPhoneNumberGroup = this.formBuilder.group({
+        phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
+    });
+    phoneNumbersControl.push(newPhoneNumberGroup);
+  }
 
   buildForm() {
     this.userForm = this.formBuilder.group({
@@ -127,40 +142,34 @@ export class FormValidationComponent {
       gender: [this.user.gender],
       hearAboutUs: [this.hearAboutUs, Validators.required],
       lastName: [this.user.lastName, Validators.required],
+      phoneNumbers: this.formBuilder.array([]),
       postalCode: [this.user.postalCode, Validators.compose([
-          Validators.pattern('[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]'),
+          Validators.pattern('(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)'),
         ]),
       ],
       province: [this.user.province, Validators.required],
       termService: [this.termService, Validators.required],
     });
+  }
 
-    this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
+  clear() {
+    this.userForm.reset();
 
-    this.onValueChanged();
+    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+    for (let i = phoneNumbersControl.length - 1; i > 0; i--) {
+      this.deletePhoneNumber(i);
+    }
+
+    this.userForm.controls['gender'].setValue(this.user.gender);
+  }
+
+  deletePhoneNumber(index: number): void {
+    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+    phoneNumbersControl.removeAt(index);
   }
 
   onSubmit() {
     this.submitted = true;
     this.user = Object.assign({}, this.userForm.value);
-  }
-
-  onValueChanged(data?: any) {
-    if (!this.userForm) { return; }
-    const form = this.userForm;
-
-    Object.keys(this.formErrors).forEach(field => {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-
-      if (control && !control.valid) {
-        const messages = this.validationMessages[field];
-
-        Object.keys(control.errors).forEach(key => {
-          this.formErrors[field] += messages[key] + ' ';
-        });
-      }
-    });
   }
 }

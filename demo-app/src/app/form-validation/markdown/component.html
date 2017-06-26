@@ -5,7 +5,7 @@
         id="input-firstname"
         formControlName="firstName"
         type="text"
-        [errorMessage]="formErrors.firstName"
+        [errorMessageResource]="errorMessageResources.firstName"
         [label]="'First Name'" />
     </mz-input-container>
     <mz-input-container class="col s12 m6">
@@ -13,7 +13,7 @@
         id="input-lastname"
         formControlName="lastName"
         type="text"
-        [errorMessage]="formErrors.lastName"
+        [errorMessageResource]="errorMessageResources.lastName"
         [label]="'Last Name'" />
     </mz-input-container>
   </div>
@@ -23,7 +23,7 @@
         id="input-address"
         formControlName="address"
         type="text"
-        [errorMessage]="formErrors.address"
+        [errorMessageResource]="errorMessageResources.address"
         [label]="'Address 1'" />
     </mz-input-container>
   </div>
@@ -50,7 +50,7 @@
       <select mz-select mz-validation required
         id="select-province"
         formControlName="province"
-        [errorMessage]="formErrors.province"
+        [errorMessageResource]="errorMessageResources.province"
         [label]="'Province'"
         [placeholder]="'Choose your province'">
         <option *ngFor="let province of provinces" [selected]="province == userForm.controls['province'].value" [ngValue]="province">{{ province.name }}</option>
@@ -61,62 +61,88 @@
         id="input-postalcode"
         formControlName="postalCode"
         type="text"
-        [errorMessage]="formErrors.postalCode"
+        [errorMessageResource]="errorMessageResources.postalCode"
         [label]="'Postal Code'" />
     </mz-input-container>
   </div>
-  <div class="row">
+  <div class="section">
+    <h6>Phone number</h6>
+    <div class="row" formArrayName="phoneNumbers">
+      <div *ngFor="let phoneNumber of userForm.controls['phoneNumbers'].controls; let i = index">
+        <mz-input-container class="col s11" [formGroup]="userForm.controls.phoneNumbers.controls[i]">
+          <input mz-input mz-validation
+            id="input-phonenumber-{{i}}"
+            formControlName="phoneNumber"
+            type="text"
+            [errorMessageResource]="errorMessageResources.phoneNumber"
+            [label]="'Phone number'" />
+        </mz-input-container>
+        <div class="col s1">
+          <button mz-button *ngIf="i > 0" [flat]="true" [float]="true" (click)="deletePhoneNumber(i)" type="button">
+            <i mz-icon class="black-text" [icon]="'clear'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button mz-button (click)="addPhoneNumber()" type="button">Add</button>
+    </div>
+  </div>
+
+  <div class="section">
     <h6 class="col s12 m12">Gender</h6>
+    <div class="row">
+      <mz-radio-button-container class="col s12 m3">
+        <input mz-radio-button
+          id="radio-button-man"
+          formControlName="gender"
+          name="gender"
+          type="radio"
+          value="man"
+          [label]="'Man'"
+          [withGap]="true">
+      </mz-radio-button-container>
+      <mz-radio-button-container class="col s12 m3">
+        <input mz-radio-button
+          id="radio-button-woman"
+          formControlName="gender"
+          name="gender"
+          type="radio"
+          value="woman"
+          [label]="'Woman'"
+          [withGap]="true">
+      </mz-radio-button-container>
+    </div>
   </div>
-  <div class="row">
-    <mz-radio-button-container class="col s12 m3">
-      <input mz-radio-button
-        id="radio-button-gender"
-        formControlName="gender"
-        name="gender"
-        type="radio"
-        value="man"
-        [label]="'Man'"
-        [withGap]="true">
-    </mz-radio-button-container>
-    <mz-radio-button-container class="col s12 m3">
-      <input mz-radio-button
-        id="radio-button-woman"
-        formControlName="gender"
-        name="gender"
-        type="radio"
-        value="woman"
-        [label]="'Woman'"
-        [withGap]="true">
-    </mz-radio-button-container>
-  </div>
-  <div class="row">
+
+  <div class="section">
     <h6 class="col s12 m12">How did you hear about us?</h6>
-  </div>
-  <div class="row">
-    <mz-select-container class="col s12 m4">
-      <select mz-select multiple mz-validation required
-        id="select-hear-about-us"
-        formControlName="hearAboutUs"
-        [errorMessage]="formErrors.hearAboutUs"
-        [label]="'How did you hear about us?'"
-        [placeholder]="'Make your choice'">
-        <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.controls['hearAboutUs'].value.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
-      </select>
-    </mz-select-container>
-  </div>
-  <div class="row">
-    <div class="col s12 m12">
-      <mz-checkbox-container>
-        <input mz-checkbox mz-validation required
-          id="checkbox-term-service"
-          formControlName="termService"
-          type="checkbox"
-          [errorMessage]="formErrors.termService"
-          [filledIn]="true"
-          [label]="'I accept the terms of service.'">
-      </mz-checkbox-container>
+    <div class="row">
+      <mz-select-container class="col s12 m4">
+        <select mz-select multiple mz-validation required
+          id="select-hear-about-us"
+          formControlName="hearAboutUs"
+          [errorMessageResource]="errorMessageResources.hearAboutUs"
+          [label]="'How did you hear about us?'"
+          [placeholder]="'Make your choice'">
+          <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.controls['hearAboutUs'].value?.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+    <div class="row">
+      <div class="col s12 m12">
+        <mz-checkbox-container>
+          <input mz-checkbox mz-validation required
+            id="checkbox-term-service"
+            formControlName="termService"
+            type="checkbox"
+            [errorMessageResource]="errorMessageResources.termService"
+            [filledIn]="true"
+            [label]="'I accept the terms of service.'">
+        </mz-checkbox-container>
+      </div>
     </div>
   </div>
   <button mz-button [disabled]="!userForm.valid" type="submit">Submit</button>
+  <button mz-button (click)="clear()" type="button">Clear</button>
 </form>

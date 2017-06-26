@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MzInputContainerComponent, MzInputDirective } from './../input';
 import { MzSelectContainerComponent, MzSelectDirective } from './../select';
 import { buildComponent, MzTestWrapperComponent } from './../shared/test-wrapper';
-import { MzErrorMessageComponent } from './error-message/error-message.component';
+import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 import { MzValidationComponent } from './validation.component';
 
 describe('MzValidationComponent:view', () => {
@@ -178,7 +178,11 @@ describe('MzValidationComponent:view', () => {
 
     describe('form control status change', () => {
 
-      it('should add invalid class and show error message when it is invalid', fakeAsync(() => {
+      const errorMessageResource: ErrorMessageResource = {
+        minlength: 'Too short',
+      }
+
+      it('should add invalid class and show error message when it is invalid and dirty', fakeAsync(() => {
 
         buildComponent<any>(`
           <form [formGroup]="formGroup">
@@ -186,11 +190,15 @@ describe('MzValidationComponent:view', () => {
               <input mz-input mz-validation
                 id="input-id"
                 formControlName="formControl"
-                [errorMessage]="'Too short'"
+                [errorMessageResource]="errorMessageResource"
                 [label]="'label'" />
             </mz-input-container>
           </form>
-        `).then((fixture) => {
+          `,
+          {
+            errorMessageResource,
+          },
+        ).then((fixture) => {
 
             formBuilder = TestBed.get(FormBuilder);
 
@@ -201,9 +209,9 @@ describe('MzValidationComponent:view', () => {
             fixture.componentInstance.formGroup = formGroup;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
-
             tick();
 
+            formGroup.controls['formControl'].markAsDirty();
             formGroup.controls['formControl'].setValue('a');
 
             tick();
@@ -211,11 +219,11 @@ describe('MzValidationComponent:view', () => {
 
             expect(inputElement().classList).toContain('invalid');
 
-            expect(errorMessageDivElement().innerHTML).toBe('Too short');
+            expect(errorMessageDivElement().innerHTML.trim()).toBe('Too short');
           });
       }));
 
-      it('should add valid class when it is valid', fakeAsync(() => {
+      it('should add valid class when it is valid and dirty', fakeAsync(() => {
 
         buildComponent<any>(`
           <form [formGroup]="formGroup">
@@ -223,11 +231,15 @@ describe('MzValidationComponent:view', () => {
               <input mz-input mz-validation
                 id="input-id"
                 formControlName="formControl"
-                [errorMessage]="''"
+                [errorMessageResource]="errorMessageResource"
                 [label]="'label'" />
             </mz-input-container>
           </form>
-        `).then((fixture) => {
+          `,
+          {
+            errorMessageResource,
+          },
+        ).then((fixture) => {
 
             formBuilder = TestBed.get(FormBuilder);
 
@@ -241,6 +253,7 @@ describe('MzValidationComponent:view', () => {
 
             tick();
 
+            formGroup.controls['formControl'].markAsTouched();
             formGroup.controls['formControl'].setValue('abc');
 
             tick();
@@ -251,24 +264,72 @@ describe('MzValidationComponent:view', () => {
             expect(errorMessageDivElement()).toBeFalsy();
           });
       }));
+
+      it('should not add any class when it is untouched and pristine', fakeAsync(() => {
+
+        buildComponent<any>(`
+          <form [formGroup]="formGroup">
+            <mz-input-container>
+              <input mz-input mz-validation
+                id="input-id"
+                formControlName="formControl"
+                [errorMessageResource]="errorMessageResource"
+                [label]="'label'" />
+            </mz-input-container>
+          </form>
+          `,
+          {
+            errorMessageResource,
+          },
+        ).then((fixture) => {
+
+            formBuilder = TestBed.get(FormBuilder);
+
+            formGroup = formBuilder.group({
+              'formControl': ['', Validators.minLength(2)],
+            });
+
+            fixture.componentInstance.formGroup = formGroup;
+            nativeElement = fixture.nativeElement;
+            fixture.detectChanges();
+
+            tick();
+
+            tick();
+            fixture.detectChanges();
+
+            expect(inputElement().classList).not.toContain('valid');
+            expect(inputElement().classList).not.toContain('invalid');
+
+            expect(errorMessageDivElement()).toBeFalsy();
+          });
+      }));
     });
 
     describe('focusout', () => {
 
+      const errorMessageResource: ErrorMessageResource = {
+        required: 'Required',
+      }
+
       describe('input', () => {
 
-        it('should add invalid class and show error message when form control is invalid', fakeAsync(() => {
+        it('should add invalid class and show error message when form control is invalid and touched', fakeAsync(() => {
           buildComponent<any>(`
             <form [formGroup]="formGroup">
               <mz-input-container>
                 <input mz-input mz-validation required
                   id="input-id"
                   formControlName="formControl"
-                  [errorMessage]="'Required'"
+                  [errorMessageResource]="errorMessageResource"
                   [label]="'label'" />
               </mz-input-container>
             </form>
-          `).then((fixture) => {
+            `,
+            {
+              errorMessageResource,
+            },
+          ).then((fixture) => {
 
               formBuilder = TestBed.get(FormBuilder);
 
@@ -281,6 +342,7 @@ describe('MzValidationComponent:view', () => {
               fixture.detectChanges();
               tick();
 
+              formGroup.controls['formControl'].markAsTouched();
               inputElement().dispatchEvent(new CustomEvent('focusout'));
 
               fixture.detectChanges();
@@ -292,18 +354,22 @@ describe('MzValidationComponent:view', () => {
             });
         }));
 
-        it('should add valid class when it is valid', fakeAsync(() => {
+        it('should add valid class when it is valid and touched', fakeAsync(() => {
           buildComponent<any>(`
             <form [formGroup]="formGroup">
               <mz-input-container>
                 <input mz-input mz-validation
                   id="input-id"
                   formControlName="formControl"
-                  [errorMessage]="''"
+                  [errorMessageResource]="errorMessageResource"
                   [label]="'label'" />
               </mz-input-container>
             </form>
-          `).then((fixture) => {
+            `,
+            {
+              errorMessageResource,
+            },
+          ).then((fixture) => {
 
               formBuilder = TestBed.get(FormBuilder);
 
@@ -317,6 +383,7 @@ describe('MzValidationComponent:view', () => {
 
               tick();
 
+              formGroup.controls['formControl'].markAsTouched();
               inputElement().dispatchEvent(new CustomEvent('focusout'));
 
               fixture.detectChanges();
@@ -333,7 +400,7 @@ describe('MzValidationComponent:view', () => {
           return nativeElement.querySelector('input.select-dropdown');
         }
 
-        it('should add invalid class and show error message when form control is invalid', fakeAsync(() => {
+        it('should add invalid class and show error message when form control is invalid and touched', fakeAsync(() => {
 
           buildComponent<any>(`
             <form [formGroup]="formGroup">
@@ -341,14 +408,18 @@ describe('MzValidationComponent:view', () => {
                 <select mz-select mz-validation required
                   id="select"
                   formControlName="formControl"
-                  [errorMessage]="'Required'"
+                  [errorMessageResource]="errorMessageResource"
                   [label]="'label'"
                   [placeholder]="'place'">
                   <option>Option 1</option>
                 </select>
               </mz-select-container>
             </form>
-          `).then((fixture) => {
+            `,
+            {
+              errorMessageResource,
+            },
+          ).then((fixture) => {
 
               formBuilder = TestBed.get(FormBuilder);
 
@@ -378,7 +449,7 @@ describe('MzValidationComponent:view', () => {
             });
         }));
 
-        it('should add valid class when form control is valid', fakeAsync(() => {
+        it('should add valid class when form control is valid and touched', fakeAsync(() => {
 
           buildComponent<any>(`
             <form [formGroup]="formGroup">
