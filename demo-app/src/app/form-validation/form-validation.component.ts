@@ -50,6 +50,13 @@ export class FormValidationComponent implements OnInit {
 
   properties: IPropertyRow[] = [
     {
+      name: 'disable',
+      mandatory: false,
+      type: 'boolean',
+      description: 'Disable an element',
+      defaultValue: 'false',
+    },
+    {
       name: 'errorMessageResource',
       mandatory: false,
       type: 'ErrorMessageResource',
@@ -60,11 +67,17 @@ export class FormValidationComponent implements OnInit {
 
   // form validation variables
   errorMessageResources = {
+    activitySector: {
+      required: 'Activity sector is required.',
+    },
     address: {
       required: 'Address is required.',
     },
     address2: {
       required: 'Address2 is required.',
+    },
+    domainName: {
+      required: 'Domain name is required.',
     },
     firstName: {
       required: 'First name is required.',
@@ -73,6 +86,9 @@ export class FormValidationComponent implements OnInit {
     },
     hearAboutUs: {
       required: 'Hear about us is required.',
+    },
+    jobTitle: {
+      required: 'Job title is required.',
     },
     lastName: {
       required: 'Last name is required.',
@@ -92,23 +108,51 @@ export class FormValidationComponent implements OnInit {
   };
 
   user: User = {
+    activitySector: '',
     address: '',
     address2: '',
     city: '',
     firstName: '',
     gender: 'man',
+    jobTitle: '',
+    jobDescription: '',
+    jobPrivate: true,
+    jobType: 'permanent',
     lastName: '',
     phoneNumbers: [],
     postalCode: '',
     province: null,
   };
 
+  hasJob = true;
   hearAboutUs = null;
   submitted = false;
   userForm: FormGroup;
   termService = false;
 
   // fake datas
+  activitySectorOptions = [
+    { value: 'culture-music-art-literature', text: 'Culture,music, arts, literature' },
+    { value: 'health-pha-medical', text: 'Health care, pharmaceutical, and medical sector' },
+    { value: 'manufacturing', text: 'Manufacturing industries' },
+    { value: 'telecom-info-techno', text: 'Telecommunications and information technology' },
+    { value: 'transport', text: 'Transport, shipping, aviation, trucking and infrastructures' },
+    { value: 'financial-services', text: 'Financial services' },
+    { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
+    { value: 'media-film', text: 'Media and film industry' },
+  ]
+
+  hearAboutUsOptions = [
+    { value: 'event', text: 'Event' },
+    { value: 'facebook', text: 'Facebook' },
+    { value: 'family', text: 'Family' },
+    { value: 'friend', text: 'Friend' },
+    { value: 'search', text: 'Search engine' },
+    { value: 'newspaper', text: 'Newspaper, Magazine' },
+    { value: 'twitter', text: 'Twitter' },
+    { value: 'other', text: 'Other' },
+  ];
+
   provinces: Province[] = [
     { code: 'ab', name: 'Alberta' },
     { code: 'mb', name: 'Manitoba' },
@@ -122,17 +166,6 @@ export class FormValidationComponent implements OnInit {
     { code: 'nu', name: 'Nunavut' },
     { code: 'sk', name: 'Saskatchewan' },
     { code: 'yk', name: 'Yukon' },
-  ];
-
-  hearAboutUsOptions = [
-    { value: 'event', text: 'Event' },
-    { value: 'facebook', text: 'Facebook' },
-    { value: 'family', text: 'Family' },
-    { value: 'friend', text: 'Friend' },
-    { value: 'search', text: 'Search engine' },
-    { value: 'newspaper', text: 'Newspaper, Magazine' },
-    { value: 'twitter', text: 'Twitter' },
-    { value: 'other', text: 'Other' },
   ];
 
   constructor(
@@ -156,6 +189,7 @@ export class FormValidationComponent implements OnInit {
 
   buildForm() {
     this.userForm = this.formBuilder.group({
+      activitySector: [this.user.activitySector, Validators.required],
       address: [this.user.address, Validators.required],
       address2: [this.user.address2],
       city: [this.user.city],
@@ -166,7 +200,12 @@ export class FormValidationComponent implements OnInit {
         ]),
       ],
       gender: [this.user.gender],
+      hasJob: [this.hasJob],
       hearAboutUs: [this.hearAboutUs, Validators.required],
+      jobDescription: [this.user.jobDescription],
+      jobPrivate: [this.user.jobPrivate],
+      jobTitle: [this.user.jobTitle, Validators.required],
+      jobType: [this.user.jobType, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       phoneNumbers: this.formBuilder.array([]),
       postalCode: [this.user.postalCode, Validators.compose([
@@ -186,7 +225,9 @@ export class FormValidationComponent implements OnInit {
       this.deletePhoneNumber(i);
     }
 
-    this.userForm.controls['gender'].setValue(this.user.gender);
+    this.userForm.get('jobPrivate').setValue(this.user.jobPrivate);
+    this.userForm.get('jobType').setValue(this.user.jobType)
+    this.userForm.get('gender').setValue(this.user.gender);
   }
 
   deletePhoneNumber(index: number) {

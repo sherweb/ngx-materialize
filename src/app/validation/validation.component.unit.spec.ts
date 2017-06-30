@@ -62,7 +62,9 @@ describe('MzValidationComponent:unit', () => {
       callOrder = [];
       spyOn(component, 'initElements').and.callFake(() => callOrder.push('initElements'));
       spyOn(component, 'initErrorMessageComponent').and.callFake(() => callOrder.push('initErrorMessageComponent'));
+      spyOn(component, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(component, 'subscribeStatusChanges').and.callFake(() => callOrder.push('subscribeStatusChanges'));
+      spyOn(component, 'executePropHandlers').and.callFake(() => callOrder.push('executePropHandlers'));
     });
 
     it('should call initElement ', () => {
@@ -81,12 +83,28 @@ describe('MzValidationComponent:unit', () => {
       expect(callOrder[1]).toBe('initErrorMessageComponent');
     });
 
+    it('should call initHandlers ', () => {
+
+      component.ngAfterViewInit();
+
+      expect(component.initHandlers).toHaveBeenCalled();
+      expect(callOrder[2]).toBe('initHandlers');
+    });
+
     it('should call subscribeStatusChanges ', () => {
 
       component.ngAfterViewInit();
 
       expect(component.subscribeStatusChanges).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('subscribeStatusChanges');
+      expect(callOrder[3]).toBe('subscribeStatusChanges');
+    });
+
+    it('should call executePropHandlers ', () => {
+
+      component.ngAfterViewInit();
+
+      expect(component.executePropHandlers).toHaveBeenCalled();
+      expect(callOrder[4]).toBe('executePropHandlers');
     });
   });
 
@@ -122,11 +140,73 @@ describe('MzValidationComponent:unit', () => {
 
       expect(component.statusChangesSubscription.unsubscribe).toHaveBeenCalled();
       expect(component.errorMessageComponent.destroy).toHaveBeenCalled();
-      expect(mockInputSelectDropdownJquery.off).toHaveBeenCalledWith('close');
+      expect(mockInputSelectDropdownJquery.off).toHaveBeenCalledWith('blur');
     }));
   });
 
-  describe('isNativeElementSelect', () => {
+  describe('getElement', () => {
+    it('should return native element', () => {
+
+      const mockInput = document.createElement('input');
+
+      component.nativeElement = $(mockInput);
+
+      spyOn(component, 'isNativeSelectElement').and.returnValue(false);
+
+      const actualElement = component.getElement();
+
+      expect(actualElement).toBe(component.nativeElement);
+    })
+
+    it('should return input select dropdown element when element ref is a select', () => {
+
+      const mockSelect = document.createElement('select');
+      mockSelect.appendChild(document.createElement('option'));
+
+      const mockInputSelectDropdown = document.createElement('input');
+      mockInputSelectDropdown.setAttribute('class', 'select-dropdown');
+
+      const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
+
+      const mockParentElement = {
+        children: () => {
+          return mockInputSelectDropdownJquery;
+        },
+      };
+
+      component.nativeElement = $(mockSelect);
+
+      spyOn(component, 'isNativeSelectElement').and.returnValue(true);
+      spyOn(component.nativeElement, 'parent').and.returnValue(mockParentElement);
+
+      const actualElement = component.getElement();
+
+      expect(actualElement).toBe(mockInputSelectDropdownJquery);
+    })
+  });
+
+  describe('handleDisable', () => {
+
+    it('should disable form control when disable is true', () => {
+
+      component.disable = true;
+
+      component.handleDisable();
+
+      expect(component.ngControl.control.disabled).toBeTruthy()
+    });
+
+    it('should not disable form control when disable is false', () => {
+
+      component.disable = false;
+
+      component.handleDisable();
+
+      expect(component.ngControl.control.enabled).toBeTruthy()
+    });
+  });
+
+  describe('isNativeSelectElement', () => {
 
     it('should return true when the element is a select', () => {
 
@@ -136,7 +216,7 @@ describe('MzValidationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      expect(component.isNativeElementSelect()).toBeTruthy();
+      expect(component.isNativeSelectElement).toBeTruthy();
     });
 
     it('should return false when the element is not a select', () => {
@@ -147,7 +227,7 @@ describe('MzValidationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      expect(component.isNativeElementSelect()).toBeFalsy();
+      expect(component.isNativeSelectElement).toBeFalsy();
     });
   });
 });

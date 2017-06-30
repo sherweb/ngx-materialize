@@ -3,8 +3,8 @@
 <div class="section">
 
   <p>
-    The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>input checkbox</strong> and <strong>select</strong>.
-    The textarea is not yet supported by the directive. For the case of radio button, it will not be supported since in best pratique we always specify a default value.
+    The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>checkbox</strong>, <strong>radio button</strong>, <strong>select</strong>, <strong>textarea</strong>.
+    The error message is not yet supported for the <strong>textarea</strong>. For the <strong>radio button</strong>, the error message is not supported since in best pratique we always specify a default value.
     The component module must use the <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">Reactive Form</a> to work with the validation directive.
   </p>
 </div>
@@ -45,9 +45,13 @@
   </p>
 
   <ul class="browser-default">
-    <li>Name: Required, min length and max length</li>
-    <li>Last Name: Required</li>
+    <li>Activity sector: Enabled only if "Has Job?^" is checked. Otherwise the field is disabled.</li>
     <li>Address 1: Required</li>
+    <li>Job description: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Job title: Required only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Job type: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Last Name: Required</li>
+    <li>Name: Required, min length and max length</li>
     <li>Province: Required</li>
     <li>Phone number: Pattern (the input accept this format : XXX-XXX-XXXX)</li>
     <li>Postal Code : Pattern (the input accept US and Canada postal code)</li>
@@ -84,53 +88,135 @@
                 [label]="'Last Name'" />
             </mz-input-container>
           </div>
-          <div class="row">
-            <mz-input-container class="col s12 m12">
-              <input mz-input mz-validation required
-                id="input-address"
-                formControlName="address"
-                type="text"
-                [errorMessageResource]="errorMessageResources.address"
-                [label]="'Address 1'" />
-            </mz-input-container>
+          <div class="section">
+            <h6>Professional information</h6>
+            <div class="row valign-wrapper">
+              <mz-checkbox-container class="col s2">
+                <input mz-checkbox
+                  id="checkbox-job"
+                  formControlName="hasJob"
+                  type="checkbox"
+                  [filledIn]="true"
+                  [label]="'Has job?'">
+              </mz-checkbox-container>
+              <mz-input-container class="col s10">
+                <input mz-input mz-validation required
+                  id="input-job-title"
+                  formControlName="jobTitle"
+                  type="text"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [errorMessageResource]="errorMessageResources.jobTitle"
+                  [label]="'Job title'" />
+              </mz-input-container>
+            </div>
+            <div class="row">
+              <mz-textarea-container class="col s12 m12">
+                <textarea mz-textarea mz-validation
+                  id="textarea-job-description"
+                  formControlName="jobDescription"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [label]="'Job description'"
+                  [length]="255">
+                </textarea>
+              </mz-textarea-container>
+            </div>
+            <div class="row valign-wrapper">
+              <mz-radio-button-container class="col s6 m4">
+                <input mz-radio-button mz-validation
+                  id="radio-button-jobtype-permanent"
+                  formControlName="jobType"
+                  name="jobType"
+                  type="radio"
+                  value="permanent"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [label]="'Permanent'"
+                  [withGap]="true">
+              </mz-radio-button-container>
+              <mz-radio-button-container class="col s6 m4">
+                <input mz-radio-button mz-validation
+                  id="radio-button-jobtype-consultant"
+                  formControlName="jobType"
+                  name="jobType"
+                  type="radio"
+                  value="consultant"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [label]="'Consultant'"
+                  [withGap]="true">
+              </mz-radio-button-container>
+              <mz-select-container class="col s12 m4">
+                <select mz-select mz-validation required
+                  id="select-activity-sector"
+                  formControlName="activitySector"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [errorMessageResource]="errorMessageResources.activitySector"
+                  [label]="'Activity sector'"
+                  [placeholder]="'Choose your activity sector'">
+                  <option *ngFor="let activitySectorOption of activitySectorOptions" [selected]="userForm.get('activitySector').value?.includes(activitySectorOption)" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
+                </select>
+              </mz-select-container>
+            </div>
+            <div class="row">
+              <mz-checkbox-container class="col s12">
+                <input mz-checkbox mz-validation
+                  id="checkbox-job-privae"
+                  formControlName="jobPrivate"
+                  type="checkbox"
+                  [disable]="!userForm.controls['hasJob'].value"
+                  [filledIn]="true"
+                  [label]="'Keep professional information private?'">
+              </mz-checkbox-container>
+            </div>
           </div>
-          <div class="row">
-            <mz-textarea-container class="col s12 m12">
-              <textarea mz-textarea
-                id="textarea-address2"
-                formControlName="address2"
-                [label]="'Address 2'"
-                [length]="255">
-              </textarea>
-            </mz-textarea-container>
-          </div>
-          <div class="row">
-            <mz-input-container class="col s12 m4">
-              <input mz-input
-                id="input-city"
-                formControlName="city"
-                type="text"
-                [label]="'City'"
-                [length]="10" />
-            </mz-input-container>
-            <mz-select-container class="col s12 m4">
-              <select mz-select mz-validation required
-                id="select-province"
-                formControlName="province"
-                [errorMessageResource]="errorMessageResources.province"
-                [label]="'Province'"
-                [placeholder]="'Choose your province'">
-                <option *ngFor="let province of provinces" [selected]="province == userForm.get('province').value" [ngValue]="province">{{ province.name }}</option>
-              </select>
-            </mz-select-container>
-            <mz-input-container class="col s12 m2">
-              <input mz-input mz-validation
-                id="input-postalcode"
-                formControlName="postalCode"
-                type="text"
-                [errorMessageResource]="errorMessageResources.postalCode"
-                [label]="'Postal Code'" />
-            </mz-input-container>
+          <div class="section">
+            <h6>Contact information</h6>
+            <div class="row">
+              <mz-input-container class="col s12 m12">
+                <input mz-input mz-validation required
+                  id="input-address"
+                  formControlName="address"
+                  type="text"
+                  [errorMessageResource]="errorMessageResources.address"
+                  [label]="'Address 1'" />
+              </mz-input-container>
+            </div>
+            <div class="row">
+              <mz-textarea-container class="col s12 m12">
+                <textarea mz-textarea
+                  id="textarea-address2"
+                  formControlName="address2"
+                  [label]="'Address 2'"
+                  [length]="255">
+                </textarea>
+              </mz-textarea-container>
+            </div>
+            <div class="row">
+              <mz-input-container class="col s12 m4">
+                <input mz-input
+                  id="input-city"
+                  formControlName="city"
+                  type="text"
+                  [label]="'City'"
+                  [length]="10" />
+              </mz-input-container>
+              <mz-select-container class="col s12 m4">
+                <select mz-select mz-validation required
+                  id="select-province"
+                  formControlName="province"
+                  [errorMessageResource]="errorMessageResources.province"
+                  [label]="'Province'"
+                  [placeholder]="'Choose your province'">
+                  <option *ngFor="let province of provinces" [selected]="province == userForm.get('province').value" [ngValue]="province">{{ province.name }}</option>
+                </select>
+              </mz-select-container>
+              <mz-input-container class="col s12 m2">
+                <input mz-input mz-validation
+                  id="input-postalcode"
+                  formControlName="postalCode"
+                  type="text"
+                  [errorMessageResource]="errorMessageResources.postalCode"
+                  [label]="'Postal Code'" />
+              </mz-input-container>
+            </div>
           </div>
           <div class="section">
             <h6>Phone number</h6>

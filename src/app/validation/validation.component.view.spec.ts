@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
+  Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  Input,
   NgModule,
 } from '@angular/core';
 import {
@@ -12,6 +14,7 @@ import {
 } from '@angular/core/testing';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -25,10 +28,27 @@ import { buildComponent, MzTestWrapperComponent } from './../shared/test-wrapper
 import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 import { MzValidationComponent } from './validation.component';
 
+@Component({
+  selector: 'mz-test-component',
+  template: `
+    <form [formGroup]="form">
+      <mz-input-container>
+        <input mz-input mz-validation
+          id="input-id"
+          formControlName="formControl"
+          [disable]="true"
+          [label]="'label'" />
+      </mz-input-container>
+    </form>`,
+})
+export class TestComponent {
+  @Input() form: FormGroup;
+}
+
 describe('MzValidationComponent:view', () => {
   let nativeElement: any;
   let formBuilder: FormBuilder;
-  let formGroup: FormGroup;
+  let form: FormGroup;
 
   beforeEach(async(() => {
 
@@ -74,11 +94,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['test', Validators.required],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -102,11 +122,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['test'],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -132,11 +152,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': [null],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -161,11 +181,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['test'],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -202,17 +222,17 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['', Validators.minLength(2)],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
             tick();
 
-            formGroup.controls['formControl'].markAsDirty();
-            formGroup.controls['formControl'].setValue('a');
+            form.get('formControl').markAsDirty();
+            form.get('formControl').setValue('a');
 
             tick();
             fixture.detectChanges();
@@ -243,18 +263,18 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['', Validators.minLength(2)],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
             tick();
 
-            formGroup.controls['formControl'].markAsTouched();
-            formGroup.controls['formControl'].setValue('abc');
+            form.get('formControl').markAsTouched();
+            form.get('formControl').setValue('abc');
 
             tick();
             fixture.detectChanges();
@@ -285,11 +305,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': ['', Validators.minLength(2)],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -333,16 +353,16 @@ describe('MzValidationComponent:view', () => {
 
               formBuilder = TestBed.get(FormBuilder);
 
-              formGroup = formBuilder.group({
+              form = formBuilder.group({
                 'formControl': ['', Validators.required],
               });
 
-              fixture.componentInstance.formGroup = formGroup;
+              fixture.componentInstance.formGroup = form;
               nativeElement = fixture.nativeElement;
               fixture.detectChanges();
               tick();
 
-              formGroup.controls['formControl'].markAsTouched();
+              form.get('formControl').markAsTouched();
               inputElement().dispatchEvent(new CustomEvent('focusout'));
 
               fixture.detectChanges();
@@ -373,17 +393,17 @@ describe('MzValidationComponent:view', () => {
 
               formBuilder = TestBed.get(FormBuilder);
 
-              formGroup = formBuilder.group({
+              form = formBuilder.group({
                 'formControl': [''],
               });
 
-              fixture.componentInstance.formGroup = formGroup;
+              fixture.componentInstance.formGroup = form;
               nativeElement = fixture.nativeElement;
               fixture.detectChanges();
 
               tick();
 
-              formGroup.controls['formControl'].markAsTouched();
+              form.get('formControl').markAsTouched();
               inputElement().dispatchEvent(new CustomEvent('focusout'));
 
               fixture.detectChanges();
@@ -423,11 +443,11 @@ describe('MzValidationComponent:view', () => {
 
               formBuilder = TestBed.get(FormBuilder);
 
-              formGroup = formBuilder.group({
+              form = formBuilder.group({
                 'formControl': [null, Validators.required],
               });
 
-              fixture.componentInstance.formGroup = formGroup;
+              fixture.componentInstance.formGroup = form;
               nativeElement = fixture.nativeElement;
               fixture.detectChanges();
 
@@ -467,11 +487,11 @@ describe('MzValidationComponent:view', () => {
 
             formBuilder = TestBed.get(FormBuilder);
 
-            formGroup = formBuilder.group({
+            form = formBuilder.group({
               'formControl': [null],
             });
 
-            fixture.componentInstance.formGroup = formGroup;
+            fixture.componentInstance.formGroup = form;
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
@@ -510,6 +530,7 @@ describe('MzValidationComponent:view', () => {
     MzErrorMessageComponent,
     MzValidationComponent,
     MzTestWrapperComponent,
+    TestComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [MzErrorMessageComponent],
