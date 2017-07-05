@@ -4,7 +4,7 @@
 
   <p>
     The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>checkbox</strong>, <strong>radio button</strong>, <strong>select</strong>, <strong>textarea</strong>.
-    The error message is not yet supported for the <strong>textarea</strong>. For the <strong>radio button</strong>, the error message is not supported since in best pratique we always specify a default value.
+    For the <strong>radio button</strong>, the error message is not supported since in best pratique we always specify a default value.
     The component module must use the <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">Reactive Form</a> to work with the validation directive.
   </p>
 </div>
@@ -45,7 +45,7 @@
   </p>
 
   <ul class="browser-default">
-    <li>Activity sector: Enabled only if "Has Job?^" is checked. Otherwise the field is disabled.</li>
+    <li>Activity sector: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
     <li>Address 1: Required</li>
     <li>Job description: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
     <li>Job title: Required only if "Has Job?" is checked. Otherwise the field is disabled.</li>
@@ -104,17 +104,18 @@
                   id="input-job-title"
                   formControlName="jobTitle"
                   type="text"
-                  [disable]="!userForm.controls['hasJob'].value"
                   [errorMessageResource]="errorMessageResources.jobTitle"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Job title'" />
               </mz-input-container>
             </div>
             <div class="row">
               <mz-textarea-container class="col s12 m12">
-                <textarea mz-textarea mz-validation
+                <textarea mz-textarea mz-validation required
                   id="textarea-job-description"
                   formControlName="jobDescription"
-                  [disable]="!userForm.controls['hasJob'].value"
+                  [errorMessageResource]="errorMessageResources.jobDescription"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Job description'"
                   [length]="255">
                 </textarea>
@@ -128,7 +129,7 @@
                   name="jobType"
                   type="radio"
                   value="permanent"
-                  [disable]="!userForm.controls['hasJob'].value"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Permanent'"
                   [withGap]="true">
               </mz-radio-button-container>
@@ -139,7 +140,7 @@
                   name="jobType"
                   type="radio"
                   value="consultant"
-                  [disable]="!userForm.controls['hasJob'].value"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Consultant'"
                   [withGap]="true">
               </mz-radio-button-container>
@@ -147,12 +148,11 @@
                 <select mz-select mz-validation required
                   id="select-activity-sector"
                   formControlName="activitySector"
-                  [disable]="!userForm.controls['hasJob'].value"
                   [errorMessageResource]="errorMessageResources.activitySector"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Activity sector'"
                   [placeholder]="'Choose your activity sector'">
-                  <option *ngFor="let activitySectorOption of activitySectorOptions" [selected]="userForm.get('activitySector').value?.includes(activitySectorOption)" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
-                </select>
+                  <option *ngFor="let activitySectorOption of activitySectorOptions" [selected]="activitySectorOption == userForm.get('activitySector').value" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>                </select>
               </mz-select-container>
             </div>
             <div class="row">
@@ -161,8 +161,8 @@
                   id="checkbox-job-privae"
                   formControlName="jobPrivate"
                   type="checkbox"
-                  [disable]="!userForm.controls['hasJob'].value"
                   [filledIn]="true"
+                  [formControlDisabled]="!userForm.controls['hasJob'].value"
                   [label]="'Keep professional information private?'">
               </mz-checkbox-container>
             </div>

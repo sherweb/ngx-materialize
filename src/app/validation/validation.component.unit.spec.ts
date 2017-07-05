@@ -185,22 +185,22 @@ describe('MzValidationComponent:unit', () => {
     })
   });
 
-  describe('handleDisable', () => {
+  describe('handleFormControlDisabled', () => {
 
     it('should disable form control when disable is true', () => {
 
-      component.disable = true;
+      component.formControlDisabled = true;
 
-      component.handleDisable();
+      component.handleFormControlDisabled();
 
       expect(component.ngControl.control.disabled).toBeTruthy()
     });
 
     it('should not disable form control when disable is false', () => {
 
-      component.disable = false;
+      component.formControlDisabled = false;
 
-      component.handleDisable();
+      component.handleFormControlDisabled();
 
       expect(component.ngControl.control.enabled).toBeTruthy()
     });

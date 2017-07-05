@@ -4,24 +4,26 @@ $error-height: 19px;
 $error-opacity: 1;
 
 div.invalid {
-  font-size: $error-font-size;
   color: $error-color;
+  font-size: $error-font-size;
   opacity: $error-opacity;
 }
 
-input:not([type="checkbox"]) + label + :host {
+input:not([type="checkbox"]) + label + :host,
+mz-select-container :host {
   div.invalid {
     margin-top: (-$error-height);
+  }
+}
+
+textarea + label + :host {
+  div.invalid {
+    height: $error-height + 6px;
+    margin-top: (-$error-height) - 6px;
   }
 }
 
 input[type="checkbox"] + label + :host {
   display: block;
   height: $error-height;
-}
-
-mz-select-container .input-field :host {
-  div.invalid {
-    margin-top: (-$error-height);
-  }
 }

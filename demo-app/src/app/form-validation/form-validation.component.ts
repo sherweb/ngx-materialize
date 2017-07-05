@@ -1,5 +1,15 @@
-import { Component, OnInit, Renderer } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Renderer,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ErrorMessageResource } from 'ng2-materialize';
 
 import { IPropertyRow } from './../shared/properties-table/properties-table.component';
@@ -16,7 +26,7 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation'
 })
 export class FormValidationComponent implements OnInit {
 
-// properties table for demo page
+ // properties table for demo page
  errorMessageRessourceProperties: IPropertyRow[] = [
     {
       name: 'maxlength',
@@ -50,18 +60,18 @@ export class FormValidationComponent implements OnInit {
 
   properties: IPropertyRow[] = [
     {
-      name: 'disable',
-      mandatory: false,
-      type: 'boolean',
-      description: 'Disable an element',
-      defaultValue: 'false',
-    },
-    {
       name: 'errorMessageResource',
       mandatory: false,
       type: 'ErrorMessageResource',
       description: 'Error message resource for a form control.',
       defaultValue: '',
+    },
+    {
+      name: 'formControlDisabled',
+      mandatory: false,
+      type: 'boolean',
+      description: 'Disable a form control',
+      defaultValue: 'false',
     },
   ];
 
@@ -80,12 +90,16 @@ export class FormValidationComponent implements OnInit {
       required: 'Domain name is required.',
     },
     firstName: {
-      required: 'First name is required.',
       minlength: 'First name must be at least 4 characters long.',
       maxlength: 'First name cannot be more than 24 characters long.',
+      required: 'First name is required.',
     },
     hearAboutUs: {
       required: 'Hear about us is required.',
+    },
+    jobDescription: {
+      maxlength: 'Job description cannot be more than 255 characters long.',
+      required: 'Job description is required.',
     },
     jobTitle: {
       required: 'Job title is required.',
@@ -182,7 +196,7 @@ export class FormValidationComponent implements OnInit {
   addPhoneNumber(): void {
     const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
     const newPhoneNumberGroup = this.formBuilder.group({
-        phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
+      phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
     });
     phoneNumbersControl.push(newPhoneNumberGroup);
   }
@@ -202,7 +216,11 @@ export class FormValidationComponent implements OnInit {
       gender: [this.user.gender],
       hasJob: [this.hasJob],
       hearAboutUs: [this.hearAboutUs, Validators.required],
-      jobDescription: [this.user.jobDescription],
+      jobDescription: [this.user.jobDescription, Validators.compose([
+          Validators.required,
+          Validators.maxLength(255),
+        ]),
+      ],
       jobPrivate: [this.user.jobPrivate],
       jobTitle: [this.user.jobTitle, Validators.required],
       jobType: [this.user.jobType, Validators.required],

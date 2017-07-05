@@ -3,29 +3,35 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ErrorMessageResource } from 'ng2-materialize';
 
 export abstract class Province {
-  public code: string;
-  public name: string;
+  code: string;
+  name: string;
 }
 
 export abstract class User {
-  public address: string;
-  public address2: string;
-  public city: string;
-  public firstName: string;
-  public gender: string;
-  public lastName: string;
-  public phoneNumbers: Array<string>;
-  public postalCode: string;
-  public province: Province;
+  activitySector: string;
+  address: string;
+  address2: string;
+  city: string;
+  firstName: string;
+  gender: string;
+  jobDescription: string;
+  jobPrivate: boolean;
+  jobTitle: string;
+  jobType: string;
+  lastName: string;
+  phoneNumbers: Array<string>;
+  postalCode: string;
+  province: Province;
 }
-
 @Component({
   selector: 'app-form-validation',
   templateUrl: './form-validation.component.html',
@@ -33,20 +39,34 @@ export abstract class User {
 })
 export class FormValidationComponent implements OnInit {
 
+  // form validation variables
   errorMessageResources = {
+    activitySector: {
+      required: 'Activity sector is required.',
+    },
     address: {
       required: 'Address is required.',
     },
     address2: {
       required: 'Address2 is required.',
     },
+    domainName: {
+      required: 'Domain name is required.',
+    },
     firstName: {
-      required: 'First name is required.',
       minlength: 'First name must be at least 4 characters long.',
       maxlength: 'First name cannot be more than 24 characters long.',
+      required: 'First name is required.',
     },
     hearAboutUs: {
       required: 'Hear about us is required.',
+    },
+    jobDescription: {
+      maxlength: 'Job description cannot be more than 255 characters long.',
+      required: 'Job description is required.',
+    },
+    jobTitle: {
+      required: 'Job title is required.',
     },
     lastName: {
       required: 'Last name is required.',
@@ -65,6 +85,52 @@ export class FormValidationComponent implements OnInit {
     },
   };
 
+  user: User = {
+    activitySector: '',
+    address: '',
+    address2: '',
+    city: '',
+    firstName: '',
+    gender: 'man',
+    jobTitle: '',
+    jobDescription: '',
+    jobPrivate: true,
+    jobType: 'permanent',
+    lastName: '',
+    phoneNumbers: [],
+    postalCode: '',
+    province: null,
+  };
+
+  hasJob = true;
+  hearAboutUs = null;
+  submitted = false;
+  userForm: FormGroup;
+  termService = false;
+
+  // fake datas
+  activitySectorOptions = [
+    { value: 'culture-music-art-literature', text: 'Culture,music, arts, literature' },
+    { value: 'health-pha-medical', text: 'Health care, pharmaceutical, and medical sector' },
+    { value: 'manufacturing', text: 'Manufacturing industries' },
+    { value: 'telecom-info-techno', text: 'Telecommunications and information technology' },
+    { value: 'transport', text: 'Transport, shipping, aviation, trucking and infrastructures' },
+    { value: 'financial-services', text: 'Financial services' },
+    { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
+    { value: 'media-film', text: 'Media and film industry' },
+  ]
+
+  hearAboutUsOptions = [
+    { value: 'event', text: 'Event' },
+    { value: 'facebook', text: 'Facebook' },
+    { value: 'family', text: 'Family' },
+    { value: 'friend', text: 'Friend' },
+    { value: 'search', text: 'Search engine' },
+    { value: 'newspaper', text: 'Newspaper, Magazine' },
+    { value: 'twitter', text: 'Twitter' },
+    { value: 'other', text: 'Other' },
+  ];
+
   provinces: Province[] = [
     { code: 'ab', name: 'Alberta' },
     { code: 'mb', name: 'Manitoba' },
@@ -80,37 +146,6 @@ export class FormValidationComponent implements OnInit {
     { code: 'yk', name: 'Yukon' },
   ];
 
-  submitted = false;
-
-  hearAboutUsOptions = [
-    { value: 'event', text: 'Event' },
-    { value: 'facebook', text: 'Facebook' },
-    { value: 'family', text: 'Family' },
-    { value: 'friend', text: 'Friend' },
-    { value: 'search', text: 'Search engine' },
-    { value: 'newspaper', text: 'Newspaper, Magazine' },
-    { value: 'twitter', text: 'Twitter' },
-    { value: 'other', text: 'Other' },
-  ];
-
-  hearAboutUs = null;
-
-  user: User = {
-    address: '',
-    address2: '',
-    city: '',
-    firstName: '',
-    gender: 'man',
-    lastName: '',
-    phoneNumbers: new Array<string>(),
-    postalCode: '',
-    province: null,
-  };
-
-  userForm: FormGroup;
-
-  termService = false;
-
   constructor(
     private formBuilder: FormBuilder,
   ) { }
@@ -121,15 +156,16 @@ export class FormValidationComponent implements OnInit {
   }
 
   addPhoneNumber(): void {
-    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
     const newPhoneNumberGroup = this.formBuilder.group({
-        phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
+      phoneNumber: ['', [Validators.pattern('^([0-9]( |-)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})')]],
     });
     phoneNumbersControl.push(newPhoneNumberGroup);
   }
 
   buildForm() {
     this.userForm = this.formBuilder.group({
+      activitySector: [this.user.activitySector, Validators.required],
       address: [this.user.address, Validators.required],
       address2: [this.user.address2],
       city: [this.user.city],
@@ -140,7 +176,16 @@ export class FormValidationComponent implements OnInit {
         ]),
       ],
       gender: [this.user.gender],
+      hasJob: [this.hasJob],
       hearAboutUs: [this.hearAboutUs, Validators.required],
+      jobDescription: [this.user.jobDescription, Validators.compose([
+          Validators.required,
+          Validators.maxLength(255),
+        ]),
+      ],
+      jobPrivate: [this.user.jobPrivate],
+      jobTitle: [this.user.jobTitle, Validators.required],
+      jobType: [this.user.jobType, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       phoneNumbers: this.formBuilder.array([]),
       postalCode: [this.user.postalCode, Validators.compose([
@@ -155,17 +200,23 @@ export class FormValidationComponent implements OnInit {
   clear() {
     this.userForm.reset();
 
-    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
     for (let i = phoneNumbersControl.length - 1; i > 0; i--) {
       this.deletePhoneNumber(i);
     }
 
-    this.userForm.controls['gender'].setValue(this.user.gender);
+    this.userForm.get('jobPrivate').setValue(this.user.jobPrivate);
+    this.userForm.get('jobType').setValue(this.user.jobType)
+    this.userForm.get('gender').setValue(this.user.gender);
   }
 
-  deletePhoneNumber(index: number): void {
-    const phoneNumbersControl = <FormArray>this.userForm.controls['phoneNumbers'];
+  deletePhoneNumber(index: number) {
+    const phoneNumbersControl = <FormArray>this.userForm.get('phoneNumbers');
     phoneNumbersControl.removeAt(index);
+  }
+
+  getPhoneNumbers(): AbstractControl[] {
+    return (<FormArray>this.userForm.get('phoneNumbers')).controls;
   }
 
   onSubmit() {

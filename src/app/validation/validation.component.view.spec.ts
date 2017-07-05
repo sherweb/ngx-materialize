@@ -36,7 +36,7 @@ import { MzValidationComponent } from './validation.component';
         <input mz-input mz-validation
           id="input-id"
           formControlName="formControl"
-          [disable]="true"
+          [formControlDisabled]="true"
           [label]="'label'" />
       </mz-input-container>
     </form>`,

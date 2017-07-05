@@ -53,10 +53,10 @@ export class MzErrorMessageComponent implements OnDestroy, OnInit {
 
   buildErrorMessage() {
     this.errorMessage = '';
-    if (this.control.errors) {
-      Object.keys(this.control.errors).forEach(key => {
-        this.errorMessage += this.errorMessageResource[key] + ' ';
-      });
+    if (this.control.errors && this.errorMessageResource) {
+        Object.keys(this.control.errors).forEach(key => {
+          this.errorMessage += this.errorMessageResource[key] + ' ';
+        });
     }
   }
 }

@@ -30,7 +30,6 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   // native properties
   @Input() id: string;
-  @Input() disable: boolean;
 
   @HostBinding('attr.required')
   @Input()
@@ -39,14 +38,21 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   // component properties
   @Input() errorMessageResource: ErrorMessageResource;
+  @Input() formControlDisabled: boolean;
+
+  get isNativeSelectElement(): boolean {
+    return this.nativeElement[0].nodeName === 'SELECT';
+  }
 
   errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
   labelElement: HTMLElement;
   nativeElement: JQuery;
   statusChangesSubscription: Subscription;
 
-  get isNativeSelectElement(): boolean {
-    return this.nativeElement[0].nodeName === 'SELECT';
+  @HostListener('focusout', ['$event.target'])
+  onFocusOut(target: Event) {
+    this.ngControl.control.markAsTouched();
+    this.setValidationState();
   }
 
   constructor(
@@ -100,16 +106,14 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
     return this.nativeElement;
   }
 
-  handleDisable() {
+  handleFormControlDisabled() {
     const formControl = this.ngControl.control;
     if (formControl != null) {
-      if (this.disable) {
+      if (this.formControlDisabled) {
         formControl.disable();
       } else {
         formControl.enable();
       }
-
-
     }
 
     this.ngControl.control.markAsUntouched();
@@ -140,7 +144,7 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   initHandlers() {
     this.handlers = {
-      disable: () => this.handleDisable(),
+      formControlDisabled: () => this.handleFormControlDisabled(),
     };
   }
 
@@ -155,23 +159,18 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
     });
   }
 
-  @HostListener('focusout')
-  onFocusOut() {
-    this.setValidationState();
-  }
-
   setValidationState() {
     const elementToAddValidation = this.getElement();
 
-    if (this.ngControl.touched || this.ngControl.dirty) {
-      if (this.ngControl.invalid) {
+    if (this.ngControl.control.touched || this.ngControl.control.dirty) {
+      if (this.ngControl.control.invalid) {
         this.renderer2.addClass(elementToAddValidation[0], 'invalid');
         this.renderer2.removeClass(elementToAddValidation[0], 'valid');
       } else {
         this.renderer2.addClass(elementToAddValidation[0], 'valid');
         this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
       }
-    } else if (this.ngControl.untouched && this.ngControl.pristine) {
+    } else if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
       if (this.isNativeSelectElement) {
         this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
         this.initNativeSelectElement();
