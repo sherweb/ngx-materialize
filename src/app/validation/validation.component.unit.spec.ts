@@ -200,7 +200,10 @@ describe('MzValidationComponent:unit', () => {
 
     it('should disable form control when disable is true', () => {
 
+      const mockInput = document.createElement('input');
+
       component.formControlDisabled = true;
+      component.nativeElement = $(mockInput);
 
       component.handleFormControlDisabled();
 
@@ -209,7 +212,10 @@ describe('MzValidationComponent:unit', () => {
 
     it('should not disable form control when disable is false', () => {
 
+      const mockInput = document.createElement('input');
+
       component.formControlDisabled = false;
+      component.nativeElement = $(mockInput);
 
       component.handleFormControlDisabled();
 
