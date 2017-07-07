@@ -18,8 +18,8 @@ mz-select-container :host {
 
 textarea + label + :host {
   div.invalid {
-    height: $error-height + 6px;
-    margin-top: (-$error-height) - 6px;
+    height: $error-height;
+    margin-top: (-$error-height);
   }
 }
 
