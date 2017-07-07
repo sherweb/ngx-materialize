@@ -198,32 +198,59 @@ describe('MzValidationComponent:view', () => {
 
     describe('form control status change', () => {
 
-      const errorMessageResource: ErrorMessageResource = {
-        minlength: 'Too short',
-      }
+      const useCases = [
+        // enabled
+        { touched: true, dirty: false, valid: false, disabled: false },
+        { touched: true, dirty: false, valid: true, disabled: false },
+        { touched: false, dirty: true, valid: false, disabled: false },
+        { touched: false, dirty: true, valid: true, disabled: false },
+        { touched: true, dirty: true, valid: false, disabled: false },
+        { touched: true, dirty: true, valid: true, disabled: false },
+        { touched: false, dirty: false, valid: false, disabled: false },
+        { touched: false, dirty: false, valid: true, disabled: false },
+        // disabled
+        { touched: true, dirty: false, valid: false, disabled: true },
+        { touched: true, dirty: false, valid: true, disabled: true },
+        { touched: false, dirty: true, valid: false, disabled: true },
+        { touched: false, dirty: true, valid: true, disabled: true },
+        { touched: true, dirty: true, valid: false, disabled: true },
+        { touched: true, dirty: true, valid: true, disabled: true },
+        { touched: false, dirty: false, valid: false, disabled: true },
+        { touched: false, dirty: false, valid: true, disabled: true },
+      ];
 
-      it('should add invalid class and show error message when it is invalid and dirty', fakeAsync(() => {
+      useCases.forEach(useCase => {
 
-        buildComponent<any>(`
-          <form [formGroup]="formGroup">
-            <mz-input-container>
-              <input mz-input mz-validation
-                id="input-id"
-                formControlName="formControl"
-                [errorMessageResource]="errorMessageResource"
-                [label]="'label'" />
-            </mz-input-container>
-          </form>
-          `,
-          {
-            errorMessageResource,
-          },
-        ).then((fixture) => {
+        it(`should set validation state correctly [useCase: ${JSON.stringify(useCase)}]`, fakeAsync(() => {
+
+          const errorMessageResource: ErrorMessageResource = {
+            minlength: 'Too short',
+          }
+
+          buildComponent<any>(`
+            <form [formGroup]="formGroup">
+              <mz-input-container>
+                <input mz-input mz-validation
+                  id="input-id"
+                  formControlName="formControl"
+                  [errorMessageResource]="errorMessageResource"
+                  [label]="'label'" />
+              </mz-input-container>
+            </form>`,
+            {
+              errorMessageResource,
+            },
+          ).then((fixture) => {
+            const formControlValue = 'value-x';
+
+            const minLenghtValidatorFn = useCase.valid
+              ? Validators.minLength(formControlValue.length)
+              : Validators.minLength(formControlValue.length + 1);
 
             formBuilder = TestBed.get(FormBuilder);
 
             form = formBuilder.group({
-              'formControl': ['', Validators.minLength(2)],
+              'formControl': ['', minLenghtValidatorFn],
             });
 
             fixture.componentInstance.formGroup = form;
@@ -231,99 +258,41 @@ describe('MzValidationComponent:view', () => {
             fixture.detectChanges();
             tick();
 
-            form.get('formControl').markAsDirty();
-            form.get('formControl').setValue('a');
+            // handle useCase
+            if (useCase.touched) {
+              form.get('formControl').markAsTouched();
+            }
+            if (useCase.dirty) {
+              form.get('formControl').markAsDirty();
+            }
+            if (useCase.disabled) {
+              form.get('formControl').disable();
+            }
+
+            form.get('formControl').setValue(formControlValue);
 
             tick();
             fixture.detectChanges();
 
-            expect(inputElement().classList).toContain('invalid');
-
-            expect(errorMessageDivElement().innerHTML.trim()).toBe('Too short');
+            // handle useCase expects
+            if (!useCase.touched && !useCase.dirty) {
+              expect(inputElement().classList).not.toContain('valid', useCase);
+              expect(inputElement().classList).not.toContain('invalid', useCase);
+            } else if (useCase.disabled) {
+              expect(inputElement().classList).not.toContain('valid', useCase);
+              expect(inputElement().classList).not.toContain('invalid', useCase);
+            } else if (useCase.valid) {
+              expect(inputElement().classList).toContain('valid', useCase);
+              expect(inputElement().classList).not.toContain('invalid', useCase);
+              expect(errorMessageDivElement()).toBeFalsy(useCase);
+            } else {
+              expect(inputElement().classList).not.toContain('valid', useCase);
+              expect(inputElement().classList).toContain('invalid', useCase);
+              expect(errorMessageDivElement().innerHTML.trim()).toBe(errorMessageResource.minlength, useCase);
+            }
           });
-      }));
-
-      it('should add valid class when it is valid and dirty', fakeAsync(() => {
-
-        buildComponent<any>(`
-          <form [formGroup]="formGroup">
-            <mz-input-container>
-              <input mz-input mz-validation
-                id="input-id"
-                formControlName="formControl"
-                [errorMessageResource]="errorMessageResource"
-                [label]="'label'" />
-            </mz-input-container>
-          </form>
-          `,
-          {
-            errorMessageResource,
-          },
-        ).then((fixture) => {
-
-            formBuilder = TestBed.get(FormBuilder);
-
-            form = formBuilder.group({
-              'formControl': ['', Validators.minLength(2)],
-            });
-
-            fixture.componentInstance.formGroup = form;
-            nativeElement = fixture.nativeElement;
-            fixture.detectChanges();
-
-            tick();
-
-            form.get('formControl').markAsTouched();
-            form.get('formControl').setValue('abc');
-
-            tick();
-            fixture.detectChanges();
-
-            expect(inputElement().classList).toContain('valid');
-
-            expect(errorMessageDivElement()).toBeFalsy();
-          });
-      }));
-
-      it('should not add any class when it is untouched and pristine', fakeAsync(() => {
-
-        buildComponent<any>(`
-          <form [formGroup]="formGroup">
-            <mz-input-container>
-              <input mz-input mz-validation
-                id="input-id"
-                formControlName="formControl"
-                [errorMessageResource]="errorMessageResource"
-                [label]="'label'" />
-            </mz-input-container>
-          </form>
-          `,
-          {
-            errorMessageResource,
-          },
-        ).then((fixture) => {
-
-            formBuilder = TestBed.get(FormBuilder);
-
-            form = formBuilder.group({
-              'formControl': ['', Validators.minLength(2)],
-            });
-
-            fixture.componentInstance.formGroup = form;
-            nativeElement = fixture.nativeElement;
-            fixture.detectChanges();
-
-            tick();
-
-            tick();
-            fixture.detectChanges();
-
-            expect(inputElement().classList).not.toContain('valid');
-            expect(inputElement().classList).not.toContain('invalid');
-
-            expect(errorMessageDivElement()).toBeFalsy();
-          });
-      }));
+        }));
+      });
     });
 
     describe('focusout', () => {
@@ -344,8 +313,7 @@ describe('MzValidationComponent:view', () => {
                   [errorMessageResource]="errorMessageResource"
                   [label]="'label'" />
               </mz-input-container>
-            </form>
-            `,
+            </form>`,
             {
               errorMessageResource,
             },
@@ -384,8 +352,7 @@ describe('MzValidationComponent:view', () => {
                   [errorMessageResource]="errorMessageResource"
                   [label]="'label'" />
               </mz-input-container>
-            </form>
-            `,
+            </form>`,
             {
               errorMessageResource,
             },
@@ -434,8 +401,7 @@ describe('MzValidationComponent:view', () => {
                   <option>Option 1</option>
                 </select>
               </mz-select-container>
-            </form>
-            `,
+            </form>`,
             {
               errorMessageResource,
             },

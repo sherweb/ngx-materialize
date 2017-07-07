@@ -162,21 +162,20 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   setValidationState() {
     const elementToAddValidation = this.getElement();
 
-    if (this.ngControl.control.touched || this.ngControl.control.dirty) {
-      if (this.ngControl.control.invalid) {
-        this.renderer2.addClass(elementToAddValidation[0], 'invalid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'valid');
-      } else {
-        this.renderer2.addClass(elementToAddValidation[0], 'valid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
-      }
-    } else if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
+    if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
       if (this.isNativeSelectElement) {
         this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
         this.initNativeSelectElement();
       }
-
       this.clearValidationState(elementToAddValidation);
+    } else if (this.ngControl.control.enabled) {
+      if (this.ngControl.control.valid) {
+        this.renderer2.addClass(elementToAddValidation[0], 'valid');
+        this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
+      } else {
+        this.renderer2.addClass(elementToAddValidation[0], 'invalid');
+        this.renderer2.removeClass(elementToAddValidation[0], 'valid');
+      }
     }
   }
 
