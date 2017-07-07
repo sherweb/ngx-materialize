@@ -34,6 +34,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   selectContainerElement: JQuery;
   checkboxElements: JQuery;
 
+  mutationObserver: MutationObserver;
+
   suspend = false;
 
   lastOptions: Element[];
@@ -65,6 +67,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   ngOnDestroy() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select', ['destroy']);
     this.selectElement.off();
+    this.mutationObserver.disconnect();
   }
 
   initHandlers() {
@@ -215,25 +218,35 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   }
 
   listenOptionChanges() {
-    Observable.fromEvent($(this.selectElement), 'DOMSubtreeModified')
-      .debounceTime(100)
-      .filter((event: JQueryEventObject) => {
-        const currentOptions = Array.from(event.currentTarget.children);
+      const mutationObserverConfiguration: MutationObserverInit = {
+        childList: true,
+      }
 
-        if (this.lastOptions) {
-          const prevOptions = Array.from(this.lastOptions);
-          this.lastOptions = currentOptions;
+      this.mutationObserver = new MutationObserver((mutations: MutationRecord[]) => {
+        mutations.forEach((mutation: MutationRecord) => {
+          let isSelectReset = false;
+          const currentOptions = <Element[]> Array.from(mutation.target.childNodes).filter(x => x.nodeName === 'OPTION');
 
-          if (prevOptions.length !== currentOptions.length) {
-            return true;
+          if (this.lastOptions) {
+            const prevOptions = Array.from(this.lastOptions);
+            this.lastOptions = currentOptions;
+
+            if (prevOptions.length !== currentOptions.length) {
+              isSelectReset = true;
+            } else {
+              isSelectReset = currentOptions.some((option, index) =>
+                !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
+            }
           } else {
-            return currentOptions.some((option, index) =>
-              !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
+            isSelectReset = !!(this.lastOptions = currentOptions);
           }
-        } else {
-          return !!(this.lastOptions = currentOptions);
-        }
-      })
-      .subscribe(x => this.renderer.invokeElementMethod(this.selectElement, 'material_select'));
+
+          if (isSelectReset) {
+            this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+          }
+        });
+      });
+
+      this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
   }
 }

@@ -315,6 +315,7 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
+      directive.mutationObserver = new MutationObserver(() => {});
       directive.selectElement = <any>mockSelectElement;
       directive.ngOnDestroy();
 
@@ -327,10 +328,24 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(mockSelectElement, 'off');
 
+      directive.mutationObserver = new MutationObserver(() => {});
       directive.selectElement = <any>mockSelectElement;
       directive.ngOnDestroy();
 
       expect(mockSelectElement.off).toHaveBeenCalled();
+    });
+
+    it('should disconnect mutation observer on select', () => {
+      const mockSelectElement = { select: true, off: () => null };
+
+      directive.mutationObserver = new MutationObserver(() => {});
+      directive.selectElement = <any>mockSelectElement;
+
+      spyOn(directive.mutationObserver, 'disconnect');
+
+      directive.ngOnDestroy();
+
+      expect(directive.mutationObserver.disconnect).toHaveBeenCalled();
     });
   });
 
