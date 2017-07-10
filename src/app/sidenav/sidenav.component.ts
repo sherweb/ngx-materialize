@@ -10,7 +10,7 @@ import {
 
 @Component({
   selector: 'mz-sidenav',
-  templateUrl: './sidenav.component.html'
+  templateUrl: './sidenav.component.html',
 })
 export class MzSidenavComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() backgroundClass: string;
