@@ -11,7 +11,6 @@ import {
 @Component({
   selector: 'mz-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
 })
 export class MzSidenavComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() backgroundClass: string;
