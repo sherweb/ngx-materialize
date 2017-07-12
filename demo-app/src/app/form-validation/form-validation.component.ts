@@ -26,8 +26,8 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation'
 })
 export class FormValidationComponent implements OnInit {
 
- // properties table for demo page
- errorMessageRessourceProperties: IPropertyRow[] = [
+  // properties table for demo page
+  errorMessageRessourceProperties: IPropertyRow[] = [
     {
       name: 'maxlength',
       mandatory: false,
@@ -154,7 +154,7 @@ export class FormValidationComponent implements OnInit {
     { value: 'financial-services', text: 'Financial services' },
     { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
     { value: 'media-film', text: 'Media and film industry' },
-  ]
+  ];
 
   hearAboutUsOptions = [
     { value: 'event', text: 'Event' },
@@ -203,19 +203,18 @@ export class FormValidationComponent implements OnInit {
 
   buildForm() {
     this.userForm = this.formBuilder.group({
-      activitySector: [this.user.activitySector, Validators.required],
-      address: [this.user.address, Validators.required],
-      address2: [this.user.address2],
-      city: [this.user.city],
+      // identification
       firstName: [this.user.firstName, Validators.compose([
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(24),
         ]),
       ],
+      lastName: [this.user.lastName, Validators.required],
       gender: [this.user.gender],
+      // professional information
       hasJob: [this.hasJob],
-      hearAboutUs: [this.hearAboutUs, Validators.required],
+      activitySector: [{ value: this.user.activitySector, disabled: this.hasJob }, Validators.required],
       jobDescription: [this.user.jobDescription, Validators.compose([
           Validators.required,
           Validators.maxLength(255),
@@ -224,13 +223,19 @@ export class FormValidationComponent implements OnInit {
       jobPrivate: [this.user.jobPrivate],
       jobTitle: [this.user.jobTitle, Validators.required],
       jobType: [this.user.jobType, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      phoneNumbers: this.formBuilder.array([]),
+      // contact information
+      address: [this.user.address, Validators.required],
+      address2: [this.user.address2],
+      city: [this.user.city],
+      province: [this.user.province, Validators.required],
       postalCode: [this.user.postalCode, Validators.compose([
           Validators.pattern('(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)'),
         ]),
       ],
-      province: [this.user.province, Validators.required],
+      // phone number
+      phoneNumbers: this.formBuilder.array([]),
+      // additional information
+      hearAboutUs: [this.hearAboutUs, Validators.required],
       termService: [this.termService, Validators.required],
     });
   }
