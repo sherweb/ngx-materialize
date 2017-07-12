@@ -22,12 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MzErrorMessageComponent, MzValidationComponent } from './';
 
 export class MockElementRef extends ElementRef {
-
   constructor() { super(null); }
 }
 
 export class MockNgControl {
-
   control = new FormControl();
 }
 
@@ -124,12 +122,6 @@ describe('MzValidationComponent:unit', () => {
 
       const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
 
-      const mockParentElement = {
-        children: () => {
-          return mockInputSelectDropdownJquery;
-        },
-      };
-
       component.nativeElement = $(mockSelect);
 
       component.initErrorMessageComponent();
@@ -137,7 +129,7 @@ describe('MzValidationComponent:unit', () => {
 
       spyOn(component.statusChangesSubscription, 'unsubscribe');
       spyOn(component.errorMessageComponent, 'destroy');
-      spyOn(component.nativeElement, 'parent').and.returnValue(mockParentElement);
+      spyOn(component.nativeElement, 'siblings').and.returnValue(mockInputSelectDropdownJquery);
       spyOn(mockInputSelectDropdownJquery, 'off');
 
       component.ngOnDestroy();
@@ -148,7 +140,8 @@ describe('MzValidationComponent:unit', () => {
     }));
   });
 
-  describe('getElement', () => {
+  describe('elementToAddValidation', () => {
+
     it('should return native element', () => {
 
       const mockInput = document.createElement('input');
@@ -157,9 +150,7 @@ describe('MzValidationComponent:unit', () => {
 
       spyOn(component, 'isNativeSelectElement').and.returnValue(false);
 
-      const actualElement = component.getElement();
-
-      expect(actualElement).toBe(component.nativeElement);
+      expect(component.elementToAddValidation).toBe(component.nativeElement);
     })
 
     it('should return input select dropdown element when element ref is a select', fakeAsync(() => {
@@ -176,23 +167,15 @@ describe('MzValidationComponent:unit', () => {
 
       const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
 
-      const mockParentElement = {
-        children: () => {
-          return mockInputSelectDropdownJquery;
-        },
-      };
-
       component.nativeElement = $(mockSelect);
 
-      // component.initErrorMessageComponent();
-      // tick();
+      component.initErrorMessageComponent();
+      tick();
 
       spyOn(component, 'isNativeSelectElement').and.returnValue(true);
-      spyOn(component.nativeElement, 'parent').and.returnValue(mockParentElement);
+      spyOn(component.nativeElement, 'siblings').and.returnValue(mockInputSelectDropdownJquery);
 
-      // const actualElement = component.getElement();
-
-      // expect(actualElement).toBe(mockInputSelectDropdownJquery);
+      expect(component.elementToAddValidation).toBe(mockInputSelectDropdownJquery);
     }));
   });
 

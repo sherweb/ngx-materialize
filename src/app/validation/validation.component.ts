@@ -26,7 +26,15 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   styleUrls: ['./validation.component.scss'],
 })
 export class MzValidationComponent extends HandlePropChanges implements AfterViewInit, OnDestroy {
+  private _disablingState = false;
+  private _enablingState = false;
+  private _formControlDisabled = false;
   private _required = false;
+
+  errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
+  labelElement: HTMLElement;
+  nativeElement: JQuery;
+  statusChangesSubscription: Subscription;
 
   // native properties
   @Input() id: string;
@@ -38,16 +46,30 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   // component properties
   @Input() errorMessageResource: ErrorMessageResource;
-  @Input() formControlDisabled: boolean;
+
+  @Input()
+  get formControlDisabled() { return this._formControlDisabled; };
+  set formControlDisabled(value: boolean) {
+    if (value !== this._formControlDisabled) {
+      this._disablingState = value;
+      this._enablingState = !value;
+    }
+    this._formControlDisabled = value;
+  };
+
+  get elementToAddValidation(): JQuery {
+    return this.isNativeSelectElement
+      ? this.inputSelectDropdown
+      : this.nativeElement;
+  }
+
+  get inputSelectDropdown(): JQuery {
+    return this.nativeElement.siblings('input.select-dropdown');
+  }
 
   get isNativeSelectElement(): boolean {
     return this.nativeElement[0].nodeName === 'SELECT';
   }
-
-  errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
-  labelElement: HTMLElement;
-  nativeElement: JQuery;
-  statusChangesSubscription: Subscription;
 
   @HostListener('focusout', ['$event.target'])
   onFocusOut(target: Event) {
@@ -76,11 +98,8 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   ngOnDestroy() {
     this.statusChangesSubscription.unsubscribe();
-
     this.errorMessageComponent.destroy();
-
-    const inputSelectDropdownElement = this.nativeElement.parent().children('input.select-dropdown');
-    inputSelectDropdownElement.off('blur');
+    this.inputSelectDropdown.off('blur');
   }
 
   clearValidationState(element: JQuery) {
@@ -98,26 +117,13 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
     }
   }
 
-  getElement(): JQuery {
-    if (this.isNativeSelectElement) {
-      return this.nativeElement.parent().children('input.select-dropdown');
-    }
-
-    return this.nativeElement;
-  }
-
   handleFormControlDisabled() {
-    const formControl = this.ngControl.control;
-    if (formControl != null) {
-      if (this.formControlDisabled) {
-        formControl.disable();
-      } else {
-        formControl.enable();
-      }
+    if (this.formControlDisabled) {
+      this.ngControl.control.disable();
+    } else {
+      this.ngControl.control.enable();
     }
-
-    this.ngControl.control.markAsUntouched();
-    this.clearValidationState(this.getElement());
+    this.clearValidationState(this.elementToAddValidation);
   }
 
   initElements() {
@@ -151,8 +157,7 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   initNativeSelectElement() {
     // Wait for materialize_select function to be executed when the element has mz-select directive.
     setTimeout(() => {
-      const inputSelectDropdownElement = this.nativeElement.parent().children('input.select-dropdown');
-      inputSelectDropdownElement.on('blur', () => {
+      this.inputSelectDropdown.on('blur', () => {
         this.ngControl.control.markAsTouched();
         this.setValidationState();
       });
@@ -160,21 +165,32 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   }
 
   setValidationState() {
-    const elementToAddValidation = this.getElement();
-
+    // to disable field
+    if (this._disablingState) {
+      this.updateSelect();
+      this.clearValidationState(this.elementToAddValidation);
+      this._disablingState = false;
+      return;
+    }
+    // to enable field
+    if (this._enablingState) {
+      this.updateSelect();
+      this._enablingState = false;
+    }
+    // to reset form
     if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
-      if (this.isNativeSelectElement) {
-        this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
-        this.initNativeSelectElement();
-      }
-      this.clearValidationState(elementToAddValidation);
-    } else if (this.ngControl.control.enabled) {
+      this.updateSelect();
+      this.clearValidationState(this.elementToAddValidation);
+      return;
+    }
+    // to handle field validity
+    if (this.ngControl.control.enabled) {
       if (this.ngControl.control.valid) {
-        this.renderer2.addClass(elementToAddValidation[0], 'valid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
+        this.renderer2.addClass(this.elementToAddValidation[0], 'valid');
+        this.renderer2.removeClass(this.elementToAddValidation[0], 'invalid');
       } else {
-        this.renderer2.addClass(elementToAddValidation[0], 'invalid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'valid');
+        this.renderer2.addClass(this.elementToAddValidation[0], 'invalid');
+        this.renderer2.removeClass(this.elementToAddValidation[0], 'valid');
       }
     }
   }
@@ -186,5 +202,12 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
       // /!\ Race condition warning /!\
       setTimeout(() => this.setValidationState());
     });
+  }
+
+  updateSelect() {
+    if (this.isNativeSelectElement) {
+      this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
+      this.initNativeSelectElement();
+    }
   }
 }
