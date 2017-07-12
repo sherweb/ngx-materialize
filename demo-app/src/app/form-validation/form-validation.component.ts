@@ -214,7 +214,7 @@ export class FormValidationComponent implements OnInit {
       gender: [this.user.gender],
       // professional information
       hasJob: [this.hasJob],
-      activitySector: [{ value: this.user.activitySector, disabled: this.hasJob }, Validators.required],
+      activitySector: [this.user.activitySector, Validators.required],
       jobDescription: [this.user.jobDescription, Validators.compose([
           Validators.required,
           Validators.maxLength(255),
