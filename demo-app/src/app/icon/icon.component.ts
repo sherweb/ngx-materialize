@@ -23,8 +23,8 @@ export class IconComponent {
       mandatory: false,
       type: 'string',
       description: `<strong>Only for <code class="language-markup">mz-icon-mdi</code></strong><br />
-        Flip the icon. Possible values: <code class="language-markup">horizontal</code> or
-        <code class="language-markup">vertical</code>`,
+        Flip the icon. Possible values: <code class="language-markup">h</code> (horizontal) or
+        <code class="language-markup">v</code> (vertical)`,
     },
     { name: 'icon',
       mandatory: true,

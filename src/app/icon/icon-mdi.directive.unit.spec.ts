@@ -75,12 +75,13 @@ describe('MzIconMdiDirective:unit', () => {
 
       Object.keys(handlers).forEach(key => {
         const handler = handlers[key];
+        const previousValue = 'previous-value';
 
         spyOn(directive, handler);
 
-        directive[handler]();
+        directive[handler](previousValue);
 
-        expect(directive[handler]).toHaveBeenCalled();
+        expect(directive[handler]).toHaveBeenCalledWith(previousValue);
       });
     });
   });
@@ -118,6 +119,17 @@ describe('MzIconMdiDirective:unit', () => {
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, directive.align, false);
     });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-align-value';
+
+      directive.handleAlign(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, previousValue, false);
+    });
   });
 
   describe('handleFlip', () => {
@@ -141,6 +153,17 @@ describe('MzIconMdiDirective:unit', () => {
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-flip-' + directive.flip, false);
     });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-flip-value';
+
+      directive.handleFlip(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-flip-' + previousValue, false);
+    });
   });
 
   describe('handleIcon', () => {
@@ -154,6 +177,17 @@ describe('MzIconMdiDirective:unit', () => {
       directive.handleIcon();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-' + directive.icon, true);
+    });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-icon-value';
+
+      directive.handleIcon(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-' + previousValue, false);
     });
   });
 
@@ -178,6 +212,17 @@ describe('MzIconMdiDirective:unit', () => {
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-rotate-' + directive.rotate, false);
     });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-rotate-value';
+
+      directive.handleRotate(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-rotate-' + previousValue, false);
+    });
   });
 
   describe('handleSize', () => {
@@ -200,6 +245,17 @@ describe('MzIconMdiDirective:unit', () => {
       directive.handleSize();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-24px', true);
+    });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-size-value';
+
+      directive.handleSize(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'mdi-' + previousValue, false);
     });
   });
 });

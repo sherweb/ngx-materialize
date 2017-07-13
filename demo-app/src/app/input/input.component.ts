@@ -1,4 +1,8 @@
 import { AfterViewInit, Component, OnInit, Renderer } from '@angular/core';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/skipWhile';
+import { Observable } from 'rxjs/Observable';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
@@ -95,8 +99,12 @@ export class InputComponent implements AfterViewInit, OnInit {
   }
 
   forceValidate() {
-    // need setTimeout otherwise loading directly on the page doesn't trigger the validation
-    setTimeout(() => this.renderer.invokeElementMethod($('#valid-input, #invalid-input'), 'trigger', ['blur']));
+    // need until window.validate_field is defined otherwise loading directly on the page doesn't trigger the validation
+    Observable
+      .interval(100)
+      .skipWhile(() => !window['validate_field'])
+      .first()
+      .subscribe(() => this.renderer.invokeElementMethod($('#valid-input, #invalid-input'), 'trigger', ['blur']));
   }
 
   setAutocomplete() {

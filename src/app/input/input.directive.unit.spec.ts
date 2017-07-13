@@ -1,5 +1,8 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NgModel } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzInputDirective } from './input.directive';
@@ -7,6 +10,7 @@ import { MzInputDirective } from './input.directive';
 describe('MzInputDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
+  const mockNgModel = <NgModel>{ valueChanges: { subscribe: () => null } };
 
   let directive: MzInputDirective;
   let renderer: Renderer;
@@ -19,7 +23,7 @@ describe('MzInputDirective:unit', () => {
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzInputDirective(mockElementRef, renderer);
+    directive = new MzInputDirective(mockElementRef, mockNgModel, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -29,6 +33,7 @@ describe('MzInputDirective:unit', () => {
       callOrder = [];
       spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
+      spyOn(directive, 'initInputSubscriber').and.callFake(() => callOrder.push('initInputSubscriber'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
     });
 
@@ -48,12 +53,44 @@ describe('MzInputDirective:unit', () => {
       expect(callOrder[1]).toBe('initElements');
     });
 
+    it('should call initInputSubscriber method', () => {
+
+      directive.ngOnInit();
+
+      expect(directive.initInputSubscriber).toHaveBeenCalled();
+      expect(callOrder[2]).toBe('initInputSubscriber');
+    });
+
     it('should call handleProperties method', () => {
 
       directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('handleProperties');
+      expect(callOrder[3]).toBe('handleProperties');
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+
+    it('should unsubscribe inputValueSubscription when subscribed', () => {
+
+      const mockSubscription = new Subscription();
+
+      spyOn(mockSubscription, 'unsubscribe');
+
+      directive.inputValueSubscription = mockSubscription;
+      directive.ngOnDestroy();
+
+      expect(mockSubscription.unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe inputValueSubscription when not subscribed', () => {
+
+      spyOn(Subscription.prototype, 'unsubscribe');
+
+      directive.ngOnDestroy();
+
+      expect(Subscription.prototype.unsubscribe).not.toHaveBeenCalled();
     });
   });
 
@@ -115,6 +152,38 @@ describe('MzInputDirective:unit', () => {
       expect(directive.inputElement).toBe(mockInputElement);
       expect(directive.inputContainerElement).toBe(mockInputContainerElement);
       expect(directive.labelElement).toBe(mockLabelElement);
+    });
+  });
+
+  describe('initInputSubscriber', () => {
+
+    it('should subscribe to ngModel.valueChanges when ngModel is provided', () => {
+
+      spyOn(mockNgModel.valueChanges, 'subscribe');
+
+      directive.initInputSubscriber();
+
+      expect(mockNgModel.valueChanges.subscribe).toHaveBeenCalled();
+    });
+
+    it('should not subscribe to ngModel.valueChanges when ngModel is not provided', () => {
+
+      spyOn(mockNgModel.valueChanges, 'subscribe');
+
+      directive['ngModel'] = null;
+      directive.initInputSubscriber();
+
+      expect(mockNgModel.valueChanges.subscribe).not.toHaveBeenCalled();
+    });
+
+    it('should call setLabelActive when ngModel.valueChanges is triggered', () => {
+
+      spyOn(directive, 'setLabelActive');
+      spyOn(mockNgModel.valueChanges, 'subscribe').and.callFake(callback => callback());
+
+      directive.initInputSubscriber();
+
+      expect(directive.setLabelActive).toHaveBeenCalled();
     });
   });
 
@@ -273,14 +342,21 @@ describe('MzInputDirective:unit', () => {
           Google: 'http://some-image.png',
         },
       };
-      const mockInputElement = { input: true };
+      const mockInputElement = { input: true, autocomplete: undefined };
 
       directive.inputElement = <any>mockInputElement;
       directive.autocomplete = autocomplete;
       directive.handleAutocomplete();
 
-      tick(1);
+      tick(100);
 
+      expect(directive.inputElement['autocomplete']).toBeUndefined();
+      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+
+      mockInputElement.autocomplete = () => null;
+      tick(100);
+
+      expect(directive.inputElement['autocomplete']).toBeDefined();
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'autocomplete', [autocomplete]);
     }));
   });
@@ -465,14 +541,13 @@ describe('MzInputDirective:unit', () => {
     it('should add placeholder attribute on input element when placeholder is provided', () => {
 
       spyOn(renderer, 'setElementAttribute');
+      spyOn(directive, 'setLabelActive');
 
       const placeholder = 'placeholder-x';
       const mockInputElement = { input: true };
-      const mockLabelElement = { label: true };
 
       directive.placeholder = placeholder;
       directive.inputElement = <any>[mockInputElement];
-      directive.labelElement = <any>[mockLabelElement];
       directive.handlePlaceholder();
 
       expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'placeholder', placeholder);
@@ -482,14 +557,14 @@ describe('MzInputDirective:unit', () => {
 
       const spySetElementAttribute = spyOn(renderer, 'setElementAttribute');
 
+      spyOn(directive, 'setLabelActive');
+
       [undefined, null, ''].forEach(value => {
 
         const mockInputElement = { input: true };
-        const mockLabelElement = { label: true };
 
         directive.placeholder = value;
         directive.inputElement = <any>[mockInputElement];
-        directive.labelElement = <any>[mockLabelElement];
         directive.handlePlaceholder();
 
         expect(spySetElementAttribute).toHaveBeenCalledWith(mockInputElement, 'placeholder', null);
@@ -498,61 +573,17 @@ describe('MzInputDirective:unit', () => {
       });
     });
 
-    it('should add active css class on label element when placeholder is provided', fakeAsync(() => {
+    it('should call setLabelActive', () => {
 
-      spyOn(renderer, 'setElementClass');
+      spyOn(directive, 'setLabelActive');
 
       const mockInputElement = { input: true };
-      const mockLabelElement = { label: true };
-
-      directive.placeholder = 'placeholder-x';
-      directive.inputElement = <any>[mockInputElement];
-      directive.labelElement = <any>[mockLabelElement];
-      directive.handlePlaceholder();
-
-      tick(1);
-
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
-    }));
-
-    it('should add active css class on label element when input element has a value', fakeAsync(() => {
-
-      spyOn(renderer, 'setElementClass');
-
-      const mockInputElement = { input: true, value: 'value-x' };
-      const mockLabelElement = { label: true };
 
       directive.inputElement = <any>[mockInputElement];
-      directive.labelElement = <any>[mockLabelElement];
       directive.handlePlaceholder();
 
-      tick(1);
-
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
-    }));
-
-    it('should remove active css class on label element when placeholder and input element have no value', fakeAsync(() => {
-
-      const spySetElementClass = spyOn(renderer, 'setElementClass');
-
-      [undefined, null, ''].forEach(value => {
-
-        const mockInputElement = { input: true, value: value };
-        const mockLabelElement = { label: true };
-
-        directive.placeholder = value;
-        directive.inputElement = <any>[mockInputElement];
-        directive.labelElement = <any>[mockLabelElement];
-
-        directive.handlePlaceholder();
-
-        tick(1);
-
-        expect(spySetElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', false);
-
-        spySetElementClass.calls.reset();
-      });
-    }));
+      expect(directive.setLabelActive).toHaveBeenCalled();
+    });
   });
 
   describe('handleValidate', () => {
@@ -663,6 +694,65 @@ describe('MzInputDirective:unit', () => {
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'trigger', ['input']);
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputElement, 'trigger', ['blur']);
+    }));
+  });
+
+  describe('setLabelActive', () => {
+
+    it('should add active css class on label element when placeholder is provided', fakeAsync(() => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true };
+      const mockLabelElement = { label: true };
+
+      directive.placeholder = 'placeholder-x';
+      directive.inputElement = <any>[mockInputElement];
+      directive.labelElement = <any>[mockLabelElement];
+      directive.setLabelActive();
+
+      tick(1);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
+    }));
+
+    it('should add active css class on label element when input element has a value', fakeAsync(() => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const mockInputElement = { input: true, value: 'value-x' };
+      const mockLabelElement = { label: true };
+
+      directive.inputElement = <any>[mockInputElement];
+      directive.labelElement = <any>[mockLabelElement];
+      directive.setLabelActive();
+
+      tick(1);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', true);
+    }));
+
+    it('should remove active css class on label element when placeholder and input element have no value', fakeAsync(() => {
+
+      const spySetElementClass = spyOn(renderer, 'setElementClass');
+
+      [undefined, null, ''].forEach(value => {
+
+        const mockInputElement = { input: true, value: value };
+        const mockLabelElement = { label: true };
+
+        directive.placeholder = value;
+        directive.inputElement = <any>[mockInputElement];
+        directive.labelElement = <any>[mockLabelElement];
+
+        directive.setLabelActive();
+
+        tick(1);
+
+        expect(spySetElementClass).toHaveBeenCalledWith(mockLabelElement, 'active', false);
+
+        spySetElementClass.calls.reset();
+      });
     }));
   });
 

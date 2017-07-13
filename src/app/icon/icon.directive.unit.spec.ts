@@ -73,12 +73,13 @@ describe('MzIconDirective:unit', () => {
 
       Object.keys(handlers).forEach(key => {
         const handler = handlers[key];
+        const previousValue = 'previous-value';
 
         spyOn(directive, handler);
 
-        directive[handler]();
+        directive[handler](previousValue);
 
-        expect(directive[handler]).toHaveBeenCalled();
+        expect(directive[handler]).toHaveBeenCalledWith(previousValue);
       });
     });
   });
@@ -116,6 +117,17 @@ describe('MzIconDirective:unit', () => {
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, directive.align, false);
     });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-align-value';
+
+      directive.handleAlign(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, previousValue, false);
+    });
   });
 
   describe('handleIcon', () => {
@@ -152,6 +164,17 @@ describe('MzIconDirective:unit', () => {
       directive.handleSize();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, directive.size, false);
+    });
+
+    it('should remove previous css class when provided', () => {
+
+      spyOn(renderer, 'setElementClass');
+
+      const previousValue = 'previous-size-value';
+
+      directive.handleSize(previousValue);
+
+      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, previousValue, false);
     });
   });
 });
