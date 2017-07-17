@@ -9,21 +9,12 @@ div.invalid {
   opacity: $error-opacity;
 }
 
-input:not([type="checkbox"]) + label + :host,
-mz-select-container :host {
-  div.invalid {
-    margin-top: (-$error-height);
-  }
-}
-
+input + label + :host,
+mz-select-container :host,
 textarea + label + :host {
+
   div.invalid {
     height: $error-height;
     margin-top: (-$error-height);
   }
-}
-
-input[type="checkbox"] + label + :host {
-  display: block;
-  height: $error-height;
 }
