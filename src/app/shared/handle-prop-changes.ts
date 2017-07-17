@@ -1,7 +1,11 @@
-import { OnChanges, SimpleChanges } from '@angular/core';
+import { OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+
+export abstract class Handlers {
+   [propertyName: string]: Function;
+}
 
 export class HandlePropChanges implements OnChanges {
-  handlers: Object;
+  handlers: Handlers;
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.handlers) {
@@ -9,10 +13,11 @@ export class HandlePropChanges implements OnChanges {
     }
   }
 
-  executePropHandlers(props = this.handlers) {
-    Object.keys(props).forEach((prop) => {
+  executePropHandlers(props: Handlers | SimpleChanges = this.handlers) {
+    Object.keys(props).forEach(prop => {
       if (this.handlers[prop]) {
-        this.handlers[prop]();
+        const previousValue = (props[prop] as SimpleChange).previousValue;
+        this.handlers[prop](previousValue);
       }
     });
   }

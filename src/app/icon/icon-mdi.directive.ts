@@ -10,7 +10,6 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: '[mz-icon-mdi], [mzIconMdi]',
-
 })
 export class MzIconMdiDirective extends HandlePropChanges implements AfterViewInit {
   @Input() align: string;
@@ -31,11 +30,11 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
 
   initHandlers() {
     this.handlers = {
-      align: () => this.handleAlign(),
-      flip: () => this.handleFlip(),
-      icon: () => this.handleIcon(),
-      rotate: () => this.handleRotate(),
-      size: () => this.handleSize(),
+      align: (previousValue) => this.handleAlign(previousValue),
+      flip: (previousValue) => this.handleFlip(previousValue),
+      icon: (previousValue) => this.handleIcon(previousValue),
+      rotate: (previousValue) => this.handleRotate(previousValue),
+      size: (previousValue) => this.handleSize(previousValue),
     };
   }
 
@@ -43,27 +42,41 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi', true);
   }
 
-  handleAlign() {
+  handleAlign(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
   }
 
-  handleFlip() {
+  handleFlip(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-flip-' + previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-flip-' + this.flip, !!this.flip);
   }
 
-  handleIcon() {
+  handleIcon(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-' + previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-' + this.icon, true);
   }
 
-  handleRotate() {
+  handleRotate(previousValue?: string) {
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-rotate-' + previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-rotate-' + this.rotate, !!this.rotate);
   }
 
-  handleSize() {
+  handleSize(previousValue?: string) {
     if (!this.size) {
       this.size = '24px';
     }
-
+    if (previousValue) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-' + previousValue, false);
+    }
     this.renderer.setElementClass(this.elementRef.nativeElement, 'mdi-' + this.size, true);
   }
 }
