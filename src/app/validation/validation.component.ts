@@ -9,14 +9,12 @@ import {
   Input,
   OnDestroy,
   Renderer,
-  Renderer2,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 
 @Component({
@@ -25,7 +23,8 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.scss'],
 })
-export class MzValidationComponent extends HandlePropChanges implements AfterViewInit, OnDestroy {
+export class MzValidationComponent implements AfterViewInit, OnDestroy {
+  private _disabled = false;
   private _disablingState = false;
   private _enablingState = false;
   private _formControlDisabled = false;
@@ -48,14 +47,15 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   @Input() errorMessageResource: ErrorMessageResource;
 
   @Input()
-  get formControlDisabled() { return this._formControlDisabled; };
+  get formControlDisabled() { return this._formControlDisabled; }
   set formControlDisabled(value: boolean) {
-    if (value !== this._formControlDisabled) {
-      this._disablingState = value;
-      this._enablingState = !value;
-    }
     this._formControlDisabled = value;
-  };
+    if (this._formControlDisabled) {
+      this.ngControl.control.disable();
+    } else {
+      this.ngControl.control.enable();
+    }
+  }
 
   get elementToAddValidation(): JQuery {
     return this.isNativeSelectElement
@@ -80,20 +80,15 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   constructor(
     public ngControl: NgControl,
     private elementRef: ElementRef,
-    private renderer: Renderer,
-    private renderer2: Renderer2,
+    public renderer: Renderer,
     private resolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
-  ) {
-    super();
-  }
+  ) { }
 
   ngAfterViewInit() {
     this.initElements();
     this.initErrorMessageComponent();
-    this.initHandlers();
     this.subscribeStatusChanges();
-    this.executePropHandlers();
   }
 
   ngOnDestroy() {
@@ -103,8 +98,8 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   }
 
   clearValidationState(element: JQuery) {
-    this.renderer2.removeClass(element[0], 'valid');
-    this.renderer2.removeClass(element[0], 'invalid');
+    this.renderer.setElementClass(element[0], 'valid', false);
+    this.renderer.setElementClass(element[0], 'invalid', false);
   }
 
   createRequiredSpanElement() {
@@ -115,15 +110,6 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
       this.renderer.invokeElementMethod(this.labelElement, 'appendChild', [spanElement]);
     }
-  }
-
-  handleFormControlDisabled() {
-    if (this.formControlDisabled) {
-      this.ngControl.control.disable();
-    } else {
-      this.ngControl.control.enable();
-    }
-    this.clearValidationState(this.elementToAddValidation);
   }
 
   initElements() {
@@ -146,12 +132,6 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
     const errorMessage = this.nativeElement.parent().children('mz-error-message');
     this.renderer.invokeElementMethod(errorMessage, 'insertAfter', [this.labelElement]);
-  }
-
-  initHandlers() {
-    this.handlers = {
-      formControlDisabled: () => this.handleFormControlDisabled(),
-    };
   }
 
   initNativeSelectElement() {
@@ -186,17 +166,26 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
     // to handle field validity
     if (this.ngControl.control.enabled) {
       if (this.ngControl.control.valid) {
-        this.renderer2.addClass(this.elementToAddValidation[0], 'valid');
-        this.renderer2.removeClass(this.elementToAddValidation[0], 'invalid');
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'valid', true);
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'invalid', false);
       } else {
-        this.renderer2.addClass(this.elementToAddValidation[0], 'invalid');
-        this.renderer2.removeClass(this.elementToAddValidation[0], 'valid');
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'valid', false);
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'invalid', true);
       }
     }
   }
 
   subscribeStatusChanges() {
-    this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe(() => {
+    this._disabled = this.ngControl.control.disabled;
+
+    this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe((status: string) => {
+      const disabled = status === 'DISABLED';
+      if (disabled !== this._disabled) {
+        this._disablingState = disabled;
+        this._enablingState = !disabled;
+      }
+      this._disabled = disabled;
+
       // TODO Find a better way to handle validation after the form subscription. (see demo-app form-validation)
       // Wait for the valueChanges method from FormGroup to have been triggered before handling the validation state.
       // /!\ Race condition warning /!\

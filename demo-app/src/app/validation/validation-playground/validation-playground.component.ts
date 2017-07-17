@@ -1,81 +1,15 @@
-import {
-  Component,
-  OnInit,
-  Renderer,
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ErrorMessageResource } from 'ng2-materialize';
+import { Component, OnInit, Renderer } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { IPropertyRow } from './../shared/properties-table/properties-table.component';
-import { Province, User } from './models/';
-
-import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
+import { Province, User } from '../models/';
 
 @Component({
-  selector: 'app-form-validation',
-  templateUrl: './form-validation.component.html',
-  styleUrls: ['./form-validation.component.scss'],
-  host: ROUTE_ANIMATION_HOST, // tslint:disable-line:use-host-property-decorator
-  animations: [ROUTE_ANIMATION],
+  selector: 'app-validation-playground',
+  templateUrl: './validation-playground.component.html',
+  styleUrls: ['./validation-playground.component.scss'],
 })
-export class FormValidationComponent implements OnInit {
+export class ValidationPlaygroundComponent implements OnInit {
 
-  // properties table for demo page
-  errorMessageRessourceProperties: IPropertyRow[] = [
-    {
-      name: 'maxlength',
-      mandatory: false,
-      type: 'string',
-      description: 'Max length error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'minlength',
-      mandatory: false,
-      type: 'string',
-      description: 'Min length error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'pattern',
-      mandatory: false,
-      type: 'string',
-      description: 'Pattern error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'required',
-      mandatory: false,
-      type: 'string',
-      description: 'Required error message.',
-      defaultValue: '',
-    },
-  ];
-
-  properties: IPropertyRow[] = [
-    {
-      name: 'errorMessageResource',
-      mandatory: false,
-      type: 'ErrorMessageResource',
-      description: 'Error message resource for a form control.',
-      defaultValue: '',
-    },
-    {
-      name: 'formControlDisabled',
-      mandatory: false,
-      type: 'boolean',
-      description: 'Disable a form control',
-      defaultValue: 'false',
-    },
-  ];
-
-  // form validation variables
   errorMessageResources = {
     activitySector: {
       required: 'Activity sector is required.',
@@ -188,7 +122,7 @@ export class FormValidationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs', []);
+    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
     this.addPhoneNumber();
   }

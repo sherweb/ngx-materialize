@@ -1,15 +1,5 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ErrorMessageResource } from 'ng2-materialize';
+import { Component, OnInit, Renderer } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export abstract class Province {
   code: string;
@@ -32,14 +22,19 @@ export abstract class User {
   postalCode: string;
   province: Province;
 }
-@Component({
-  selector: 'app-form-validation',
-  templateUrl: './form-validation.component.html',
-  styleUrls: ['./form-validation.component.scss'],
-})
-export class FormValidationComponent implements OnInit {
 
-  // form validation variables
+@Component({
+  selector: 'app-validation-playground',
+  templateUrl: './validation-playground.component.html',
+  styleUrls: ['./validation-playground.component.scss'],
+})
+export class ValidationPlaygroundComponent implements OnInit {
+  hasJob = false;
+  hearAboutUs = null;
+  submitted = false;
+  termService = false;
+  userForm: FormGroup;
+
   errorMessageResources = {
     activitySector: {
       required: 'Activity sector is required.',
@@ -102,12 +97,6 @@ export class FormValidationComponent implements OnInit {
     province: null,
   };
 
-  hasJob = true;
-  hearAboutUs = null;
-  submitted = false;
-  userForm: FormGroup;
-  termService = false;
-
   // fake datas
   activitySectorOptions = [
     { value: 'culture-music-art-literature', text: 'Culture,music, arts, literature' },
@@ -118,7 +107,7 @@ export class FormValidationComponent implements OnInit {
     { value: 'financial-services', text: 'Financial services' },
     { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
     { value: 'media-film', text: 'Media and film industry' },
-  ]
+  ];
 
   hearAboutUsOptions = [
     { value: 'event', text: 'Event' },
@@ -148,9 +137,11 @@ export class FormValidationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
+    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
     this.addPhoneNumber();
   }
@@ -165,19 +156,18 @@ export class FormValidationComponent implements OnInit {
 
   buildForm() {
     this.userForm = this.formBuilder.group({
-      activitySector: [this.user.activitySector, Validators.required],
-      address: [this.user.address, Validators.required],
-      address2: [this.user.address2],
-      city: [this.user.city],
+      // identification
       firstName: [this.user.firstName, Validators.compose([
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(24),
         ]),
       ],
+      lastName: [this.user.lastName, Validators.required],
       gender: [this.user.gender],
+      // professional information
       hasJob: [this.hasJob],
-      hearAboutUs: [this.hearAboutUs, Validators.required],
+      activitySector: [this.user.activitySector, Validators.required],
       jobDescription: [this.user.jobDescription, Validators.compose([
           Validators.required,
           Validators.maxLength(255),
@@ -186,13 +176,19 @@ export class FormValidationComponent implements OnInit {
       jobPrivate: [this.user.jobPrivate],
       jobTitle: [this.user.jobTitle, Validators.required],
       jobType: [this.user.jobType, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      phoneNumbers: this.formBuilder.array([]),
+      // contact information
+      address: [this.user.address, Validators.required],
+      address2: [this.user.address2],
+      city: [this.user.city],
+      province: [this.user.province, Validators.required],
       postalCode: [this.user.postalCode, Validators.compose([
           Validators.pattern('(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)'),
         ]),
       ],
-      province: [this.user.province, Validators.required],
+      // phone number
+      phoneNumbers: this.formBuilder.array([]),
+      // additional information
+      hearAboutUs: [this.hearAboutUs, Validators.required],
       termService: [this.termService, Validators.required],
     });
   }

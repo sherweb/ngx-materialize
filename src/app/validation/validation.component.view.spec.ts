@@ -313,14 +313,12 @@ describe('MzValidationComponent:view', () => {
               id="input-id"
               formControlName="formControl"
               [errorMessageResource]="errorMessageResource"
-              [formControlDisabled]="formControlDisabled"
               [label]="'label'" />
           </mz-input-container>
         </form>`,
         {
           errorMessageResource,
           formGroup,
-          formControlDisabled: formGroup.get('formControl').disabled,
         },
       ).then((fixture) => {
         nativeElement = fixture.nativeElement;
@@ -331,7 +329,7 @@ describe('MzValidationComponent:view', () => {
         formGroup.get('formControl').markAsDirty();
 
         // disable field
-        fixture.componentInstance.formControlDisabled = true;
+        formGroup.get('formControl').disable();
         fixture.detectChanges();
         tick();
 
@@ -363,14 +361,12 @@ describe('MzValidationComponent:view', () => {
               id="input-id"
               formControlName="formControl"
               [errorMessageResource]="errorMessageResource"
-              [formControlDisabled]="formControlDisabled"
               [label]="'label'" />
           </mz-input-container>
         </form>`,
         {
           errorMessageResource,
           formGroup,
-          formControlDisabled: formGroup.get('formControl').disabled,
         },
       ).then((fixture) => {
         nativeElement = fixture.nativeElement;
@@ -381,7 +377,7 @@ describe('MzValidationComponent:view', () => {
         formGroup.get('formControl').markAsDirty();
 
         // enable field
-        fixture.componentInstance.formControlDisabled = false;
+        formGroup.get('formControl').enable();
         fixture.detectChanges();
         tick();
 
@@ -413,17 +409,16 @@ describe('MzValidationComponent:view', () => {
               id="input-id"
               formControlName="formControl"
               [errorMessageResource]="errorMessageResource"
-              [formControlDisabled]="formControlDisabled"
               [label]="'label'" />
           </mz-input-container>
         </form>`,
         {
           errorMessageResource,
           formGroup,
-          formControlDisabled: formGroup.get('formControl').disabled,
         },
       ).then((fixture) => {
         nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
 
         const animationEngine: ɵAnimationEngine = TestBed.get(ɵAnimationEngine);
 
@@ -435,9 +430,8 @@ describe('MzValidationComponent:view', () => {
           expect(errorMessageDivElement().innerText).toBe(errorMessageResource.minlength);
         });
 
-        // status that the field should have when field has been modified
-        formGroup.get('formControl').markAsTouched();
-        formGroup.get('formControl').markAsDirty();
+        // simulate lost focus as if user changed the value
+        inputElement().dispatchEvent(new CustomEvent('focusout'));
         fixture.detectChanges();
 
         // force animation to end

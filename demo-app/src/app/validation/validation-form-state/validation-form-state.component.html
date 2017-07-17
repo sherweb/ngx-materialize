@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-tabs col s12">
+    <ul class="tabs">
+      <li class="tab"><a class="active" href="#view-form-state">View</a></li>
+      <li class="tab"><a href="#html-form-state">HTML</a></li>
+      <li class="tab"><a href="#code-form-state">TS</a></li>
+    </ul>
+  </div>
+  <div class="card-content">
+    <div id="view-form-state" class="col s12">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row m-valign-wrapper">
+          <mz-checkbox-container class="col s12 m2">
+            <input mz-checkbox
+              id="checkbox-form-state"
+              formControlName="checkbox"
+              type="checkbox"
+              [filledIn]="true"
+              [label]="'Disabled'">
+          </mz-checkbox-container>
+          <mz-input-container class="col s12 m5">
+            <input mz-input mz-validation required
+              id="input-form-state"
+              formControlName="input"
+              type="text"
+              [errorMessageResource]="errorMessages.input"
+              [label]="'Input'"
+              [placeholder]="'Enter text'">
+          </mz-input-container>
+          <mz-select-container class="col s12 m5">
+            <select mz-select mz-validation required
+              id="select-form-state"
+              formControlName="select"
+              [errorMessageResource]="errorMessages.select"
+              [label]="'Select'"
+              [placeholder]="'Choose an option'">
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </mz-select-container>
+        </div>
+        <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
+        <button mz-button (click)="clear()" type="button">Clear</button>
+      </form>
+
+      <div *ngIf="submitted">
+        <h5 class="light">Submitted form</h5>
+        <markdown-to-html [data]="values | json | language: 'json'"></markdown-to-html>
+      </div>
+    </div>
+    <div id="html-form-state" class="col s12"><markdown-to-html [src]="'app/validation/validation-form-state/markdown/component.html'"></markdown-to-html></div>
+    <div id="code-form-state" class="col s12"><markdown-to-html [src]="'app/validation/validation-form-state/markdown/component.ts'"></markdown-to-html></div>
+  </div>
+</div>

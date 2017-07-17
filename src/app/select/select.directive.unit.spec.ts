@@ -516,46 +516,51 @@ describe('MzSelectDirective:unit', () => {
 
   describe('handleDisabled', () => {
 
-    it('should set disabled property on select element when disabled is true', () => {
+    it('should not set disabled property or reinitialize select element when disabled is undefined/null', () => {
+
+      const mockSelectElement = [{ select: true }];
+
+      const spySetElementProperty = spyOn(renderer, 'setElementProperty');
+      const spyInvokeElementMethod = spyOn(renderer, 'invokeElementMethod');
+
+      [undefined, null].forEach(value => {
+
+        directive.disabled = value;
+        directive.selectElement = <any>mockSelectElement;
+        directive.handleDisabled();
+
+        expect(spySetElementProperty).not.toHaveBeenCalled();
+        expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+      });
+    });
+
+    it('should set disabled property and reinitialize select element when disabled is true', () => {
 
       const mockSelectElement = [{ select: true }];
 
       spyOn(renderer, 'setElementProperty');
+      spyOn(renderer, 'invokeElementMethod');
 
       directive.disabled = true;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
       expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', true);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
     });
 
-    it('should set disabled property on select element when disabled is undefined/null/false', () => {
+    it('should set disabled property and reinitialize select element when disabled is false', () => {
 
       const mockSelectElement = [{ select: true }];
 
-      const spySetElementProperty = spyOn(renderer, 'setElementProperty');
-
-      [undefined, null, false].forEach(value => {
-
-        directive.disabled = value;
-        directive.selectElement = <any>mockSelectElement;
-        directive.handleDisabled();
-
-        expect(spySetElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', false);
-
-        spySetElementProperty.calls.reset();
-      });
-    });
-
-    it('should invoke material_select method on select element to reinitialize', () => {
-
-      const mockSelectElement = [{ select: true }];
-
+      spyOn(renderer, 'setElementProperty');
       spyOn(renderer, 'invokeElementMethod');
 
+      directive.disabled = false;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
+      expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', false);
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'material_select');
     });
   });
