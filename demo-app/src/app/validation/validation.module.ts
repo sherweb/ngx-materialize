@@ -7,7 +7,10 @@ import { MaterializeModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
-import { FormValidationComponent } from './form-validation.component';
+import { ValidationBindingComponent } from './validation-binding/validation-binding.component';
+import { ValidationFormStateComponent } from './validation-form-state/validation-form-state.component';
+import { ValidationPlaygroundComponent } from './validation-playground/validation-playground.component';
+import { ValidationComponent } from './validation.component';
 
 @NgModule({
   imports: [
@@ -20,6 +23,11 @@ import { FormValidationComponent } from './form-validation.component';
     PropertiesTableModule,
     ReactiveFormsModule,
   ],
-  declarations: [FormValidationComponent],
+  declarations: [
+    ValidationBindingComponent,
+    ValidationComponent,
+    ValidationFormStateComponent,
+    ValidationPlaygroundComponent,
+  ],
 })
-export class FormValidationModule { }
+export class ValidationModule { }

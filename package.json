@@ -36,6 +36,7 @@
     "heroku-postbuild": "cd demo-app && yarn install && yarn run build:prod"
   },
   "dependencies": {
+    "@types/jquery": "^2.0.47",
     "@types/materialize-css": "0.98.0",
     "materialize-css": "0.98.2"
   },

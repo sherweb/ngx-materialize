@@ -1,33 +1,16 @@
 import { CommonModule } from '@angular/common';
-import {
-  ElementRef,
-  NgModule,
-  Renderer,
-  Renderer2,
-} from '@angular/core';
-import {
-  async,
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
-import {
-  FormControl,
-  FormsModule,
-  NgControl,
-} from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ElementRef, Renderer } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormControl, FormsModule, NgControl } from '@angular/forms';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 import { MzErrorMessageComponent, MzValidationComponent } from './';
 
 export class MockElementRef extends ElementRef {
-
   constructor() { super(null); }
 }
 
 export class MockNgControl {
-
   control = new FormControl();
 }
 
@@ -37,15 +20,25 @@ describe('MzValidationComponent:unit', () => {
 
   beforeEach(async(() => {
 
-    TestBed.configureTestingModule({
+    const test = TestBed.configureTestingModule({
       imports: [
-        ValidationTestModule,
+        CommonModule,
+        FormsModule,
+      ],
+      declarations: [
+        MzErrorMessageComponent,
+        MzValidationComponent,
       ],
       providers: [
         { provide: NgControl, useClass: MockNgControl },
         Renderer,
-        Renderer2,
       ],
+    });
+
+    TestBed.overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [MzErrorMessageComponent],
+      },
     }).compileComponents();
   }));
 
@@ -62,9 +55,7 @@ describe('MzValidationComponent:unit', () => {
       callOrder = [];
       spyOn(component, 'initElements').and.callFake(() => callOrder.push('initElements'));
       spyOn(component, 'initErrorMessageComponent').and.callFake(() => callOrder.push('initErrorMessageComponent'));
-      spyOn(component, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(component, 'subscribeStatusChanges').and.callFake(() => callOrder.push('subscribeStatusChanges'));
-      spyOn(component, 'executePropHandlers').and.callFake(() => callOrder.push('executePropHandlers'));
     });
 
     it('should call initElement ', () => {
@@ -83,28 +74,12 @@ describe('MzValidationComponent:unit', () => {
       expect(callOrder[1]).toBe('initErrorMessageComponent');
     });
 
-    it('should call initHandlers ', () => {
-
-      component.ngAfterViewInit();
-
-      expect(component.initHandlers).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('initHandlers');
-    });
-
     it('should call subscribeStatusChanges ', () => {
 
       component.ngAfterViewInit();
 
       expect(component.subscribeStatusChanges).toHaveBeenCalled();
-      expect(callOrder[3]).toBe('subscribeStatusChanges');
-    });
-
-    it('should call executePropHandlers ', () => {
-
-      component.ngAfterViewInit();
-
-      expect(component.executePropHandlers).toHaveBeenCalled();
-      expect(callOrder[4]).toBe('executePropHandlers');
+      expect(callOrder[2]).toBe('subscribeStatusChanges');
     });
   });
 
@@ -124,12 +99,6 @@ describe('MzValidationComponent:unit', () => {
 
       const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
 
-      const mockParentElement = {
-        children: () => {
-          return mockInputSelectDropdownJquery;
-        },
-      };
-
       component.nativeElement = $(mockSelect);
 
       component.initErrorMessageComponent();
@@ -137,7 +106,7 @@ describe('MzValidationComponent:unit', () => {
 
       spyOn(component.statusChangesSubscription, 'unsubscribe');
       spyOn(component.errorMessageComponent, 'destroy');
-      spyOn(component.nativeElement, 'parent').and.returnValue(mockParentElement);
+      spyOn(component.nativeElement, 'siblings').and.returnValue(mockInputSelectDropdownJquery);
       spyOn(mockInputSelectDropdownJquery, 'off');
 
       component.ngOnDestroy();
@@ -148,7 +117,33 @@ describe('MzValidationComponent:unit', () => {
     }));
   });
 
-  describe('getElement', () => {
+  describe('formControlDisabled', () => {
+
+    it('should disable form control when disable is true', () => {
+
+      const mockInput = document.createElement('input');
+
+      component.formControlDisabled = true;
+      component.nativeElement = $(mockInput);
+
+      expect(component.formControlDisabled).toBeTruthy();
+      expect(component.ngControl.control.disabled).toBeTruthy()
+    });
+
+    it('should not disable form control when disable is false', () => {
+
+      const mockInput = document.createElement('input');
+
+      component.formControlDisabled = false;
+      component.nativeElement = $(mockInput);
+
+      expect(component.formControlDisabled).toBeFalsy();
+      expect(component.ngControl.control.enabled).toBeTruthy()
+    });
+  });
+
+  describe('elementToAddValidation', () => {
+
     it('should return native element', () => {
 
       const mockInput = document.createElement('input');
@@ -157,9 +152,7 @@ describe('MzValidationComponent:unit', () => {
 
       spyOn(component, 'isNativeSelectElement').and.returnValue(false);
 
-      const actualElement = component.getElement();
-
-      expect(actualElement).toBe(component.nativeElement);
+      expect(component.elementToAddValidation).toBe(component.nativeElement);
     })
 
     it('should return input select dropdown element when element ref is a select', fakeAsync(() => {
@@ -176,51 +169,16 @@ describe('MzValidationComponent:unit', () => {
 
       const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
 
-      const mockParentElement = {
-        children: () => {
-          return mockInputSelectDropdownJquery;
-        },
-      };
-
       component.nativeElement = $(mockSelect);
 
-      // component.initErrorMessageComponent();
-      // tick();
+      component.initErrorMessageComponent();
+      tick();
 
       spyOn(component, 'isNativeSelectElement').and.returnValue(true);
-      spyOn(component.nativeElement, 'parent').and.returnValue(mockParentElement);
+      spyOn(component.nativeElement, 'siblings').and.returnValue(mockInputSelectDropdownJquery);
 
-      // const actualElement = component.getElement();
-
-      // expect(actualElement).toBe(mockInputSelectDropdownJquery);
+      expect(component.elementToAddValidation).toBe(mockInputSelectDropdownJquery);
     }));
-  });
-
-  describe('handleFormControlDisabled', () => {
-
-    it('should disable form control when disable is true', () => {
-
-      const mockInput = document.createElement('input');
-
-      component.formControlDisabled = true;
-      component.nativeElement = $(mockInput);
-
-      component.handleFormControlDisabled();
-
-      expect(component.ngControl.control.disabled).toBeTruthy()
-    });
-
-    it('should not disable form control when disable is false', () => {
-
-      const mockInput = document.createElement('input');
-
-      component.formControlDisabled = false;
-      component.nativeElement = $(mockInput);
-
-      component.handleFormControlDisabled();
-
-      expect(component.ngControl.control.enabled).toBeTruthy()
-    });
   });
 
   describe('isNativeSelectElement', () => {
@@ -247,19 +205,42 @@ describe('MzValidationComponent:unit', () => {
       expect(component.isNativeSelectElement).toBeFalsy();
     });
   });
-});
 
-@NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [MzValidationComponent],
-  declarations: [
-    MzErrorMessageComponent,
-    MzValidationComponent,
-  ],
-  entryComponents: [MzErrorMessageComponent],
-})
-class ValidationTestModule { }
+  describe('updateSelect', () => {
+
+    it('should invoke material_select method and reinitialize element when element is a select', () => {
+
+      const renderer = TestBed.get(Renderer);
+
+      spyOn(renderer, 'invokeElementMethod');
+      spyOn(component, 'initNativeSelectElement');
+
+      const mockSelect = document.createElement('select');
+
+      // force compontent to use Renderer because of the issue where Renderer2 is sometimes injected instead of Renderer
+      // https://github.com/angular/angular/issues/17558
+      component['renderer'] = renderer;
+      component.nativeElement = $(mockSelect);
+      component.updateSelect();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(component.nativeElement, 'material_select');
+      expect(component.initNativeSelectElement).toHaveBeenCalled();
+    });
+
+    it('should not invoke material_select method and reinitialize element when element is not a select', () => {
+
+      const renderer = TestBed.get(Renderer);
+
+      spyOn(renderer, 'invokeElementMethod');
+      spyOn(component, 'initNativeSelectElement');
+
+      const mockInput = document.createElement('input');
+
+      component.nativeElement = $(mockInput);
+      component.updateSelect();
+
+      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
+      expect(component.initNativeSelectElement).not.toHaveBeenCalled();
+    });
+  });
+});

@@ -1,81 +1,15 @@
-import {
-  Component,
-  OnInit,
-  Renderer,
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ErrorMessageResource } from 'ng2-materialize';
+import { Component, OnInit, Renderer } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { IPropertyRow } from './../shared/properties-table/properties-table.component';
-import { Province, User } from './models/';
-
-import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
+import { Province, User } from '../models/';
 
 @Component({
-  selector: 'app-form-validation',
-  templateUrl: './form-validation.component.html',
-  styleUrls: ['./form-validation.component.scss'],
-  host: ROUTE_ANIMATION_HOST, // tslint:disable-line:use-host-property-decorator
-  animations: [ROUTE_ANIMATION],
+  selector: 'app-validation-playground',
+  templateUrl: './validation-playground.component.html',
+  styleUrls: ['./validation-playground.component.scss'],
 })
-export class FormValidationComponent implements OnInit {
+export class ValidationPlaygroundComponent implements OnInit {
 
- // properties table for demo page
- errorMessageRessourceProperties: IPropertyRow[] = [
-    {
-      name: 'maxlength',
-      mandatory: false,
-      type: 'string',
-      description: 'Max length error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'minlength',
-      mandatory: false,
-      type: 'string',
-      description: 'Min length error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'pattern',
-      mandatory: false,
-      type: 'string',
-      description: 'Pattern error message.',
-      defaultValue: '',
-    },
-    {
-      name: 'required',
-      mandatory: false,
-      type: 'string',
-      description: 'Required error message.',
-      defaultValue: '',
-    },
-  ];
-
-  properties: IPropertyRow[] = [
-    {
-      name: 'errorMessageResource',
-      mandatory: false,
-      type: 'ErrorMessageResource',
-      description: 'Error message resource for a form control.',
-      defaultValue: '',
-    },
-    {
-      name: 'formControlDisabled',
-      mandatory: false,
-      type: 'boolean',
-      description: 'Disable a form control',
-      defaultValue: 'false',
-    },
-  ];
-
-  // form validation variables
   errorMessageResources = {
     activitySector: {
       required: 'Activity sector is required.',
@@ -154,7 +88,7 @@ export class FormValidationComponent implements OnInit {
     { value: 'financial-services', text: 'Financial services' },
     { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
     { value: 'media-film', text: 'Media and film industry' },
-  ]
+  ];
 
   hearAboutUsOptions = [
     { value: 'event', text: 'Event' },
@@ -188,7 +122,7 @@ export class FormValidationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs', []);
+    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
     this.addPhoneNumber();
   }
@@ -203,19 +137,18 @@ export class FormValidationComponent implements OnInit {
 
   buildForm() {
     this.userForm = this.formBuilder.group({
-      activitySector: [this.user.activitySector, Validators.required],
-      address: [this.user.address, Validators.required],
-      address2: [this.user.address2],
-      city: [this.user.city],
+      // identification
       firstName: [this.user.firstName, Validators.compose([
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(24),
         ]),
       ],
+      lastName: [this.user.lastName, Validators.required],
       gender: [this.user.gender],
+      // professional information
       hasJob: [this.hasJob],
-      hearAboutUs: [this.hearAboutUs, Validators.required],
+      activitySector: [this.user.activitySector, Validators.required],
       jobDescription: [this.user.jobDescription, Validators.compose([
           Validators.required,
           Validators.maxLength(255),
@@ -224,13 +157,19 @@ export class FormValidationComponent implements OnInit {
       jobPrivate: [this.user.jobPrivate],
       jobTitle: [this.user.jobTitle, Validators.required],
       jobType: [this.user.jobType, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      phoneNumbers: this.formBuilder.array([]),
+      // contact information
+      address: [this.user.address, Validators.required],
+      address2: [this.user.address2],
+      city: [this.user.city],
+      province: [this.user.province, Validators.required],
       postalCode: [this.user.postalCode, Validators.compose([
           Validators.pattern('(^\\d{5}(-\\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1} *\\d{1}[A-Z]{1}\\d{1}$)'),
         ]),
       ],
-      province: [this.user.province, Validators.required],
+      // phone number
+      phoneNumbers: this.formBuilder.array([]),
+      // additional information
+      hearAboutUs: [this.hearAboutUs, Validators.required],
       termService: [this.termService, Validators.required],
     });
   }
@@ -243,6 +182,7 @@ export class FormValidationComponent implements OnInit {
       this.deletePhoneNumber(i);
     }
 
+    this.userForm.get('hasJob').setValue(this.hasJob);
     this.userForm.get('jobPrivate').setValue(this.user.jobPrivate);
     this.userForm.get('jobType').setValue(this.user.jobType)
     this.userForm.get('gender').setValue(this.user.gender);

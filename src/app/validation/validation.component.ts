@@ -9,14 +9,12 @@ import {
   Input,
   OnDestroy,
   Renderer,
-  Renderer2,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 
 @Component({
@@ -25,8 +23,17 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.scss'],
 })
-export class MzValidationComponent extends HandlePropChanges implements AfterViewInit, OnDestroy {
+export class MzValidationComponent implements AfterViewInit, OnDestroy {
+  private _disabled = false;
+  private _disablingState = false;
+  private _enablingState = false;
+  private _formControlDisabled = false;
   private _required = false;
+
+  errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
+  labelElement: HTMLElement;
+  nativeElement: JQuery;
+  statusChangesSubscription: Subscription;
 
   // native properties
   @Input() id: string;
@@ -38,16 +45,31 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
   // component properties
   @Input() errorMessageResource: ErrorMessageResource;
-  @Input() formControlDisabled: boolean;
+
+  @Input()
+  get formControlDisabled() { return this._formControlDisabled; }
+  set formControlDisabled(value: boolean) {
+    this._formControlDisabled = value;
+    if (this._formControlDisabled) {
+      this.ngControl.control.disable();
+    } else {
+      this.ngControl.control.enable();
+    }
+  }
+
+  get elementToAddValidation(): JQuery {
+    return this.isNativeSelectElement
+      ? this.inputSelectDropdown
+      : this.nativeElement;
+  }
+
+  get inputSelectDropdown(): JQuery {
+    return this.nativeElement.siblings('input.select-dropdown');
+  }
 
   get isNativeSelectElement(): boolean {
     return this.nativeElement[0].nodeName === 'SELECT';
   }
-
-  errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
-  labelElement: HTMLElement;
-  nativeElement: JQuery;
-  statusChangesSubscription: Subscription;
 
   @HostListener('focusout', ['$event.target'])
   onFocusOut(target: Event) {
@@ -58,34 +80,26 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   constructor(
     public ngControl: NgControl,
     private elementRef: ElementRef,
-    private renderer: Renderer,
-    private renderer2: Renderer2,
+    public renderer: Renderer,
     private resolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
-  ) {
-    super();
-  }
+  ) { }
 
   ngAfterViewInit() {
     this.initElements();
     this.initErrorMessageComponent();
-    this.initHandlers();
     this.subscribeStatusChanges();
-    this.executePropHandlers();
   }
 
   ngOnDestroy() {
     this.statusChangesSubscription.unsubscribe();
-
     this.errorMessageComponent.destroy();
-
-    const inputSelectDropdownElement = this.nativeElement.parent().children('input.select-dropdown');
-    inputSelectDropdownElement.off('blur');
+    this.inputSelectDropdown.off('blur');
   }
 
   clearValidationState(element: JQuery) {
-    this.renderer2.removeClass(element[0], 'valid');
-    this.renderer2.removeClass(element[0], 'invalid');
+    this.renderer.setElementClass(element[0], 'valid', false);
+    this.renderer.setElementClass(element[0], 'invalid', false);
   }
 
   createRequiredSpanElement() {
@@ -96,28 +110,6 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
 
       this.renderer.invokeElementMethod(this.labelElement, 'appendChild', [spanElement]);
     }
-  }
-
-  getElement(): JQuery {
-    if (this.isNativeSelectElement) {
-      return this.nativeElement.parent().children('input.select-dropdown');
-    }
-
-    return this.nativeElement;
-  }
-
-  handleFormControlDisabled() {
-    const formControl = this.ngControl.control;
-    if (formControl != null) {
-      if (this.formControlDisabled) {
-        formControl.disable();
-      } else {
-        formControl.enable();
-      }
-    }
-
-    this.ngControl.control.markAsUntouched();
-    this.clearValidationState(this.getElement());
   }
 
   initElements() {
@@ -142,17 +134,10 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
     this.renderer.invokeElementMethod(errorMessage, 'insertAfter', [this.labelElement]);
   }
 
-  initHandlers() {
-    this.handlers = {
-      formControlDisabled: () => this.handleFormControlDisabled(),
-    };
-  }
-
   initNativeSelectElement() {
     // Wait for materialize_select function to be executed when the element has mz-select directive.
     setTimeout(() => {
-      const inputSelectDropdownElement = this.nativeElement.parent().children('input.select-dropdown');
-      inputSelectDropdownElement.on('blur', () => {
+      this.inputSelectDropdown.on('blur', () => {
         this.ngControl.control.markAsTouched();
         this.setValidationState();
       });
@@ -160,32 +145,58 @@ export class MzValidationComponent extends HandlePropChanges implements AfterVie
   }
 
   setValidationState() {
-    const elementToAddValidation = this.getElement();
-
-    if (this.ngControl.control.touched || this.ngControl.control.dirty) {
-      if (this.ngControl.control.invalid) {
-        this.renderer2.addClass(elementToAddValidation[0], 'invalid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'valid');
+    // to disable field
+    if (this._disablingState) {
+      this.updateSelect();
+      this.clearValidationState(this.elementToAddValidation);
+      this._disablingState = false;
+      return;
+    }
+    // to enable field
+    if (this._enablingState) {
+      this.updateSelect();
+      this._enablingState = false;
+    }
+    // to reset form
+    if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
+      this.updateSelect();
+      this.clearValidationState(this.elementToAddValidation);
+      return;
+    }
+    // to handle field validity
+    if (this.ngControl.control.enabled) {
+      if (this.ngControl.control.valid) {
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'valid', true);
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'invalid', false);
       } else {
-        this.renderer2.addClass(elementToAddValidation[0], 'valid');
-        this.renderer2.removeClass(elementToAddValidation[0], 'invalid');
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'valid', false);
+        this.renderer.setElementClass(this.elementToAddValidation[0], 'invalid', true);
       }
-    } else if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
-      if (this.isNativeSelectElement) {
-        this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
-        this.initNativeSelectElement();
-      }
-
-      this.clearValidationState(elementToAddValidation);
     }
   }
 
   subscribeStatusChanges() {
-    this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe(() => {
+    this._disabled = this.ngControl.control.disabled;
+
+    this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe((status: string) => {
+      const disabled = status === 'DISABLED';
+      if (disabled !== this._disabled) {
+        this._disablingState = disabled;
+        this._enablingState = !disabled;
+      }
+      this._disabled = disabled;
+
       // TODO Find a better way to handle validation after the form subscription. (see demo-app form-validation)
       // Wait for the valueChanges method from FormGroup to have been triggered before handling the validation state.
       // /!\ Race condition warning /!\
       setTimeout(() => this.setValidationState());
     });
+  }
+
+  updateSelect() {
+    if (this.isNativeSelectElement) {
+      this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
+      this.initNativeSelectElement();
+    }
   }
 }

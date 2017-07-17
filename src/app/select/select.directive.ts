@@ -165,8 +165,13 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   }
 
   handleDisabled() {
-    this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
-    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    // when disabled is null/undefined that means the property has not been used on the element
+    // but it might be set by another process (for example reactive form applies disabled attribute itself)
+    // therefore we don't want to remove or add it here
+    if (this.disabled != null) {
+      this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
+      this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    }
   }
 
   handleLabel() {

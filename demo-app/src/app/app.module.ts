@@ -18,7 +18,6 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
 import { CollectionModule } from './collection/collection.module';
 import { DropdownModule } from './dropdown/dropdown.module';
-import { FormValidationModule } from './form-validation/form-validation.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
 import { InputModule } from './input/input.module';
@@ -35,6 +34,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { TextareaModule } from './textarea/textarea.module';
 import { ToastModule } from './toast/toast.module';
 import { TooltipModule } from './tooltip/tooltip.module';
+import { ValidationModule } from './validation/validation.module';
 
 @NgModule({
   imports: [
@@ -57,7 +57,6 @@ import { TooltipModule } from './tooltip/tooltip.module';
     CollapsibleModule,
     CollectionModule,
     DropdownModule,
-    FormValidationModule,
     HomeModule,
     IconModule,
     InputModule,
@@ -74,6 +73,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     TextareaModule,
     ToastModule,
     TooltipModule,
+    ValidationModule,
   ],
   declarations: [AppComponent],
   providers: [],
