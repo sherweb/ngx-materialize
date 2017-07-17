@@ -57,12 +57,12 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ```diff
 "styles": [
   "styles.scss",
-+ "../node_modules/materialize-css/dist/css/materialize.css",
-+ "../node_modules/mdi/css/materialdesignicons.css"   #optional
++ "../node_modules/materialize-css/dist/css/materialize.min.css",
++ "../node_modules/mdi/css/materialdesignicons.min.css"   #optional
 ],
 "scripts": [
-+ "../node_modules/jquery/dist/jquery.js",
-+ "../node_modules/materialize-css/dist/js/materialize.js"
++ "../node_modules/jquery/dist/jquery.min.js",
++ "../node_modules/materialize-css/dist/js/materialize.min.js"
 ],
 ```
 
