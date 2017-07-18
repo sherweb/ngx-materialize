@@ -1,7 +1,8 @@
+import { ActivitySector } from './activity-sector';
 import { Province } from './province';
 
 export abstract class User {
-  activitySector: string;
+  activitySector: ActivitySector;
   address: string;
   address2: string;
   city: string;

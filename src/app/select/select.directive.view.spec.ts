@@ -19,7 +19,7 @@ describe('MzSelectDirective:view', () => {
 
     let nativeElement: any;
 
-    it('should sync materialize select with native select when properties is updated', async(() => {
+    fit('should sync materialize select with native select when properties is updated', async(() => {
 
       const selectAsyncOptions = ['Option 1'];
 
@@ -30,7 +30,7 @@ describe('MzSelectDirective:view', () => {
             [label]="'Label'"
             [placeholder]="'Placeholder'"
           >
-            <option *ngFor="let option of selectAsyncOptions" [selected]="option === optionValue">{{ option }}</option>
+            <option *ngFor="let option of selectAsyncOptions">{{ option }}</option>
           </select>
         </mz-select-container>
       `, {

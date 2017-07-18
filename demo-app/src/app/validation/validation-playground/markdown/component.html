@@ -82,8 +82,8 @@
         </textarea>
       </mz-textarea-container>
     </div>
-    <div class="row valign-wrapper">
-      <mz-radio-button-container class="col s6 m4">
+    <div class="row m-valign-wrapper">
+      <mz-radio-button-container class="col s6 m3">
         <input mz-radio-button mz-validation
           id="radio-button-jobtype-permanent"
           formControlName="jobType"
@@ -94,7 +94,7 @@
           [label]="'Permanent'"
           [withGap]="true">
       </mz-radio-button-container>
-      <mz-radio-button-container class="col s6 m4">
+      <mz-radio-button-container class="col s6 m3">
         <input mz-radio-button mz-validation
           id="radio-button-jobtype-consultant"
           formControlName="jobType"
@@ -105,7 +105,7 @@
           [label]="'Consultant'"
           [withGap]="true">
       </mz-radio-button-container>
-      <mz-select-container class="col s12 m4">
+      <mz-select-container class="col s12 m6">
         <select mz-select mz-validation required
           id="select-activity-sector"
           formControlName="activitySector"
@@ -113,7 +113,7 @@
           [formControlDisabled]="!userForm.controls['hasJob'].value"
           [label]="'Activity sector'"
           [placeholder]="'Choose your activity sector'">
-          <option *ngFor="let activitySectorOption of activitySectorOptions" [selected]="activitySectorOption == userForm.get('activitySector').value" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
+          <option *ngFor="let activitySectorOption of activitySectorOptions" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
         </select>
       </mz-select-container>
     </div>
@@ -168,7 +168,7 @@
           [errorMessageResource]="errorMessageResources.province"
           [label]="'Province'"
           [placeholder]="'Choose your province'">
-          <option *ngFor="let province of provinces" [selected]="province == userForm.get('province').value" [ngValue]="province">{{ province.name }}</option>
+          <option *ngFor="let provinceOption of provinceOptions" [ngValue]="provinceOption">{{ provinceOption.name }}</option>
         </select>
       </mz-select-container>
       <mz-input-container class="col s12 m2">
@@ -218,7 +218,7 @@
           [errorMessageResource]="errorMessageResources.hearAboutUs"
           [label]="'How did you hear about us?'"
           [placeholder]="'Make your choice'">
-          <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.get('hearAboutUs').value?.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
+          <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
         </select>
       </mz-select-container>
     </div>

@@ -497,10 +497,10 @@ describe('MzSelectDirective:unit', () => {
         expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
       });
 
-      it('should call selectFirstOption', () => {
+      it('should call initializeSelectedOption', () => {
 
         spyOn(HandlePropChanges.prototype, 'executePropHandlers');
-        spyOn(directive, 'selectFirstOption');
+        spyOn(directive, 'initializeSelectedOption');
 
         const mockSelectContainerElement = { selectContainer: true, length: 1 };
         const mockSelectElement = { children: () => $({ length: 0 }) };
@@ -509,7 +509,7 @@ describe('MzSelectDirective:unit', () => {
         directive.selectElement = <any>mockSelectElement;
         directive.handleProperties();
 
-        expect(directive.selectFirstOption).toHaveBeenCalled();
+        expect(directive.initializeSelectedOption).toHaveBeenCalled();
       });
     });
   });
@@ -677,6 +677,7 @@ describe('MzSelectDirective:unit', () => {
         const mockPlaceholderText = document.createTextNode(mockPlaceholder);
         const mockPlaceholderOption = document.createElement('option');
         mockPlaceholderOption.disabled = true;
+        mockPlaceholderOption.value = null;
         mockPlaceholderOption.appendChild(mockPlaceholderText);
 
         directive.selectElement = <any>mockSelectElement;
@@ -700,47 +701,47 @@ describe('MzSelectDirective:unit', () => {
       });
     });
 
-    describe('selectFirstOption', () => {
+    describe('initializeSelectedOption', () => {
 
-      it('should set the selected attribute of the first option to true', () => {
+      it('should set the selected attribute/property of the first option to true', () => {
         const mockSelect = document.createElement('select');
         const mockOption = document.createElement('option');
         mockSelect.appendChild(mockOption);
 
-        spyOn(mockOption, 'setAttribute');
+        spyOn(renderer, 'setElementAttribute');
 
         directive.selectElement = $(mockSelect);
-        directive.selectFirstOption();
+        directive.initializeSelectedOption();
 
-        expect(mockOption.setAttribute).toHaveBeenCalledWith('selected', 'true');
+        expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockOption, 'selected', '');
       });
 
-      it('should not set the selected attribute of the first option to true if an option is already selected', () => {
+      it('should not set the selected attribute/property of the first option to true if an option is already selected', () => {
         const mockSelect = document.createElement('select');
         const mockOption = document.createElement('option');
         mockOption.setAttribute('selected', 'true');
         mockSelect.appendChild(mockOption);
 
-        spyOn(mockOption, 'setAttribute');
+        spyOn(renderer, 'setElementAttribute');
 
         directive.selectElement = $(mockSelect);
-        directive.selectFirstOption();
+        directive.initializeSelectedOption();
 
-        expect(mockOption.setAttribute).not.toHaveBeenCalled();
+        expect(renderer.setElementAttribute).not.toHaveBeenCalled();
       });
 
-      it('should not set the selected attribute of the first option to true if the select is multiple', () => {
+      it('should not set the selected attribute/property of the first option to true if the select is multiple', () => {
         const mockSelect = document.createElement('select');
         mockSelect.setAttribute('multiple', 'true');
         const mockOption = document.createElement('option');
         mockSelect.appendChild(mockOption);
 
-        spyOn(mockOption, 'setAttribute');
+        spyOn(renderer, 'setElementAttribute');
 
         directive.selectElement = $(mockSelect);
-        directive.selectFirstOption();
+        directive.initializeSelectedOption();
 
-        expect(mockOption.setAttribute).not.toHaveBeenCalled();
+        expect(renderer.setElementAttribute).not.toHaveBeenCalled();
       });
     });
   });
