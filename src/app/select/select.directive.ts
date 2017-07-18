@@ -228,28 +228,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
       }
 
       this.mutationObserver = new MutationObserver((mutations: MutationRecord[]) => {
-        mutations.forEach((mutation: MutationRecord) => {
-          let isSelectReset = false;
-          const currentOptions = <Element[]> Array.from(mutation.target.childNodes).filter(x => x.nodeName === 'OPTION');
-
-          if (this.lastOptions) {
-            const prevOptions = Array.from(this.lastOptions);
-            this.lastOptions = currentOptions;
-
-            if (prevOptions.length !== currentOptions.length) {
-              isSelectReset = true;
-            } else {
-              isSelectReset = currentOptions.some((option, index) =>
-                !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
-            }
-          } else {
-            isSelectReset = !!(this.lastOptions = currentOptions);
-          }
-
-          if (isSelectReset) {
-            this.renderer.invokeElementMethod(this.selectElement, 'material_select');
-          }
-        });
+        this.renderer.invokeElementMethod(this.selectElement, 'material_select');
       });
 
       this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
