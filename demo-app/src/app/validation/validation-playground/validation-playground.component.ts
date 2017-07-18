@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Province, User } from '../models/';
+import { ActivitySector, Province, User } from '../models';
 
 @Component({
   selector: 'app-validation-playground',
@@ -10,6 +10,45 @@ import { Province, User } from '../models/';
 })
 export class ValidationPlaygroundComponent implements OnInit {
 
+  // fake datas
+  activitySectorOptions: ActivitySector[] = [
+    { slug: 'culture-music-art-literature', text: 'Culture,music, arts, literature' },
+    { slug: 'health-pha-medical', text: 'Health care, pharmaceutical, and medical sector' },
+    { slug: 'manufacturing', text: 'Manufacturing industries' },
+    { slug: 'telecom-info-techno', text: 'Telecommunications and information technology' },
+    { slug: 'transport', text: 'Transport, shipping, aviation, trucking and infrastructures' },
+    { slug: 'financial-services', text: 'Financial services' },
+    { slug: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
+    { slug: 'media-film', text: 'Media and film industry' },
+  ];
+
+  hearAboutUsOptions = [
+    { slug: 'event', text: 'Event' },
+    { slug: 'facebook', text: 'Facebook' },
+    { slug: 'family', text: 'Family' },
+    { slug: 'friend', text: 'Friend' },
+    { slug: 'search', text: 'Search engine' },
+    { slug: 'newspaper', text: 'Newspaper, Magazine' },
+    { slug: 'twitter', text: 'Twitter' },
+    { slug: 'other', text: 'Other' },
+  ];
+
+  provinceOptions: Province[] = [
+    { code: 'ab', name: 'Alberta' },
+    { code: 'mb', name: 'Manitoba' },
+    { code: 'ns', name: 'Nova Scotia' },
+    { code: 'nb', name: 'New Brunswick' },
+    { code: 'on', name: 'Ontario' },
+    { code: 'pe', name: 'Prince Edward Island' },
+    { code: 'qc', name: 'Quebec' },
+    { code: 'nl', name: 'Newfoundland and Labrador' },
+    { code: 'nt', name: 'Northwest Territories' },
+    { code: 'nu', name: 'Nunavut' },
+    { code: 'sk', name: 'Saskatchewan' },
+    { code: 'yk', name: 'Yukon' },
+  ];
+
+  // error messages
   errorMessageResources = {
     activitySector: {
       required: 'Activity sector is required.',
@@ -55,8 +94,9 @@ export class ValidationPlaygroundComponent implements OnInit {
     },
   };
 
+  // initial values
   user: User = {
-    activitySector: '',
+    activitySector: null,
     address: '',
     address2: '',
     city: '',
@@ -77,44 +117,6 @@ export class ValidationPlaygroundComponent implements OnInit {
   submitted = false;
   userForm: FormGroup;
   termService = false;
-
-  // fake datas
-  activitySectorOptions = [
-    { value: 'culture-music-art-literature', text: 'Culture,music, arts, literature' },
-    { value: 'health-pha-medical', text: 'Health care, pharmaceutical, and medical sector' },
-    { value: 'manufacturing', text: 'Manufacturing industries' },
-    { value: 'telecom-info-techno', text: 'Telecommunications and information technology' },
-    { value: 'transport', text: 'Transport, shipping, aviation, trucking and infrastructures' },
-    { value: 'financial-services', text: 'Financial services' },
-    { value: 'research', text: 'Research, science, inventions, biotechnology, etc.' },
-    { value: 'media-film', text: 'Media and film industry' },
-  ];
-
-  hearAboutUsOptions = [
-    { value: 'event', text: 'Event' },
-    { value: 'facebook', text: 'Facebook' },
-    { value: 'family', text: 'Family' },
-    { value: 'friend', text: 'Friend' },
-    { value: 'search', text: 'Search engine' },
-    { value: 'newspaper', text: 'Newspaper, Magazine' },
-    { value: 'twitter', text: 'Twitter' },
-    { value: 'other', text: 'Other' },
-  ];
-
-  provinces: Province[] = [
-    { code: 'ab', name: 'Alberta' },
-    { code: 'mb', name: 'Manitoba' },
-    { code: 'ns', name: 'Nova Scotia' },
-    { code: 'nb', name: 'New Brunswick' },
-    { code: 'on', name: 'Ontario' },
-    { code: 'pe', name: 'Prince Edward Island' },
-    { code: 'qc', name: 'Quebec' },
-    { code: 'nl', name: 'Newfoundland and Labrador' },
-    { code: 'nt', name: 'Northwest Territories' },
-    { code: 'nu', name: 'Nunavut' },
-    { code: 'sk', name: 'Saskatchewan' },
-    { code: 'yk', name: 'Yukon' },
-  ];
 
   constructor(
     private formBuilder: FormBuilder,

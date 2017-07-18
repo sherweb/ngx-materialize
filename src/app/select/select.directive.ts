@@ -150,17 +150,16 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
 
     super.executePropHandlers();
 
-    this.selectFirstOption();
+    this.initializeSelectedOption();
   }
 
-  selectFirstOption() {
+  initializeSelectedOption() {
     const firstOptionElement = this.selectElement.children().first();
-
     if (firstOptionElement.length > 0
       && this.selectElement.children('option[selected]').length === 0
       && !this.selectElement[0].hasAttribute('multiple')
     ) {
-      firstOptionElement[0].setAttribute('selected', 'true');
+      this.renderer.setElementAttribute(firstOptionElement[0], 'selected', '');
     }
   }
 
@@ -213,6 +212,7 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         const placeholderText = document.createTextNode(this.placeholder);
         const placeholderOption = document.createElement('option');
         placeholderOption.disabled = true;
+        placeholderOption.value = null;
         placeholderOption.appendChild(placeholderText);
 
         this.renderer.invokeElementMethod(this.selectElement, 'prepend', [placeholderOption]);

@@ -1,4 +1,4 @@
-<h3>Select</h3>
+ <h3>Select</h3>
 
 <div class="section">
   <p>
@@ -203,7 +203,7 @@
         [label]="'Label'"
         [placeholder]="'Placeholder'"
       >
-        <option *ngFor="let option of selectAsyncOptions | async" [selected]="option === optionValue">{{ option }}</option>
+        <option *ngFor="let option of selectAsyncOptions | async">{{ option }}</option>
       </select>
     </mz-select-container>
 
@@ -233,7 +233,7 @@
           [disabled]="selectDisabled"
           [(ngModel)]="selectValue"
         >
-          <option *ngFor="let selectOption of selectOptions" [selected]="selectOption === selectValue">{{ selectOption }}</option>
+          <option *ngFor="let selectOption of selectOptions">{{ selectOption }}</option>
         </select>
       </mz-select-container>
     </div>
@@ -283,7 +283,7 @@
           [(ngModel)]="selectMultipleValues"
           multiple
         >
-          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [selected]="selectMultipleValues.includes(selectMultipleOption)">{{ selectMultipleOption }}</option>
+          <option *ngFor="let selectMultipleOption of selectMultipleOptions">{{ selectMultipleOption }}</option>
         </select>
       </mz-select-container>
     </div>

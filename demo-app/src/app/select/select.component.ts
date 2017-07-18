@@ -20,7 +20,7 @@ export class SelectComponent {
   selectPlaceholder = 'Placeholder';
   selectDisabled = false;
   selectOptions = ['Option 1', 'Option 2', 'Option 3'];
-  selectValue = this.selectOptions[0];
+  selectValue = this.selectOptions[2];
 
   selectMultipleOptions = ['Option 1', 'Option 2', 'Option 3'];
   selectMultipleValues = this.selectMultipleOptions.slice(0, 2);

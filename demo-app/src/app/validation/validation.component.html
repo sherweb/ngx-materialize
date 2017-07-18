@@ -3,7 +3,7 @@
 <div class="section">
   <p>
     The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>checkbox</strong>, <strong>radio button</strong>, <strong>select</strong>, <strong>textarea</strong>.
-    For the <strong>radio button</strong>, the error message is not supported since in best pratique we always specify a default value.
+    For the <strong>radio button</strong>, the error message is not supported because it is considered a best pratique to always specify a default value.
     The component module must use the <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">Reactive Form</a> to work with the validation directive.
   </p>
 </div>
@@ -29,6 +29,11 @@
       <p>
         To make a field required in form we have to add both the <code class="language-markup">required</code> attribute on HTML element and add <code class="language-markup">Validators.required</code> function
         as validator function in form control contructor. At the moment there is no method in Angular 2 to get the validator function list applied on a from control.
+      </p>
+    </li>
+    <li>
+      <p>
+        To use select in your form group, take a look at the offical <a href="https://angular.io/api/forms/SelectControlValueAccessor#how-to-use" target="_blank">Angular documentation</a> on how to use select controls with form directives.
       </p>
     </li>
   </ul>

@@ -9,7 +9,7 @@
   <div class="card-content">
     <div id="view" class="col s12">
 
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="section">
           <h6>Personnal information</h6>
           <div class="row">
@@ -124,7 +124,7 @@
                 [formControlDisabled]="!userForm.controls['hasJob'].value"
                 [label]="'Activity sector'"
                 [placeholder]="'Choose your activity sector'">
-                <option *ngFor="let activitySectorOption of activitySectorOptions" [selected]="activitySectorOption == userForm.get('activitySector').value" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
+                <option *ngFor="let activitySectorOption of activitySectorOptions" [ngValue]="activitySectorOption">{{ activitySectorOption.text }}</option>
               </select>
             </mz-select-container>
           </div>
@@ -179,7 +179,7 @@
                 [errorMessageResource]="errorMessageResources.province"
                 [label]="'Province'"
                 [placeholder]="'Choose your province'">
-                <option *ngFor="let province of provinces" [selected]="province == userForm.get('province').value" [ngValue]="province">{{ province.name }}</option>
+                <option *ngFor="let provinceOption of provinceOptions" [ngValue]="provinceOption">{{ provinceOption.name }}</option>
               </select>
             </mz-select-container>
             <mz-input-container class="col s12 m2">
@@ -229,7 +229,7 @@
                 [errorMessageResource]="errorMessageResources.hearAboutUs"
                 [label]="'How did you hear about us?'"
                 [placeholder]="'Make your choice'">
-                <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [selected]="userForm.get('hearAboutUs').value?.includes(hearAboutUsOption)" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
+                <option *ngFor="let hearAboutUsOption of hearAboutUsOptions" [ngValue]="hearAboutUsOption">{{ hearAboutUsOption.text }}</option>
               </select>
             </mz-select-container>
           </div>

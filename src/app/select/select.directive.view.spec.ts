@@ -16,10 +16,10 @@ describe('MzSelectDirective:view', () => {
   }));
 
   describe('option changes', () => {
-
     let nativeElement: any;
 
     describe('should sync materialize select with native select when properties is updated', () => {
+
       it('Add option 2', async(() => {
 
         const selectAsyncOptions = ['Option 1'];
