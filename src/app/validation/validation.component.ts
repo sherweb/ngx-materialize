@@ -12,7 +12,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
