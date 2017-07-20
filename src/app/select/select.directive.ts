@@ -141,7 +141,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   initSelectedOption() {
     const firstOptionElement = this.selectElement.children().first();
     if (firstOptionElement.length > 0
-      && (this.selectElement.children('option[selected]').length === 0 || this.selectElement.children('option:selected').length === 0)
+      && this.selectElement.children('option[selected]').length === 0
       && !this.selectElement[0].hasAttribute('multiple')
     ) {
       this.renderer.setElementAttribute(firstOptionElement[0], 'selected', '');
