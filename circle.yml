@@ -11,7 +11,7 @@ machine:
 
 dependencies:
   override:
-    - yarn install --frozen-lockfile
+    - yarn install --frozen-lockfile --no-progress
   cache_directories:
     - ~/.cache/yarn
 

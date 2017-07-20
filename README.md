@@ -7,8 +7,8 @@
     <a href="https://circleci.com/gh/sherweb/ng2-materialize">
       <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
     </a>
-    <a href="https://ci.appveyor.com/project/charpeni/ng2-materialize-w4588">
-      <img alt="AppVeyor Status" src="https://ci.appveyor.com/api/projects/status/0b6d1hpfoxrcaw60?svg=true">
+    <a href="https://ci.appveyor.com/project/sherweb/ng2-materialize">
+      <img alt="AppVeyor Status" src="https://ci.appveyor.com/api/projects/status/github/sherweb/ng2-materialize?branch=master&svg=true">
     </a>
     <a href="https://www.npmjs.com/package/ng2-materialize">
       <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
@@ -132,6 +132,7 @@ export class HomeModule { }
 * Collapsible
 * Collection
 * Dropdown
+* Form validation
 * Icon
 * Input
 * Modal
