@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MaterializeModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
@@ -33,6 +34,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { TextareaModule } from './textarea/textarea.module';
 import { ToastModule } from './toast/toast.module';
 import { TooltipModule } from './tooltip/tooltip.module';
+import { ValidationModule } from './validation/validation.module';
 
 @NgModule({
   imports: [
@@ -42,6 +44,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     FormsModule,
     HttpModule,
     MalihuScrollbarModule.forRoot(),
+    MarkdownToHtmlModule.forRoot(),
     MaterializeModule.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
@@ -70,6 +73,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
     TextareaModule,
     ToastModule,
     TooltipModule,
+    ValidationModule,
   ],
   declarations: [AppComponent],
   providers: [],

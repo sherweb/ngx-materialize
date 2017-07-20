@@ -1,0 +1,4 @@
+.input-field:not(.inline) {
+  // fix unwanted space under the input-field when error-message is not shown
+  display: block;
+}

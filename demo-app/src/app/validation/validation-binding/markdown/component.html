@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row m-valign-wrapper">
+    <mz-checkbox-container class="col s12 m2">
+      <input mz-checkbox
+        id="checkbox-binding"
+        formControlName="checkbox"
+        type="checkbox"
+        [filledIn]="true"
+        [label]="'Disabled'">
+    </mz-checkbox-container>
+    <mz-input-container class="col s12 m5">
+      <input mz-input mz-validation required
+        id="input-binding"
+        formControlName="input"
+        type="text"
+        [errorMessageResource]="errorMessages.input"
+        [formControlDisabled]="form.controls['checkbox'].value"
+        [label]="'Input'"
+        [placeholder]="'Enter text'">
+    </mz-input-container>
+    <mz-select-container class="col s12 m5">
+      <select mz-select mz-validation required
+        id="select-binding"
+        formControlName="select"
+        [errorMessageResource]="errorMessages.select"
+        [formControlDisabled]="form.controls['checkbox'].value"
+        [label]="'Select'"
+        [placeholder]="'Choose an option'">
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+  </div>
+  <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
+  <button mz-button (click)="clear()" type="button">Clear</button>
+</form>

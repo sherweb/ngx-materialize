@@ -9,7 +9,12 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "app/validation/markdown",
+        "app/validation/validation-binding/markdown",
+        "app/validation/validation-form-state/markdown",
+        "app/validation/validation-ngmodel/markdown",
+        "app/validation/validation-playground/markdown"
       ],
       "index": "index.html",
       "main": "main.ts",

@@ -1,6 +1,6 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { NgModel } from '@angular/forms';
+import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormControl, NgControl, NgModel } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -10,6 +10,7 @@ import { MzInputDirective } from './input.directive';
 describe('MzInputDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
+  const mockNgControl = { control: new FormControl() };
   const mockNgModel = <NgModel>{ valueChanges: { subscribe: () => null } };
 
   let directive: MzInputDirective;
@@ -23,7 +24,7 @@ describe('MzInputDirective:unit', () => {
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzInputDirective(mockElementRef, mockNgModel, renderer);
+    directive = new MzInputDirective(null, mockNgModel, mockElementRef, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -552,6 +553,27 @@ describe('MzInputDirective:unit', () => {
 
       expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockInputElement, 'placeholder', placeholder);
     });
+
+    it('should mark control to pristine state when input contains control', fakeAsync(() => {
+
+      spyOn(directive, 'setLabelActive');
+      spyOn(mockNgControl.control, 'markAsPristine').and.callThrough();
+
+      const placeholder = 'placeholder-x';
+      const mockInputElement = { input: true };
+
+      mockNgControl.control.markAsDirty();
+
+      directive['ngControl'] = <any>mockNgControl;
+      directive.placeholder = placeholder;
+      directive.inputElement = <any>[mockInputElement];
+
+      directive.handlePlaceholder();
+      tick();
+
+      expect(mockNgControl.control.markAsPristine).toHaveBeenCalled();
+      expect(mockNgControl.control.pristine).toBeTruthy();
+    }));
 
     it('should remove placeholder attribute on input element when placeholder is undefined/null/empty', () => {
 

@@ -1,0 +1,10 @@
+:host #{'/deep/'} textarea {
+  // fix unwanted space under the textarea on chrome
+  // https://stackoverflow.com/a/6939674/5583283
+  display: block;
+}
+
+.input-field:not(.inline) {
+  // fix unwanted space under the input-field when error-message is not shown
+  display: block;
+}

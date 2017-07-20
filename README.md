@@ -132,6 +132,7 @@ export class HomeModule { }
 * Collapsible
 * Collection
 * Dropdown
+* Form validation
 * Icon
 * Input
 * Modal

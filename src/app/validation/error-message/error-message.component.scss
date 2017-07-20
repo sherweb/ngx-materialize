@@ -1,0 +1,20 @@
+$error-color: #e30613;
+$error-font-size: 0.8rem;
+$error-height: 19px;
+$error-opacity: 1;
+
+div.invalid {
+  color: $error-color;
+  font-size: $error-font-size;
+  opacity: $error-opacity;
+}
+
+input + label + :host,
+mz-select-container :host,
+textarea + label + :host {
+
+  div.invalid {
+    height: $error-height;
+    margin-top: (-$error-height);
+  }
+}

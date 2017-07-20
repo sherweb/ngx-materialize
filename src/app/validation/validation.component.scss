@@ -1,0 +1,21 @@
+$error-color: #F44336;
+$valid-color: #4CAF50;
+
+// border-bottom on select element is not apply correctly without this selector
+.select-wrapper input.select-dropdown.invalid,
+textarea.ng-invalid.ng-touched:focus {
+  border-bottom: 1px solid $error-color;
+  box-shadow: 0 1px 0 0 $error-color;
+}
+
+.select-wrapper input.select-dropdown.valid {
+  border-bottom: 1px solid $valid-color;
+  box-shadow: 0 1px 0 0 $valid-color;
+}
+
+input:not([type="checkbox"]):focus + label.active,
+textarea:focus + label.active {
+  span.placeholder-required {
+    color: $error-color;
+  }
+}

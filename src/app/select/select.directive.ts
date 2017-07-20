@@ -3,7 +3,6 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
 
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Directive,
   ElementRef,
@@ -19,7 +18,7 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
 @Directive({
   selector: 'select[mzSelect], select[mz-select]',
 })
-export class MzSelectDirective extends HandlePropChanges implements AfterViewInit, OnInit, OnDestroy {
+export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDestroy {
   // native properties
   @Input() id: string;
   @Input() disabled: boolean;
@@ -33,6 +32,8 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   selectElement: JQuery;
   selectContainerElement: JQuery;
   checkboxElements: JQuery;
+
+  mutationObserver: MutationObserver;
 
   suspend = false;
 
@@ -49,22 +50,24 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
   ngOnInit() {
     this.initHandlers();
     this.initElements();
-    this.handleProperties();
-  }
-
-  ngAfterViewInit() {
-    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
     this.initOnChange();
-    this.listenOptionChanges();
+    this.handleProperties();
 
-    // Need to be done after view init or else the multi-select are not yet in the DOM
-    this.initMultiple();
+    // must be done after handlePlacehodler
+    this.initSelectedOption();
+
+    // must be done after handleProperties
+    this.initMaterialSelect();
+
+    // must be done after initMaterialSelect
+    this.listenOptionChanges();
     this.initFilledIn();
   }
 
   ngOnDestroy() {
     this.renderer.invokeElementMethod(this.selectElement, 'material_select', ['destroy']);
     this.selectElement.off();
+    this.mutationObserver.disconnect();
   }
 
   initHandlers() {
@@ -81,30 +84,18 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
     this.labelElement = this.createLabelElement();
   }
 
+  /**
+   * Need to be done after material_select has been invoked or else the multi-select
+   * options are not yet in the DOM as it loops on rendered options
+   */
   initFilledIn() {
     this.checkboxElements = this.selectContainerElement.find(':checkbox');
     this.handlers['filledIn'] = () => this.handleFilledIn();
     this.handleFilledIn();
   }
 
-  /**
-   * Force NgModel value(s) to be selected correctly on multiple select as NgModel
-   * is not supported yet by Angular 2 on multiple select and cause selected values
-   * to be out of sync when changing values in Materialize select
-   */
-  initMultiple() {
-    if (this.selectElement[0].hasAttribute('multiple')) {
-      const selectedOptions = this.selectElement
-        .find('option')
-        .toArray()
-        .filter((element: HTMLOptionElement) => element.selected)
-        .map((element: HTMLOptionElement) => element.value);
-      // setTimeout is needed to this fix to work
-      setTimeout(() => this.selectElement.val(selectedOptions));
-
-      // prevent close on first multi select change
-      this.lastOptions = Array.from(this.selectElement[0].children);
-    }
+  initMaterialSelect() {
+    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
   }
 
   /**
@@ -144,26 +135,27 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
       console.error('Select with mz-select directive must be place inside a [mz-select-container] tag', this.selectElement);
       return;
     }
-
     super.executePropHandlers();
-
-    this.selectFirstOption();
   }
 
-  selectFirstOption() {
+  initSelectedOption() {
     const firstOptionElement = this.selectElement.children().first();
-
     if (firstOptionElement.length > 0
       && this.selectElement.children('option[selected]').length === 0
       && !this.selectElement[0].hasAttribute('multiple')
     ) {
-      firstOptionElement[0].setAttribute('selected', 'true');
+      this.renderer.setElementAttribute(firstOptionElement[0], 'selected', '');
     }
   }
 
   handleDisabled() {
-    this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
-    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    // when disabled is null/undefined that means the property has not been used on the element
+    // but it might be set by another process (for example reactive form applies disabled attribute itself)
+    // therefore we don't want to remove or add it here
+    if (this.disabled != null) {
+      this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
+      this.initMaterialSelect();
+    }
   }
 
   handleLabel() {
@@ -205,35 +197,33 @@ export class MzSelectDirective extends HandlePropChanges implements AfterViewIni
         const placeholderText = document.createTextNode(this.placeholder);
         const placeholderOption = document.createElement('option');
         placeholderOption.disabled = true;
+        placeholderOption.value = null;
         placeholderOption.appendChild(placeholderText);
 
         this.renderer.invokeElementMethod(this.selectElement, 'prepend', [placeholderOption]);
       }
     }
 
-    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
+    this.initMaterialSelect();
   }
 
   listenOptionChanges() {
-    Observable.fromEvent($(this.selectElement), 'DOMSubtreeModified')
-      .debounceTime(100)
-      .filter((event: JQueryEventObject) => {
-        const currentOptions = Array.from(event.currentTarget.children);
+    const mutationObserverConfiguration: MutationObserverInit = {
+      childList: true,
+    };
 
-        if (this.lastOptions) {
-          const prevOptions = Array.from(this.lastOptions);
-          this.lastOptions = currentOptions;
+    this.mutationObserver = new MutationObserver((mutations: MutationRecord[]) => {
+      this.updateMaterialSelect();
+    });
 
-          if (prevOptions.length !== currentOptions.length) {
-            return true;
-          } else {
-            return currentOptions.some((option, index) =>
-              !prevOptions[index] || option.textContent !== prevOptions[index].textContent);
-          }
-        } else {
-          return !!(this.lastOptions = currentOptions);
-        }
-      })
-      .subscribe(x => this.renderer.invokeElementMethod(this.selectElement, 'material_select'));
+    this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
+  }
+
+  updateMaterialSelect() {
+    this.initMaterialSelect();
+
+    if (this.filledIn) {
+      this.initFilledIn();
+    }
   }
 }

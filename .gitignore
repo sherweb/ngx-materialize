@@ -7,17 +7,26 @@
 /tmp
 /out-tsc
 /out
+/package
+
+# transpiled output
+/inline-template
+/src/inline-template
+*.ngsummary.json
+*.ngfactory.ts
+*.ngstyle.ts
 
 # dependencies
 /node_modules
+/src/node_modules
 
 # IDEs and editors
 /.idea
 .project
 .classpath
 .c9/
-*.launch
 .settings/
+*.launch
 *.sublime-workspace
 
 # IDE - VSCode
@@ -32,11 +41,11 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
-testem.log
 /typings
-*.log
+npm-debug.log
 test-results.xml
+testem.log
+*.log
 *.tar
 *.tgz
 
@@ -47,10 +56,3 @@ test-results.xml
 #System Files
 .DS_Store
 Thumbs.db
-
-/src/node_modules
-/src/inline-template
-/inline-template
-*.ngsummary.json
-*.ngfactory.ts
-*.ngstyle.ts

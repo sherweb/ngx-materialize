@@ -25,6 +25,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { ValidationComponent } from './validation/validation.component';
 
 // sections name
 const css = 'CSS';
@@ -45,6 +46,7 @@ export const ROUTES: Routes = [
   // components routes - Form controls
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
+  { path: 'form-validation', component: ValidationComponent, data: { icon: 'checkbox-marked-circle-outline', text: 'Form validation', section: formControls } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },
   { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button', section: formControls } },
   { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },

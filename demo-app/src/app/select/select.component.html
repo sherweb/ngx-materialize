@@ -55,11 +55,10 @@
   <div class="row m-valign-wrapper">
 
     <mz-select-container class="col s12 m6">
-      <select mz-select
+      <select mz-select multiple
         id="multiple-select"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
-        [multiple]="true"
       >
         <option>Option 1</option>
         <option>Option 2</option>
@@ -75,11 +74,10 @@
   <div class="row m-valign-wrapper">
 
     <mz-select-container class="col s12 m6">
-      <select mz-select
+      <select mz-select multiple
         id="multiple-select-filledin"
         [label]="'Label'"
         [placeholder]="'Placeholder'"
-        [multiple]="true"
         [filledIn]="true"
       >
         <option>Option 1</option>
@@ -92,7 +90,7 @@
       The <code class="language-markup">filledIn</code> property can be set to true when using multiple select
     </p>
   </div>
-</div>
+ </div>
 
 <div class="section">
 
@@ -203,7 +201,7 @@
         [label]="'Label'"
         [placeholder]="'Placeholder'"
       >
-        <option *ngFor="let option of selectAsyncOptions | async" [selected]="option === optionValue">{{ option }}</option>
+        <option *ngFor="let option of selectAsyncOptions | async">{{ option }}</option>
       </select>
     </mz-select-container>
 
@@ -233,7 +231,7 @@
           [disabled]="selectDisabled"
           [(ngModel)]="selectValue"
         >
-          <option *ngFor="let selectOption of selectOptions" [selected]="selectOption === selectValue">{{ selectOption }}</option>
+          <option *ngFor="let selectOption of selectOptions" [value]="selectOption">{{ selectOption }}</option>
         </select>
       </mz-select-container>
     </div>
@@ -276,14 +274,13 @@
     <div class="col s12 m6">
 
       <mz-select-container>
-        <select mz-select
+         <select mz-select multiple
           id="select-multiple"
           [label]="'Label'"
           [placeholder]="'Placeholder'"
           [(ngModel)]="selectMultipleValues"
-          multiple
         >
-          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [selected]="selectMultipleValues.includes(selectMultipleOption)">{{ selectMultipleOption }}</option>
+          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [value]="selectMultipleOption">{{ selectMultipleOption }}</option>
         </select>
       </mz-select-container>
     </div>
@@ -307,9 +304,9 @@
   <app-code-snippet>
 &lt;mz-select-container>
   &lt;select mz-select
+    id="options-select"
     [label]="'Label'"
     [placeholder]="'Placeholder'"
-    id="options-select"
   >
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
@@ -330,11 +327,10 @@
 
   <app-code-snippet>
 &lt;mz-select-container>
-  &lt;select mz-select
+  &lt;select multiple mz-select
+    id="options-select"
     [label]="'Label'"
     [placeholder]="'Placeholder'"
-    id="options-select"
-    multiple
   >
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
