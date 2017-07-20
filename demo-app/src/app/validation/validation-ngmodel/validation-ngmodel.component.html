@@ -9,7 +9,7 @@
   <div class="card-content">
     <div id="view-ngmodel" class="col s12">
 
-      <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="row m-valign-wrapper">
           <mz-checkbox-container class="col s12 m2">
             <input mz-checkbox
@@ -40,13 +40,13 @@
               [label]="'Select'"
               [placeholder]="'Choose an option'"
               [(ngModel)]="values.select">
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
+              <option value="Option 1">Option 1</option>
+              <option value="Option 2">Option 2</option>
+              <option value="Option 3">Option 3</option>
             </select>
           </mz-select-container>
         </div>
-        <button mz-button [disabled]="!f.valid" type="submit">Submit</button>
+        <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
         <button mz-button (click)="clear()" type="button">Clear</button>
       </form>
 

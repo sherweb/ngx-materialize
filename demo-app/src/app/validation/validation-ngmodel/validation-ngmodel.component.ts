@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./validation-ngmodel.component.scss'],
 })
 export class ValidationNgmodelComponent implements OnInit {
-
-  @ViewChild('f') form: FormGroup;
+  @ViewChild('form') form: FormGroup;
 
   submitted = false;
 

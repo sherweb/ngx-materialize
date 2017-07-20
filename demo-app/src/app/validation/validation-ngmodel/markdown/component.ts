@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./validation-ngmodel.component.scss'],
 })
 export class ValidationNgmodelComponent {
-
-  @ViewChild('f') form: FormGroup;
+  @ViewChild('form') form: FormGroup;
 
   submitted = false;
 
@@ -26,8 +25,6 @@ export class ValidationNgmodelComponent {
       required: 'This field is required.',
     },
   };
-
-  constructor() { }
 
   clear() {
     this.form.reset();
