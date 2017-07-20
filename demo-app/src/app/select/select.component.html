@@ -304,9 +304,9 @@
   <app-code-snippet>
 &lt;mz-select-container>
   &lt;select mz-select
+    id="options-select"
     [label]="'Label'"
     [placeholder]="'Placeholder'"
-    id="options-select"
   >
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
@@ -327,11 +327,10 @@
 
   <app-code-snippet>
 &lt;mz-select-container>
-  &lt;select mz-select
+  &lt;select multiple mz-select
+    id="options-select"
     [label]="'Label'"
     [placeholder]="'Placeholder'"
-    id="options-select"
-    multiple
   >
     &lt;optgroup label="Group 1">
       &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
