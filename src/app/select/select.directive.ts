@@ -51,8 +51,10 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     this.initHandlers();
     this.initElements();
     this.initOnChange();
-    this.initSelectedOption();
     this.handleProperties();
+
+    // must be done after handlePlacehodler
+    this.initSelectedOption();
 
     // must be done after handleProperties
     this.initMaterialSelect();
@@ -82,10 +84,6 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     this.labelElement = this.createLabelElement();
   }
 
-  initMaterialSelect() {
-    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
-  }
-
   /**
    * Need to be done after material_select has been invoked or else the multi-select
    * options are not yet in the DOM as it loops on rendered options
@@ -94,6 +92,10 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     this.checkboxElements = this.selectContainerElement.find(':checkbox');
     this.handlers['filledIn'] = () => this.handleFilledIn();
     this.handleFilledIn();
+  }
+
+  initMaterialSelect() {
+    this.renderer.invokeElementMethod(this.selectElement, 'material_select');
   }
 
   /**
@@ -139,7 +141,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   initSelectedOption() {
     const firstOptionElement = this.selectElement.children().first();
     if (firstOptionElement.length > 0
-      && this.selectElement.children('option[selected]').length === 0
+      && (this.selectElement.children('option[selected]').length === 0 || this.selectElement.children('option:selected').length === 0)
       && !this.selectElement[0].hasAttribute('multiple')
     ) {
       this.renderer.setElementAttribute(firstOptionElement[0], 'selected', '');
@@ -211,13 +213,17 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     };
 
     this.mutationObserver = new MutationObserver((mutations: MutationRecord[]) => {
-      this.initMaterialSelect();
-
-      if (this.filledIn) {
-        this.initFilledIn();
-      }
+      this.updateMaterialSelect();
     });
 
     this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
+  }
+
+  updateMaterialSelect() {
+    this.initMaterialSelect();
+
+    if (this.filledIn) {
+      this.initFilledIn();
+    }
   }
 }

@@ -19,7 +19,7 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'mz-validation, [formControlName][mz-validation], [formControlName][mzValidation]',
+  selector: 'mz-validation, [mz-validation], [mzValidation]',
   templateUrl: './validation.component.html',
   styleUrls: ['./validation.component.scss'],
 })

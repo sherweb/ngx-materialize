@@ -61,7 +61,7 @@
   <app-validation-playground></app-validation-playground>
 </div>
 
- <div class="section">
+<div class="section">
   <h5 class="light">Disabling form controls</h5>
   <p>
     Disabling form control can be achieve in two different ways when using <code class="language-markup">mz-validation</code>:
@@ -124,6 +124,14 @@ this.form.get('checkbox').valueChanges.subscribe((checked: boolean) => &#123;
       <p>Here is an implementation example of dynamically disabling input field using the <code class="language-markup">formControlDisabled</code> input binding.</p>
       <app-validation-binding></app-validation-binding>
   </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Template driven form</h5>
+  <p>
+    The <code class="language-markup">mz-validation</code> directive can also be used with a template driven form.
+  </p>
+  <app-validation-ngmodel></app-validation-ngmodel>
 </div>
 
 <div class="section">
