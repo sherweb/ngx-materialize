@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgControl, NgModel } from '@angular/forms';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/skipWhile';
@@ -30,8 +30,9 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   labelElement: JQuery;
 
   constructor(
-    private elementRef: ElementRef,
+    @Optional() private ngControl: NgControl,
     @Optional() private ngModel: NgModel,
+    private elementRef: ElementRef,
     private renderer: Renderer,
   ) {
     super();
@@ -137,6 +138,14 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   handlePlaceholder() {
     const placeholder = !!this.placeholder ? this.placeholder : null;
     this.renderer.setElementAttribute(this.inputElement[0], 'placeholder', placeholder);
+
+    // fix issue in IE where having a placeholder on input make control dirty
+    // note that it still trigger validation on focus but this is better than nothing
+    // issue : https://github.com/angular/angular/issues/15299
+    // workaround : https://stackoverflow.com/a/44967245/5583283
+    if (this.ngControl) {
+      setTimeout(() => this.ngControl.control.markAsPristine());
+    }
 
     this.setLabelActive();
   }
