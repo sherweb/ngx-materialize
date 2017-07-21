@@ -98,6 +98,43 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 
 See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli/wiki/overview#global-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
 
+## Animation
+Some components are using advance animation transition. You need to install `@angular/animations` and include `BrowserAnimationsModule` if you want those animation to work.
+
+```
+npm install --save @angular/animations
+```
+```diff
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
++ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppModule } from './app.module';
+
+@NgModule({
+  imports: [
++    BrowserAnimationsModule,
+  ],
+})
+export class AppModule { }
+```
+
+If you don't want to install a new dependency in your application, you can include `NoopAnimationsModule`.
+```diff
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
++ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AppModule } from './app.module';
+
+@NgModule({
+  imports: [
++    NoopAnimationsModule,
+  ],
+})
+export class AppModule { }
+```
+
 ## Usage
 
 You must import `MaterializeModule` inside your module to be able to use Materialize components.
