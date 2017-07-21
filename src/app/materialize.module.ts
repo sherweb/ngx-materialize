@@ -98,7 +98,6 @@ const MZ_PROVIDERS = [
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
   ],
