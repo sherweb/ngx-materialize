@@ -113,7 +113,7 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   }
 
   initElements() {
-    this.labelElement = $('label[for=' + this.id + ']')[0];
+    this.labelElement = $('label[for="' + this.id + '"]')[0];
     this.nativeElement = $(this.elementRef.nativeElement);
 
     if (this.isNativeSelectElement) {
