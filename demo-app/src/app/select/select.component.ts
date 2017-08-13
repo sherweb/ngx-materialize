@@ -35,7 +35,7 @@ export class SelectComponent {
     { name: 'placeholder',
       mandatory: false,
       type: 'string',
-      description: `Show placeholder`,
+      description: `Placeholder text`,
     },
     { name: 'filledIn',
       mandatory: false,

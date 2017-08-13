@@ -10,11 +10,13 @@ export class ValidationNgmodelComponent implements OnInit {
   @ViewChild('form') form: FormGroup;
 
   submitted = false;
+  submittedValues: any;
 
   values = {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
   };
 
   errorMessages = {
@@ -22,6 +24,9 @@ export class ValidationNgmodelComponent implements OnInit {
       required: 'This field is required.',
     },
     select: {
+      required: 'This field is required.',
+    },
+    datepicker: {
       required: 'This field is required.',
     },
   };
@@ -41,10 +46,12 @@ export class ValidationNgmodelComponent implements OnInit {
       checkbox: false,
       input: '',
       select: null,
+      datepicker: '',
     };
   }
 
   onSubmit() {
     this.submitted = true;
+    this.submittedValues = this.form.value;
   }
 }

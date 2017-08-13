@@ -17,6 +17,7 @@ import { CardModule } from './card/card.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { CollapsibleModule } from './collapsible/collapsible.module';
 import { CollectionModule } from './collection/collection.module';
+import { DatepickerModule } from './datepicker/datepicker.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { HomeModule } from './home/home.module';
 import { IconModule } from './icon/icon.module';
@@ -56,6 +57,7 @@ import { ValidationModule } from './validation/validation.module';
     CheckboxModule,
     CollapsibleModule,
     CollectionModule,
+    DatepickerModule,
     DropdownModule,
     HomeModule,
     IconModule,

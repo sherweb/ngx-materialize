@@ -5,6 +5,8 @@ export abstract class User {
   activitySector: ActivitySector;
   address: string;
   address2: string;
+  birthDate: string;
+  companyName: string;
   city: string;
   firstName: string;
   gender: string;

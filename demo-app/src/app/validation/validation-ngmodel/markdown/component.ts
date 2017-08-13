@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,15 +6,17 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './validation-ngmodel.component.html',
   styleUrls: ['./validation-ngmodel.component.scss'],
 })
-export class ValidationNgmodelComponent {
+export class ValidationNgmodelComponent implements OnInit {
   @ViewChild('form') form: FormGroup;
 
   submitted = false;
+  submittedValues: any;
 
   values = {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
   };
 
   errorMessages = {
@@ -24,7 +26,18 @@ export class ValidationNgmodelComponent {
     select: {
       required: 'This field is required.',
     },
+    datepicker: {
+      required: 'This field is required.',
+    },
   };
+
+  constructor(
+    private renderer: Renderer,
+  ) { }
+
+  ngOnInit() {
+    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
+  }
 
   clear() {
     this.form.reset();
@@ -33,10 +46,12 @@ export class ValidationNgmodelComponent {
       checkbox: false,
       input: '',
       select: null,
+      datepicker: '',
     };
   }
 
   onSubmit() {
     this.submitted = true;
+    this.submittedValues = this.form.value;
   }
 }

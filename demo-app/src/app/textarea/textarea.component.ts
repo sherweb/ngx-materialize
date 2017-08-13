@@ -50,7 +50,7 @@ export class TextareaComponent {
     { name: 'placeholder',
       mandatory: false,
       type: 'string',
-      description: `Show placeholder`,
+      description: `Placeholder text`,
     },
   ];
 }

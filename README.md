@@ -168,6 +168,7 @@ export class HomeModule { }
 * Checkbox
 * Collapsible
 * Collection
+* Datepicker
 * Dropdown
 * Form validation
 * Icon

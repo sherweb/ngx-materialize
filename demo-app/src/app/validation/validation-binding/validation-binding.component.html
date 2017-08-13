@@ -19,7 +19,7 @@
               [filledIn]="true"
               [label]="'Disabled'">
           </mz-checkbox-container>
-          <mz-input-container class="col s12 m5">
+          <mz-input-container class="col s12 m4">
             <input mz-input mz-validation required
               id="input-binding"
               formControlName="input"
@@ -29,7 +29,7 @@
               [label]="'Input'"
               [placeholder]="'Enter text'">
           </mz-input-container>
-          <mz-select-container class="col s12 m5">
+          <mz-select-container class="col s12 m4">
             <select mz-select mz-validation required
               id="select-binding"
               formControlName="select"
@@ -42,6 +42,17 @@
               <option>Option 3</option>
             </select>
           </mz-select-container>
+           <mz-datepicker-container class="col s12 m4">
+            <input mz-datepicker mz-validation required
+              id="datepicker-binding"
+              formControlName="datepicker"
+              type="text"
+              [errorMessageResource]="errorMessages.datepicker"
+              [formControlDisabled]="form.controls['checkbox'].value"
+              [label]="'Datepicker'"
+              [options]="{ format: 'yyyy-mm-dd' }"
+              [placeholder]="'Select a date'">
+          </mz-datepicker-container>
         </div>
         <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
         <button mz-button (click)="clear()" type="button">Clear</button>
@@ -49,8 +60,7 @@
 
       <div *ngIf="submitted">
         <h5 class="light">Submitted form</h5>
-        <markdown-to-html [data]="values | json | language: 'json'">
-        </markdown-to-html>
+        <markdown-to-html [data]="values | json | language: 'json'"></markdown-to-html>
       </div>
     </div>
     <div id="html-binding" class="col s12"><markdown-to-html [src]="'app/validation/validation-binding/markdown/component.html'"></markdown-to-html></div>

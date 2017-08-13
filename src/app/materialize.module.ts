@@ -9,6 +9,7 @@ import * as Card from './card/card.component';
 import * as Checkbox from './checkbox';
 import * as Collapsible from './collapsible';
 import * as Collection from './collection';
+import * as Datepicker from './datepicker';
 import * as Dropdown from './dropdown';
 import * as Icon from './icon';
 import * as Input from './input';
@@ -46,6 +47,8 @@ const MZ_COMPONENTS = [
   Collection.MzCollectionItemComponent,
   Collection.MzCollectionLinkDirective,
   Collection.MzSecondaryContentDirective,
+  Datepicker.MzDatepickerContainerComponent,
+  Datepicker.MzDatepickerDirective,
   Dropdown.MzDropdownComponent,
   Dropdown.MzDropdownDividerComponent,
   Dropdown.MzDropdownItemComponent,

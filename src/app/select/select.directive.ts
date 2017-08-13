@@ -184,7 +184,6 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
       } else {
         // remove existing placeholder element
         this.renderer.invokeElementMethod(placeholderElement, 'remove');
-
         // Force trigger change event since it's not triggered when value change programmatically
         this.renderer.invokeElementMethod(this.selectElement, 'change');
         // Required if we don't want exception "Expression has changed after it was checked." https://github.com/angular/angular/issues/6005
