@@ -1,0 +1,43 @@
+<h3>Tab</h3>
+
+<div class="section">
+  <h5 class="light">Basic tab</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-tab>
+      <mz-tab-item [label]="'Tab 1'">Tab 1</mz-tab-item>
+      <mz-tab-item [label]="'Tab 2'">Tab 2</mz-tab-item>
+      <mz-tab-item [label]="'Tab 3'">Tab 3</mz-tab-item>
+    </mz-tab>
+
+    <p class="col s12 m10">
+      Badge doesn't have any particular style by default. Only the value is displayed.
+    </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+    <app-code-snippet>
+&lt;mz-badge
+  [value]="4"
+  [caption]="'My caption'"
+  [badgeClass]="'blue'"
+  [new]="true">
+&lt;/mz-badge>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Badges can be customized using the following properties on the <code class="language-markup">mz-badge</code> element.
+  </p>
+
+  <!-- <app-properties-table
+    [properties]="properties">
+  </app-properties-table> -->
+</div>

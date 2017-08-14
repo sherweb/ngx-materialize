@@ -24,6 +24,7 @@ import * as Shared from './shared';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner';
 import * as Switch from './switch';
+import * as Tab from './tab';
 import * as Textarea from './textarea';
 import * as Toast from './toast';
 import * as Tooltip from './tooltip';
@@ -81,8 +82,13 @@ const MZ_COMPONENTS = [
   Sidenav.MzSidenavLinkComponent,
   Sidenav.MzSidenavSubheaderComponent,
   Spinner.MzSpinnerComponent,
+<<<<<<< HEAD
   Switch.MzSwitchContainerComponent,
   Switch.MzSwitchDirective,
+=======
+  Tab.TabComponent,
+  Tab.TabItemComponent,
+>>>>>>> Initial commit for tab component
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,

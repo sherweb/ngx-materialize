@@ -26,13 +26,6 @@
     "**/inline-template": true
   },
 
-// Relative Path extension
-
-  // Excludes the extension from the relative path url (Useful for systemjs imports).
-  "relativePath.removeExtension": true,
-
 // Vscode-Icon extension
-
-  // Enable Angular icons
-  "vsicons.presets.angular": true
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

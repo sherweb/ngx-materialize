@@ -17,6 +17,7 @@ export * from './select';
 export * from './sidenav';
 export * from './spinner';
 export * from './switch';
+export * from './tab';
 export * from './textarea';
 export * from './toast';
 export * from './validation';
