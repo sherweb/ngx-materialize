@@ -1,10 +1,18 @@
 import {
   AfterViewInit,
   Component,
+  ContentChild,
   Directive,
   ElementRef,
   Input,
   ViewChild } from '@angular/core';
+
+// Declare the tags to avoid error: '<mz-card-x>' is not a known element
+// https://github.com/angular/angular/issues/11251
+// tslint:disable: directive-selector
+@Directive({ selector: 'mz-card-title' }) export class MzCardTitleDirective { }
+@Directive({ selector: 'mz-card-content' }) export class MzCardContentDirective { }
+@Directive({ selector: 'mz-card-action' }) export class MzCardActionDirective { }
 
 @Component({
   selector: 'mz-card',
@@ -17,6 +25,7 @@ export class MzCardComponent implements AfterViewInit {
   @Input() textClass: string;
 
   @ViewChild('cardActionWrapper') cardActionWrapper: ElementRef;
+  @ContentChild(MzCardTitleDirective) title: MzCardTitleDirective;
 
   constructor() { }
 
@@ -34,11 +43,3 @@ export class MzCardComponent implements AfterViewInit {
     }
   }
 }
-
-
-// Declare the tags to avoid error: '<mz-card-x>' is not a known element
-// https://github.com/angular/angular/issues/11251
-// tslint:disable: directive-selector
-@Directive({ selector: 'mz-card-title' }) export class MzCardTitleDirective { }
-@Directive({ selector: 'mz-card-content' }) export class MzCardContentDirective { }
-@Directive({ selector: 'mz-card-action' }) export class MzCardActionDirective { }

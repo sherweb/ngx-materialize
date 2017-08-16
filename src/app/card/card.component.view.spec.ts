@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
-import { MzCardComponent } from './card.component';
+import { MzCardComponent, MzCardTitleDirective } from './card.component';
 
 describe('MzCardComponent:view', () => {
 
@@ -10,6 +10,7 @@ describe('MzCardComponent:view', () => {
     TestBed.configureTestingModule({
       declarations: [
         MzCardComponent,
+        MzCardTitleDirective,
         MzTestWrapperComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -85,7 +86,7 @@ describe('MzCardComponent:view', () => {
     }));
   });
 
-  describe('card-title', () => {
+  fdescribe('card-title', () => {
 
     let nativeElement: any;
 
@@ -106,6 +107,23 @@ describe('MzCardComponent:view', () => {
         fixture.detectChanges();
 
         expect(cardTitle().innerText.trim()).toBe('title-x');
+      });
+    }));
+
+    it('should not show mz-card-title when no title', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-content>
+            content-x
+          </mz-card-content>
+        </mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(cardTitle()).toBeFalsy();
       });
     }));
   });
