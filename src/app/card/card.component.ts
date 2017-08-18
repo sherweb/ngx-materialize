@@ -5,15 +5,15 @@ import {
   Directive,
   ElementRef,
   Input,
-  OnInit,
-  ViewChild } from '@angular/core';
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'mz-card',
   templateUrl: './card.component.html',
   styleUrls: [ './card.component.scss' ],
 })
-export class MzCardComponent implements OnInit, AfterViewInit {
+export class MzCardComponent implements AfterViewInit {
   @Input() backgroundClass: string;
   @Input() hoverable: boolean;
   @Input() textClass: string;
@@ -25,9 +25,6 @@ export class MzCardComponent implements OnInit, AfterViewInit {
     private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
   ) {}
-
-  ngOnInit() {
-  }
 
   ngAfterViewInit() {
     this.hasCardTitle = this.hasTitleTagAndNotEmpty();
