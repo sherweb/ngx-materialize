@@ -429,7 +429,7 @@ describe('MzDatepickerDirective:view', () => {
       }));
     });
 
-    describe('should set default options correctly', () => {
+    describe('options', () => {
 
       function picker(): HTMLElement {
         return nativeElement.querySelector('.picker');
