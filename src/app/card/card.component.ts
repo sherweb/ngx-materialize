@@ -1,11 +1,56 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
-  ContentChild,
   Directive,
   ElementRef,
   Input,
+  OnInit,
   ViewChild } from '@angular/core';
+
+@Component({
+  selector: 'mz-card',
+  templateUrl: './card.component.html',
+  styleUrls: [ './card.component.scss' ],
+})
+export class MzCardComponent implements OnInit, AfterViewInit {
+  @Input() backgroundClass: string;
+  @Input() hoverable: boolean;
+  @Input() textClass: string;
+
+  hasCardAction = true;
+  hasCardTitle = true;
+
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private elementRef: ElementRef,
+  ) {}
+
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.hasCardTitle = this.hasTitleTagAndNotEmpty();
+    this.hasCardAction = this.hasActionTagAndNotEmpty();
+    this.changeDetectorRef.detectChanges();
+  }
+
+  private hasActionTagAndNotEmpty(): boolean {
+    const cardActionElement = this.elementRef.nativeElement.querySelector('mz-card-action');
+
+    return this.isElementDisplayed(cardActionElement);
+  }
+
+  private hasTitleTagAndNotEmpty(): boolean {
+    const cardTitleElement = this.elementRef.nativeElement.querySelector('mz-card-title');
+
+    return this.isElementDisplayed(cardTitleElement);
+  }
+
+  private isElementDisplayed(element: HTMLElement): boolean {
+    return element && element.innerHTML.trim() !== '';
+  }
+}
 
 // Declare the tags to avoid error: '<mz-card-x>' is not a known element
 // https://github.com/angular/angular/issues/11251
@@ -13,33 +58,3 @@ import {
 @Directive({ selector: 'mz-card-title' }) export class MzCardTitleDirective { }
 @Directive({ selector: 'mz-card-content' }) export class MzCardContentDirective { }
 @Directive({ selector: 'mz-card-action' }) export class MzCardActionDirective { }
-
-@Component({
-  selector: 'mz-card',
-  templateUrl: './card.component.html',
-  styleUrls: [ './card.component.scss' ],
-})
-export class MzCardComponent implements AfterViewInit {
-  @Input() backgroundClass: string;
-  @Input() hoverable: boolean;
-  @Input() textClass: string;
-
-  @ViewChild('cardActionWrapper') cardActionWrapper: ElementRef;
-  @ContentChild(MzCardTitleDirective) title: MzCardTitleDirective;
-
-  constructor() { }
-
-  ngAfterViewInit() {
-    this.initCardAction();
-  }
-
-  private initCardAction() {
-    const cardActionElement = $(this.cardActionWrapper.nativeElement).find('mz-card-action');
-
-    // hide action wrapper when mz-card-action element is not present
-    // or when mz-card-action does not contain any html (text or elements)
-    if (cardActionElement.length === 0 || cardActionElement[0].innerHTML.trim() === '') {
-      this.cardActionWrapper.nativeElement.style.display = 'none';
-    }
-  }
-}

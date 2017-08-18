@@ -4,16 +4,16 @@
 
   <div class="card-content {{ textClass }}">
 
-    <span class="card-title" *ngIf="title !== undefined">
+    <div class="card-title" *ngIf="hasCardTitle">
       <ng-content select="mz-card-title"></ng-content>
-    </span>
+    </div>
 
     <p>
       <ng-content select="mz-card-content"></ng-content>
     </p>
   </div>
 
-  <div #cardActionWrapper class="card-action">
+  <div class="card-action" *ngIf="hasCardAction">
     <ng-content select="mz-card-action"></ng-content>
   </div>
 </div>
