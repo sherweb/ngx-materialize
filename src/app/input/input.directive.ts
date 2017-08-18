@@ -39,10 +39,10 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   }
 
   ngOnInit() {
-    this.initHandlers();
-    this.initElements();
-    this.initInputSubscriber();
-    this.handleProperties();
+      this.initHandlers();
+      this.initElements();
+      this.initInputSubscriber();
+      this.handleProperties();
   }
 
   ngOnDestroy() {
@@ -79,7 +79,7 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.inputElement, 'after', [labelElement]);
 
     return $(labelElement);
   }
