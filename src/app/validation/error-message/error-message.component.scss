@@ -9,7 +9,7 @@ div.invalid {
   opacity: $error-opacity;
 }
 
-input + label + :host,
+input:not([type="checkbox"]) + label + :host,
 mz-select-container :host,
 textarea + label + :host {
 
