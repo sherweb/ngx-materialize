@@ -39,10 +39,10 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   }
 
   ngOnInit() {
-      this.initHandlers();
-      this.initElements();
-      this.initInputSubscriber();
-      this.handleProperties();
+    this.initHandlers();
+    this.initElements();
+    this.initInputSubscriber();
+    this.handleProperties();
   }
 
   ngOnDestroy() {
