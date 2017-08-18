@@ -1,10 +1,12 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   Directive,
   ElementRef,
   Input,
-  ViewChild } from '@angular/core';
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'mz-card',
@@ -16,25 +18,36 @@ export class MzCardComponent implements AfterViewInit {
   @Input() hoverable: boolean;
   @Input() textClass: string;
 
-  @ViewChild('cardActionWrapper') cardActionWrapper: ElementRef;
+  hasCardAction = true;
+  hasCardTitle = true;
 
-  constructor() { }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private elementRef: ElementRef,
+  ) {}
 
   ngAfterViewInit() {
-    this.initCardAction();
+    this.hasCardTitle = this.hasTitleTagAndNotEmpty();
+    this.hasCardAction = this.hasActionTagAndNotEmpty();
+    this.changeDetectorRef.detectChanges();
   }
 
-  private initCardAction() {
-    const cardActionElement = $(this.cardActionWrapper.nativeElement).find('mz-card-action');
+  private hasActionTagAndNotEmpty(): boolean {
+    const cardActionElement = this.elementRef.nativeElement.querySelector('mz-card-action');
 
-    // hide action wrapper when mz-card-action element is not present
-    // or when mz-card-action does not contain any html (text or elements)
-    if (cardActionElement.length === 0 || cardActionElement[0].innerHTML.trim() === '') {
-      this.cardActionWrapper.nativeElement.style.display = 'none';
-    }
+    return this.isElementDisplayed(cardActionElement);
+  }
+
+  private hasTitleTagAndNotEmpty(): boolean {
+    const cardTitleElement = this.elementRef.nativeElement.querySelector('mz-card-title');
+
+    return this.isElementDisplayed(cardTitleElement);
+  }
+
+  private isElementDisplayed(element: HTMLElement): boolean {
+    return element && element.innerHTML.trim() !== '';
   }
 }
-
 
 // Declare the tags to avoid error: '<mz-card-x>' is not a known element
 // https://github.com/angular/angular/issues/11251

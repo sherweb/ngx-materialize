@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
-import { MzCardComponent } from './card.component';
+import { MzCardComponent, MzCardTitleDirective } from './card.component';
 
 describe('MzCardComponent:view', () => {
 
@@ -10,6 +10,7 @@ describe('MzCardComponent:view', () => {
     TestBed.configureTestingModule({
       declarations: [
         MzCardComponent,
+        MzCardTitleDirective,
         MzTestWrapperComponent,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -29,7 +30,7 @@ describe('MzCardComponent:view', () => {
       buildComponent<MzCardComponent>(`<mz-card [backgroundClass]="'class-x'"></mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(card().classList).toContain('class-x');
       });
@@ -41,7 +42,7 @@ describe('MzCardComponent:view', () => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(component.backgroundClass).toBeUndefined();
         expect(card().classList.length).toBe(1);
@@ -54,7 +55,7 @@ describe('MzCardComponent:view', () => {
       buildComponent<MzCardComponent>(`<mz-card [hoverable]="true"></mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(card().classList).toContain('hoverable');
       });
@@ -65,7 +66,7 @@ describe('MzCardComponent:view', () => {
       buildComponent<MzCardComponent>(`<mz-card>[hoverable]="false"></mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(card().classList).not.toContain('hoverable');
       });
@@ -77,7 +78,7 @@ describe('MzCardComponent:view', () => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(component.hoverable).toBeUndefined();
         expect(card().classList).not.toContain('hoverable');
@@ -103,9 +104,45 @@ describe('MzCardComponent:view', () => {
         </mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(cardTitle().innerText.trim()).toBe('title-x');
+      });
+    }));
+
+    it('should not display when mz-card-title tag is not present', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-content>
+            content-x
+          </mz-card-content>
+        </mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(cardTitle()).toBeFalsy();
+      });
+    }));
+
+    it('should not display when mz-card-title tag is present but empty', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-title>
+          </mz-card-title>
+          <mz-card-content>
+            content-x
+          </mz-card-content>
+        </mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(cardTitle()).toBeFalsy();
       });
     }));
   });
@@ -124,7 +161,7 @@ describe('MzCardComponent:view', () => {
         <mz-card [textClass]="'class-x'"></mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(cardContent().classList).toContain('class-x');
       });
@@ -136,7 +173,7 @@ describe('MzCardComponent:view', () => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(component.textClass).toBeUndefined();
         expect(cardContent().classList.length).toBe(1);
@@ -154,7 +191,7 @@ describe('MzCardComponent:view', () => {
         </mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(cardContent().innerText.trim()).toBe('content-x');
       });
@@ -183,24 +220,24 @@ describe('MzCardComponent:view', () => {
         </mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
-        expect(cardActionWrapper().style.display).not.toBe('none');
+        expect(cardActionWrapper().classList).toContain('card-action');
       });
     }));
 
-    it('should be hidden when mz-card-action tag is not present', async(() => {
+    it('should not display when mz-card-action tag is not present', async(() => {
 
       buildComponent<MzCardComponent>(`<mz-card></mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
-        expect(cardActionWrapper().style.display).toBe('none');
+        expect(cardActionWrapper()).toBeFalsy();
       });
     }));
 
-    it('should be hidden when mz-card-action tag is present but empty', async(() => {
+    it('should not display when mz-card-action tag is present but empty', async(() => {
 
       buildComponent<MzCardComponent>(`
         <mz-card>
@@ -208,9 +245,9 @@ describe('MzCardComponent:view', () => {
         </mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
-        expect(cardActionWrapper().style.display).toBe('none');
+        expect(cardActionWrapper()).toBeFalsy();
       });
     }));
 
@@ -224,7 +261,7 @@ describe('MzCardComponent:view', () => {
         </mz-card>`).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         expect(cardAction().innerText.trim()).toBe('action-x');
       });
