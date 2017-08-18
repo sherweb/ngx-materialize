@@ -135,6 +135,22 @@ describe('MzDatepickerDirective:view', () => {
         expect(input().disabled).toBeFalsy();
       });
     }));
+
+    it('should log an error in the console when input not wrapped inside mz-datepicker-container', async(() => {
+
+      spyOn(console, 'error');
+
+      buildComponent<any>(`
+        <input mz-datepicker id="datepicker">
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(console.error).toHaveBeenCalledWith(
+          'Input with mz-datepicker directive must be placed inside an [mz-datepicker-container] tag',
+          $(input()));
+      });
+    }));
   });
 
   describe('datepicker', () => {
@@ -409,6 +425,47 @@ describe('MzDatepickerDirective:view', () => {
 
           expect(selectedDate).toBe('');
           expect(input().value).toBe('');
+        });
+      }));
+    });
+
+    describe('should set default options correctly', () => {
+
+      function picker(): HTMLElement {
+        return nativeElement.querySelector('.picker');
+      }
+
+      it('should extends onClose function correctly', fakeAsync(() => {
+
+        buildComponent<any>(`
+          <mz-datepicker-container>
+            <input mz-datepicker
+              id="datepicker"
+              [options]="options">
+          </mz-datepicker-container>
+        `, {
+          options: {
+            onClose: () => console.log('close-event-x'),
+          },
+        }).then((fixture) => {
+          component = fixture.componentInstance;
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
+          tick();
+
+          // force datepicker to open setting focus automatically
+          datepicker().open()
+          tick();
+
+          spyOn(console, 'log');
+          spyOn(document.activeElement as HTMLElement, 'blur');
+
+          // force datepicker to close
+          datepicker().close();
+          tick();
+
+          expect(console.log).toHaveBeenCalledWith('close-event-x');
+          expect((document.activeElement as HTMLElement).blur).toHaveBeenCalled();
         });
       }));
     });
