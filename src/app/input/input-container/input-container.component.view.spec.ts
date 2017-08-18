@@ -15,7 +15,6 @@ describe('MzInputContainerComponent:view', () => {
   }));
 
   describe('input-field', () => {
-
     let nativeElement: any;
 
     function inputField(): HTMLElement {

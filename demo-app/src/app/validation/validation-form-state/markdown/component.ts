@@ -38,7 +38,6 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
     this.initCheckboxSubscription();
   }

@@ -19,7 +19,8 @@ export class DatepickerComponent {
     today: 'Today', // Today button text
     closeOnClear: true,
     closeOnSelect: false,
-    format: 'yyyy-mm-dd',
+    format: 'dddd, dd mmm, yyyy',
+    formatSubmit: 'yyyy-mm-dd',
     onClose: () => alert('Close has been invoked.'),
     onOpen: () => alert('Open has been invoked.'),
     selectMonths: true, // Creates a dropdown to control month

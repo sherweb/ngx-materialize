@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ViewChild } from '@angular/core';
+import { Component, Renderer, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './validation-ngmodel.component.html',
   styleUrls: ['./validation-ngmodel.component.scss'],
 })
-export class ValidationNgmodelComponent implements OnInit {
+export class ValidationNgmodelComponent {
   @ViewChild('form') form: FormGroup;
 
   submitted = false;
@@ -35,9 +35,6 @@ export class ValidationNgmodelComponent implements OnInit {
     private renderer: Renderer,
   ) { }
 
-  ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
-  }
 
   clear() {
     this.form.reset();

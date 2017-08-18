@@ -31,7 +31,6 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
 
   constructor(
     @Optional() private ngControl: NgControl,
-    @Optional() private ngModel: NgModel,
     private elementRef: ElementRef,
     private renderer: Renderer,
   ) {
@@ -70,8 +69,8 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   }
 
   initInputSubscriber() {
-    if (this.ngModel) {
-      this.inputValueSubscription = this.ngModel.valueChanges.subscribe(() => this.setLabelActive());
+    if (this.ngControl) {
+      this.inputValueSubscription = this.ngControl.valueChanges.subscribe(() => this.setLabelActive());
     }
   }
 

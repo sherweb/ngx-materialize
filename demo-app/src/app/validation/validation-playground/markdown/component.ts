@@ -132,7 +132,6 @@ export class ValidationPlaygroundComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
     this.addPhoneNumber();
   }

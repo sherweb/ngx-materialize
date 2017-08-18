@@ -80,9 +80,12 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   }
 
   initDatepicker() {
-    // fix mz-validation error-message alignment
-    if (this.options.format && !this.options.formatSubmit) {
-      this.options.formatSubmit = this.options.format;
+    // set default format/formatSubmit options
+    if (this.format) {
+      this.options.format = this.format;
+    }
+    if (this.formatSubmit) {
+      this.options.formatSubmit = this.formatSubmit
     }
 
     // extends onClose function to fix datepicker focus issue
@@ -112,11 +115,15 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
         }
 
         // apply options.formatSubmit to ngControl value
-        const submitValue = this.picker.get('select', this.formatSubmit);
+        const submitValue = this.formatSubmit
+          ? this.picker.get('select', this.formatSubmit)
+          : this.picker.get('value');
         this.ngControl.control.setValue(submitValue);
 
         // apply options.format to input text
-        const formatValue = this.picker.get('select', this.format);
+        const formatValue = this.format
+          ? this.picker.get('select', this.format)
+          : this.picker.get('value');
         this.inputElement.val(formatValue);
 
         // set label active status

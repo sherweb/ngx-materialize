@@ -35,7 +35,6 @@ export class ValidationBindingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.renderer.invokeElementMethod($('ul.tabs'), 'tabs');
     this.buildForm();
   }
 
