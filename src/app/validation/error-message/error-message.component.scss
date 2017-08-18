@@ -1,6 +1,6 @@
 $error-color: #e30613;
 $error-font-size: 0.8rem;
-$error-top: 19px;
+$error-height: 19px;
 $error-opacity: 1;
 
 div.invalid {
@@ -15,6 +15,7 @@ mz-select-container :host,
 textarea + label + :host {
 
   div.invalid {
-    margin-top: (-$error-top);
+    margin-top: (-$error-height);
+    min-height: $error-height
   }
 }
