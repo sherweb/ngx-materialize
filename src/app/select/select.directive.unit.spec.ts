@@ -320,15 +320,15 @@ describe('MzSelectDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const selectId = 'select-id';
-      const mockSelectContainerElement = { selectContainer: true };
+      const mockSelectElement = { select: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', selectId);
 
       directive.id = selectId;
-      directive.selectContainerElement = <any>mockSelectContainerElement;
+      directive.selectElement = <any>mockSelectElement;
       directive.createLabelElement();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectContainerElement, 'append', [mockLabelElement]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockSelectElement, 'after', [mockLabelElement]);
     });
 
     it('should return the newly created element', () => {

@@ -120,15 +120,15 @@ describe('MzRadioButtonDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const inputId = 'input-id';
-      const mockInputContainerElement = { inputContainer: true };
+      const mockRadioInputElement = { input: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
       directive.id = inputId;
-      directive.inputContainerElement = <any>mockInputContainerElement;
+      directive.inputElement = <any>mockRadioInputElement;
       directive.createLabelElement();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockInputContainerElement, 'append', [mockLabelElement]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockRadioInputElement, 'after', [mockLabelElement]);
     });
 
     it('should return the newly created element', () => {
