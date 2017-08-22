@@ -51,7 +51,7 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.textareaContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.textareaElement, 'after', [labelElement]);
 
     return $(labelElement);
   }

@@ -125,7 +125,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.selectContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.selectElement, 'after', [labelElement]);
 
     return $(labelElement);
   }
