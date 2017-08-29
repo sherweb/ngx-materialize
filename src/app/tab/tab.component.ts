@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, Renderer, ViewChild } from '@angular/core';
+
+import { TabItemComponent } from './tab-item/tab-item.component';
 
 @Component({
   selector: 'mz-tab',
@@ -6,12 +8,13 @@ import { AfterViewInit, Component, ElementRef, HostBinding, Input, Renderer, Vie
   styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent implements AfterViewInit {
-  @Input() fixedTab: boolean;
+  @Input() fixedTabWidth: boolean;
   @Input() onShow: Function;
   @Input() responsiveThreshold: number;
   @Input() swipeable: boolean;
 
   @ViewChild('tabs') tabs: ElementRef;
+  @ContentChildren(TabItemComponent) tabItems: QueryList<TabItemComponent>;
 
   constructor(
     private renderer: Renderer,
@@ -24,12 +27,12 @@ export class TabComponent implements AfterViewInit {
   initTabs() {
      const options: Materialize.TabOptions = {
       onShow: this.onShow,
-      swipeable: this.swipeable,
       responsiveThreshold: this.responsiveThreshold,
+      swipeable: this.swipeable,
   }
 
     // need setTimeout otherwise loading directly on the page cause an error
-    setTimeout(() => this.renderer.invokeElementMethod($(this.tabs.nativeElement), 'tabs', [options]));
+   this.renderer.invokeElementMethod($(this.tabs.nativeElement), 'tabs', [options]);
   }
 
   selectTab(tabItemId: string) {

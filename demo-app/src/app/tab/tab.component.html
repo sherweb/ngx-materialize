@@ -4,28 +4,87 @@
   <h5 class="light">Basic tab</h5>
 
   <div class="row m-valign-wrapper">
-    <mz-tab>
-      <mz-tab-item [label]="'Tab 1'">Tab 1</mz-tab-item>
-      <mz-tab-item [label]="'Tab 2'">Tab 2</mz-tab-item>
-      <mz-tab-item [label]="'Tab 3'">Tab 3</mz-tab-item>
-    </mz-tab>
+    <div class="col s12 m4">
+      <mz-tab>
+        <mz-tab-item [label]="'Tab 1'">Tab 1</mz-tab-item>
+        <mz-tab-item [label]="'Tab 2'">Tab 2</mz-tab-item>
+        <mz-tab-item [label]="'Tab 3'">Tab 3</mz-tab-item>
+      </mz-tab>
+    </div>
 
-    <p class="col s12 m10">
-      Badge doesn't have any particular style by default. Only the value is displayed.
+    <p class="col s12 m8">
+      Default behavior from tab has variable tab width.
     </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Active/disable tab item</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m4">
+      <mz-tab>
+        <mz-tab-item [label]="'Tab 4'">Tab 4</mz-tab-item>
+        <mz-tab-item [active]="'true'" [label]="'Tab 5'">Tab 5</mz-tab-item>
+        <mz-tab-item [disabled]="'true'" [label]="'Tab 6'">Tab 6</mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <p class="col s12 m8">
+      Basic tab with Tab 5 <code class="language-markup">active</code> property to <i>true</i> and
+      Tab 6 <code class="language-markup">disabled</code> property to <i>true</i>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Swipeable item</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m4">
+      <mz-tab
+        [responsiveThreshold]="300"
+        [swipeable]="'true'"
+      >
+        <mz-tab-item [label]="'Tab 7'">
+          <div class="blue">Tab 7</div>
+        </mz-tab-item>
+        <mz-tab-item [label]="'Tab 8'">
+          <div class="red">Tab 8</div>
+        </mz-tab-item>
+        <mz-tab-item [label]="'Tab 9'">
+          <div class="green">Tab 9</div>
+        </mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <p class="col s12 m8">
+      Swipeable tabs which can be used on touch enabled devices.
+    </p>
+  </div>
 </div>
 
 <div class="section">
 
   <h5 class="light">HTML Structure</h5>
 
-    <app-code-snippet>
-&lt;mz-badge
-  [value]="4"
-  [caption]="'My caption'"
-  [badgeClass]="'blue'"
-  [new]="true">
-&lt;/mz-badge>
+  <app-code-snippet>
+&lt;mz-tab
+  [fixedTabWidth]="'true'"
+  [onShow]="callbackFunction()"
+  [responsiveThreshold]="'true'"
+  [swipeable]="'true'"
+>
+  &lt;mz-tab-item
+    [active]="'true'"
+    [disabled]="'true'"
+    [label]="'Tab 1'"
+  >
+    Tab 1
+  &lt;/mz-tab-item>
+  &lt;mz-tab-item [label]="'Tab 2'">Tab 2&lt;/mz-tab-item>
+  &lt;mz-tab-item [label]="'Tab 3'">Tab 3&lt;/mz-tab-item>
+&lt;/mz-tab>
   </app-code-snippet>
 </div>
 
@@ -33,11 +92,27 @@
 
   <h5 class="light">Properties</h5>
 
-  <p>
-    Badges can be customized using the following properties on the <code class="language-markup">mz-badge</code> element.
-  </p>
+  <div class="section">
+    <h6 class="bold">mz-tab</h6>
 
-  <!-- <app-properties-table
-    [properties]="properties">
-  </app-properties-table> -->
+    <p>
+      Tab can be customized using the following properties on the <code class="language-markup">mz-tab</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="tabProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+    <h6 class="bold">mz-tab-item</h6>
+
+    <p>
+      <code class="language-markup">mz-tab-item</code> will transclude any contents.
+    </p>
+
+    <app-properties-table
+      [properties]="tabItemProperties">
+    </app-properties-table>
+  </div>
 </div>
