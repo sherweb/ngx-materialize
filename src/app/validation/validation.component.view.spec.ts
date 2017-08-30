@@ -142,7 +142,7 @@ describe('MzValidationComponent:view', () => {
               id="select-id"
               formControlName="formControl"
               [label]="'label'"
-              [placeholder]="'place'">
+              [placeholder]="'placeholder'">
               <option>Option 1</option>
             </select>
           </mz-select-container>
@@ -480,7 +480,6 @@ describe('MzValidationComponent:view', () => {
             errorMessageResource,
           },
         ).then((fixture) => {
-
             formBuilder = TestBed.get(FormBuilder);
 
             formGroup = formBuilder.group({
@@ -500,7 +499,7 @@ describe('MzValidationComponent:view', () => {
             expect(inputElement().classList).toContain('invalid');
 
             expect(errorMessageDivElement()).toBeTruthy();
-            expect(errorMessageDivElement().innerHTML).toBeTruthy('Required');
+            expect(errorMessageDivElement().innerHTML).toBeTruthy(errorMessageResource.required);
           });
       }));
 
@@ -519,7 +518,6 @@ describe('MzValidationComponent:view', () => {
             errorMessageResource,
           },
         ).then((fixture) => {
-
             formBuilder = TestBed.get(FormBuilder);
 
             formGroup = formBuilder.group({
@@ -559,7 +557,7 @@ describe('MzValidationComponent:view', () => {
                 formControlName="formControl"
                 [errorMessageResource]="errorMessageResource"
                 [label]="'label'"
-                [placeholder]="'place'">
+                [placeholder]="'placeholder'">
                 <option>Option 1</option>
               </select>
             </mz-select-container>
@@ -568,7 +566,6 @@ describe('MzValidationComponent:view', () => {
             errorMessageResource,
           },
         ).then((fixture) => {
-
             formBuilder = TestBed.get(FormBuilder);
 
             formGroup = formBuilder.group({
@@ -579,21 +576,14 @@ describe('MzValidationComponent:view', () => {
             nativeElement = fixture.nativeElement;
             fixture.detectChanges();
 
-            $(inputSelectDropdownElement()).click();
-            tick();
-            fixture.detectChanges();
             $(inputSelectDropdownElement()).trigger('blur');
             tick(400);
             fixture.detectChanges();
+            discardPeriodicTasks();
 
-            fixture.whenStable().then(() => {
-              fixture.detectChanges();
-              discardPeriodicTasks();
-              expect(inputSelectDropdownElement().classList).toContain('invalid');
-
-              expect(errorMessageDivElement()).toBeTruthy();
-              expect(errorMessageDivElement().innerHTML.trim()).toBeTruthy('Required');
-            });
+            expect(inputSelectDropdownElement().classList).toContain('invalid');
+            expect(errorMessageDivElement()).toBeTruthy();
+            expect(errorMessageDivElement().innerHTML.trim()).toBeTruthy(errorMessageResource.required);
           });
       }));
 
@@ -606,7 +596,7 @@ describe('MzValidationComponent:view', () => {
                 id="select"
                 formControlName="formControl"
                 [label]="'label'"
-                [placeholder]="'place'">
+                [placeholder]="'placeholder'">
                 <option>Option 1</option>
               </select>
             </mz-select-container>

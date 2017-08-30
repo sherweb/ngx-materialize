@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+// Auto-Import extension
+  "autoimport.doubleQuotes": false,
+  "autoimport.spaceBetweenBraces": true,
+
 // Editor
 
   // The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
@@ -17,18 +21,15 @@
 
   // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the file.exclude setting.
   "search.exclude": {
-      "**/.tmp": true,
-      "**/dist": true,
-      "**/inline-template": true
+    "**/.tmp": true,
+    "**/dist": true,
+    "**/inline-template": true
   },
 
 // Relative Path extension
 
   // Excludes the extension from the relative path url (Useful for systemjs imports).
   "relativePath.removeExtension": true,
-
-  // Removes the leading ./ character when the path is pointing to a parent folder.
-  "relativePath.removeLeadingDot": true,
 
 // Vscode-Icon extension
 

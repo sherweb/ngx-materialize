@@ -6,9 +6,12 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Optional,
+  Output,
   Renderer,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -27,22 +30,24 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   // directive properties
   @Input() label: string;
   @Input() filledIn: boolean;
+  @Output() onUpdate = new EventEmitter();
 
+  checkboxElements: JQuery;
   labelElement: JQuery;
   selectElement: JQuery;
   selectContainerElement: JQuery;
-  checkboxElements: JQuery;
+
+  get inputElement(): JQuery {
+    return this.selectElement.siblings('input.select-dropdown');
+  }
 
   mutationObserver: MutationObserver;
-
   suspend = false;
 
-  lastOptions: Element[];
-
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private renderer: Renderer,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
   }
@@ -53,7 +58,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     this.initOnChange();
     this.handleProperties();
 
-    // must be done after handlePlacehodler
+    // must be done after handlePlaceholder
     this.initSelectedOption();
 
     // must be done after handleProperties
@@ -184,14 +189,12 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
       } else {
         // remove existing placeholder element
         this.renderer.invokeElementMethod(placeholderElement, 'remove');
-
         // Force trigger change event since it's not triggered when value change programmatically
         this.renderer.invokeElementMethod(this.selectElement, 'change');
         // Required if we don't want exception "Expression has changed after it was checked." https://github.com/angular/angular/issues/6005
         this.changeDetectorRef.detectChanges();
       }
     } else {
-
       if (this.placeholder) {
         // add placeholder element
         const placeholderText = document.createTextNode(this.placeholder);
@@ -216,7 +219,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
       this.updateMaterialSelect();
     });
 
-    this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
+    this.mutationObserver.observe(this.selectElement[0], mutationObserverConfiguration);
   }
 
   updateMaterialSelect() {
@@ -225,5 +228,9 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     if (this.filledIn) {
       this.initFilledIn();
     }
+
+    // wait for materialize select to be initialized
+    // /!\ race condition warning /!\
+    setTimeout(() => this.onUpdate.emit());
   }
 }
