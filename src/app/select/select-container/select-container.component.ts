@@ -41,10 +41,31 @@ export class MzSelectContainerComponent implements AfterViewInit, OnDestroy {
         }
       });
 
-      this.selectValueSubscription = this.ngControl.valueChanges.subscribe(() => {
-        // to handle form reset
-        if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
-          this.mzSelectDirective.updateMaterialSelect();
+      this.selectValueSubscription = this.ngControl.valueChanges.subscribe((value: any) => {
+        const inputValue = this.mzSelectDirective.inputElement.val();
+        const selectedOptionText = this.mzSelectDirective.selectElement
+          .children('option:selected')
+          .text();
+
+        // synchronize input and select when value changes programmatically
+        if (inputValue !== selectedOptionText) {
+          this.mzSelectDirective.inputElement.val(selectedOptionText);
+
+          const dropdownOptions = this.mzSelectDirective.inputElement
+            .siblings('ul.dropdown-content')
+            .children('li');
+
+          dropdownOptions
+            .removeClass('active selected');
+
+          dropdownOptions
+            .filter((index, element: HTMLLIElement) => element.textContent === selectedOptionText)
+            .filter((index, element: HTMLLIElement) => !element.classList.contains('disabled'))
+            .addClass('active');
+
+          if (this.mzValidationComponent) {
+            this.mzValidationComponent.setValidationState();
+          }
         }
       });
     }

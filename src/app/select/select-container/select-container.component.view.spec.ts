@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { async, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
@@ -17,6 +18,7 @@ describe('MzSelectContainerComponent:view', () => {
     TestBed.configureTestingModule({
       imports: [
         BrowserTestingModule,
+        CommonModule,
         FormsModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -65,19 +67,23 @@ describe('MzSelectContainerComponent:view', () => {
     let formBuilder: FormBuilder;
     let formGroup: FormGroup;
 
-    function selectElement(): HTMLSelectElement {
-      return nativeElement.querySelector('select');
+    function errorMessageElement(): HTMLElement {
+      return nativeElement.querySelector('mz-error-message div');
     }
 
     function inputElement(): HTMLInputElement {
       return nativeElement.querySelector('input.select-dropdown');
     }
 
-    function errorMessageElement(): HTMLElement {
-      return nativeElement.querySelector('mz-error-message div');
+    function selectElement(): HTMLSelectElement {
+      return nativeElement.querySelector('select');
     }
 
-    it('should be disabled/enabled correctly when NgControl disabled status changes', async(() => {
+    function activeDropdownOptionElement(): HTMLOptionElement {
+      return nativeElement.querySelector('ul.dropdown-content li.active');
+    }
+
+    it('should be disabled/enabled correctly when control disabled status changes', async(() => {
 
       buildComponent<any>(`
         <form [formGroup]="formGroup">
@@ -123,7 +129,7 @@ describe('MzSelectContainerComponent:view', () => {
               formControlName="formControl"
               [errorMessageResource]="errorMessageResource"
               [label]="'label'"
-              [placeholder]="'place'">
+              [placeholder]="'placeholder'">
               <option>Option 1</option>
             </select>
           </mz-select-container>
@@ -150,6 +156,106 @@ describe('MzSelectContainerComponent:view', () => {
         expect(inputElement().classList).toContain('invalid');
         expect(errorMessageElement()).toBeTruthy();
         expect(errorMessageElement().innerHTML.trim()).toBeTruthy(errorMessageResource.required);
+      });
+    }));
+
+    it('should have correctly value when control value changes using string value', fakeAsync(() => {
+
+      buildComponent<{ value: string }>(`
+        <mz-select-container>
+          <select mz-select
+            id="select"
+            [label]="'label'"
+            [placeholder]="'placeholder'"
+            [(ngModel)]="value">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+        </mz-select-container>`,
+        {
+          value: 'Option 1',
+        },
+      ).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        const component = fixture.componentInstance;
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe('Option 1');
+
+        component.value = 'Option 2';
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe('Option 2');
+        expect(activeDropdownOptionElement().textContent).toBe('Option 2');
+
+        component.value = null;
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe('placeholder');
+        expect(activeDropdownOptionElement()).toBeFalsy();
+      });
+    }));
+
+    it('should have correctly value when control value changes using object value', fakeAsync(() => {
+
+      interface Option {
+        text: string,
+        value: number,
+      }
+
+      const options = [
+        { text: 'Option 1', value: 1 },
+        { text: 'Option 2', value: 2 },
+        { text: 'Option 3', value: 3 },
+      ];
+
+      const value = options[0];
+
+      buildComponent<{ options: Option[], value: Option }>(`
+        <mz-select-container>
+          <select mz-select
+            id="select"
+            [label]="'label'"
+            [placeholder]="'placeholder'"
+            [(ngModel)]="value">
+            <option *ngFor="let option of options" [ngValue]="option">{{ option.text }}</option>
+          </select>
+        </mz-select-container>`,
+        {
+          options,
+          value,
+        },
+      ).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        const component = fixture.componentInstance;
+        fixture.autoDetectChanges();
+
+        // couldn't force mutationobserver to execute before the end of the test
+        // therefore options used with *ngFor need to be present for the test to work
+        $('select').material_select();
+
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe(value.text);
+
+        component.value = options[1];
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe('Option 2');
+        expect(activeDropdownOptionElement().textContent).toBe('Option 2');
+
+        component.value = null;
+        fixture.detectChanges();
+        tick();
+
+        expect(inputElement().value).toBe('placeholder');
+        expect(activeDropdownOptionElement()).toBeFalsy();
       });
     }));
   });

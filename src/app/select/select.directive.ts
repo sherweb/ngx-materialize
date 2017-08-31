@@ -159,7 +159,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     // therefore we don't want to remove or add it here
     if (this.disabled != null) {
       this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
-      this.initMaterialSelect();
+      this.updateMaterialSelect();
     }
   }
 
