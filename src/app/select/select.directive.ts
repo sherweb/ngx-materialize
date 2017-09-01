@@ -67,6 +67,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     // must be done after initMaterialSelect
     this.listenOptionChanges();
     this.initFilledIn();
+    this.handleDOMEvents();
   }
 
   ngOnDestroy() {
@@ -123,6 +124,12 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     // Stop the propagation of change event
     this.selectElement[0].addEventListener('change', () => {
       this.suspend = false;
+    });
+  }
+
+  handleDOMEvents() {
+    this.inputElement.on('blur focus', (event: BaseJQueryEventObject) => {
+      this.selectElement[0].dispatchEvent(new Event(event.originalEvent.type));
     });
   }
 
