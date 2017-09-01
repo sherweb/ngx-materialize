@@ -87,33 +87,16 @@ describe('MzValidationComponent:unit', () => {
 
     it('should destroy the component', fakeAsync(() => {
 
-      const mockSelect = document.createElement('select');
-      mockSelect.appendChild(document.createElement('option'));
-
-      const mockInputSelectDropdown = document.createElement('input');
-      mockInputSelectDropdown.setAttribute('class', 'select-dropdown');
-
-      const mockDiv = document.createElement('div');
-      mockDiv.appendChild(mockInputSelectDropdown);
-      mockDiv.appendChild(mockSelect);
-
-      const mockInputSelectDropdownJquery = $(mockInputSelectDropdown);
-
-      component.nativeElement = $(mockSelect);
-
       component.initErrorMessageComponent();
       tick();
 
       spyOn(component.statusChangesSubscription, 'unsubscribe');
       spyOn(component.errorMessageComponent, 'destroy');
-      spyOn(component.nativeElement, 'siblings').and.returnValue(mockInputSelectDropdownJquery);
-      spyOn(mockInputSelectDropdownJquery, 'off');
 
       component.ngOnDestroy();
 
       expect(component.statusChangesSubscription.unsubscribe).toHaveBeenCalled();
       expect(component.errorMessageComponent.destroy).toHaveBeenCalled();
-      expect(mockInputSelectDropdownJquery.off).toHaveBeenCalledWith('blur');
     }));
   });
 
@@ -203,44 +186,6 @@ describe('MzValidationComponent:unit', () => {
       fixture.detectChanges();
 
       expect(component.isNativeSelectElement).toBeFalsy();
-    });
-  });
-
-  describe('updateSelect', () => {
-
-    it('should invoke material_select method and reinitialize element when element is a select', () => {
-
-      const renderer = TestBed.get(Renderer);
-
-      spyOn(renderer, 'invokeElementMethod');
-      spyOn(component, 'initNativeSelectElement');
-
-      const mockSelect = document.createElement('select');
-
-      // force compontent to use Renderer because of the issue where Renderer2 is sometimes injected instead of Renderer
-      // https://github.com/angular/angular/issues/17558
-      component['renderer'] = renderer;
-      component.nativeElement = $(mockSelect);
-      component.updateSelect();
-
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(component.nativeElement, 'material_select');
-      expect(component.initNativeSelectElement).toHaveBeenCalled();
-    });
-
-    it('should not invoke material_select method and reinitialize element when element is not a select', () => {
-
-      const renderer = TestBed.get(Renderer);
-
-      spyOn(renderer, 'invokeElementMethod');
-      spyOn(component, 'initNativeSelectElement');
-
-      const mockInput = document.createElement('input');
-
-      component.nativeElement = $(mockInput);
-      component.updateSelect();
-
-      expect(renderer.invokeElementMethod).not.toHaveBeenCalled();
-      expect(component.initNativeSelectElement).not.toHaveBeenCalled();
     });
   });
 });

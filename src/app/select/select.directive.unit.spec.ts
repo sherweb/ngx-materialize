@@ -19,9 +19,9 @@ describe('MzSelectDirective:unit', () => {
   });
 
   beforeEach(() => {
-    renderer = TestBed.get(Renderer);
     changeDetectorRef = TestBed.get(ChangeDetectorRef);
-    directive = new MzSelectDirective(mockElementRef, renderer, changeDetectorRef);
+    renderer = TestBed.get(Renderer);
+    directive = new MzSelectDirective(changeDetectorRef, mockElementRef, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -665,6 +665,18 @@ describe('MzSelectDirective:unit', () => {
         expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.initFilledIn).toHaveBeenCalled();
       });
+
+      it('should emit onUpdate through setTimeout', fakeAsync(() => {
+        spyOn(directive, 'initMaterialSelect');
+        spyOn(directive.onUpdate, 'emit');
+
+        directive.updateMaterialSelect();
+
+        tick(); // force setTimeout execution
+
+        expect(directive.initMaterialSelect).toHaveBeenCalled();
+        expect(directive.onUpdate.emit).toHaveBeenCalled();
+      }));
     });
   });
 });
