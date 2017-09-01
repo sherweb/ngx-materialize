@@ -1,11 +1,13 @@
-import { Directive, ElementRef, Input, OnInit, Renderer } from '@angular/core';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
   selector: 'textarea[mzTextarea], textarea[mz-textarea]',
 })
-export class MzTextareaDirective extends HandlePropChanges implements OnInit {
+export class MzTextareaDirective extends HandlePropChanges implements OnInit, OnDestroy {
   // native properties
   @Input() id: string;
   @Input() placeholder: string;
@@ -16,16 +18,28 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
 
   textareaElement: JQuery;
   textareaContainerElement: JQuery;
+  textareaValueSubscription: Subscription;
   labelElement: JQuery;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(
+    @Optional() private ngControl: NgControl,
+    private elementRef: ElementRef,
+    private renderer: Renderer,
+  ) {
     super();
   }
 
   ngOnInit() {
     this.initHandlers();
     this.initElements();
+    this.initTextareaSubscription();
     this.handleProperties();
+  }
+
+  ngOnDestroy() {
+    if (this.textareaValueSubscription) {
+      this.textareaValueSubscription.unsubscribe();
+    }
   }
 
   initHandlers() {
@@ -45,6 +59,12 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
 
   initTextarea() {
     this.renderer.setElementClass(this.textareaElement[0], 'materialize-textarea', true);
+  }
+
+  initTextareaSubscription() {
+    if (this.ngControl) {
+      this.textareaValueSubscription = this.ngControl.valueChanges.subscribe(() => this.setLabelActive());
+    }
   }
 
   createLabelElement() {
@@ -89,11 +109,7 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
     const placeholder = !!this.placeholder ? this.placeholder : null;
     this.renderer.setElementAttribute(this.textareaElement[0], 'placeholder', placeholder);
 
-    setTimeout(() => {
-      const inputValue = (<HTMLTextAreaElement>this.textareaElement[0]).value;
-      const isActive = !!this.placeholder || !!inputValue;
-      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
-    });
+    this.setLabelActive();
   }
 
   setCharacterCount() {
@@ -104,6 +120,16 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit {
     setTimeout(() => {
       this.renderer.invokeElementMethod(this.textareaElement, 'trigger', ['input']);
       this.renderer.invokeElementMethod(this.textareaElement, 'trigger', ['blur']);
+    });
+  }
+
+  setLabelActive() {
+    // need setTimeout otherwise it wont make label float in some circonstances
+    // for example: forcing validation for example, reseting form programmaticaly, ...
+    setTimeout(() => {
+      const textareaValue = (<HTMLTextAreaElement>this.textareaElement[0]).value;
+      const isActive = !!this.placeholder || !!textareaValue;
+      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
     });
   }
 

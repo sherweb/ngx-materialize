@@ -1,5 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { NgModel } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzTextareaDirective } from './textarea.directive';
@@ -7,6 +9,9 @@ import { MzTextareaDirective } from './textarea.directive';
 describe('MzTextareaDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
+  const mockNgControl = <NgModel>{
+    valueChanges: { subscribe: () => null },
+  };
 
   let directive: MzTextareaDirective;
   let renderer: Renderer;
@@ -19,7 +24,7 @@ describe('MzTextareaDirective:unit', () => {
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzTextareaDirective(mockElementRef, renderer);
+    directive = new MzTextareaDirective(mockNgControl, mockElementRef, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -29,6 +34,7 @@ describe('MzTextareaDirective:unit', () => {
       callOrder = [];
       spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
+      spyOn(directive, 'initTextareaSubscription').and.callFake(() => callOrder.push('initTextareaSubscription'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
     });
 
@@ -48,12 +54,44 @@ describe('MzTextareaDirective:unit', () => {
       expect(callOrder[1]).toBe('initElements');
     });
 
+    it('should call initTextareaSubscription method', () => {
+
+      directive.ngOnInit();
+
+      expect(directive.initTextareaSubscription).toHaveBeenCalled();
+      expect(callOrder[2]).toBe('initTextareaSubscription');
+    });
+
     it('should call handleProperties method', () => {
 
       directive.ngOnInit();
 
       expect(directive.handleProperties).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('handleProperties');
+      expect(callOrder[3]).toBe('handleProperties');
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+
+    it('should unsubscribe textareaValueSubscription when subscribed', () => {
+
+      const mockSubscription = new Subscription();
+
+      spyOn(mockSubscription, 'unsubscribe');
+
+      directive.textareaValueSubscription = mockSubscription;
+      directive.ngOnDestroy();
+
+      expect(mockSubscription.unsubscribe).toHaveBeenCalled();
+    });
+
+    it('should not unsubscribe textareaValueSubscription when not subscribed', () => {
+
+      spyOn(Subscription.prototype, 'unsubscribe');
+
+      directive.ngOnDestroy();
+
+      expect(Subscription.prototype.unsubscribe).not.toHaveBeenCalled();
     });
   });
 
@@ -144,6 +182,38 @@ describe('MzTextareaDirective:unit', () => {
       directive.initTextarea();
 
       expect(renderer.setElementClass).toHaveBeenCalledWith(mockTextareaElement, 'materialize-textarea', true);
+    });
+  });
+
+  describe('initTextareaSubscription', () => {
+
+    it('should subscribe to ngControl.valueChanges when ngControl is provided', () => {
+
+      spyOn(mockNgControl.valueChanges, 'subscribe');
+
+      directive.initTextareaSubscription();
+
+      expect(mockNgControl.valueChanges.subscribe).toHaveBeenCalled();
+    });
+
+    it('should not subscribe to ngControl.valueChanges when ngControl is not provided', () => {
+
+      spyOn(mockNgControl.valueChanges, 'subscribe');
+
+      directive['ngControl'] = null;
+      directive.initTextareaSubscription();
+
+      expect(mockNgControl.valueChanges.subscribe).not.toHaveBeenCalled();
+    });
+
+    it('should call setLabelActive when ngControl.valueChanges is triggered', () => {
+
+      spyOn(directive, 'setLabelActive');
+      spyOn(mockNgControl.valueChanges, 'subscribe').and.callFake(callback => callback());
+
+      directive.initTextareaSubscription();
+
+      expect(directive.setLabelActive).toHaveBeenCalled();
     });
   });
 
@@ -418,6 +488,51 @@ describe('MzTextareaDirective:unit', () => {
       });
     });
 
+    it('should call setLabelActive', () => {
+
+      spyOn(directive, 'setLabelActive');
+
+      const mockTextareaElement = { textarea: true };
+
+      directive.textareaElement = <any>[mockTextareaElement];
+      directive.handlePlaceholder();
+
+      expect(directive.setLabelActive).toHaveBeenCalled();
+    });
+  });
+
+  describe('setCharacterCount', () => {
+
+    it('should invoke characterCounter method on input element', () => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockTextareaElement = { textarea: true };
+
+      directive.textareaElement = <any>mockTextareaElement;
+      directive.setCharacterCount();
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'characterCounter');
+    });
+
+    it('should force validation on input element', fakeAsync(() => {
+
+      spyOn(renderer, 'invokeElementMethod');
+
+      const mockTextareaElement = { textarea: true };
+
+      directive.textareaElement = <any>mockTextareaElement;
+      directive.setCharacterCount();
+
+      tick(1);
+
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'trigger', ['input']);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'trigger', ['blur']);
+    }));
+  });
+
+  describe('setLabelActive', () => {
+
     it('should add active css class on label element when placeholder is provided', fakeAsync(() => {
 
       spyOn(renderer, 'setElementClass');
@@ -472,36 +587,6 @@ describe('MzTextareaDirective:unit', () => {
 
         spySetElementClass.calls.reset();
       });
-    }));
-  });
-
-  describe('setCharacterCount', () => {
-
-    it('should invoke characterCounter method on input element', () => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      const mockTextareaElement = { textarea: true };
-
-      directive.textareaElement = <any>mockTextareaElement;
-      directive.setCharacterCount();
-
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'characterCounter');
-    });
-
-    it('should force validation on input element', fakeAsync(() => {
-
-      spyOn(renderer, 'invokeElementMethod');
-
-      const mockTextareaElement = { textarea: true };
-
-      directive.textareaElement = <any>mockTextareaElement;
-      directive.setCharacterCount();
-
-      tick(1);
-
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'trigger', ['input']);
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'trigger', ['blur']);
     }));
   });
 
