@@ -155,7 +155,8 @@ describe('MzSelectDirective:view', () => {
   });
 
   describe('handleDOMEvents', () => {
-    fit('should propagate DOM events from input to select element', () => {
+
+    it('should propagate DOM events from input to select element', () => {
       buildComponent<any>(`
         <mz-select-container>
           <select mz-select

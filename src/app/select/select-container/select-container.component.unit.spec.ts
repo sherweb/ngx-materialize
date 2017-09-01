@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -25,35 +26,26 @@ describe('MzSelectContainerComponent:unit', () => {
 
     it('should remove subscriptions correctly', () => {
       const mockSelectDirective = <MzSelectDirective>{
-        onUpdate: { unsubscribe: () => null },
+        onUpdate: new EventEmitter(),
         inputElement: { off: () => null },
       };
 
-      const mockStatusChangesSubscription = <Subscription>{
-        unsubscribe: () => null,
-      };
-
-      const mockSelectValueSubscription = <Subscription>{
-        unsubscribe: () => null,
-      };
+      const mockStatusChangesSubscription = new Subscription();
+      const mockSelectValueSubscription = new Subscription();
 
       component.mzSelectDirective = mockSelectDirective;
       component.statusChangesSubscription = mockStatusChangesSubscription;
       component.selectValueSubscription = mockSelectValueSubscription;
 
-      spyOn(mockSelectDirective.onUpdate, 'unsubscribe');
       spyOn(mockSelectDirective.inputElement, 'off');
-
-      spyOn(component.statusChangesSubscription, 'unsubscribe');
-      spyOn(component.selectValueSubscription, 'unsubscribe');
 
       component.ngOnDestroy();
 
-      expect(mockSelectDirective.onUpdate.unsubscribe).toHaveBeenCalled();
+      expect(mockSelectDirective.onUpdate.closed).toBeTruthy();
       expect(mockSelectDirective.inputElement.off).toHaveBeenCalled();
 
-      expect(component.statusChangesSubscription.unsubscribe).toHaveBeenCalled();
-      expect(component.selectValueSubscription.unsubscribe).toHaveBeenCalled();
+      expect(component.statusChangesSubscription.closed).toBeTruthy();
+      expect(component.selectValueSubscription.closed).toBeTruthy();
     });
   });
 });
