@@ -22,6 +22,14 @@ describe('MzDatepickerDirective:view', () => {
   describe('label', () => {
     let nativeElement: any;
 
+    function datepicker(): HTMLDivElement {
+      return nativeElement.querySelector('div.picker');
+    }
+
+    function input(): HTMLInputElement {
+      return nativeElement.querySelector('input')
+    }
+
     function label(): HTMLLabelElement {
       return nativeElement.querySelector('label');
     }
@@ -39,6 +47,8 @@ describe('MzDatepickerDirective:view', () => {
         fixture.detectChanges();
 
         expect(label().innerHTML).toBe('label-x');
+        expect(input().nextSibling).toBe(datepicker());
+        expect(datepicker().nextSibling).toBe(label());
       });
     }));
 
@@ -54,6 +64,8 @@ describe('MzDatepickerDirective:view', () => {
         fixture.detectChanges();
 
         expect(label().innerHTML).toBe('');
+        expect(input().nextSibling).toBe(datepicker());
+        expect(datepicker().nextSibling).toBe(label());
       });
     }));
   });
@@ -104,7 +116,20 @@ describe('MzDatepickerDirective:view', () => {
       return nativeElement.querySelector('input');
     }
 
-    it('should be disabled correctly when disabled attribute is true', async(() => {
+    it('should be disabled correctly when disabled attribute is provided or true', async(() => {
+
+      buildComponent<any>(`
+        <mz-datepicker-container>
+          <input mz-datepicker
+            id="datepicker"
+            disabled>
+        </mz-datepicker-container>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(input().disabled).toBeTruthy();
+      });
 
       buildComponent<any>(`
         <mz-datepicker-container>
@@ -120,7 +145,18 @@ describe('MzDatepickerDirective:view', () => {
       });
     }));
 
-    it('should be disabled correctly when disabled attribute is false', async(() => {
+    it('should be disabled correctly when disabled attribute is not provided or false', async(() => {
+
+      buildComponent<any>(`
+        <mz-datepicker-container>
+          <input mz-datepicker id="datepicker">
+        </mz-datepicker-container>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(input().disabled).toBeFalsy();
+      });
 
       buildComponent<any>(`
         <mz-datepicker-container>

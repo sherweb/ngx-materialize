@@ -56,7 +56,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     this.initHandlers();
     this.initElements();
     this.initDatepicker();
-    this.initInputSubscriber();
+    this.initInputSubscription();
     this.handleProperties();
   }
 
@@ -132,7 +132,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     }
   }
 
-  initInputSubscriber() {
+  initInputSubscription() {
     if (this.ngControl) {
       this.inputValueSubscription = this.ngControl.valueChanges.subscribe(() => {
         // handle stop propagation
@@ -156,7 +156,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.inputElement, 'after', [labelElement]);
 
     return $(labelElement);
   }

@@ -30,6 +30,7 @@
     <mz-datepicker-container class="col s12 m6">
       <input mz-datepicker
         [label]="'Label as placeholder'"
+        [ngModel]
         id="basic-datepicker-label"
         type="text" />
     </mz-datepicker-container>
@@ -67,6 +68,7 @@
       <mz-datepicker-container [inline]="true">
         <input mz-datepicker
           [label]="'Date'"
+          [ngModel]
           id="inline-datepicker"
           type="text">
       </mz-datepicker-container>
@@ -110,6 +112,7 @@
       </i>
       <input mz-datepicker
         [label]="'Date'"
+        [ngModel]
         id="prefix-datepicker"
         type="tel" />
     </mz-datepicker-container>
@@ -129,6 +132,7 @@
     <mz-datepicker-container class="col s12 m6">
       <input mz-datepicker
         [label]="'Date'"
+        [ngModel]
         [options]="options"
         id="options-datepicker"
         type="tel" />

@@ -10,7 +10,7 @@ import { MzInputDirective } from './input.directive';
 describe('MzInputDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
-  const mockNgModel = <NgModel>{
+  const mockNgControl = <NgModel>{
     control: new FormControl(),
     valueChanges: { subscribe: () => null },
   };
@@ -26,7 +26,7 @@ describe('MzInputDirective:unit', () => {
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzInputDirective(mockNgModel, mockElementRef, renderer);
+    directive = new MzInputDirective(mockNgControl, mockElementRef, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -162,27 +162,27 @@ describe('MzInputDirective:unit', () => {
 
     it('should subscribe to ngControl.valueChanges when ngControl is provided', () => {
 
-      spyOn(mockNgModel.valueChanges, 'subscribe');
+      spyOn(mockNgControl.valueChanges, 'subscribe');
 
       directive.initInputSubscriber();
 
-      expect(mockNgModel.valueChanges.subscribe).toHaveBeenCalled();
+      expect(mockNgControl.valueChanges.subscribe).toHaveBeenCalled();
     });
 
     it('should not subscribe to ngControl.valueChanges when ngControl is not provided', () => {
 
-      spyOn(mockNgModel.valueChanges, 'subscribe');
+      spyOn(mockNgControl.valueChanges, 'subscribe');
 
       directive['ngControl'] = null;
       directive.initInputSubscriber();
 
-      expect(mockNgModel.valueChanges.subscribe).not.toHaveBeenCalled();
+      expect(mockNgControl.valueChanges.subscribe).not.toHaveBeenCalled();
     });
 
     it('should call setLabelActive when ngControl.valueChanges is triggered', () => {
 
       spyOn(directive, 'setLabelActive');
-      spyOn(mockNgModel.valueChanges, 'subscribe').and.callFake(callback => callback());
+      spyOn(mockNgControl.valueChanges, 'subscribe').and.callFake(callback => callback());
 
       directive.initInputSubscriber();
 
@@ -559,22 +559,22 @@ describe('MzInputDirective:unit', () => {
     it('should mark control to pristine state when input contains control', fakeAsync(() => {
 
       spyOn(directive, 'setLabelActive');
-      spyOn(mockNgModel.control, 'markAsPristine').and.callThrough();
+      spyOn(mockNgControl.control, 'markAsPristine').and.callThrough();
 
       const placeholder = 'placeholder-x';
       const mockInputElement = { input: true };
 
-      mockNgModel.control.markAsDirty();
+      mockNgControl.control.markAsDirty();
 
-      directive['ngControl'] = mockNgModel;
+      directive['ngControl'] = mockNgControl;
       directive.placeholder = placeholder;
       directive.inputElement = <any>[mockInputElement];
 
       directive.handlePlaceholder();
       tick();
 
-      expect(mockNgModel.control.markAsPristine).toHaveBeenCalled();
-      expect(mockNgModel.control.pristine).toBeTruthy();
+      expect(mockNgControl.control.markAsPristine).toHaveBeenCalled();
+      expect(mockNgControl.control.pristine).toBeTruthy();
     }));
 
     it('should remove placeholder attribute on input element when placeholder is undefined/null/empty', () => {
