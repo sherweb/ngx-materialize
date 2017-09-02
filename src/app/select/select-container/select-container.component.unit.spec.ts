@@ -1,5 +1,8 @@
+import { EventEmitter } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Subscription } from 'rxjs/Subscription';
 
+import { MzSelectDirective } from '../select.directive';
 import { MzSelectContainerComponent } from './select-container.component';
 
 describe('MzSelectContainerComponent:unit', () => {
@@ -19,7 +22,30 @@ describe('MzSelectContainerComponent:unit', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('ngOnDestroy', () => {
+
+    it('should remove subscriptions correctly', () => {
+      const mockSelectDirective = <MzSelectDirective>{
+        onUpdate: new EventEmitter(),
+        inputElement: { off: () => null },
+      };
+
+      const mockStatusChangesSubscription = new Subscription();
+      const mockSelectValueSubscription = new Subscription();
+
+      component.mzSelectDirective = mockSelectDirective;
+      component.statusChangesSubscription = mockStatusChangesSubscription;
+      component.selectValueSubscription = mockSelectValueSubscription;
+
+      spyOn(mockSelectDirective.inputElement, 'off');
+
+      component.ngOnDestroy();
+
+      expect(mockSelectDirective.onUpdate.closed).toBeTruthy();
+      expect(mockSelectDirective.inputElement.off).toHaveBeenCalled();
+
+      expect(component.statusChangesSubscription.closed).toBeTruthy();
+      expect(component.selectValueSubscription.closed).toBeTruthy();
+    });
   });
 });

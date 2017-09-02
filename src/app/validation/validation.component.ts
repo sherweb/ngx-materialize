@@ -24,9 +24,6 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   styleUrls: ['./validation.component.scss'],
 })
 export class MzValidationComponent implements AfterViewInit, OnDestroy {
-  private _disabled = false;
-  private _disablingState = false;
-  private _enablingState = false;
   private _formControlDisabled = false;
   private _required = false;
 
@@ -78,11 +75,11 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(
-    public ngControl: NgControl,
     private elementRef: ElementRef,
-    public renderer: Renderer,
     private resolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
+    public ngControl: NgControl,
+    public renderer: Renderer,
   ) { }
 
   ngAfterViewInit() {
@@ -94,7 +91,6 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.statusChangesSubscription.unsubscribe();
     this.errorMessageComponent.destroy();
-    this.inputSelectDropdown.off('blur');
   }
 
   clearValidationState(element: JQuery) {
@@ -107,7 +103,6 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
       const spanElement = document.createElement('span');
       spanElement.setAttribute('class', 'placeholder-required');
       spanElement.textContent = ' *';
-
       this.renderer.invokeElementMethod(this.labelElement, 'appendChild', [spanElement]);
     }
   }
@@ -115,11 +110,6 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   initElements() {
     this.labelElement = $('label[for="' + this.id + '"]')[0];
     this.nativeElement = $(this.elementRef.nativeElement);
-
-    if (this.isNativeSelectElement) {
-      this.initNativeSelectElement();
-    }
-
     this.createRequiredSpanElement();
   }
 
@@ -134,32 +124,9 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
     this.renderer.invokeElementMethod(errorMessage, 'insertAfter', [this.labelElement]);
   }
 
-  initNativeSelectElement() {
-    // Wait for materialize_select function to be executed when the element has mz-select directive.
-    setTimeout(() => {
-      this.inputSelectDropdown.on('blur', () => {
-        this.ngControl.control.markAsTouched();
-        this.setValidationState();
-      });
-    });
-  }
-
   setValidationState() {
-    // to disable field
-    if (this._disablingState) {
-      this.updateSelect();
-      this.clearValidationState(this.elementToAddValidation);
-      this._disablingState = false;
-      return;
-    }
-    // to enable field
-    if (this._enablingState) {
-      this.updateSelect();
-      this._enablingState = false;
-    }
-    // to reset form
+    // to handle reset form
     if (this.ngControl.control.untouched && this.ngControl.control.pristine) {
-      this.updateSelect();
       this.clearValidationState(this.elementToAddValidation);
       return;
     }
@@ -172,31 +139,17 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
         this.renderer.setElementClass(this.elementToAddValidation[0], 'valid', false);
         this.renderer.setElementClass(this.elementToAddValidation[0], 'invalid', true);
       }
+    } else {
+      this.clearValidationState(this.elementToAddValidation);
     }
   }
 
   subscribeStatusChanges() {
-    this._disabled = this.ngControl.control.disabled;
-
     this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe((status: string) => {
-      const disabled = status === 'DISABLED';
-      if (disabled !== this._disabled) {
-        this._disablingState = disabled;
-        this._enablingState = !disabled;
-      }
-      this._disabled = disabled;
-
       // TODO Find a better way to handle validation after the form subscription. (see demo-app form-validation)
-      // Wait for the valueChanges method from FormGroup to have been triggered before handling the validation state.
-      // /!\ Race condition warning /!\
+      // wait for the valueChanges method from FormGroup to have been triggered before handling the validation state
+      // /!\ race condition warning /!\
       setTimeout(() => this.setValidationState());
     });
-  }
-
-  updateSelect() {
-    if (this.isNativeSelectElement) {
-      this.renderer.invokeElementMethod(this.nativeElement, 'material_select');
-      this.initNativeSelectElement();
-    }
   }
 }

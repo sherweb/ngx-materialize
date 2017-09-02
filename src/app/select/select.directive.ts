@@ -6,9 +6,12 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Optional,
+  Output,
   Renderer,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -27,22 +30,24 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   // directive properties
   @Input() label: string;
   @Input() filledIn: boolean;
+  @Output() onUpdate = new EventEmitter();
 
+  checkboxElements: JQuery;
   labelElement: JQuery;
   selectElement: JQuery;
   selectContainerElement: JQuery;
-  checkboxElements: JQuery;
+
+  get inputElement(): JQuery {
+    return this.selectElement.siblings('input.select-dropdown');
+  }
 
   mutationObserver: MutationObserver;
-
   suspend = false;
 
-  lastOptions: Element[];
-
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private renderer: Renderer,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
     super();
   }
@@ -53,7 +58,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     this.initOnChange();
     this.handleProperties();
 
-    // must be done after handlePlacehodler
+    // must be done after handlePlaceholder
     this.initSelectedOption();
 
     // must be done after handleProperties
@@ -62,6 +67,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     // must be done after initMaterialSelect
     this.listenOptionChanges();
     this.initFilledIn();
+    this.handleDOMEvents();
   }
 
   ngOnDestroy() {
@@ -121,11 +127,17 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     });
   }
 
+  handleDOMEvents() {
+    this.inputElement.on('blur focus', (event: BaseJQueryEventObject) => {
+      this.selectElement[0].dispatchEvent(new Event(event.type));
+    });
+  }
+
   createLabelElement() {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.selectContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.selectElement, 'after', [labelElement]);
 
     return $(labelElement);
   }
@@ -154,7 +166,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     // therefore we don't want to remove or add it here
     if (this.disabled != null) {
       this.renderer.setElementProperty(this.selectElement[0], 'disabled', !!this.disabled);
-      this.initMaterialSelect();
+      this.updateMaterialSelect();
     }
   }
 
@@ -190,7 +202,6 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
         this.changeDetectorRef.detectChanges();
       }
     } else {
-
       if (this.placeholder) {
         // add placeholder element
         const placeholderText = document.createTextNode(this.placeholder);
@@ -215,7 +226,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
       this.updateMaterialSelect();
     });
 
-    this.mutationObserver.observe($(this.selectElement)[0], mutationObserverConfiguration);
+    this.mutationObserver.observe(this.selectElement[0], mutationObserverConfiguration);
   }
 
   updateMaterialSelect() {
@@ -224,5 +235,9 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
     if (this.filledIn) {
       this.initFilledIn();
     }
+
+    // wait for materialize select to be initialized
+    // /!\ race condition warning /!\
+    setTimeout(() => this.onUpdate.emit());
   }
 }

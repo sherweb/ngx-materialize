@@ -153,4 +153,35 @@ describe('MzSelectDirective:view', () => {
       }));
     });
   });
+
+  describe('handleDOMEvents', () => {
+
+    it('should propagate DOM events from input to select element', () => {
+      buildComponent<any>(`
+        <mz-select-container>
+          <select mz-select
+            id="my-select"
+            [label]="'Label'"
+            [placeholder]="'Placeholder'"
+          >
+            <option>Option 1</option>
+          </select>
+        </mz-select-container>
+      `).then((fixture) => {
+        fixture.detectChanges();
+
+        const nativeElement: HTMLElement = fixture.nativeElement;
+        const inputElement = nativeElement.querySelector('input.select-dropdown');
+        const selectElement = nativeElement.querySelector('#my-select');
+
+        ['blur', 'focus'].forEach((event) => {
+          const eventListener = jasmine.createSpy('onEvent');
+          selectElement.addEventListener(event, eventListener);
+
+          inputElement.dispatchEvent(new Event(event));
+          expect(eventListener).toHaveBeenCalled();
+        });
+      });
+    });
+  });
 });

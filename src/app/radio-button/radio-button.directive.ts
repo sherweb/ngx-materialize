@@ -44,7 +44,7 @@ export class MzRadioButtonDirective extends HandlePropChanges implements OnInit 
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.inputContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.inputElement, 'after', [labelElement]);
 
     return $(labelElement);
   }

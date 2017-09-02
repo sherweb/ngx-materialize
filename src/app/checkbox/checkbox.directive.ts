@@ -44,7 +44,7 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
     const labelElement = document.createElement('label');
     labelElement.setAttribute('for', this.id);
 
-    this.renderer.invokeElementMethod(this.checkboxContainerElement, 'append', [labelElement]);
+    this.renderer.invokeElementMethod(this.checkboxElement, 'after', [labelElement]);
 
     return $(labelElement);
   }

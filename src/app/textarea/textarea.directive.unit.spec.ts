@@ -154,15 +154,15 @@ describe('MzTextareaDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const textareaId = 'textarea-id';
-      const mockTextareaContainerElement = { textareaContainer: true };
+      const mockTextareaElement = { textarea: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', textareaId);
 
       directive.id = textareaId;
-      directive.textareaContainerElement = <any>mockTextareaContainerElement;
+      directive.textareaElement = <any>mockTextareaElement;
       directive.createLabelElement();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaContainerElement, 'append', [mockLabelElement]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockTextareaElement, 'after', [mockLabelElement]);
     });
 
     it('should return the newly created element', () => {

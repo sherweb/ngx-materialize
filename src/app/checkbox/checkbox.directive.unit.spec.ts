@@ -120,15 +120,15 @@ describe('MzCheckboxDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const checkboxId = 'checkbox-id';
-      const mockCheckboxContainerElement = { checkboxContainer: true };
+      const mockCheckboxElement = { checkbox: true };
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', checkboxId);
 
       directive.id = checkboxId;
-      directive.checkboxContainerElement = <any>mockCheckboxContainerElement;
+      directive.checkboxElement = <any>mockCheckboxElement;
       directive.createLabelElement();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockCheckboxContainerElement, 'append', [mockLabelElement]);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockCheckboxElement, 'after', [mockLabelElement]);
     });
 
     it('should return the newly created element', () => {

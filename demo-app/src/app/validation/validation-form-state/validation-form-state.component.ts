@@ -66,11 +66,12 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-    this.form.reset();
-    this.form.get('checkbox').setValue(this.values.checkbox);
-    this.form.get('input').setValue(this.values.input);
-    this.form.get('select').setValue(this.values.select);
-    this.form.get('datepicker').setValue(this.values.datepicker);
+    this.form.reset({
+      checkbox: this.values.checkbox,
+      input: this.values.input,
+      select: this.values.select,
+      datepicker: this.values.datepicker,
+    });
   }
 
   initCheckboxSubscription() {
