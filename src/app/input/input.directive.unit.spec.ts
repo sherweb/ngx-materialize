@@ -79,11 +79,12 @@ describe('MzInputDirective:unit', () => {
 
       const mockSubscription = new Subscription();
 
-      spyOn(mockSubscription, 'unsubscribe');
+      spyOn(mockSubscription, 'unsubscribe').and.callThrough();
 
       directive.inputValueSubscription = mockSubscription;
       directive.ngOnDestroy();
 
+      expect(mockSubscription.closed).toBeTruthy();
       expect(mockSubscription.unsubscribe).toHaveBeenCalled();
     });
 
@@ -93,6 +94,7 @@ describe('MzInputDirective:unit', () => {
 
       directive.ngOnDestroy();
 
+      expect(directive.inputValueSubscription).toBeUndefined();
       expect(Subscription.prototype.unsubscribe).not.toHaveBeenCalled();
     });
   });
