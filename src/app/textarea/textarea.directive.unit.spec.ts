@@ -77,11 +77,12 @@ describe('MzTextareaDirective:unit', () => {
 
       const mockSubscription = new Subscription();
 
-      spyOn(mockSubscription, 'unsubscribe');
+      spyOn(mockSubscription, 'unsubscribe').and.callThrough();
 
       directive.textareaValueSubscription = mockSubscription;
       directive.ngOnDestroy();
 
+      expect(mockSubscription.closed).toBeTruthy();
       expect(mockSubscription.unsubscribe).toHaveBeenCalled();
     });
 
@@ -91,6 +92,7 @@ describe('MzTextareaDirective:unit', () => {
 
       directive.ngOnDestroy();
 
+      expect(directive.textareaValueSubscription).toBeUndefined();
       expect(Subscription.prototype.unsubscribe).not.toHaveBeenCalled();
     });
   });
