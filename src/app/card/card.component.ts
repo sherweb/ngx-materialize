@@ -26,7 +26,6 @@ export class MzCardComponent implements AfterViewInit {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef,
   ) {}
 
   ngAfterViewInit() {
