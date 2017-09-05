@@ -4,7 +4,7 @@
 
   <div class="card-content {{ textClass }}">
 
-    <div class="card-title" *ngIf="hasCardTitle">
+    <div #cardTitle class="card-title" *ngIf="hasCardTitle">
       <ng-content select="mz-card-title"></ng-content>
     </div>
 
@@ -13,7 +13,7 @@
     </p>
   </div>
 
-  <div class="card-action" *ngIf="hasCardAction">
+  <div #cardAction class="card-action" *ngIf="hasCardAction">
     <ng-content select="mz-card-action"></ng-content>
   </div>
 </div>
