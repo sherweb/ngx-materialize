@@ -10,8 +10,10 @@ import { MzInputDirective } from './input.directive';
 describe('MzInputDirective:unit', () => {
 
   const mockElementRef = new ElementRef({ elementRef: true });
-  const mockNgControl = { control: new FormControl() };
-  const mockNgModel = <NgModel>{ valueChanges: { subscribe: () => null } };
+  const mockNgControl = <NgModel>{
+    control: new FormControl(),
+    valueChanges: { subscribe: () => null },
+  };
 
   let directive: MzInputDirective;
   let renderer: Renderer;
@@ -24,7 +26,7 @@ describe('MzInputDirective:unit', () => {
 
   beforeEach(() => {
     renderer = TestBed.get(Renderer);
-    directive = new MzInputDirective(null, mockNgModel, mockElementRef, renderer);
+    directive = new MzInputDirective(mockNgControl, mockElementRef, renderer);
   });
 
   describe('ngOnInit', () => {
@@ -34,7 +36,7 @@ describe('MzInputDirective:unit', () => {
       callOrder = [];
       spyOn(directive, 'initHandlers').and.callFake(() => callOrder.push('initHandlers'));
       spyOn(directive, 'initElements').and.callFake(() => callOrder.push('initElements'));
-      spyOn(directive, 'initInputSubscriber').and.callFake(() => callOrder.push('initInputSubscriber'));
+      spyOn(directive, 'initInputSubscription').and.callFake(() => callOrder.push('initInputSubscription'));
       spyOn(directive, 'handleProperties').and.callFake(() => callOrder.push('handleProperties'));
     });
 
@@ -54,12 +56,12 @@ describe('MzInputDirective:unit', () => {
       expect(callOrder[1]).toBe('initElements');
     });
 
-    it('should call initInputSubscriber method', () => {
+    it('should call initInputSubscription method', () => {
 
       directive.ngOnInit();
 
-      expect(directive.initInputSubscriber).toHaveBeenCalled();
-      expect(callOrder[2]).toBe('initInputSubscriber');
+      expect(directive.initInputSubscription).toHaveBeenCalled();
+      expect(callOrder[2]).toBe('initInputSubscription');
     });
 
     it('should call handleProperties method', () => {
@@ -77,11 +79,12 @@ describe('MzInputDirective:unit', () => {
 
       const mockSubscription = new Subscription();
 
-      spyOn(mockSubscription, 'unsubscribe');
+      spyOn(mockSubscription, 'unsubscribe').and.callThrough();
 
       directive.inputValueSubscription = mockSubscription;
       directive.ngOnDestroy();
 
+      expect(mockSubscription.closed).toBeTruthy();
       expect(mockSubscription.unsubscribe).toHaveBeenCalled();
     });
 
@@ -91,6 +94,7 @@ describe('MzInputDirective:unit', () => {
 
       directive.ngOnDestroy();
 
+      expect(directive.inputValueSubscription).toBeUndefined();
       expect(Subscription.prototype.unsubscribe).not.toHaveBeenCalled();
     });
   });
@@ -156,33 +160,33 @@ describe('MzInputDirective:unit', () => {
     });
   });
 
-  describe('initInputSubscriber', () => {
+  describe('initInputSubscription', () => {
 
-    it('should subscribe to ngModel.valueChanges when ngModel is provided', () => {
+    it('should subscribe to ngControl.valueChanges when ngControl is provided', () => {
 
-      spyOn(mockNgModel.valueChanges, 'subscribe');
+      spyOn(mockNgControl.valueChanges, 'subscribe');
 
-      directive.initInputSubscriber();
+      directive.initInputSubscription();
 
-      expect(mockNgModel.valueChanges.subscribe).toHaveBeenCalled();
+      expect(mockNgControl.valueChanges.subscribe).toHaveBeenCalled();
     });
 
-    it('should not subscribe to ngModel.valueChanges when ngModel is not provided', () => {
+    it('should not subscribe to ngControl.valueChanges when ngControl is not provided', () => {
 
-      spyOn(mockNgModel.valueChanges, 'subscribe');
+      spyOn(mockNgControl.valueChanges, 'subscribe');
 
-      directive['ngModel'] = null;
-      directive.initInputSubscriber();
+      directive['ngControl'] = null;
+      directive.initInputSubscription();
 
-      expect(mockNgModel.valueChanges.subscribe).not.toHaveBeenCalled();
+      expect(mockNgControl.valueChanges.subscribe).not.toHaveBeenCalled();
     });
 
-    it('should call setLabelActive when ngModel.valueChanges is triggered', () => {
+    it('should call setLabelActive when ngControl.valueChanges is triggered', () => {
 
       spyOn(directive, 'setLabelActive');
-      spyOn(mockNgModel.valueChanges, 'subscribe').and.callFake(callback => callback());
+      spyOn(mockNgControl.valueChanges, 'subscribe').and.callFake(callback => callback());
 
-      directive.initInputSubscriber();
+      directive.initInputSubscription();
 
       expect(directive.setLabelActive).toHaveBeenCalled();
     });
