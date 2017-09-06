@@ -58,7 +58,7 @@ describe('MzSelectDirective:unit', () => {
       expect(directive.initSelectedOption).toHaveBeenCalled();
       expect(callOrder[4]).toBe('initSelectedOption');
 
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
       expect(callOrder[5]).toBe('initMaterialSelect');
 
       expect(directive.listenOptionChanges).toHaveBeenCalled();
@@ -436,13 +436,14 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'setElementProperty');
       spyOn(directive, 'initMaterialSelect');
+      spyOn(directive, 'handleDOMEvents');
 
       directive.disabled = true;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
       expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', true);
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
     });
 
     it('should set disabled property and reinitialize select element when disabled is false', () => {
@@ -451,13 +452,14 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'setElementProperty');
       spyOn(directive, 'initMaterialSelect');
+      spyOn(directive, 'handleDOMEvents');
 
       directive.disabled = false;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
       expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', false);
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
     });
   });
 
@@ -648,15 +650,18 @@ describe('MzSelectDirective:unit', () => {
 
       it('should not call initFilledIn when filledIn is false', () => {
         spyOn(directive, 'initMaterialSelect');
+        spyOn(directive, 'handleDOMEvents');
 
         directive.filledIn = false;
         directive.updateMaterialSelect();
 
         expect(directive.initMaterialSelect).toHaveBeenCalled();
+        expect(directive.handleDOMEvents).toHaveBeenCalled();
       });
 
       it('should call initFilledIn when filledIn is true', () => {
         spyOn(directive, 'initMaterialSelect');
+        spyOn(directive, 'handleDOMEvents');
         spyOn(directive, 'initFilledIn');
 
         directive.filledIn = true;
@@ -664,10 +669,22 @@ describe('MzSelectDirective:unit', () => {
 
         expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.initFilledIn).toHaveBeenCalled();
+        expect(directive.handleDOMEvents).toHaveBeenCalled();
+      });
+
+      it('should call handleDOMEvents', () => {
+        spyOn(directive, 'initMaterialSelect');
+        spyOn(directive, 'handleDOMEvents');
+
+        directive.updateMaterialSelect();
+
+        expect(directive.initMaterialSelect).toHaveBeenCalled();
+        expect(directive.handleDOMEvents).toHaveBeenCalled();
       });
 
       it('should emit onUpdate through setTimeout', fakeAsync(() => {
         spyOn(directive, 'initMaterialSelect');
+        spyOn(directive, 'handleDOMEvents');
         spyOn(directive.onUpdate, 'emit');
 
         directive.updateMaterialSelect();
@@ -675,6 +692,7 @@ describe('MzSelectDirective:unit', () => {
         tick(); // force setTimeout execution
 
         expect(directive.initMaterialSelect).toHaveBeenCalled();
+        expect(directive.handleDOMEvents).toHaveBeenCalled();
         expect(directive.onUpdate.emit).toHaveBeenCalled();
       }));
     });

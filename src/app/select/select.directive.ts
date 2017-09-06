@@ -236,6 +236,8 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
       this.initFilledIn();
     }
 
+    this.handleDOMEvents();
+
     // wait for materialize select to be initialized
     // /!\ race condition warning /!\
     setTimeout(() => this.onUpdate.emit());
