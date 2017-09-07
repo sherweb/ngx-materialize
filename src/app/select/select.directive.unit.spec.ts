@@ -58,7 +58,7 @@ describe('MzSelectDirective:unit', () => {
       expect(directive.initSelectedOption).toHaveBeenCalled();
       expect(callOrder[4]).toBe('initSelectedOption');
 
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
       expect(callOrder[5]).toBe('initMaterialSelect');
 
       expect(directive.listenOptionChanges).toHaveBeenCalled();
@@ -436,13 +436,14 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'setElementProperty');
       spyOn(directive, 'initMaterialSelect');
+      spyOn(directive, 'handleDOMEvents');
 
       directive.disabled = true;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
       expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', true);
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
     });
 
     it('should set disabled property and reinitialize select element when disabled is false', () => {
@@ -451,13 +452,14 @@ describe('MzSelectDirective:unit', () => {
 
       spyOn(renderer, 'setElementProperty');
       spyOn(directive, 'initMaterialSelect');
+      spyOn(directive, 'handleDOMEvents');
 
       directive.disabled = false;
       directive.selectElement = <any>mockSelectElement;
       directive.handleDisabled();
 
       expect(renderer.setElementProperty).toHaveBeenCalledWith(mockSelectElement[0], 'disabled', false);
-      expect(directive.initMaterialSelect).toHaveBeenCalledWith();
+      expect(directive.initMaterialSelect).toHaveBeenCalled();
     });
   });
 
@@ -646,35 +648,48 @@ describe('MzSelectDirective:unit', () => {
 
     describe('updateMaterialSelect', () => {
 
-      it('should not call initFilledIn when filledIn is false', () => {
-        spyOn(directive, 'initMaterialSelect');
+      it('should reinitialize select correctly when filledIn is false/null/undefined', fakeAsync(() => {
+        const spyInitMaterialSelect = spyOn(directive, 'initMaterialSelect');
+        const spyInitFilledIn = spyOn(directive, 'initFilledIn');
+        const spyHandleDomEvents = spyOn(directive, 'handleDOMEvents');
+        const spyOnUpdateEmit = spyOn(directive.onUpdate, 'emit');
 
-        directive.filledIn = false;
-        directive.updateMaterialSelect();
+        [false, null, undefined].forEach(filledIn => {
+          spyInitMaterialSelect.calls.reset()
+          spyInitFilledIn.calls.reset()
+          spyHandleDomEvents.calls.reset()
+          spyOnUpdateEmit.calls.reset();
 
-        expect(directive.initMaterialSelect).toHaveBeenCalled();
-      });
+          directive.filledIn = filledIn;
+          directive.updateMaterialSelect();
 
-      it('should call initFilledIn when filledIn is true', () => {
+          expect(spyInitMaterialSelect).toHaveBeenCalled();
+          expect(spyInitFilledIn).not.toHaveBeenCalled();
+          expect(spyHandleDomEvents).toHaveBeenCalled();
+          expect(spyOnUpdateEmit).not.toHaveBeenCalled();
+
+          tick();
+
+          expect(spyOnUpdateEmit).toHaveBeenCalled();
+        });
+      }));
+
+      it('should reinitialize select correctly when filledIn is true', fakeAsync(() => {
         spyOn(directive, 'initMaterialSelect');
         spyOn(directive, 'initFilledIn');
+        spyOn(directive, 'handleDOMEvents');
+        spyOn(directive.onUpdate, 'emit');
 
         directive.filledIn = true;
         directive.updateMaterialSelect();
 
         expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.initFilledIn).toHaveBeenCalled();
-      });
+        expect(directive.handleDOMEvents).toHaveBeenCalled();
+        expect(directive.onUpdate.emit).not.toHaveBeenCalled();
 
-      it('should emit onUpdate through setTimeout', fakeAsync(() => {
-        spyOn(directive, 'initMaterialSelect');
-        spyOn(directive.onUpdate, 'emit');
+        tick();
 
-        directive.updateMaterialSelect();
-
-        tick(); // force setTimeout execution
-
-        expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.onUpdate.emit).toHaveBeenCalled();
       }));
     });
