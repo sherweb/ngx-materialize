@@ -648,21 +648,37 @@ describe('MzSelectDirective:unit', () => {
 
     describe('updateMaterialSelect', () => {
 
-      it('should not call initFilledIn when filledIn is false', () => {
+      it('should reinitialize select correctly when filledIn is false/null/undefined', fakeAsync(() => {
+        const spyInitMaterialSelect = spyOn(directive, 'initMaterialSelect');
+        const spyInitFilledIn = spyOn(directive, 'initFilledIn');
+        const spyHandleDomEvents = spyOn(directive, 'handleDOMEvents');
+        const spyOnUpdateEmit = spyOn(directive.onUpdate, 'emit');
+
+        [false, null, undefined].forEach(filledIn => {
+          spyInitMaterialSelect.calls.reset()
+          spyInitFilledIn.calls.reset()
+          spyHandleDomEvents.calls.reset()
+          spyOnUpdateEmit.calls.reset();
+
+          directive.filledIn = filledIn;
+          directive.updateMaterialSelect();
+
+          expect(spyInitMaterialSelect).toHaveBeenCalled();
+          expect(spyInitFilledIn).not.toHaveBeenCalled();
+          expect(spyHandleDomEvents).toHaveBeenCalled();
+          expect(spyOnUpdateEmit).not.toHaveBeenCalled();
+
+          tick();
+
+          expect(spyOnUpdateEmit).toHaveBeenCalled();
+        });
+      }));
+
+      it('should reinitialize select correctly when filledIn is true', fakeAsync(() => {
         spyOn(directive, 'initMaterialSelect');
-        spyOn(directive, 'handleDOMEvents');
-
-        directive.filledIn = false;
-        directive.updateMaterialSelect();
-
-        expect(directive.initMaterialSelect).toHaveBeenCalled();
-        expect(directive.handleDOMEvents).toHaveBeenCalled();
-      });
-
-      it('should call initFilledIn when filledIn is true', () => {
-        spyOn(directive, 'initMaterialSelect');
-        spyOn(directive, 'handleDOMEvents');
         spyOn(directive, 'initFilledIn');
+        spyOn(directive, 'handleDOMEvents');
+        spyOn(directive.onUpdate, 'emit');
 
         directive.filledIn = true;
         directive.updateMaterialSelect();
@@ -670,29 +686,10 @@ describe('MzSelectDirective:unit', () => {
         expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.initFilledIn).toHaveBeenCalled();
         expect(directive.handleDOMEvents).toHaveBeenCalled();
-      });
+        expect(directive.onUpdate.emit).not.toHaveBeenCalled();
 
-      it('should call handleDOMEvents', () => {
-        spyOn(directive, 'initMaterialSelect');
-        spyOn(directive, 'handleDOMEvents');
+        tick();
 
-        directive.updateMaterialSelect();
-
-        expect(directive.initMaterialSelect).toHaveBeenCalled();
-        expect(directive.handleDOMEvents).toHaveBeenCalled();
-      });
-
-      it('should emit onUpdate through setTimeout', fakeAsync(() => {
-        spyOn(directive, 'initMaterialSelect');
-        spyOn(directive, 'handleDOMEvents');
-        spyOn(directive.onUpdate, 'emit');
-
-        directive.updateMaterialSelect();
-
-        tick(); // force setTimeout execution
-
-        expect(directive.initMaterialSelect).toHaveBeenCalled();
-        expect(directive.handleDOMEvents).toHaveBeenCalled();
         expect(directive.onUpdate.emit).toHaveBeenCalled();
       }));
     });
