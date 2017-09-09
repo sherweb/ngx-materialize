@@ -1,23 +1,22 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
-import { TabComponent } from './tab.component';
+import { MzTabItemComponent } from './tab-item.component';
 
-describe('TabComponent', () => {
-  let component: TabComponent;
-  let fixture: ComponentFixture<TabComponent>;
+describe('TabItemComponent', () => {
+  let component: MzTabItemComponent;
+  let fixture: ComponentFixture<MzTabItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabComponent ]
+      declarations: [ MzTabItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabComponent);
+    fixture = TestBed.createComponent(MzTabItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -38,6 +38,24 @@
 </div>
 
 <div class="section">
+  <h5 class="light">Fixed tab item</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m4">
+      <mz-tab [fixedTabWidth]="'true'">
+        <mz-tab-item [label]="'Tab 7'">Tab 7</mz-tab-item>
+        <mz-tab-item [label]="'Tab 8'">Tab 8</mz-tab-item>
+        <mz-tab-item [label]="'Tab 9'">Tab 9</mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <p class="col s12 m8">
+      Tab with <code class="language-markup">fixedTabWidth</code> property to <i>true</i>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
   <h5 class="light">Swipeable item</h5>
 
   <div class="row m-valign-wrapper">
@@ -46,14 +64,14 @@
         [responsiveThreshold]="300"
         [swipeable]="'true'"
       >
-        <mz-tab-item [label]="'Tab 7'">
-          <div class="blue">Tab 7</div>
+        <mz-tab-item [label]="'Tab 10'">
+          <div class="blue">Tab 10</div>
         </mz-tab-item>
-        <mz-tab-item [label]="'Tab 8'">
-          <div class="red">Tab 8</div>
+        <mz-tab-item [label]="'Tab 11'">
+          <div class="red">Tab 11</div>
         </mz-tab-item>
-        <mz-tab-item [label]="'Tab 9'">
-          <div class="green">Tab 9</div>
+        <mz-tab-item [label]="'Tab 12'">
+          <div class="green">Tab 12</div>
         </mz-tab-item>
       </mz-tab>
     </div>

@@ -12,7 +12,7 @@ import {
   templateUrl: './tab-item.component.html',
   styleUrls: ['./tab-item.component.scss'],
 })
-export class TabItemComponent {
+export class MzTabItemComponent {
   @Input() active: boolean;
   @Input() disabled: boolean;
   @Input() href: string;

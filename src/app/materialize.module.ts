@@ -82,13 +82,10 @@ const MZ_COMPONENTS = [
   Sidenav.MzSidenavLinkComponent,
   Sidenav.MzSidenavSubheaderComponent,
   Spinner.MzSpinnerComponent,
-<<<<<<< HEAD
   Switch.MzSwitchContainerComponent,
   Switch.MzSwitchDirective,
-=======
-  Tab.TabComponent,
-  Tab.TabItemComponent,
->>>>>>> Initial commit for tab component
+  Tab.MzTabComponent,
+  Tab.MzTabItemComponent,
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
