@@ -5,9 +5,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
-  selector: 'input[mzDatepicker], input[mz-datepicker]',
+  selector: 'input[mzTimepicker], input[mz-timepicker]',
 })
-export class MzDatepickerDirective extends HandlePropChanges implements OnInit, OnDestroy {
+export class MzTimepickerDirective extends HandlePropChanges implements OnInit, OnDestroy {
   // native properties
   @Input() id: string;
   @Input() placeholder: string;
@@ -15,10 +15,10 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   // directive properties
   @Input() label: string;
 
-  // materialize uses pickadate.js to create the datepicker
+  // materialize uses pickadate.js to create the timepicker
   // complete list of options is available at the following address
-  // http://amsul.ca/pickadate.js/date/#options
-  @Input() options: Pickadate.DateOptions = {};
+  // http://amsul.ca/pickadate.js/time/#options
+  @Input() options: Pickadate.TimeOptions = {};
 
   inputElement: JQuery;
   inputContainerElement: JQuery;
@@ -38,8 +38,8 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     return this.ngControl.value === '' ? null : this.ngControl.value;
   }
 
-  get picker(): Pickadate.DatePicker {
-    return this.inputElement.pickadate('picker');
+  get picker(): Pickadate.TimePicker {
+    return this.inputElement.pickatime('picker');
   }
 
   constructor(
@@ -53,7 +53,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   ngOnInit() {
     this.initHandlers();
     this.initElements();
-    this.initDatepicker();
+    this.initTimepicker();
     this.initInputSubscription();
     this.handleProperties();
   }
@@ -77,7 +77,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     this.labelElement = this.createLabelElement();
   }
 
-  initDatepicker() {
+  initTimepicker() {
     // set default format/formatSubmit options
     if (this.format) {
       this.options.format = this.format;
@@ -86,23 +86,13 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
       this.options.formatSubmit = this.formatSubmit
     }
 
-    // extends onClose function to fix datepicker focus issue
-    // https://github.com/Dogfalo/materialize/issues/2067#issuecomment-142107599
-    const onCloseFn = this.options && this.options.onClose || (() => {});
-    this.options = Object.assign({}, this.options, {
-      onClose: (event) => {
-        onCloseFn(event);
-        this.renderer.invokeElementMethod(document.activeElement, 'blur');
-      },
-    });
-
-    this.renderer.invokeElementMethod(this.inputElement, 'pickadate', [this.options]);
+    this.renderer.invokeElementMethod(this.inputElement, 'pickatime', [this.options]);
 
     if (this.ngControl) {
-      // set datepicker initial value according to ngControl
+      // set timepicker initial value according to ngControl
       this.picker.set('select', this.ngControlValue, { format: this.formatSubmit });
 
-      // set ngControl value according to selected date in datepicker
+      // set ngControl value according to selected date in timepicker
       this.picker.on('set', () => {
         // handle stop propagation
         if (this.stopChangePropagation) {
@@ -141,7 +131,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
           this.stopChangePropagation = true;
         }
 
-        // set selected date in datepicker according to ngControl value
+        // set selected date in timepicker according to ngControl value
         this.picker.set('select', this.ngControlValue, { format: this.formatSubmit });
 
         // set label active status
@@ -161,7 +151,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
 
   handleProperties() {
     if (this.inputContainerElement.length === 0) {
-      console.error('Input with mz-datepicker directive must be placed inside an [mz-datepicker-container] tag', this.inputElement);
+      console.error('Input with mz-timepicker directive must be placed inside an [mz-timepicker-container] tag', this.inputElement);
       return;
     }
 
