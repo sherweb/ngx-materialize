@@ -3,7 +3,7 @@
 When asking general "how to" questions:
 
 - Please do not open an issue here!
-- Instead, ask for help on [StackOverflow](stackoverflow.com/) with Materialize and Angular tags.
+- Instead, ask for help on [StackOverflow](https://stackoverflow.com/) with Materialize and Angular tags.
 
 - Read the [CONTRIBUTING document](https://github.com/sherweb/ng2-materialize/blob/CONTRIBUTING.md) Any issues that are violating the contributing guidelines, will be closed!
 - [Search for duplicate or closed issues](https://github.com/sherweb/ng2-materialize/issues?utf8=%E2%9C%93&q=is%3Aissue) and make sure that is not an issue related to Materialize or other library.
