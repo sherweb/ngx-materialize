@@ -17,7 +17,7 @@ export class MzTabComponent implements AfterViewInit {
   @ContentChildren(MzTabItemComponent) tabItems: QueryList<MzTabItemComponent>;
 
   constructor(
-    private renderer: Renderer,
+    public renderer: Renderer,
   ) { }
 
   ngAfterViewInit(): void {

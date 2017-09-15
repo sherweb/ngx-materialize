@@ -7,7 +7,7 @@ import {
     MzTabItemComponent,
 } from './';
 
-fdescribe('MzCollapsibleComponent:view', () => {
+describe('MzTabComponent:view', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -74,7 +74,7 @@ fdescribe('MzCollapsibleComponent:view', () => {
 
       buildComponent<MzTabComponent>(`
         <mz-tab>
-          <mz-tab-item [active]="'true"' [label]="'label'">content</mz-tab-item>
+          <mz-tab-item [active]="'true'" [label]="'label'">content</mz-tab-item>
         </mz-tab>
       `).then((fixture) => {
 
