@@ -163,11 +163,7 @@
   version "2.5.45"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.45.tgz#58928a621d014ce6ab59c5a9c41071f7328b0ca9"
 
-"@types/jquery@*":
-  version "2.0.47"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.47.tgz#9665a157519dd48d259f94ac670d332a56561c00"
-
-"@types/jquery@^3.2.12":
+"@types/jquery@*", "@types/jquery@^3.2.12":
   version "3.2.12"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.12.tgz#f496823108c3874c97c9a822e675a3926ee64b46"
 
