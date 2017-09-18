@@ -167,17 +167,17 @@
   version "2.0.46"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.46.tgz#c245426299b43c4bb75f44b813090bd5918d00f2"
 
-"@types/jquery@^2.0.47":
-  version "2.0.48"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.48.tgz#3e90d8cde2d29015e5583017f7830cb3975b2eef"
+"@types/jquery@^3.2.12":
+  version "3.2.12"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.12.tgz#f496823108c3874c97c9a822e675a3926ee64b46"
 
 "@types/marked@0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.3.0.tgz#583c223dd33385a1dda01aaf77b0cd0411c4b524"
 
-"@types/materialize-css@0.98.0":
-  version "0.98.0"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.98.0.tgz#8d514647c1d92e2bc5ec7aea0c1f13c408be61e5"
+"@types/materialize-css@^0.100.0":
+  version "0.100.0"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.0.tgz#2b311b2ca273d6fd689609ab8e8d932966f8f45c"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"
@@ -2288,7 +2288,7 @@ gulplog@^1.0.0:
   dependencies:
     glogg "^1.0.0"
 
-hammerjs@^2.0.4:
+hammerjs@^2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
@@ -2986,11 +2986,7 @@ jquery-mousewheel@>=3.0.6:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
-jquery@^2.1.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
-
-jquery@^3.0.0:
+jquery@^3.0.0, "jquery@^3.0.0 || ^2.1.4":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -3509,13 +3505,12 @@ matcher-collection@^1.0.0:
   dependencies:
     minimatch "^3.0.2"
 
-materialize-css@0.98.2:
-  version "0.98.2"
-  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.98.2.tgz#f9e4239fd27e2a917a0de379d74d508e2d92ec8e"
+materialize-css@^0.100.2:
+  version "0.100.2"
+  resolved "https://registry.yarnpkg.com/materialize-css/-/materialize-css-0.100.2.tgz#9ca32b24904c9a04491fc7d0a2e9402e7b1dae07"
   dependencies:
-    hammerjs "^2.0.4"
-    jquery "^2.1.4"
-    node-archiver "^0.3.0"
+    hammerjs "^2.0.8"
+    jquery "^3.0.0 || ^2.1.4"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
@@ -3700,12 +3695,12 @@ ng2-markdown-to-html@^1.3.1:
     marked "^0.3.6"
     prismjs "^1.6.0"
 
-"ng2-materialize@file:../":
-  version "1.5.2-beta.0"
+"ng2-materialize@file:..":
+  version "1.5.3-beta.0"
   dependencies:
-    "@types/jquery" "^2.0.47"
-    "@types/materialize-css" "0.98.0"
-    materialize-css "0.98.2"
+    "@types/jquery" "^3.2.12"
+    "@types/materialize-css" "^0.100.0"
+    materialize-css "^0.100.2"
 
 ngx-malihu-scrollbar@^1.2.1:
   version "1.2.1"
@@ -3720,13 +3715,6 @@ no-case@^2.2.0:
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.1.tgz#7aeba1c73a52184265554b7dc03baf720df80081"
   dependencies:
     lower-case "^1.1.1"
-
-node-archiver@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/node-archiver/-/node-archiver-0.3.0.tgz#b9f1afe5006d0bdf29260181833a070978bc6947"
-  dependencies:
-    fstream "^1.0.10"
-    tar "^2.2.1"
 
 node-gyp@^3.3.1:
   version "3.6.2"
