@@ -24,12 +24,12 @@ describe('MzTabComponent:view', () => {
 
     let nativeElement: any;
 
-    function tab() {
+    function tab(): HTMLElement {
       return nativeElement.querySelector('.tabs');
     }
 
-    function tabItem() {
-      return tab().querySelector('.tab');
+    function tabItems() {
+      return tab().querySelectorAll('.tab');
     }
 
     function tabContent() {
@@ -38,7 +38,7 @@ describe('MzTabComponent:view', () => {
 
     it('should transclude tab item', async() => {
 
-      buildComponent<MzTabComponent>(`
+      buildComponent<any>(`
         <mz-tab>
           <mz-tab-item [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -48,15 +48,15 @@ describe('MzTabComponent:view', () => {
         fixture.detectChanges();
 
         expect(tab()).toBeTruthy();
-        expect(tabItem().querySelector('a').innerHTML.trim()).toBe('label');
-        expect(tabItem().querySelector('a').getAttribute('href')).toBe('#label');
+        expect(tabItems()[0].querySelector('a').innerHTML.trim()).toBe('label');
+        expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('#label');
         expect(tabContent().querySelector('div').innerHTML.trim()).toBe('content');
       });
     });
 
     it('should have fixed tab item when provided', async() => {
 
-      buildComponent<MzTabComponent>(`
+      buildComponent<any>(`
         <mz-tab [fixedTabWidth]="'true'">
           <mz-tab-item [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -72,7 +72,7 @@ describe('MzTabComponent:view', () => {
 
     it('should have active tab item when provided', async() => {
 
-      buildComponent<MzTabComponent>(`
+      buildComponent<any>(`
         <mz-tab>
           <mz-tab-item [active]="'true'" [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -81,13 +81,13 @@ describe('MzTabComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(tabItem().querySelector('a').classList).toContain('active');
+        expect(tabItems()[0].querySelector('a').classList).toContain('active');
       });
     });
 
     it('should have disabled tab item when provided', async() => {
 
-      buildComponent<MzTabComponent>(`
+      buildComponent<any>(`
         <mz-tab>
           <mz-tab-item [disabled]="'true'" [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -96,13 +96,13 @@ describe('MzTabComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(tabItem().classList).toContain('disabled');
+        expect(tabItems()[0].classList).toContain('disabled');
       });
     });
 
     it('should have tab item with external link when provided', async() => {
 
-      buildComponent<MzTabComponent>(`
+      buildComponent<any>(`
         <mz-tab>
           <mz-tab-item [href]="'https://wwww.google.com'" [label]="'label'" [target]="'_blank'">content</mz-tab-item>
         </mz-tab>
@@ -111,8 +111,28 @@ describe('MzTabComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(tabItem().querySelector('a').getAttribute('href')).toBe('https://wwww.google.com');
-        expect(tabItem().querySelector('a').getAttribute('target')).toBe('_blank');
+        expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('https://wwww.google.com');
+        expect(tabItems()[0].querySelector('a').getAttribute('target')).toBe('_blank');
+      });
+    });
+
+    it('should select tab item 2', async() => {
+
+      buildComponent<any>(`
+        <mz-tab #tabs>
+          <mz-tab-item [active]="'true'" [label]="'label1'">content1</mz-tab-item>
+          <mz-tab-item [label]="'label2'">content2</mz-tab-item>
+        </mz-tab>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        $(tab()).tabs('select_tab', 'label2')
+        fixture.detectChanges();
+
+        expect(tabItems()[1].querySelector('a').classList).toContain('active');
+        expect(tabItems()[1].querySelector('a').innerHTML.trim()).toBe('label2');
       });
     });
   });
