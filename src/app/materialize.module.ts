@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as Badge from './badge';
 import * as Button from './button';
-import * as Card from './card/card.component';
+import * as Card from './card';
 import * as Checkbox from './checkbox';
 import * as Collapsible from './collapsible';
 import * as Collection from './collection';
