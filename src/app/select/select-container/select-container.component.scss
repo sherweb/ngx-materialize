@@ -2,3 +2,9 @@
   // fix unwanted space under the input-field when error-message is not shown
   display: block;
 }
+
+// workaround for materialize bug: multiple select options are not aligned
+// https://github.com/Dogfalo/materialize/issues/5083#issue-248489869
+#{'/deep/'} .input-field .dropdown-content [type="checkbox"]+label {
+  top: -11px;
+}

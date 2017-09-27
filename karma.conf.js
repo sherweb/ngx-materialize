@@ -20,7 +20,7 @@ module.exports = function (config) {
     },
     files: [
       './node_modules/jquery/dist/jquery.js',
-      './node_modules/materialize-css/bin/materialize.js',
+      './node_modules/materialize-css/dist/js/materialize.js',
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
