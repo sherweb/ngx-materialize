@@ -42,30 +42,19 @@ export class MzSelectContainerComponent implements AfterViewInit, OnDestroy {
       });
 
       this.selectValueSubscription = this.ngControl.valueChanges.subscribe((value: any) => {
+        // to synchronize input and select when value changes programmatically
+        const isDropdownOpen = this.mzSelectDirective.inputElement.hasClass('active');
         const inputValue = this.mzSelectDirective.inputElement.val();
-        const selectedOptionText = this.mzSelectDirective.selectElement
-          .children('option:selected')
-          .text();
+        const options = this.mzSelectDirective.selectElement.children('option');
+        const selectedOptions = options.filter('option:selected').toArray();
+        const disabledOptions = options.filter(':disabled').toArray();
 
-        // synchronize input and select when value changes programmatically
-        if (inputValue !== selectedOptionText) {
-          this.mzSelectDirective.inputElement.val(selectedOptionText);
+        const selectedOptionText = selectedOptions.length === 0
+          ? disabledOptions.map(option => option.textContent)[0]
+          : selectedOptions.map(option => option.textContent).join(', ');
 
-          const dropdownOptions = this.mzSelectDirective.inputElement
-            .siblings('ul.dropdown-content')
-            .children('li');
-
-          dropdownOptions
-            .removeClass('active selected');
-
-          dropdownOptions
-            .filter((index, element: HTMLLIElement) => element.textContent === selectedOptionText)
-            .filter((index, element: HTMLLIElement) => !element.classList.contains('disabled'))
-            .addClass('active');
-
-          if (this.mzValidationComponent) {
-            this.mzValidationComponent.setValidationState();
-          }
+        if (inputValue !== selectedOptionText && !isDropdownOpen) {
+          this.mzSelectDirective.updateMaterialSelect();
         }
       });
     }
@@ -73,8 +62,9 @@ export class MzSelectContainerComponent implements AfterViewInit, OnDestroy {
 
   initSelectSubscription() {
     if (this.mzSelectDirective) {
-      this.mzSelectDirective.onUpdate.subscribe(() => this.registerOnBlur());
-      this.registerOnBlur();
+      this.mzSelectDirective.onUpdate
+        .subscribe(() => this.registerOnBlur())
+        .next();
     }
   }
 
