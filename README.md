@@ -181,6 +181,7 @@ export class HomeModule { }
 * Select
 * Sidenav
 * Spinner
+* Switch
 * Textarea
 * Toast
 * Tooltip

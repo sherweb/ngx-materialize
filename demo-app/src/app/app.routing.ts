@@ -23,6 +23,7 @@ import { RadioButtonComponent } from './radio-button/radio-button.component';
 import { SelectComponent } from './select/select.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { SwitchComponent } from './switch/switch.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
@@ -53,6 +54,7 @@ export const ROUTES: Routes = [
   { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button', section: formControls } },
   { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },
   { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
+  { path: 'switch', component: SwitchComponent, data: { icon: 'toggle-switch', text: 'Switch', section: formControls } },
 
   // components routes - Layout
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },

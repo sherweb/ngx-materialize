@@ -32,6 +32,7 @@ import { RadioButtonModule } from './radio-button/radio-button.module';
 import { SelectModule } from './select/select.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
+import { SwitchModule } from './switch/switch.module';
 import { TextareaModule } from './textarea/textarea.module';
 import { ToastModule } from './toast/toast.module';
 import { TooltipModule } from './tooltip/tooltip.module';
@@ -72,6 +73,7 @@ import { ValidationModule } from './validation/validation.module';
     SelectModule,
     SidenavModule,
     SpinnerModule,
+    SwitchModule,
     TextareaModule,
     ToastModule,
     TooltipModule,
