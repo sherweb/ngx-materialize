@@ -17,12 +17,16 @@ export class ValidationBindingComponent implements OnInit {
     select: {
       required: 'This field is required.',
     },
+    datepicker: {
+      required: 'This field is required.',
+    },
   };
 
   values = {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
   };
 
   constructor(
@@ -40,14 +44,17 @@ export class ValidationBindingComponent implements OnInit {
       checkbox: [this.values.checkbox],
       input: [this.values.input, Validators.required],
       select: [this.values.select, Validators.required],
+      datepicker: [this.values.datepicker, Validators.required],
     });
   }
 
   clear() {
-    this.form.reset();
-    this.form.get('checkbox').setValue(this.values.checkbox);
-    this.form.get('input').setValue(this.values.input);
-    this.form.get('select').setValue(this.values.select);
+    this.form.reset({
+      checkbox: this.values.checkbox,
+      input: this.values.input,
+      select: this.values.select,
+      datepicker: this.values.datepicker,
+    });
   }
 
   onSubmit() {

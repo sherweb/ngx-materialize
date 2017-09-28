@@ -568,7 +568,7 @@ describe('MzInputDirective:unit', () => {
 
       mockNgControl.control.markAsDirty();
 
-      directive['ngControl'] = <any>mockNgControl;
+      directive['ngControl'] = mockNgControl;
       directive.placeholder = placeholder;
       directive.inputElement = <any>[mockInputElement];
 

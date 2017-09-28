@@ -73,7 +73,7 @@ export class InputComponent implements AfterViewInit, OnInit {
     { name: 'placeholder',
       mandatory: false,
       type: 'string',
-      description: `Show placeholder`,
+      description: `Placeholder text`,
     },
     { name: 'type',
       mandatory: true,

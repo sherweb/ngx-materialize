@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
-import { MzInputContainerComponent } from './input-container.component';
+import { MzDatepickerContainerComponent } from './datepicker-container.component';
 
-describe('MzInputContainerComponent:view', () => {
+describe('MzDatepickerContainerComponent:view', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        MzInputContainerComponent,
+        MzDatepickerContainerComponent,
         MzTestWrapperComponent,
       ],
     });
@@ -23,8 +23,8 @@ describe('MzInputContainerComponent:view', () => {
 
     it('should have inline css class when inline is true', async(() => {
 
-      buildComponent<MzInputContainerComponent>(`
-        <mz-input-container [inline]="true"></mz-input-container>
+      buildComponent<MzDatepickerContainerComponent>(`
+        <mz-datepicker-container [inline]="true"></mz-datepicker-container>
       `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
@@ -36,8 +36,8 @@ describe('MzInputContainerComponent:view', () => {
 
     it('should not have inline css class when inline is false', async(() => {
 
-      buildComponent<MzInputContainerComponent>(`
-        <mz-input-container [inline]="false"></mz-input-container>
+      buildComponent<MzDatepickerContainerComponent>(`
+        <mz-datepicker-container [inline]="false"></mz-datepicker-container>
       `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
@@ -49,10 +49,10 @@ describe('MzInputContainerComponent:view', () => {
 
     it('should transclude correctly', async(() => {
 
-      buildComponent<MzInputContainerComponent>(`
-        <mz-input-container>
+      buildComponent<MzDatepickerContainerComponent>(`
+        <mz-datepicker-container>
           content-x
-        </mz-input-container>
+        </mz-datepicker-container>
       `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;

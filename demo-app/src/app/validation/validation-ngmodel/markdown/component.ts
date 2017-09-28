@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Renderer, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,11 +10,13 @@ export class ValidationNgmodelComponent {
   @ViewChild('form') form: FormGroup;
 
   submitted = false;
+  submittedValues: any;
 
   values = {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
   };
 
   errorMessages = {
@@ -24,7 +26,15 @@ export class ValidationNgmodelComponent {
     select: {
       required: 'This field is required.',
     },
+    datepicker: {
+      required: 'This field is required.',
+    },
   };
+
+  constructor(
+    private renderer: Renderer,
+  ) { }
+
 
   clear() {
     this.form.reset();
@@ -33,10 +43,12 @@ export class ValidationNgmodelComponent {
       checkbox: false,
       input: '',
       select: null,
+      datepicker: '',
     };
   }
 
   onSubmit() {
     this.submitted = true;
+    this.submittedValues = this.form.value;
   }
 }

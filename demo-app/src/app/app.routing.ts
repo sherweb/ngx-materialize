@@ -8,6 +8,7 @@ import { CardComponent } from './card/card.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
 import { CollectionComponent } from './collection/collection.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { HomeComponent } from './home/home.component';
 import { IconComponent } from './icon/icon.component';
@@ -46,6 +47,7 @@ export const ROUTES: Routes = [
   // components routes - Form controls
   { path: 'button', component: ButtonComponent, data: { icon: 'box-shadow', text: 'Button', section: formControls } },
   { path: 'checkbox', component: CheckboxComponent, data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
+  { path: 'datepicker', component: DatepickerComponent, data: { icon: 'calendar', text: 'Datepicker', section: formControls } },
   { path: 'form-validation', component: ValidationComponent, data: { icon: 'checkbox-marked-circle-outline', text: 'Form validation', section: formControls } },
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },
   { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button', section: formControls } },

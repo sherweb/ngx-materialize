@@ -17,6 +17,7 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
   };
 
   errorMessages = {
@@ -24,6 +25,9 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
       required: 'This field is required.',
     },
     select: {
+      required: 'This field is required.',
+    },
+    datepicker: {
       required: 'This field is required.',
     },
   };
@@ -53,14 +57,20 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
         { value: this.values.select, disabled: this.values.checkbox },
         Validators.required,
       ],
+      datepicker: [
+        { value: this.values.datepicker, disabled: this.values.checkbox },
+        Validators.required,
+      ],
     });
   }
 
   clear() {
-    this.form.reset();
-    this.form.get('checkbox').setValue(this.values.checkbox);
-    this.form.get('input').setValue(this.values.input);
-    this.form.get('select').setValue(this.values.select);
+    this.form.reset({
+      checkbox: this.values.checkbox,
+      input: this.values.input,
+      select: this.values.select,
+      datepicker: this.values.datepicker,
+    });
   }
 
   initCheckboxSubscription() {
@@ -68,9 +78,11 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
       if (checked) {
         this.form.get('input').disable();
         this.form.get('select').disable();
+        this.form.get('datepicker').disable();
       } else {
         this.form.get('input').enable();
         this.form.get('select').enable();
+        this.form.get('datepicker').enable();
       }
     });
   }

@@ -59,6 +59,12 @@ export class ValidationPlaygroundComponent implements OnInit {
     address2: {
       required: 'Address2 is required.',
     },
+    birthDate: {
+      required: 'Birth date is required.',
+    },
+    companyName: {
+      required: 'Company name is required.',
+    },
     domainName: {
       required: 'Domain name is required.',
     },
@@ -99,6 +105,8 @@ export class ValidationPlaygroundComponent implements OnInit {
     activitySector: null,
     address: '',
     address2: '',
+    birthDate: '',
+    companyName: '',
     city: '',
     firstName: '',
     gender: 'man',
@@ -147,10 +155,12 @@ export class ValidationPlaygroundComponent implements OnInit {
         ]),
       ],
       lastName: [this.user.lastName, Validators.required],
+      birthDate: [this.user.birthDate, Validators.required],
       gender: [this.user.gender],
       // professional information
       hasJob: [this.hasJob],
       activitySector: [this.user.activitySector, Validators.required],
+      companyName: [this.user.companyName, Validators.required],
       jobDescription: [this.user.jobDescription, Validators.compose([
           Validators.required,
           Validators.maxLength(255),
