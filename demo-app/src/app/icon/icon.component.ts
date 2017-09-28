@@ -46,8 +46,8 @@ export class IconComponent {
         For <code class="language-markup">mz-icon</code> directive: <code class="language-markup">tiny</code>,
         <code class="language-markup">small</code>, <code class="language-markup">medium</code>,
         or <code class="language-markup">large</code>.<br />
-        For <code class="language-markup">mz-icon-mdi</code> directive: <code class="language-markup">16px</code>,
-        <code class="language-markup">18px</code>, <code class="language-markup">24px</code>, <code class="language-markup">36px</code>,
+        For <code class="language-markup">mz-icon-mdi</code> directive: <code class="language-markup">18px</code>,
+        <code class="language-markup">24px</code>, <code class="language-markup">36px</code>,
         or <code class="language-markup">48px</code>`,
       defaultValue: `Default value for <code class="language-markup">mz-icon-mdi</code> is <code class="language-markup">24px</code>`,
     },
