@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
-import { NgControl, NgModel } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/skipWhile';
@@ -40,7 +40,7 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   ngOnInit() {
     this.initHandlers();
     this.initElements();
-    this.initInputSubscriber();
+    this.initInputSubscription();
     this.handleProperties();
   }
 
@@ -68,7 +68,7 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
     this.labelElement = this.createLabelElement();
   }
 
-  initInputSubscriber() {
+  initInputSubscription() {
     if (this.ngControl) {
       this.inputValueSubscription = this.ngControl.valueChanges.subscribe(() => this.setLabelActive());
     }
@@ -172,7 +172,8 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   }
 
   setLabelActive() {
-    // need setTimeout otherwise it wont make label float in some circonstances (forcing validation for example)
+    // need setTimeout otherwise it wont make label float in some circonstances
+    // for example: forcing validation for example, reseting form programmaticaly, ...
     setTimeout(() => {
       const inputValue = (<HTMLInputElement>this.inputElement[0]).value;
       const isActive = !!this.placeholder || !!inputValue;
