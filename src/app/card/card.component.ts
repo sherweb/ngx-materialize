@@ -18,12 +18,14 @@ export class MzCardComponent implements AfterViewInit {
   @Input() hoverable: boolean;
   @Input() textClass: string;
 
+  @ViewChild('cardTitle') cardTitle: ElementRef;
+  @ViewChild('cardAction') cardAction: ElementRef;
+
   hasCardAction = true;
   hasCardTitle = true;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private elementRef: ElementRef,
   ) {}
 
   ngAfterViewInit() {
@@ -33,14 +35,12 @@ export class MzCardComponent implements AfterViewInit {
   }
 
   private hasActionTagAndNotEmpty(): boolean {
-    const cardActionElement = this.elementRef.nativeElement.querySelector('mz-card-action');
-
+    const cardActionElement = this.cardAction.nativeElement.querySelector('mz-card-action');
     return this.isElementDisplayed(cardActionElement);
   }
 
   private hasTitleTagAndNotEmpty(): boolean {
-    const cardTitleElement = this.elementRef.nativeElement.querySelector('mz-card-title');
-
+    const cardTitleElement = this.cardTitle.nativeElement.querySelector('mz-card-title');
     return this.isElementDisplayed(cardTitleElement);
   }
 

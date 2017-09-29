@@ -6,13 +6,13 @@ import {
   OnDestroy,
   OnInit,
   Renderer,
-  ViewChild } from '@angular/core';
+} from '@angular/core';
 
 @Component({
   selector: 'mz-sidenav',
   templateUrl: './sidenav.component.html',
 })
-export class MzSidenavComponent implements AfterViewInit, OnDestroy, OnInit {
+export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() backgroundClass: string;
   @Input() closeOnClick: boolean;
   @Input() collapseButtonId: string;
@@ -21,29 +21,18 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() id: string;
   @Input() width: number;
 
-  @ViewChild('sidenav') sideNav: ElementRef;
-
-  closeOnClickListeners: Function[];
-
   constructor(private renderer: Renderer) { }
 
-  ngOnInit(): void {
-    this.closeOnClickListeners = [];
-  }
-
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.initCollapseButton();
     this.initCollapsibleLinks();
-    this.fixCloseOnClick();
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     $(`#${this.collapseButtonId}`).sideNav('destroy');
-    this.closeOnClickListeners.forEach(listener => listener());
   }
 
-  initCollapseButton(): void {
-
+  initCollapseButton() {
     if (!this.collapseButtonId) {
       return;
     }
@@ -66,24 +55,8 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  initCollapsibleLinks(): void {
+  initCollapsibleLinks() {
     // Initialize collapsible elements
     $('.collapsible').collapsible();
-  }
-
-  fixCloseOnClick() {
-    // Fix side navigation closeOnClick for non-collapsible links
-    // issue: https://github.com/Dogfalo/materialize/issues/2520
-    // workaround: https://github.com/Dogfalo/materialize/issues/1426
-    $(this.sideNav.nativeElement)
-      .find('li a:not(.collapsible-header)')
-      .each((index: number, link: Element) => {
-        const listener = this.renderer.listen(link, 'click', (element: JQueryEventObject) => {
-          if ($(window).width() < 992) {
-            $(`#${this.collapseButtonId}`).sideNav('hide');
-          }
-        });
-        this.closeOnClickListeners.push(listener);
-      });
   }
 }

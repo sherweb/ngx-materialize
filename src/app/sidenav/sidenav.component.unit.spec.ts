@@ -39,32 +39,17 @@ describe('MzSidenavComponent:unit', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-
-    it('should initilize closeOnClickLister property', () => {
-
-      component.closeOnClickListeners = undefined;
-
-      component.ngOnInit();
-
-      expect(component.closeOnClickListeners).toBeDefined();
-      expect(component.closeOnClickListeners.length).toBe(0);
-    });
-  });
-
   describe('ngAfterViewInit', () => {
 
     it('should call init functions', () => {
 
       spyOn(component, 'initCollapseButton');
       spyOn(component, 'initCollapsibleLinks');
-      spyOn(component, 'fixCloseOnClick');
 
       component.ngAfterViewInit();
 
       expect(component.initCollapseButton).toHaveBeenCalled();
       expect(component.initCollapsibleLinks).toHaveBeenCalled();
-      expect(component.fixCloseOnClick).toHaveBeenCalled();
     });
   });
 
@@ -90,21 +75,6 @@ describe('MzSidenavComponent:unit', () => {
       component.ngOnDestroy();
 
       expect(mockCollapseButton.sideNav).toHaveBeenCalledWith('destroy');
-    });
-
-    it('should remove closeOnClick listeners', () => {
-
-      const spyListeners = jasmine.createSpyObj('spyListeners', ['method1', 'method2', 'method3']);
-
-      Object.keys(spyListeners).forEach(listener => {
-        component.closeOnClickListeners.push(spyListeners[listener]);
-      });
-
-      component.ngOnDestroy();
-
-      Object.keys(spyListeners).forEach(listener => {
-        expect(spyListeners[listener]).toHaveBeenCalled();
-      });
     });
   });
 
@@ -232,118 +202,6 @@ describe('MzSidenavComponent:unit', () => {
       component.initCollapsibleLinks();
 
       expect(mockCollapsible.collapsible).toHaveBeenCalled();
-    });
-  });
-
-  describe('fixCloseOnClick', () => {
-
-    function createSidenavLink(collapsible?: boolean): void {
-      const link = document.createElement('a');
-      if (collapsible) {
-        link.classList.add('collapsible-header');
-      }
-      const header = document.createElement('li');
-      header.appendChild(link);
-      $(fixture.nativeElement).find('.side-nav').append(header);
-    }
-
-    describe('non-collapsible link', () => {
-      let renderedLink: HTMLElement;
-      const mockCollapseButton = { sideNav: (method: string) => {} };
-      const mockWindow = { width: () => 0 };
-
-      beforeEach(() => {
-
-        createCollapseButton(collapseButtonId);
-        component.collapseButtonId = collapseButtonId;
-
-        createSidenavLink();
-
-        component.fixCloseOnClick();
-
-        renderedLink = $(fixture.nativeElement).find('li a')[0];
-
-        spyOn(mockCollapseButton, 'sideNav');
-
-        spyOn(window, '$').and.callFake((selector: string): any => {
-          return selector === `#${collapseButtonId}`
-            ? mockCollapseButton
-            : mockWindow;
-        });
-      });
-
-      it('should hide sidenav on click when screen width < 992px', () => {
-
-        spyOn(mockWindow, 'width').and.returnValue(991);
-
-        renderedLink.click();
-
-        expect(mockCollapseButton.sideNav).toHaveBeenCalledWith('hide');
-      });
-
-      it('should not hide sidenav on click when screen width >= 992px', () => {
-
-        spyOn(mockWindow, 'width').and.returnValue(992);
-
-        renderedLink.click();
-
-        expect(mockCollapseButton.sideNav).not.toHaveBeenCalled();
-      });
-
-      it('should keep track of listeners', () => {
-
-        expect(component.closeOnClickListeners.length).toBe(1);
-      });
-    });
-
-    describe('collapsible link', () => {
-
-      let renderedLink: HTMLElement;
-      const mockCollapseButton = { sideNav: (method: string) => {} };
-      const mockWindow = { width: () => 0 };
-
-      beforeEach(() => {
-
-        createCollapseButton(collapseButtonId);
-        component.collapseButtonId = collapseButtonId;
-
-        createSidenavLink(true);
-
-        component.fixCloseOnClick();
-
-        renderedLink = $(fixture.nativeElement).find('li a')[0];
-
-        spyOn(mockCollapseButton, 'sideNav');
-
-        spyOn(window, '$').and.callFake((selector: string): any => {
-          return selector === `#${collapseButtonId}`
-            ? mockCollapseButton
-            : mockWindow;
-        });
-      });
-
-      it('should not hide sidenav when screen width < 992px', () => {
-
-        spyOn(mockWindow, 'width').and.returnValue(991);
-
-        renderedLink.click();
-
-        expect(mockCollapseButton.sideNav).not.toHaveBeenCalled();
-      });
-
-      it('should not hide sidenav when screen width >= 992px', () => {
-
-        spyOn(mockWindow, 'width').and.returnValue(992);
-
-        renderedLink.click();
-
-        expect(mockCollapseButton.sideNav).not.toHaveBeenCalled();
-      });
-
-      it('should not keep track of listeners', () => {
-
-        expect(component.closeOnClickListeners.length).toBe(0);
-      });
     });
   });
 });

@@ -47,8 +47,8 @@ describe('MzDatepickerDirective:view', () => {
         fixture.detectChanges();
 
         expect(label().innerHTML).toBe('label-x');
-        expect(input().nextSibling).toBe(datepicker());
-        expect(datepicker().nextSibling).toBe(label());
+        expect(datepicker().nextSibling).toBe(input());
+        expect(input().nextSibling).toBe(label());
       });
     }));
 
@@ -64,8 +64,8 @@ describe('MzDatepickerDirective:view', () => {
         fixture.detectChanges();
 
         expect(label().innerHTML).toBe('');
-        expect(input().nextSibling).toBe(datepicker());
-        expect(datepicker().nextSibling).toBe(label());
+        expect(datepicker().nextSibling).toBe(input());
+        expect(input().nextSibling).toBe(label());
       });
     }));
   });
@@ -194,7 +194,7 @@ describe('MzDatepickerDirective:view', () => {
     let nativeElement: any;
 
     function input(): HTMLInputElement {
-      return nativeElement.querySelector('input');
+      return nativeElement.querySelector('input.datepicker');
     }
 
     function datepicker(): Pickadate.DatePicker {

@@ -25,17 +25,17 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/materialize-css/dist/css/materialize.css",
-        "../node_modules/mdi/css/materialdesignicons.css",
+        "../node_modules/materialize-css/dist/css/materialize.min.css",
+        "../node_modules/mdi/css/materialdesignicons.min.css",
         "../node_modules/highlightjs/styles/default.css",
         "../node_modules/prismjs/themes/prism.css",
         "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/materialize-css/dist/js/materialize.js",
-        "../node_modules/highlightjs/highlight.pack.js",
-        "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/materialize-css/dist/js/materialize.min.js",
+        "../node_modules/highlightjs/highlight.pack.min.js",
+        "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

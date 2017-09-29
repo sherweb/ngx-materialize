@@ -8,6 +8,8 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
   selector: 'input[mzDatepicker], input[mz-datepicker]',
 })
 export class MzDatepickerDirective extends HandlePropChanges implements OnInit, OnDestroy {
+  @HostBinding('class.datepicker') true;
+
   // native properties
   @Input() id: string;
   @Input() placeholder: string;

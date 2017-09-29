@@ -8,7 +8,7 @@ describe('TimepickerContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MzTimepickerContainerComponent ]
+      declarations: [ MzTimepickerContainerComponent ],
     })
     .compileComponents();
   }));

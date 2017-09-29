@@ -3,9 +3,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import * as Badge from './badge/badge.component';
+import * as Badge from './badge';
 import * as Button from './button';
-import * as Card from './card/card.component';
+import * as Card from './card';
 import * as Checkbox from './checkbox';
 import * as Collapsible from './collapsible';
 import * as Collection from './collection';
@@ -16,13 +16,14 @@ import * as Input from './input';
 import * as Media from './media';
 import * as Modal from './modal';
 import * as Navbar from './navbar';
-import * as Parallax from './parallax/parallax.component';
-import * as Progress from './progress/progress.component';
+import * as Parallax from './parallax';
+import * as Progress from './progress';
 import * as RadioButton from './radio-button';
 import * as Select from './select';
 import * as Shared from './shared';
 import * as Sidenav from './sidenav';
-import * as Spinner from './spinner/spinner.component';
+import * as Spinner from './spinner';
+import * as Switch from './switch';
 import * as Textarea from './textarea';
 import * as Timepicker from './timepicker';
 import * as Toast from './toast';
@@ -81,6 +82,8 @@ const MZ_COMPONENTS = [
   Sidenav.MzSidenavLinkComponent,
   Sidenav.MzSidenavSubheaderComponent,
   Spinner.MzSpinnerComponent,
+  Switch.MzSwitchContainerComponent,
+  Switch.MzSwitchDirective,
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
