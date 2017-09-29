@@ -79,10 +79,6 @@ describe('MzSelectContainerComponent:view', () => {
       return nativeElement.querySelector('select');
     }
 
-    function activeDropdownOptionElement(): HTMLOptionElement {
-      return nativeElement.querySelector('ul.dropdown-content li.active');
-    }
-
     it('should be disabled/enabled correctly when control disabled status changes', async(() => {
 
       buildComponent<any>(`
@@ -189,14 +185,12 @@ describe('MzSelectContainerComponent:view', () => {
         tick();
 
         expect(inputElement().value).toBe('Option 2');
-        expect(activeDropdownOptionElement().textContent).toBe('Option 2');
 
         component.value = null;
         fixture.detectChanges();
         tick();
 
         expect(inputElement().value).toBe('placeholder');
-        expect(activeDropdownOptionElement()).toBeFalsy();
       });
     }));
 
@@ -241,22 +235,118 @@ describe('MzSelectContainerComponent:view', () => {
         fixture.detectChanges();
         tick();
 
-        expect(inputElement().value).toBe(value.text);
+        expect(inputElement().value).toBe('Option 1');
 
         component.value = options[1];
         fixture.detectChanges();
         tick();
 
         expect(inputElement().value).toBe('Option 2');
-        expect(activeDropdownOptionElement().textContent).toBe('Option 2');
 
         component.value = null;
         fixture.detectChanges();
         tick();
 
         expect(inputElement().value).toBe('placeholder');
-        expect(activeDropdownOptionElement()).toBeFalsy();
       });
     }));
+
+    describe('multiple select', () => {
+
+      it('should have correctly value when control value changes using string value', fakeAsync(() => {
+
+        buildComponent<{ value: string[] }>(`
+          <mz-select-container>
+            <select mz-select multiple
+              id="select"
+              [label]="'label'"
+              [placeholder]="'placeholder'"
+              [(ngModel)]="value">
+              <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+            </select>
+          </mz-select-container>`,
+          {
+            options: ['Option 1', 'Option 2', 'Option 3'],
+            value: ['Option 2', 'Option 3'],
+          },
+        ).then((fixture) => {
+          nativeElement = fixture.nativeElement;
+          const component = fixture.componentInstance;
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('Option 2, Option 3');
+
+          component.value = ['Option 1'];
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('Option 1');
+
+          component.value = null;
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('placeholder');
+        });
+      }));
+
+      it('should have correctly value when control value changes using object value', fakeAsync(() => {
+
+        interface Option {
+          text: string,
+          value: number,
+        }
+
+        const options: Option[] = [
+          { text: 'Option 1', value: 1 },
+          { text: 'Option 2', value: 2 },
+          { text: 'Option 3', value: 3 },
+        ];
+
+        const value = options.slice(0, 1);
+
+        buildComponent<{ options: Option[], value: Option[] }>(`
+          <mz-select-container>
+            <select mz-select multiple
+              id="select"
+              [label]="'label'"
+              [placeholder]="'placeholder'"
+              [(ngModel)]="value">
+              <option *ngFor="let option of options" [ngValue]="option">{{ option.text }}</option>
+            </select>
+          </mz-select-container>`,
+          {
+            options,
+            value,
+          },
+        ).then((fixture) => {
+          nativeElement = fixture.nativeElement;
+          const component = fixture.componentInstance;
+          fixture.detectChanges();
+
+          // couldn't force mutationobserver to execute before the end of the test
+          // therefore options used with *ngFor need to be present for the test to work
+          $('select').material_select();
+
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('Option 1');
+
+          component.value = options.slice(1, 3);
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('Option 2, Option 3');
+
+          component.value = null;
+          fixture.detectChanges();
+          tick();
+
+          expect(inputElement().value).toBe('placeholder');
+        });
+      }));
+    });
   });
 });
