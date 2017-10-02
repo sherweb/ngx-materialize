@@ -14,6 +14,7 @@ import {
 })
 export class MzTabItemComponent {
   @Input() active: boolean;
+  @Input() class: string;
   @Input() disabled: boolean;
   @Input() href: string;
   @Input() label;

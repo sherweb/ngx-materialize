@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ContentChildren, ElementRef, HostBinding, Input, QueryList, Renderer, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  HostBinding,
+  Input,
+  NgZone,
+  QueryList,
+  ViewChild,
+} from '@angular/core';
 
 import { MzTabItemComponent } from './tab-item/tab-item.component';
 
@@ -17,7 +27,7 @@ export class MzTabComponent implements AfterViewInit {
   @ContentChildren(MzTabItemComponent) tabItems: QueryList<MzTabItemComponent>;
 
   constructor(
-    public renderer: Renderer,
+    public ngZone: NgZone,
   ) { }
 
   ngAfterViewInit(): void {
@@ -32,10 +42,12 @@ export class MzTabComponent implements AfterViewInit {
   }
 
     // need setTimeout otherwise loading directly on the page cause an error
-   this.renderer.invokeElementMethod($(this.tabs.nativeElement), 'tabs', [options]);
+   this.ngZone.runOutsideAngular(() => {
+     $(this.tabs.nativeElement).tabs(options);
+   });
   }
 
   selectTab(tabItemId: string) {
-    this.renderer.invokeElementMethod($(this.tabs.nativeElement), 'tabs', ['select_tab', tabItemId]);
+    this.ngZone.runOutsideAngular(() => $(this.tabs.nativeElement).tabs('select_tab', tabItemId));
   }
 }

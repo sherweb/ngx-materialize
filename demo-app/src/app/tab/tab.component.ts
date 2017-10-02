@@ -16,6 +16,13 @@ export class TabComponent {
       defaultValue: `false`,
     },
     {
+      name: 'class',
+      mandatory: false,
+      type: 'string',
+      description: `CSS class to be applied on the tab item`,
+      defaultValue: `false`,
+    },
+    {
       name: 'disabled',
       mandatory: false,
       type: 'boolean',

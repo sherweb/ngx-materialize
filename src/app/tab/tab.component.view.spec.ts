@@ -38,7 +38,7 @@ describe('MzTabComponent:view', () => {
 
     it('should transclude tab item', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab>
           <mz-tab-item [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -56,7 +56,7 @@ describe('MzTabComponent:view', () => {
 
     it('should have fixed tab item when provided', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab [fixedTabWidth]="'true'">
           <mz-tab-item [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -72,7 +72,7 @@ describe('MzTabComponent:view', () => {
 
     it('should have active tab item when provided', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab>
           <mz-tab-item [active]="'true'" [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -87,7 +87,7 @@ describe('MzTabComponent:view', () => {
 
     it('should have disabled tab item when provided', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab>
           <mz-tab-item [disabled]="'true'" [label]="'label'">content</mz-tab-item>
         </mz-tab>
@@ -102,7 +102,7 @@ describe('MzTabComponent:view', () => {
 
     it('should have tab item with external link when provided', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab>
           <mz-tab-item [href]="'https://wwww.google.com'" [label]="'label'" [target]="'_blank'">content</mz-tab-item>
         </mz-tab>
@@ -118,7 +118,7 @@ describe('MzTabComponent:view', () => {
 
     it('should select tab item 2', async() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-tab #tabs>
           <mz-tab-item [active]="'true'" [label]="'label1'">content1</mz-tab-item>
           <mz-tab-item [label]="'label2'">content2</mz-tab-item>

@@ -4,15 +4,15 @@
   <h5 class="light">Basic tab</h5>
 
   <div class="row m-valign-wrapper">
-    <div class="col s12 m4">
+    <div class="col s12 m6">
       <mz-tab>
-        <mz-tab-item [label]="'Tab 1'">Tab 1</mz-tab-item>
-        <mz-tab-item [label]="'Tab 2'">Tab 2</mz-tab-item>
-        <mz-tab-item [label]="'Tab 3'">Tab 3</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 1'">Tab 1</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 2'">Tab 2</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 3'">Tab 3</mz-tab-item>
       </mz-tab>
     </div>
 
-    <p class="col s12 m8">
+    <p class="col s12 m6">
       Default behavior from tab has variable tab width.
     </p>
   </div>
@@ -22,15 +22,15 @@
   <h5 class="light">Active/disable tab item</h5>
 
   <div class="row m-valign-wrapper">
-    <div class="col s12 m4">
+    <div class="col s12 m6">
       <mz-tab>
-        <mz-tab-item [label]="'Tab 4'">Tab 4</mz-tab-item>
-        <mz-tab-item [active]="'true'" [label]="'Tab 5'">Tab 5</mz-tab-item>
-        <mz-tab-item [disabled]="'true'" [label]="'Tab 6'">Tab 6</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 4'">Tab 4</mz-tab-item>
+        <mz-tab-item [active]="'true'" [class]="'col s12'" [label]="'Tab 5'">Tab 5</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [disabled]="'true'" [label]="'Tab 6'">Tab 6</mz-tab-item>
       </mz-tab>
     </div>
 
-    <p class="col s12 m8">
+    <p class="col s12 m6">
       Basic tab with Tab 5 <code class="language-markup">active</code> property to <i>true</i> and
       Tab 6 <code class="language-markup">disabled</code> property to <i>true</i>.
     </p>
@@ -41,42 +41,56 @@
   <h5 class="light">Fixed tab item</h5>
 
   <div class="row m-valign-wrapper">
-    <div class="col s12 m4">
+    <div class="col s12 m6">
       <mz-tab [fixedTabWidth]="'true'">
-        <mz-tab-item [label]="'Tab 7'">Tab 7</mz-tab-item>
-        <mz-tab-item [label]="'Tab 8'">Tab 8</mz-tab-item>
-        <mz-tab-item [label]="'Tab 9'">Tab 9</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 7'">Tab 7</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 8'">Tab 8</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Tab 9'">Tab 9</mz-tab-item>
       </mz-tab>
     </div>
 
-    <p class="col s12 m8">
+    <p class="col s12 m6">
       Tab with <code class="language-markup">fixedTabWidth</code> property to <i>true</i>.
     </p>
   </div>
 </div>
 
+<di class="section">
+  <h5 class="light">Scrollable tab item</h5>
+
+  <di class="row m-valign-wrapper">
+    <di class="col s12 m6">
+      <mz-tab [fixedTabWidth]="'true'">
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 1'">Scrollable Tab 1</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 2'">Scrollable Tab 2</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 3'">Scrollable Tab 3</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 4'">Scrollable Tab 4</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 5'">Scrollable Tab 5</mz-tab-item>
+        <mz-tab-item [class]="'col s12'" [label]="'Scrollable Tab 6'">Scrollable Tab 6</mz-tab-item>
+      </mz-tab>
+    </di>
+
+    <p class="col s12 m6">
+      Tab become scrollable when there a lot of tab item.
+    </p>
+  </di>
+</di>
+
 <div class="section">
   <h5 class="light">Swipeable item</h5>
 
   <div class="row m-valign-wrapper">
-    <div class="col s12 m4">
+    <div class="col s12 m6">
       <mz-tab
-        [responsiveThreshold]="300"
         [swipeable]="'true'"
       >
-        <mz-tab-item [label]="'Tab 10'">
-          <div class="blue">Tab 10</div>
-        </mz-tab-item>
-        <mz-tab-item [label]="'Tab 11'">
-          <div class="red">Tab 11</div>
-        </mz-tab-item>
-        <mz-tab-item [label]="'Tab 12'">
-          <div class="green">Tab 12</div>
-        </mz-tab-item>
+        <mz-tab-item [class]="'blue col s12'" [label]="'Tab 10'">Tab 10</mz-tab-item>
+        <mz-tab-item [class]="'red col s12'" [label]="'Tab 11'">Tab 11</mz-tab-item>
+        <mz-tab-item [class]="'green col s12'" [label]="'Tab 12'">Tab 12</mz-tab-item>
       </mz-tab>
     </div>
 
-    <p class="col s12 m8">
+    <p class="col s12 m6">
       Swipeable tabs which can be used on touch enabled devices.
     </p>
   </div>

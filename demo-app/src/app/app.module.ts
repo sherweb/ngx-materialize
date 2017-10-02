@@ -32,11 +32,8 @@ import { RadioButtonModule } from './radio-button/radio-button.module';
 import { SelectModule } from './select/select.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
-<<<<<<< HEAD
 import { SwitchModule } from './switch/switch.module';
-=======
 import { TabModule } from './tab/tab.module';
->>>>>>> Initial commit for tab component
 import { TextareaModule } from './textarea/textarea.module';
 import { ToastModule } from './toast/toast.module';
 import { TooltipModule } from './tooltip/tooltip.module';
