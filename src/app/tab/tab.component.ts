@@ -42,12 +42,12 @@ export class MzTabComponent implements AfterViewInit {
   }
 
     // need setTimeout otherwise loading directly on the page cause an error
-   this.ngZone.runOutsideAngular(() => {
+   this.ngZone.onStable.first().subscribe(() => {
      $(this.tabs.nativeElement).tabs(options);
    });
   }
 
   selectTab(tabItemId: string) {
-    this.ngZone.runOutsideAngular(() => $(this.tabs.nativeElement).tabs('select_tab', tabItemId));
+    this.ngZone.onStable.first().subscribe(() => $(this.tabs.nativeElement).tabs('select_tab', tabItemId));
   }
 }
