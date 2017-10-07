@@ -8,6 +8,8 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
   selector: 'input[mzTimepicker], input[mz-timepicker]',
 })
 export class MzTimepickerDirective extends HandlePropChanges implements OnInit, OnDestroy {
+  @HostBinding('class.timepicker') true;
+
   // native properties
   @Input() id: string;
   @Input() placeholder: string;
@@ -15,32 +17,16 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   // directive properties
   @Input() label: string;
 
-  // materialize uses pickadate.js to create the timepicker
+  // materialize uses ClockPicker to create the timepicker
   // complete list of options is available at the following address
-  // http://amsul.ca/pickadate.js/time/#options
-  @Input() options: Pickadate.TimeOptions = {};
+  // https://github.com/weareoutman/clockpicker#options
+  @Input() options: any = {};
 
   inputElement: JQuery;
   inputContainerElement: JQuery;
   inputValueSubscription: Subscription;
   labelElement: JQuery;
   stopChangePropagation = false;
-
-  get format(): string {
-    return this.options.format || this.options.formatSubmit || null;
-  }
-
-  get formatSubmit(): string {
-    return this.options.formatSubmit || this.options.format || null;
-  }
-
-  get ngControlValue(): string {
-    return this.ngControl.value === '' ? null : this.ngControl.value;
-  }
-
-  get picker(): Pickadate.TimePicker {
-    return this.inputElement.pickatime('picker');
-  }
 
   constructor(
     @Optional() private ngControl: NgControl,
@@ -78,44 +64,12 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   }
 
   initTimepicker() {
-    // set default format/formatSubmit options
-    if (this.format) {
-      this.options.format = this.format;
-    }
-    if (this.formatSubmit) {
-      this.options.formatSubmit = this.formatSubmit
-    }
-
     this.renderer.invokeElementMethod(this.inputElement, 'pickatime', [this.options]);
 
     if (this.ngControl) {
-      // set timepicker initial value according to ngControl
-      this.picker.set('select', this.ngControlValue, { format: this.formatSubmit });
-
-      // set ngControl value according to selected date in timepicker
-      this.picker.on('set', () => {
-        // handle stop propagation
-        if (this.stopChangePropagation) {
-          this.stopChangePropagation = false;
-          return;
-        } else {
-          this.stopChangePropagation = true;
-        }
-
-        // apply options.formatSubmit to ngControl value
-        const submitValue = this.formatSubmit
-          ? this.picker.get('select', this.formatSubmit)
-          : this.picker.get('value');
-        this.ngControl.control.setValue(submitValue);
-
-        // apply options.format to input text
-        const formatValue = this.format
-          ? this.picker.get('select', this.format)
-          : this.picker.get('value');
-        this.inputElement.val(formatValue);
-
-        // set label active status
-        this.setLabelActive();
+      // set ngControl value according to selected time in timepicker
+      this.inputElement.on('change', (event: JQuery.Event<HTMLInputElement>) => {
+        this.ngControl.control.setValue(event.target.value);
       });
     }
   }
@@ -123,18 +77,6 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   initInputSubscription() {
     if (this.ngControl) {
       this.inputValueSubscription = this.ngControl.valueChanges.subscribe(() => {
-        // handle stop propagation
-        if (this.stopChangePropagation) {
-          this.stopChangePropagation = false;
-          return;
-        } else {
-          this.stopChangePropagation = true;
-        }
-
-        // set selected date in timepicker according to ngControl value
-        this.picker.set('select', this.ngControlValue, { format: this.formatSubmit });
-
-        // set label active status
         this.setLabelActive();
       });
     }
