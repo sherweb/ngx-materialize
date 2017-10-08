@@ -48,6 +48,8 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
     if (this.inputValueSubscription) {
       this.inputValueSubscription.unsubscribe();
     }
+    // remove clockpicker added to body by default
+    $('.clockpicker').remove();
   }
 
   initHandlers() {
@@ -64,6 +66,11 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   }
 
   initTimepicker() {
+    // append clockpicker to body by default
+    if (!this.options.container) {
+      this.options.container = 'body';
+    }
+
     this.renderer.invokeElementMethod(this.inputElement, 'pickatime', [this.options]);
 
     if (this.ngControl) {

@@ -8,7 +8,7 @@
         [filledIn]="true"
         [label]="'Disabled'">
     </mz-checkbox-container>
-    <mz-input-container class="col s12 m4">
+    <mz-input-container class="col s12 m3">
       <input mz-input mz-validation required
         id="input-binding"
         formControlName="input"
@@ -18,7 +18,7 @@
         [label]="'Input'"
         [placeholder]="'Enter text'">
     </mz-input-container>
-    <mz-select-container class="col s12 m4">
+    <mz-select-container class="col s12 m3">
       <select mz-select mz-validation required
         id="select-binding"
         formControlName="select"
@@ -31,7 +31,7 @@
         <option>Option 3</option>
       </select>
     </mz-select-container>
-    <mz-datepicker-container class="col s12 m4">
+     <mz-datepicker-container class="col s12 m3">
       <input mz-datepicker mz-validation required
         id="datepicker-binding"
         formControlName="datepicker"
@@ -42,6 +42,16 @@
         [options]="{ format: 'yyyy-mm-dd' }"
         [placeholder]="'Select a date'">
     </mz-datepicker-container>
+    <mz-timepicker-container class="col s12 m3">
+      <input mz-timepicker mz-validation required
+        id="timepicker-binding"
+        formControlName="timepicker"
+        type="text"
+        [errorMessageResource]="errorMessages.timepicker"
+        [formControlDisabled]="form.controls['checkbox'].value"
+        [label]="'Timepicker'"
+        [placeholder]="'Select a time'">
+    </mz-timepicker-container>
   </div>
   <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
   <button mz-button (click)="clear()" type="button">Clear</button>

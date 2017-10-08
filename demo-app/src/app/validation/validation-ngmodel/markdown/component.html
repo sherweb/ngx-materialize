@@ -9,7 +9,7 @@
         [label]="'Disabled'"
         [(ngModel)]="values.checkbox">
     </mz-checkbox-container>
-    <mz-input-container class="col s12 m4">
+    <mz-input-container class="col s12 m3">
       <input mz-input mz-validation required
         id="input-ngmodel"
         name="input"
@@ -20,7 +20,7 @@
         [placeholder]="'Enter text'"
         [(ngModel)]="values.input">
     </mz-input-container>
-    <mz-select-container class="col s12 m4">
+    <mz-select-container class="col s12 m3">
       <select mz-select mz-validation required
         id="select-ngmodel"
         name="select"
@@ -34,7 +34,7 @@
         <option value="Option 3">Option 3</option>
       </select>
     </mz-select-container>
-    <mz-datepicker-container class="col s12 m4">
+    <mz-datepicker-container class="col s12 m3">
       <input mz-datepicker mz-validation required
         id="datepicker-ngmodel"
         name="datepicker"
@@ -46,6 +46,17 @@
         [placeholder]="'Select a date'"
         [(ngModel)]="values.datepicker">
     </mz-datepicker-container>
+    <mz-timepicker-container class="col s12 m3">
+      <input mz-timepicker mz-validation required
+        id="timepicker-ngmodel"
+        name="timepicker"
+        type="text"
+        [errorMessageResource]="errorMessages.timepicker"
+        [formControlDisabled]="values.checkbox"
+        [label]="'Timepicker'"
+        [placeholder]="'Select a time'"
+        [(ngModel)]="values.timepicker">
+    </mz-timepicker-container>
   </div>
   <button mz-button [disabled]="!form.valid" type="submit">Submit</button>
   <button mz-button (click)="clear()" type="button">Clear</button>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -18,6 +18,7 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
     input: '',
     select: null,
     datepicker: '',
+    timepicker: '',
   };
 
   errorMessages = {
@@ -30,11 +31,13 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
     datepicker: {
       required: 'This field is required.',
     },
+    timepicker: {
+      required: 'This field is required.',
+    },
   };
 
   constructor(
     private formBuilder: FormBuilder,
-    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
@@ -61,6 +64,10 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
         { value: this.values.datepicker, disabled: this.values.checkbox },
         Validators.required,
       ],
+      timepicker: [
+        { value: this.values.timepicker, disabled: this.values.checkbox },
+        Validators.required,
+      ],
     });
   }
 
@@ -70,6 +77,7 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
       input: this.values.input,
       select: this.values.select,
       datepicker: this.values.datepicker,
+      timepicker: this.values.timepicker,
     });
   }
 
@@ -79,10 +87,12 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
         this.form.get('input').disable();
         this.form.get('select').disable();
         this.form.get('datepicker').disable();
+        this.form.get('timepicker').disable();
       } else {
         this.form.get('input').enable();
         this.form.get('select').enable();
         this.form.get('datepicker').enable();
+        this.form.get('timepicker').enable();
       }
     });
   }

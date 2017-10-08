@@ -30,10 +30,6 @@ describe('MzTimepickerDirective:view', () => {
       return nativeElement.querySelector('label');
     }
 
-    function timepicker(): HTMLDivElement {
-      return nativeElement.querySelector('div.picker');
-    }
-
     it('should be shown correctly when provided', async(() => {
 
       buildComponent<any>(`
@@ -49,8 +45,7 @@ describe('MzTimepickerDirective:view', () => {
         // trigger timepicker opening otherwise it does not exist in DOM
         input().click();
 
-        expect(input().nextSibling).toBe(timepicker());
-        expect(timepicker().nextSibling).toBe(label());
+        expect(input().nextSibling).toBe(label());
         expect(label().innerHTML).toBe('label-x');
       });
     }));
@@ -69,8 +64,7 @@ describe('MzTimepickerDirective:view', () => {
         // trigger timepicker opening otherwise it does not exist in DOM
         input().click();
 
-        expect(input().nextSibling).toBe(timepicker());
-        expect(timepicker().nextSibling).toBe(label());
+        expect(input().nextSibling).toBe(label());
         expect(label().innerHTML).toBe('');
       });
     }));
@@ -203,7 +197,11 @@ describe('MzTimepickerDirective:view', () => {
       return nativeElement.querySelector('input');
     }
 
-    it('should be initialized with options correctly', fakeAsync(() => {
+    function clockpicker(): HTMLElement {
+      return <HTMLElement>document.querySelector('.clockpicker');
+    }
+
+    it('should be initialized with options correctly', async(() => {
 
       const options = {
         efault: 'now',
@@ -214,6 +212,7 @@ describe('MzTimepickerDirective:view', () => {
         canceltext: 'Cancel',
         autoclose: true,
         ampmclickable: true,
+        container: '.container',
       };
 
       spyOn($.fn, 'pickatime');
@@ -230,9 +229,57 @@ describe('MzTimepickerDirective:view', () => {
         component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
-        tick();
 
         expect($.fn.pickatime).toHaveBeenCalledWith(options);
+      });
+    }));
+
+    it('should append and remove clockpicker to body when options.container is not provided', async(() => {
+
+      buildComponent<any>(`
+        <mz-timepicker-container>
+          <input mz-timepicker
+            id="timepicker">
+        </mz-timepicker-container>
+      `).then((fixture) => {
+        component = fixture.componentInstance;
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        // trigger timepicker opening otherwise it does not exist in DOM
+        input().click();
+
+        expect(clockpicker().parentNode).toBe(document.body);
+
+        // force component to be destroyed
+        fixture.destroy();
+
+        expect(clockpicker()).toBeFalsy();
+      });
+    }));
+
+    it('should append clockpicker to options.container when provided', async(() => {
+
+      buildComponent<any>(`
+        <div class="container"></div>
+        <mz-timepicker-container>
+          <input mz-timepicker
+            id="timepicker"
+            [options]="options">
+        </mz-timepicker-container>
+      `, {
+        options: { container: '.container' },
+      }).then((fixture) => {
+        component = fixture.componentInstance;
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        // trigger timepicker opening otherwise it does not exist in DOM
+        input().click();
+
+        const containerElement = nativeElement.querySelector('.container > .clockpicker');
+
+        expect(clockpicker()).toBe(containerElement);
       });
     }));
 
@@ -280,7 +327,7 @@ describe('MzTimepickerDirective:view', () => {
       });
     }));
 
-    it('should set ngControl value correctly when input value changes', fakeAsync(() => {
+    it('should set ngControl value correctly when input value changes', async(() => {
 
       buildComponent<any>(`
         <mz-timepicker-container>
@@ -292,13 +339,11 @@ describe('MzTimepickerDirective:view', () => {
         component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
-        tick();
 
         expect(input().value).toBe('');
 
         $(input()).val('05:45PM')
         $(input()).change();
-        tick();
 
         expect(input().value).toBe('05:45PM');
         expect(component.time).toBe('05:45PM');
