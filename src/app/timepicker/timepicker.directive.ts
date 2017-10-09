@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -22,16 +22,20 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   // https://github.com/weareoutman/clockpicker#options
   @Input() options: any = {};
 
-  inputElement: JQuery;
-  inputContainerElement: JQuery;
-  inputValueSubscription: Subscription;
-  labelElement: JQuery;
+  inputElement: JQuery<HTMLInputElement>;
+  inputContainerElement: JQuery<HTMLElement>;
+  labelElement: JQuery<HTMLLabelElement>;
   stopChangePropagation = false;
+
+  get clockpicker(): JQuery<HTMLElement> {
+    return $('.clockpicker');
+  }
 
   constructor(
     @Optional() private ngControl: NgControl,
     private elementRef: ElementRef,
     private renderer: Renderer,
+    private zone: NgZone,
   ) {
     super();
   }
@@ -40,16 +44,14 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
     this.initHandlers();
     this.initElements();
     this.initTimepicker();
-    this.initInputSubscription();
     this.handleProperties();
   }
 
   ngOnDestroy() {
-    if (this.inputValueSubscription) {
-      this.inputValueSubscription.unsubscribe();
-    }
+    // remove event handlers
+    this.inputElement.off();
     // remove clockpicker added to body by default
-    $('.clockpicker').remove();
+    this.clockpicker.remove();
   }
 
   initHandlers() {
@@ -60,9 +62,9 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
   }
 
   initElements() {
-    this.inputContainerElement = $(this.elementRef.nativeElement).parent('.input-field');
-    this.inputElement = $(this.elementRef.nativeElement);
-    this.labelElement = this.createLabelElement();
+    this.inputContainerElement = $(this.elementRef.nativeElement).parent('.input-field') as JQuery<HTMLElement>;
+    this.inputElement = $(this.elementRef.nativeElement) as JQuery<HTMLInputElement>;
+    this.labelElement = this.createLabelElement() as JQuery<HTMLLabelElement>;
   }
 
   initTimepicker() {
@@ -71,20 +73,21 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
       this.options.container = 'body';
     }
 
+    // extend afterHide callback to set label active
+    const afterHide = this.options && this.options.afterHide || (() => {});
+    this.options = Object.assign({}, this.options, {
+      afterHide: () => {
+        afterHide();
+        this.setLabelActive();
+      },
+    });
+
     this.renderer.invokeElementMethod(this.inputElement, 'pickatime', [this.options]);
 
     if (this.ngControl) {
       // set ngControl value according to selected time in timepicker
       this.inputElement.on('change', (event: JQuery.Event<HTMLInputElement>) => {
         this.ngControl.control.setValue(event.target.value);
-      });
-    }
-  }
-
-  initInputSubscription() {
-    if (this.ngControl) {
-      this.inputValueSubscription = this.ngControl.valueChanges.subscribe(() => {
-        this.setLabelActive();
       });
     }
   }
@@ -120,18 +123,23 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
     // issue : https://github.com/angular/angular/issues/15299
     // workaround : https://stackoverflow.com/a/44967245/5583283
     if (this.ngControl) {
-      setTimeout(() => this.ngControl.control.markAsPristine());
+      this.zone.runOutsideAngular(() => {
+        setTimeout(() => this.ngControl.control.markAsPristine());
+      });
     }
 
     this.setLabelActive();
   }
 
   setLabelActive() {
-    // need setTimeout otherwise it wont make label float in some circonstances (forcing validation for example)
-    setTimeout(() => {
-      const inputValue = (<HTMLInputElement>this.inputElement[0]).value;
-      const isActive = !!this.placeholder || !!inputValue;
-      this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
-    });
+    // need wait for zone to be stable otherwise it wont make label
+    // float in some circonstances (clearing value programmatically for example)
+    this.zone.onStable
+      .first()
+      .subscribe(() => {
+        const inputValue = this.inputElement[0].value;
+        const isActive = !!this.placeholder || !!inputValue;
+        this.renderer.setElementClass(this.labelElement[0], 'active', isActive);
+      });
   }
 }

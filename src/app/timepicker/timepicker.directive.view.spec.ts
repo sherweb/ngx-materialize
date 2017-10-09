@@ -1,5 +1,6 @@
 import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzTimepickerContainerComponent, MzTimepickerDirective } from './';
@@ -204,7 +205,7 @@ describe('MzTimepickerDirective:view', () => {
     it('should be initialized with options correctly', async(() => {
 
       const options = {
-        efault: 'now',
+        default: 'now',
         fromnow: 0,
         twelvehour: true,
         donetext: 'OK',
@@ -230,7 +231,42 @@ describe('MzTimepickerDirective:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect($.fn.pickatime).toHaveBeenCalledWith(options);
+        expect($.fn.pickatime).toHaveBeenCalledWith(Object.assign({}, options, { afterHide: jasmine.any(Function) }));
+      });
+    }));
+
+    it('should set label active through afterHide callback', async(() => {
+
+      const options = {
+        afterHide: () => console.log('after-hide-callback'),
+      };
+
+      buildComponent<any>(`
+        <mz-timepicker-container>
+          <input mz-timepicker
+            id="timepicker"
+            [(options)]="options">
+        </mz-timepicker-container>
+      `, {
+        options: options,
+      }).then((fixture) => {
+        component = fixture.componentInstance;
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        const directive = fixture
+          .debugElement
+          .query(By.directive(MzTimepickerDirective))
+          .injector
+          .get(MzTimepickerDirective);
+
+        spyOn(console, 'log');
+        spyOn(directive, 'setLabelActive');
+
+        directive.options.afterHide();
+
+        expect(console.log).toHaveBeenCalledWith('after-hide-callback');
+        expect(directive.setLabelActive).toHaveBeenCalled();
       });
     }));
 
