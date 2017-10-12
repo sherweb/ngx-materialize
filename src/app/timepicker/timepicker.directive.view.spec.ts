@@ -33,7 +33,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should be shown correctly when provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -53,7 +53,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should be empty when omitted', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker">
@@ -80,7 +80,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should be shown correctly when provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -96,7 +96,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should not be shown correctly when omitted', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker">
@@ -119,7 +119,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should be disabled correctly when disabled attribute is provided or true', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -132,7 +132,7 @@ describe('MzTimepickerDirective:view', () => {
         expect(input().disabled).toBeTruthy();
       });
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -146,9 +146,9 @@ describe('MzTimepickerDirective:view', () => {
       });
     }));
 
-    it('should be disabled correctly when disabled attribute is not provided or false', async(() => {
+    it('should not be disabled when disabled attribute is not provided or false', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker id="timepicker">
         </mz-timepicker-container>
@@ -159,7 +159,7 @@ describe('MzTimepickerDirective:view', () => {
         expect(input().disabled).toBeFalsy();
       });
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -177,7 +177,7 @@ describe('MzTimepickerDirective:view', () => {
 
       spyOn(console, 'error');
 
-      buildComponent<any>(`
+      buildComponent(`
         <input mz-timepicker id="timepicker">
       `).then((fixture) => {
         nativeElement = fixture.nativeElement;
@@ -218,7 +218,7 @@ describe('MzTimepickerDirective:view', () => {
 
       spyOn($.fn, 'pickatime');
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -241,7 +241,7 @@ describe('MzTimepickerDirective:view', () => {
         afterHide: () => console.log('after-hide-callback'),
       };
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -272,7 +272,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should append and remove clockpicker to body when options.container is not provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker">
@@ -296,7 +296,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should append clockpicker to options.container when provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <div class="container"></div>
         <mz-timepicker-container>
           <input mz-timepicker
@@ -321,7 +321,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should set input value correctly when initialized', fakeAsync(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -341,7 +341,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should set input value correctly when ngControl value changes', fakeAsync(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"
@@ -365,7 +365,7 @@ describe('MzTimepickerDirective:view', () => {
 
     it('should set ngControl value correctly when input value changes', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-timepicker-container>
           <input mz-timepicker
             id="timepicker"

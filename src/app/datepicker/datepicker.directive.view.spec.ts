@@ -36,7 +36,7 @@ describe('MzDatepickerDirective:view', () => {
 
     it('should be shown correctly when provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker"
@@ -54,7 +54,7 @@ describe('MzDatepickerDirective:view', () => {
 
     it('should be empty when omitted', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker">
@@ -79,7 +79,7 @@ describe('MzDatepickerDirective:view', () => {
 
     it('should be shown correctly when provided', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker"
@@ -95,7 +95,7 @@ describe('MzDatepickerDirective:view', () => {
 
     it('should not be shown correctly when omitted', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker">
@@ -118,7 +118,7 @@ describe('MzDatepickerDirective:view', () => {
 
     it('should be disabled correctly when disabled attribute is provided or true', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker"
@@ -131,7 +131,7 @@ describe('MzDatepickerDirective:view', () => {
         expect(input().disabled).toBeTruthy();
       });
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker"
@@ -145,9 +145,9 @@ describe('MzDatepickerDirective:view', () => {
       });
     }));
 
-    it('should be disabled correctly when disabled attribute is not provided or false', async(() => {
+    it('should not be disabled when disabled attribute is not provided or false', async(() => {
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker id="datepicker">
         </mz-datepicker-container>
@@ -158,7 +158,7 @@ describe('MzDatepickerDirective:view', () => {
         expect(input().disabled).toBeFalsy();
       });
 
-      buildComponent<any>(`
+      buildComponent(`
         <mz-datepicker-container>
           <input mz-datepicker
             id="datepicker"
@@ -176,7 +176,7 @@ describe('MzDatepickerDirective:view', () => {
 
       spyOn(console, 'error');
 
-      buildComponent<any>(`
+      buildComponent(`
         <input mz-datepicker id="datepicker">
       `).then((fixture) => {
         nativeElement = fixture.nativeElement;
@@ -205,7 +205,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when format and formatSubmit are not provided (default format: d mmmm, yyyy)', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -229,7 +229,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when format is provided', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -255,7 +255,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when formatSubmit is provided', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -284,7 +284,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when format and formatSubmit are not provided (default format: d mmmm, yyyy)', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -308,7 +308,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when format is provided', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -334,7 +334,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when formatSubmit is provided', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -360,7 +360,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when format and formatSubmit are provided', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -392,7 +392,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when ngControl is set with a value', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -429,7 +429,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('when ngControl is set with null value', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
@@ -473,7 +473,7 @@ describe('MzDatepickerDirective:view', () => {
 
       it('should extends onClose function correctly', fakeAsync(() => {
 
-        buildComponent<any>(`
+        buildComponent(`
           <mz-datepicker-container>
             <input mz-datepicker
               id="datepicker"
