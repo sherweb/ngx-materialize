@@ -25,6 +25,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SwitchComponent } from './switch/switch.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ToastComponent } from './toast/toast.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { ValidationComponent } from './validation/validation.component';
@@ -53,8 +54,9 @@ export const ROUTES: Routes = [
   { path: 'input', component: InputComponent, data: { icon: 'textbox', text: 'Input', section: formControls } },
   { path: 'radio-button', component: RadioButtonComponent, data: { icon: 'radiobox-marked', text: 'Radio button', section: formControls } },
   { path: 'select', component: SelectComponent, data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },
-  { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
   { path: 'switch', component: SwitchComponent, data: { icon: 'toggle-switch', text: 'Switch', section: formControls } },
+  { path: 'textarea', component: TextareaComponent, data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
+  { path: 'timepicker', component: TimepickerComponent, data: { icon: 'clock', text: 'Timepicker', section: formControls } },
 
   // components routes - Layout
   { path: 'card', component: CardComponent, data: { icon: 'cards-outline', text: 'Card', section: layout } },

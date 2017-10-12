@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -20,6 +20,9 @@ export class ValidationBindingComponent implements OnInit {
     datepicker: {
       required: 'This field is required.',
     },
+    timepicker: {
+      required: 'This field is required.',
+    },
   };
 
   values = {
@@ -27,11 +30,11 @@ export class ValidationBindingComponent implements OnInit {
     input: '',
     select: null,
     datepicker: '',
+    timepicker: '',
   };
 
   constructor(
     private formBuilder: FormBuilder,
-    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class ValidationBindingComponent implements OnInit {
       input: [this.values.input, Validators.required],
       select: [this.values.select, Validators.required],
       datepicker: [this.values.datepicker, Validators.required],
+      timepicker: [this.values.timepicker, Validators.required],
     });
   }
 
@@ -53,6 +57,7 @@ export class ValidationBindingComponent implements OnInit {
       input: this.values.input,
       select: this.values.select,
       datepicker: this.values.datepicker,
+      timepicker: this.values.timepicker,
     });
   }
 

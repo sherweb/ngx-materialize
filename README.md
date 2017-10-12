@@ -183,6 +183,7 @@ export class HomeModule { }
 * Spinner
 * Switch
 * Textarea
+* Timepicker
 * Toast
 * Tooltip
 

@@ -17,6 +17,7 @@ export class ValidationNgmodelComponent implements OnInit {
     input: '',
     select: null,
     datepicker: '',
+    timepicker: '',
   };
 
   errorMessages = {
@@ -27,6 +28,9 @@ export class ValidationNgmodelComponent implements OnInit {
       required: 'This field is required.',
     },
     datepicker: {
+      required: 'This field is required.',
+    },
+    timepicker: {
       required: 'This field is required.',
     },
   };
@@ -47,6 +51,7 @@ export class ValidationNgmodelComponent implements OnInit {
       input: '',
       select: null,
       datepicker: '',
+      timepicker: '',
     };
   }
 

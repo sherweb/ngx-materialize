@@ -25,6 +25,7 @@ import * as Sidenav from './sidenav';
 import * as Spinner from './spinner';
 import * as Switch from './switch';
 import * as Textarea from './textarea';
+import * as Timepicker from './timepicker';
 import * as Toast from './toast';
 import * as Tooltip from './tooltip';
 import * as Validation from './validation';
@@ -86,6 +87,8 @@ const MZ_COMPONENTS = [
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,
+  Timepicker.MzTimepickerContainerComponent,
+  Timepicker.MzTimepickerDirective,
   Tooltip.MzTooltipDirective,
   Validation.MzErrorMessageComponent,
   Validation.MzValidationComponent,

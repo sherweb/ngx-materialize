@@ -34,6 +34,7 @@ import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 import { SwitchModule } from './switch/switch.module';
 import { TextareaModule } from './textarea/textarea.module';
+import { TimepickerModule } from './timepicker/timepicker.module';
 import { ToastModule } from './toast/toast.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { ValidationModule } from './validation/validation.module';
@@ -75,6 +76,7 @@ import { ValidationModule } from './validation/validation.module';
     SpinnerModule,
     SwitchModule,
     TextareaModule,
+    TimepickerModule,
     ToastModule,
     TooltipModule,
     ValidationModule,
