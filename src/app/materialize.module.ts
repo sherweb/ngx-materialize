@@ -24,6 +24,7 @@ import * as Shared from './shared';
 import * as Sidenav from './sidenav';
 import * as Spinner from './spinner';
 import * as Switch from './switch';
+import * as Tab from './tab';
 import * as Textarea from './textarea';
 import * as Timepicker from './timepicker';
 import * as Toast from './toast';
@@ -84,6 +85,8 @@ const MZ_COMPONENTS = [
   Spinner.MzSpinnerComponent,
   Switch.MzSwitchContainerComponent,
   Switch.MzSwitchDirective,
+  Tab.MzTabComponent,
+  Tab.MzTabItemComponent,
   Textarea.MzTextareaDirective,
   Textarea.MzTextareaPrefixDirective,
   Textarea.MzTextareaContainerComponent,

@@ -1,0 +1,13 @@
+<ul #tabs
+  class="tabs"
+  [class.tabs-fixed-width]="fixedTabWidth">
+  <li class="tab" [class.disabled]="tabItem.disabled" *ngFor="let tabItem of tabItems.toArray()">
+    <a [class.active]="tabItem.active"
+      href="{{ tabItem.href ? tabItem.href : '#' + tabItem.link }}" target="{{ tabItem.target }}">
+      {{ tabItem.label }}
+    </a>
+  </li>
+</ul>
+<div>
+  <ng-content select="mz-tab-item"></ng-content>
+</div>

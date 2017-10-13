@@ -182,6 +182,7 @@ export class HomeModule { }
 * Sidenav
 * Spinner
 * Switch
+* Tab
 * Textarea
 * Timepicker
 * Toast
