@@ -26,28 +26,21 @@ export class MzTabComponent implements AfterViewInit {
   @ViewChild('tabs') tabs: ElementRef;
   @ContentChildren(MzTabItemComponent) tabItems: QueryList<MzTabItemComponent>;
 
-  constructor(
-    public ngZone: NgZone,
-  ) { }
-
   ngAfterViewInit(): void {
     this.initTabs();
   }
 
   initTabs() {
-     const options: Materialize.TabOptions = {
+    const options: Materialize.TabOptions = {
       onShow: this.onShow,
       responsiveThreshold: this.responsiveThreshold,
       swipeable: this.swipeable,
-  }
+    }
 
-    // need setTimeout otherwise loading directly on the page cause an error
-   this.ngZone.onStable.first().subscribe(() => {
-     $(this.tabs.nativeElement).tabs(options);
-   });
+    $(this.tabs.nativeElement).tabs(options);
   }
 
   selectTab(tabItemId: string) {
-    this.ngZone.onStable.first().subscribe(() => $(this.tabs.nativeElement).tabs('select_tab', tabItemId));
+    $(this.tabs.nativeElement).tabs('select_tab', tabItemId);
   }
 }
