@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,6 +17,8 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
+    timepicker: '',
   };
 
   errorMessages = {
@@ -26,11 +28,16 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
     select: {
       required: 'This field is required.',
     },
+    datepicker: {
+      required: 'This field is required.',
+    },
+    timepicker: {
+      required: 'This field is required.',
+    },
   };
 
   constructor(
     private formBuilder: FormBuilder,
-    private renderer: Renderer,
   ) { }
 
   ngOnInit() {
@@ -53,14 +60,25 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
         { value: this.values.select, disabled: this.values.checkbox },
         Validators.required,
       ],
+      datepicker: [
+        { value: this.values.datepicker, disabled: this.values.checkbox },
+        Validators.required,
+      ],
+      timepicker: [
+        { value: this.values.timepicker, disabled: this.values.checkbox },
+        Validators.required,
+      ],
     });
   }
 
   clear() {
-    this.form.reset();
-    this.form.get('checkbox').setValue(this.values.checkbox);
-    this.form.get('input').setValue(this.values.input);
-    this.form.get('select').setValue(this.values.select);
+    this.form.reset({
+      checkbox: this.values.checkbox,
+      input: this.values.input,
+      select: this.values.select,
+      datepicker: this.values.datepicker,
+      timepicker: this.values.timepicker,
+    });
   }
 
   initCheckboxSubscription() {
@@ -68,9 +86,13 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
       if (checked) {
         this.form.get('input').disable();
         this.form.get('select').disable();
+        this.form.get('datepicker').disable();
+        this.form.get('timepicker').disable();
       } else {
         this.form.get('input').enable();
         this.form.get('select').enable();
+        this.form.get('datepicker').enable();
+        this.form.get('timepicker').enable();
       }
     });
   }

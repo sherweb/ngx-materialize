@@ -168,6 +168,7 @@ export class HomeModule { }
 * Checkbox
 * Collapsible
 * Collection
+* Datepicker
 * Dropdown
 * Form validation
 * Icon
@@ -180,7 +181,10 @@ export class HomeModule { }
 * Select
 * Sidenav
 * Spinner
+* Switch
+* Tab
 * Textarea
+* Timepicker
 * Toast
 * Tooltip
 

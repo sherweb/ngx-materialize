@@ -18,6 +18,15 @@
           [errorMessageResource]="errorMessageResources.lastName"
           [label]="'Last Name'" />
       </mz-input-container>
+      <mz-datepicker-container class="col s12 m6">
+        <input mz-datepicker mz-validation required
+          id="datepicker-birthdate"
+          formControlName="birthDate"
+          type="text"
+          [errorMessageResource]="errorMessageResources.birthDate"
+          [options]="{ formatSubmit: 'yyyy-mm-dd' }"
+          [label]="'Birth Date'" />
+      </mz-datepicker-container>
     </div>
   </div>
 
@@ -60,7 +69,16 @@
           [filledIn]="true"
           [label]="'Has job?'">
       </mz-checkbox-container>
-      <mz-input-container class="col s10">
+      <mz-input-container class="col s5">
+        <input mz-input mz-validation required
+          id="input-company-name"
+          formControlName="companyName"
+          type="text"
+          [errorMessageResource]="errorMessageResources.companyName"
+          [formControlDisabled]="!userForm.controls['hasJob'].value"
+          [label]="'Company name'" />
+      </mz-input-container>
+      <mz-input-container class="col s5">
         <input mz-input mz-validation required
           id="input-job-title"
           formControlName="jobTitle"
@@ -153,7 +171,7 @@
       </mz-textarea-container>
     </div>
     <div class="row">
-      <mz-input-container class="col s12 m4">
+      <mz-input-container class="col s12 m5">
         <input mz-input
           id="input-city"
           formControlName="city"
@@ -161,7 +179,7 @@
           [label]="'City'"
           [length]="10" />
       </mz-input-container>
-      <mz-select-container class="col s12 m4">
+      <mz-select-container class="col s12 m5">
         <select mz-select mz-validation required
           id="select-province"
           formControlName="province"
@@ -208,10 +226,10 @@
 
   <div class="section">
     <div class="row">
-      <h6 class="col s12">Aditionnal information</h6>
+      <h6 class="col s12">Additionnal information</h6>
     </div>
     <div class="row">
-      <mz-select-container class="col s12 m4">
+      <mz-select-container class="col s12 m6">
         <select mz-select multiple mz-validation required
           id="select-hear-about-us"
           formControlName="hearAboutUs"

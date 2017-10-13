@@ -10,11 +10,14 @@ export class ValidationNgmodelComponent {
   @ViewChild('form') form: FormGroup;
 
   submitted = false;
+  submittedValues: any;
 
   values = {
     checkbox: false,
     input: '',
     select: null,
+    datepicker: '',
+    timepicker: '',
   };
 
   errorMessages = {
@@ -22,6 +25,12 @@ export class ValidationNgmodelComponent {
       required: 'This field is required.',
     },
     select: {
+      required: 'This field is required.',
+    },
+    datepicker: {
+      required: 'This field is required.',
+    },
+    timepicker: {
       required: 'This field is required.',
     },
   };
@@ -33,10 +42,13 @@ export class ValidationNgmodelComponent {
       checkbox: false,
       input: '',
       select: null,
+      datepicker: '',
+      timepicker: '',
     };
   }
 
   onSubmit() {
     this.submitted = true;
+    this.submittedValues = this.form.value;
   }
 }
