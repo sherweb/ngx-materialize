@@ -16,10 +16,13 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() backgroundClass: string;
   @Input() closeOnClick: boolean;
   @Input() collapseButtonId: string;
+  @Input() draggable: boolean;
   @Input() edge: string;
   @Input() fixed: boolean;
   @Input() id: string;
   @Input() width: number;
+  @Input() onClose: Function;
+  @Input() onOpen: Function;
 
   constructor(private renderer: Renderer) { }
 
@@ -48,10 +51,13 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
     this.renderer.setElementAttribute(collapseButton, 'data-activates', this.id);
 
     // Initialize collapsible button for side navigation
-    $(collapseButton).sideNav({
+    $(collapseButton).sideNav(<any>{
       closeOnClick: this.closeOnClick || false,
+      draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
       menuWidth: isNaN(this.width) ? 300 : this.width,
+      onClose: this.onClose || false,
+      onOpen: this.onOpen || false,
     });
   }
 
