@@ -157,8 +157,11 @@ describe('MzSidenavComponent:unit', () => {
 
         expect($.fn.sideNav).toHaveBeenCalledWith({
           closeOnClick: false,
+          draggable: true,
           edge: 'left',
           menuWidth: 300,
+          onClose: false,
+          onOpen: false,
         });
       });
 
@@ -167,14 +170,20 @@ describe('MzSidenavComponent:unit', () => {
         spyOn($.fn, 'sideNav');
 
         component.closeOnClick = true;
+        component.draggable = false;
         component.edge = 'right';
         component.width = 240;
+        component.onClose = () => console.log('onClose');
+        component.onOpen = () => console.log('onOpen');
         component.initCollapseButton();
 
         expect($.fn.sideNav).toHaveBeenCalledWith({
           closeOnClick: component.closeOnClick,
+          draggable: false,
           edge: component.edge,
           menuWidth: component.width,
+          onClose: component.onClose,
+          onOpen: component.onOpen,
         });
       });
     });
