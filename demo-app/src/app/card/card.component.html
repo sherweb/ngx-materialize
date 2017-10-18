@@ -4,21 +4,22 @@
 
 <div class="row">
 
-  <mz-card class="col s12 m8 l6">
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
 
-    <mz-card-title>
-      Card Title
-    </mz-card-title>
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
 
-    <mz-card-content>
-      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-    </mz-card-content>
-
-    <mz-card-action>
-      <a href="javascript:void(0)">This is a link</a>
-      <a href="javascript:void(0)">This is a link</a>
-    </mz-card-action>
-  </mz-card>
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
 
   <p class="col s12 m4 l6">
     Simple basic card combining title, content and actions.
@@ -29,16 +30,17 @@
 
 <div class="row">
 
-  <mz-card class="col s12 m8 l6">
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
 
-    <mz-card-title>
-      Card Title
-    </mz-card-title>
-
-    <mz-card-content>
-      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-    </mz-card-content>
-  </mz-card>
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+    </mz-card>
+  </div>
 
   <p class="col s12 m4 l6">
     Action bar won't be displayed if <code class="language-markup">mz-card-action</code> tag is not present or if it does not contain any action.
@@ -49,14 +51,13 @@
 
 <div class="row">
 
-  <mz-card
-    class="col s12 m8 l6"
-    [backgroundClass]="'amber lighten-1'">
-
-    <mz-card-content>
-      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-    </mz-card-content>
-  </mz-card>
+  <div class="col s12 m8 l6">
+    <mz-card class="amber lighten-1">
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+    </mz-card>
+  </div>
 
   <p class="col s12 m4 l6">
     Title will also be hidden if <code class="language-markup">mz-card-title</code> tag is not present. This could be usefull to alert the user when combined with appropriate color.
@@ -67,28 +68,25 @@
 
 <div class="row">
 
-  <mz-card
-    class="col s12 m8 l6"
-    [backgroundClass]="'color-hoverable'"
-    [textClass]="'white-text'"
-    [hoverable]="true">
+  <div class="col s12 m8 l6">
+    <mz-card class="color-hoverable white-text" [hoverable]="true">
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
 
-    <mz-card-title>
-      Card Title
-    </mz-card-title>
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
 
-    <mz-card-content>
-      I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-    </mz-card-content>
-
-    <mz-card-action>
-      <a href="javascript:void(0)">This is a link</a>
-      <a href="javascript:void(0)">This is a link</a>
-    </mz-card-action>
-  </mz-card>
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
 
   <p class="col s12 m4 l6">
-    Optionally, colors can be customized using <code class="language-markup">backgroundClass</code> and/or <code class="language-markup">textClass</code> input properties but are <u>not required</u>.<br>
+    Optionally, colors can be customized using <code class="language-markup">class</code> property.<br>
     <br>
     An animation for box-shadow can also be added using <code class="language-markup">hoverable</code> input properties. Roll your cursor over and out of the card to see the animation.
   </p>
@@ -100,8 +98,7 @@
 
 <app-code-snippet>
 &lt;mz-card
-  [backgroundClass]="'blue-grey darken-1'"
-  [textClass]="'white-text'"
+  class="blue-grey darken-1 white-text"
   [hoverable]="true">
   &lt;mz-card-title>
     Card Title
