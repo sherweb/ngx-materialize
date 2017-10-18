@@ -22,6 +22,7 @@
   // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the file.exclude setting.
   "search.exclude": {
     "**/.tmp": true,
+    "**/coverage": true,
     "**/dist": true,
     "**/inline-template": true
   },

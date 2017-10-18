@@ -25,34 +25,31 @@ describe('MzCardComponent:view', () => {
       return nativeElement.querySelector('.card');
     }
 
-    it('should apply backgroundClass css class when provided', async(() => {
+    function mzCard(): HTMLElement {
+      return nativeElement.querySelector('mz-card');
+    }
 
-      buildComponent<MzCardComponent>(`<mz-card [backgroundClass]="'class-x'"></mz-card>`).then((fixture) => {
+    it('should apply css class on mz-card when provided', async(() => {
 
-        nativeElement = fixture.nativeElement;
-        fixture.autoDetectChanges();
-
-        expect(card().classList).toContain('class-x');
-      });
-    }));
-
-    it('should not apply backgroundClass css class when not provided', async(() => {
-
-      buildComponent<MzCardComponent>(`<mz-card></mz-card>`).then((fixture) => {
+      buildComponent<MzCardComponent>(`
+        <mz-card class="class-x"></mz-card>
+      `).then((fixture) => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(component.backgroundClass).toBeUndefined();
-        expect(card().classList.length).toBe(1);
-        expect(card().classList).toContain('card');
+        expect(mzCard().classList.length).toBe(2);
+        expect(mzCard().classList).toContain('card');
+        expect(mzCard().classList).toContain('class-x');
       });
     }));
 
     it('should set hoverable css class when hoverable is true', async(() => {
 
-      buildComponent<MzCardComponent>(`<mz-card [hoverable]="true"></mz-card>`).then((fixture) => {
+      buildComponent<MzCardComponent>(`
+        <mz-card [hoverable]="true"></mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
@@ -63,7 +60,9 @@ describe('MzCardComponent:view', () => {
 
     it('should not set hoverable css class when hoverable is false', async(() => {
 
-      buildComponent<MzCardComponent>(`<mz-card>[hoverable]="false"></mz-card>`).then((fixture) => {
+      buildComponent<MzCardComponent>(`
+        <mz-card [hoverable]="false"></mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
@@ -74,7 +73,9 @@ describe('MzCardComponent:view', () => {
 
     it('should not set hoverable css class when hoverable is not provided', async(() => {
 
-      buildComponent<MzCardComponent>(`<mz-card></mz-card>`).then((fixture) => {
+      buildComponent<MzCardComponent>(`
+        <mz-card></mz-card>
+      `).then((fixture) => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
@@ -155,29 +156,26 @@ describe('MzCardComponent:view', () => {
       return nativeElement.querySelector('.card-content');
     }
 
-    it('should apply textClass css class when provided', async(() => {
+    function mzCardContent(): HTMLElement {
+      return nativeElement.querySelector('mz-card-content');
+    }
+
+    it('should apply css class on mz-card-content when provided', async(() => {
 
       buildComponent<MzCardComponent>(`
-        <mz-card [textClass]="'class-x'"></mz-card>`).then((fixture) => {
-
-        nativeElement = fixture.nativeElement;
-        fixture.autoDetectChanges();
-
-        expect(cardContent().classList).toContain('class-x');
-      });
-    }));
-
-    it('should not apply textClass css class when not provided', async(() => {
-
-      buildComponent<MzCardComponent>(`<mz-card></mz-card>`).then((fixture) => {
+        <mz-card>
+          <mz-card-content class="class-x">
+            content-x
+          </mz-card-content>
+        </mz-card>
+      `).then((fixture) => {
 
         const component = fixture.componentInstance;
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(component.textClass).toBeUndefined();
-        expect(cardContent().classList.length).toBe(1);
-        expect(cardContent().classList).toContain('card-content');
+        expect(mzCardContent().classList.length).toBe(1);
+        expect(mzCardContent().classList).toContain('class-x');
       });
     }));
 
@@ -188,7 +186,8 @@ describe('MzCardComponent:view', () => {
           <mz-card-content>
             content-x
           </mz-card-content>
-        </mz-card>`).then((fixture) => {
+        </mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
@@ -202,11 +201,11 @@ describe('MzCardComponent:view', () => {
 
     let nativeElement: any;
 
-    function cardActionWrapper(): HTMLElement {
+    function cardAction(): HTMLElement {
       return nativeElement.querySelector('.card-action');
     }
 
-    function cardAction(): HTMLElement {
+    function mzCardAction(): HTMLElement {
       return nativeElement.querySelector('mz-card-action');
     }
 
@@ -217,23 +216,26 @@ describe('MzCardComponent:view', () => {
           <mz-card-action>
             action-x
           </mz-card-action>
-        </mz-card>`).then((fixture) => {
+        </mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(cardActionWrapper().classList).toContain('card-action');
+        expect(cardAction().classList).toContain('card-action');
       });
     }));
 
     it('should not display when mz-card-action tag is not present', async(() => {
 
-      buildComponent<MzCardComponent>(`<mz-card></mz-card>`).then((fixture) => {
+      buildComponent<MzCardComponent>(`
+        <mz-card></mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(cardActionWrapper()).toBeFalsy();
+        expect(cardAction()).toBeFalsy();
       });
     }));
 
@@ -242,12 +244,32 @@ describe('MzCardComponent:view', () => {
       buildComponent<MzCardComponent>(`
         <mz-card>
           <mz-card-action></mz-card-action>
-        </mz-card>`).then((fixture) => {
+        </mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(cardActionWrapper()).toBeFalsy();
+        expect(cardAction()).toBeFalsy();
+      });
+    }));
+
+    it('should apply css class on mz-card-action when provided', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-action class="class-x">
+            action-x
+          </mz-card-action>
+        </mz-card>
+      `).then((fixture) => {
+
+        const component = fixture.componentInstance;
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(mzCardAction().classList.length).toBe(1);
+        expect(mzCardAction().classList).toContain('class-x');
       });
     }));
 
@@ -258,12 +280,13 @@ describe('MzCardComponent:view', () => {
           <mz-card-action>
             action-x
           </mz-card-action>
-        </mz-card>`).then((fixture) => {
+        </mz-card>
+      `).then((fixture) => {
 
         nativeElement = fixture.nativeElement;
         fixture.autoDetectChanges();
 
-        expect(cardAction().innerText.trim()).toBe('action-x');
+        expect(mzCardAction().innerText.trim()).toBe('action-x');
       });
     }));
   });

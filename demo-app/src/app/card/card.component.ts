@@ -12,21 +12,11 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
 })
 export class CardComponent {
   properties: IPropertyRow[] = [
-    { name: 'backgroundClass',
-      mandatory: false,
-      type: 'string',
-      description: `Background css class to be applied on the card`,
-    },
     { name: 'hoverable',
       mandatory: false,
       type: 'boolean',
       description: `Box-shadow css animnation on card rollover`,
       defaultValue: `false`,
-    },
-    { name: 'textClass',
-      mandatory: false,
-      type: 'string',
-      description: `Text css class to be applied on the card`,
     },
   ];
 }

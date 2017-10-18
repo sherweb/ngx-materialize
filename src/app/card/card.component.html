@@ -1,19 +1,14 @@
-<div
-  class="card {{ backgroundClass }}"
-  [class.hoverable]="hoverable">
+<div class="card-content">
 
-  <div class="card-content {{ textClass }}">
-
-    <div #cardTitle class="card-title" *ngIf="hasCardTitle">
-      <ng-content select="mz-card-title"></ng-content>
-    </div>
-
-    <p>
-      <ng-content select="mz-card-content"></ng-content>
-    </p>
+  <div #cardTitle class="card-title" *ngIf="hasCardTitle">
+    <ng-content select="mz-card-title"></ng-content>
   </div>
 
-  <div #cardAction class="card-action" *ngIf="hasCardAction">
-    <ng-content select="mz-card-action"></ng-content>
-  </div>
+  <p>
+    <ng-content select="mz-card-content"></ng-content>
+  </p>
+</div>
+
+<div #cardAction class="card-action" *ngIf="hasCardAction">
+  <ng-content select="mz-card-action"></ng-content>
 </div>

@@ -4,6 +4,7 @@ import {
   Component,
   Directive,
   ElementRef,
+  HostBinding,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -14,9 +15,8 @@ import {
   styleUrls: [ './card.component.scss' ],
 })
 export class MzCardComponent implements AfterViewInit {
-  @Input() backgroundClass: string;
-  @Input() hoverable: boolean;
-  @Input() textClass: string;
+  @HostBinding('class.card') true;
+  @HostBinding('class.hoverable') @Input() hoverable: boolean;
 
   @ViewChild('cardTitle') cardTitle: ElementRef;
   @ViewChild('cardAction') cardAction: ElementRef;
