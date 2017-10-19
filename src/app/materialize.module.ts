@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as Badge from './badge';
@@ -112,6 +113,7 @@ const MZ_PROVIDERS = [
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
   ],
   exports: MZ_COMPONENTS,
   declarations: MZ_COMPONENTS,
