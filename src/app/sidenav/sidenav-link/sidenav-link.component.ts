@@ -8,4 +8,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class MzSidenavLinkComponent {
   @Input() active: boolean;
+  @Input() routerLink: string;
 }
