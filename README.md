@@ -123,7 +123,7 @@ If you don't want to install a new dependency in your application, you can inclu
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
++ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppModule } from './app.module';
 
