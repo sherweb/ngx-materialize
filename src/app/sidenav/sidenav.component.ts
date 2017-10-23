@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   Input,
   OnDestroy,
   OnInit,
@@ -19,17 +18,17 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() edge: string;
   @Input() fixed: boolean;
   @Input() id: string;
-  @Input() width: number;
   @Input() onClose: Function;
   @Input() onOpen: Function;
+  @Input() width: number;
 
   private _opened = false;
-  private collapsibleButton: JQuery<Element>;
+  private collapseButton: JQuery<Element>;
 
   get opened() { return this._opened };
   set opened(value: boolean) {
     this._opened = value;
-    this.collapsibleButton.sideNav(this._opened ? 'show' : 'hide');
+    this.collapseButton.sideNav(this._opened ? 'show' : 'hide');
   }
 
   ngAfterViewInit() {
@@ -38,22 +37,22 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.collapsibleButton.sideNav('destroy');
+    this.collapseButton.sideNav('destroy');
   }
 
   initCollapseButton() {
-    // fake button if no collapsibleButtonId is provided
-    this.collapsibleButton = this.collapseButtonId
+    // fake button if no collapseButtonId is provided
+    this.collapseButton = this.collapseButtonId
       ? $(`#${this.collapseButtonId}`)
       : $(document.createElement('template'));
 
     // make collapse button visible on all resolution if side navigation is not fixed
     if (!this.fixed) {
-      this.collapsibleButton.addClass('show-on-large');
+      this.collapseButton.addClass('show-on-large');
     }
 
     // add data-activates to collapse button
-    this.collapsibleButton.attr('data-activates', this.id);
+    this.collapseButton.attr('data-activates', this.id);
 
     // extend onOpen function to update opened state
     const onOpen = this.onOpen || (() => {});
@@ -65,23 +64,23 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
     // extend onClose function to update opened state
     const onClose = this.onClose || (() => {});
     this.onClose = () => {
-        onClose();
-        this._opened = false;
+      onClose();
+      this._opened = false;
     };
 
-    // initialize collapsible button for side navigation
-    this.collapsibleButton.sideNav(<any>{
+    // initialize sidenav
+    this.collapseButton.sideNav(<any>{
       closeOnClick: this.closeOnClick || false,
       draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
       menuWidth: isNaN(this.width) ? 300 : this.width,
-      onClose: this.onClose || false,
-      onOpen: this.onOpen || false,
+      onClose: this.onClose,
+      onOpen: this.onOpen,
     });
   }
 
   initCollapsibleLinks() {
     // initialize collapsible elements
-    $('.collapsible').collapsible();
+    $(`#${this.id} .collapsible`).collapsible();
   }
 }

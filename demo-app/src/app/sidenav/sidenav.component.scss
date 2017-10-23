@@ -1,5 +1,12 @@
 @import "../../_route-animation-host";
 
+.sidenav-opened {
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 3px;
+  padding: 9px 24px;
+  margin-left: 10px;
+}
+
 .user-view {
   background: url('../../assets/sidenav-demo-bg.png');
   background-position: -90px;
