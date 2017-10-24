@@ -19,7 +19,6 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() draggable: boolean;
   @Input() edge: string;
   @Input() fixed: boolean;
-  @Input() showButtonOnMobileOnly: boolean = false;
   @Input() id: string;
   @Input() width: number;
   @Input() onClose: Function;
@@ -42,16 +41,6 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
     }
 
     const collapseButton = $(`#${this.collapseButtonId}`)[0];
-
-    // Make collapse button visible on all resolution if side navigation is not fixed
-    if (!this.fixed) {
-      // Verify that the button is only shown on the mobile 
-      if(this.showButtonOnMobileOnly) {
-        this.renderer.setElementClass(collapseButton, 'hide-on-large-only', true);
-      } else {
-        this.renderer.setElementClass(collapseButton, 'show-on-large', true);
-      }
-    }
 
     // Add data-activates to collapse button
     this.renderer.setElementAttribute(collapseButton, 'data-activates', this.id);
