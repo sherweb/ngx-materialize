@@ -33,21 +33,19 @@
 
 ## Why ng2-materialize?
 
-The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in severak component demo page.
+The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in several component demo pages.
 
 ### Initialization simplified
 
-One thing that Materialize ask to do for pretty much every components is to initialize it using JQuery. In our implementation, the initializations are done automatically.
+One thing that Materialize ask to do for pretty much every components is to initialize with JQuery. In our implementation, the initializations are done automatically.
 
 ### Quirks
 
 Materialize does not work perfectly "out of the box" when used with Angular, we had to fix a lot of "quirks"...
 
-For instance, for mz-input we handle the label so it can animate when the value is changed programmatically.
+For instance, for `mz-input` directive we handle the label so it can animate when the value is changed programmatically.
 
-As another example, using mz-select, the communication between the dropdown created by Materialize and the native select HTML element is handle by our implementation otherwise there is a desynchronization between the value of NgModel/NgControl and the select element.
-
-And this is just some examples of many more...
+As another example, using `mz-select`, the communication between the dropdown created by Materialize and the native select HTML element is handle by our implementation otherwise there is a desynchronization between the value of NgModel/NgControl and the select element
 
 ### Injection
 
@@ -60,12 +58,6 @@ We added the MediaService that allow to customize some behavior according to the
 ### Reactive Form support
 
 Another nice advantage that we added to our implementation is the Form Validation. Materialize only provide HTML5 validation while we added support for Reactive Form allowing a more flexible way to do form validation following the same Material Design guidelines.
-
-### We haven't wrapped everything ...
-
-Although we didn't wrapped everything yet, all the Materialize library is available to be used when using our package. Aslo, some of the CSS classes have not been wrapped into directive as it already does the work pretty well!
-
-Or simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2+ components.
 
 ## Installation
 
