@@ -4,9 +4,7 @@
     <ng-content select="mz-card-title"></ng-content>
   </div>
 
-  <p>
-    <ng-content select="mz-card-content"></ng-content>
-  </p>
+  <ng-content select="mz-card-content"></ng-content>
 </div>
 
 <div #cardAction class="card-action" *ngIf="hasCardAction">
