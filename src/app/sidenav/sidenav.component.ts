@@ -68,9 +68,8 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
       this._opened = false;
     };
 
-
     // initialize sidenav
-    this.collapseButton.sideNav(<any>{
+    this.collapseButton.sideNav({
       closeOnClick: this.closeOnClick || false,
       draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
