@@ -160,8 +160,8 @@ describe('MzSidenavComponent:unit', () => {
           draggable: true,
           edge: 'left',
           menuWidth: 300,
-          onClose: false,
-          onOpen: false,
+          onClose: null,
+          onOpen: null,
         });
       });
 

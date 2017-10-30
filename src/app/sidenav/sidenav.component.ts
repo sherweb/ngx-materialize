@@ -51,13 +51,13 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
     this.renderer.setElementAttribute(collapseButton, 'data-activates', this.id);
 
     // Initialize collapsible button for side navigation
-    $(collapseButton).sideNav(<any>{
+    $(collapseButton).sideNav({
       closeOnClick: this.closeOnClick || false,
       draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
       menuWidth: isNaN(this.width) ? 300 : this.width,
-      onClose: this.onClose || false,
-      onOpen: this.onOpen || false,
+      onClose: this.onClose || null,
+      onOpen: this.onOpen || null,
     });
   }
 
