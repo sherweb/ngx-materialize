@@ -23,12 +23,12 @@
   <h5 class="light">Collapse Button</h5>
 
   <p>
-    To toggle the side navigation add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> to the <code class="language-markup">mz-sidenav</code> component trought the <code class="language-markup">collapseButtonId</code> property. To avoid the collapse button to be visible at the same time as a fixed side navigation on large resolution, add the class <code class="language-markup">hide-on-large-only</code> to the <code class="language-markup">buttonClass</code> property of the <code class="language-markup">mz-button</code>.
+    To toggle the side navigation add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> to the <code class="language-markup">mz-sidenav</code> component trought the <code class="language-markup">collapseButtonId</code> property. To avoid the collapse button to be visible at the same time as a fixed side navigation on large resolution, add the class <code class="language-markup">hide-on-large-only</code> to the <code class="language-markup">mz-button</code> element.
   </p>
 
   <button mz-button id="btn-sidenav-demo">Open</button>
 
-  <mz-sidenav
+  <mz-sidenav #sidenav
     [id]="'sidenav-demo'"
     [collapseButtonId]="'btn-sidenav-demo'"
     [edge]="'right'">
@@ -141,7 +141,7 @@
 
   <h5 class="light">HTML Structure</h5>
 
-<app-code-snippet>
+  <app-code-snippet>
 &lt;mz-sidenav
   [id]="'sidenav-demo'"
   [collapseButtonId]="'btn-sidenav-demo'">
@@ -163,10 +163,10 @@
 &lt;/mz-sidenav>
 </app-code-snippet>
 <app-code-snippet>
-&lt;button mz-button [id]="'btn-sidenav-demo'">
+&lt;button mz-button id="btn-sidenav-demo">
   Open
 &lt;/button>
-</app-code-snippet>
+  </app-code-snippet>
 
 </div>
 
@@ -178,7 +178,7 @@
     You can add collapsible menus to your sidebar by using the <code class="language-markup">mz-sidenav-collapsible</code> component.
   </p>
 
-<app-code-snippet>
+  <app-code-snippet>
 &lt;mz-sidenav>
   &lt;mz-sidenav-collapsible [onClose]="closeFunctionCallback" [onOpen]="openFunctionCallback">
     &lt;mz-sidenav-collapsible-header>
@@ -194,8 +194,33 @@
     &lt;/mz-sidenav-collapsible-content>
   &lt;/mz-sidenav-collapsible>
 &lt;/mz-sidenav>
-</app-code-snippet>
+  </app-code-snippet>
 
+</div>
+
+<div class="section">
+
+  <h5 class="light">Open/close programmatically</h5>
+
+  <p>
+    Although the collapsible button way has been created to facilitate the use of the sidenav for the common <i>"side of the page menu"</i> use-case, you can also access the <code class="language-markup">opened</code> state of the sidenav and change its boolean value from <code class="language-markup">false</code> to <code class="language-markup">true</code> (or the other way around) to open or close it programmatically. To do so you will need to add a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-sidenav</code> and then change the value of the <code class="language-markup">opened</code> boolean property.
+  </p>
+
+  <button mz-button (click)="sidenav.opened = !sidenav.opened">Open</button>
+  <span class="sidenav-opened">sidenav.opened = <b>{{ sidenav.opened }}</b></span>
+</div>
+
+<div class="section">
+  <app-code-snippet>
+&lt;mz-sidenav #sidenav [id]="'sidenav-demo'">
+  ...
+&lt;/mz-sidenav>
+</app-code-snippet>
+<app-code-snippet>
+&lt;button mz-button (click)="sidenav.opened = !sidenav.opened">
+  Open
+&lt;/button>
+  </app-code-snippet>
 </div>
 
 <div class="section">
@@ -212,6 +237,14 @@
 
     <app-properties-table
       [properties]="sidenavProperties">
+    </app-properties-table>
+
+    <p>
+      Using <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on <code class="language-markup">mz-sidenav</code> element gives you access to the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavVariableProperties">
     </app-properties-table>
   </div>
 

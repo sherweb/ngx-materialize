@@ -92,6 +92,15 @@ export class SidenavComponent {
     },
   ];
 
+  sidenavVariableProperties: IPropertyRow[] = [
+    { name: 'opened',
+      mandatory: false,
+      type: 'boolean',
+      description: `Get or Set opened state of the sidenav`,
+      defaultValue: 'false',
+    },
+  ];
+
   // Hide sidenav-demo during route animation
   @HostListener('@routeAnimation.start', ['$event']) onRouteAnimationStart(event: Event) {
     $('#sidenav-demo').css('display', 'none');
