@@ -35,29 +35,14 @@
 
 The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in several component demo pages.
 
-### Initialization simplified
+In other words, we ...
 
-One thing that Materialize ask to do for pretty much every components is to initialize with JQuery. In our implementation, the initializations are done automatically.
-
-### Quirks
-
-Materialize does not work perfectly "out of the box" when used with Angular, we had to fix a lot of "quirks"...
-
-For instance, for `mz-input` directive we handle the label so it can animate when the value is changed programmatically.
-
-As another example, using `mz-select`, the communication between the dropdown created by Materialize and the native select HTML element is handle by our implementation otherwise there is a desynchronization between the value of NgModel/NgControl and the select element
-
-### Injection
-
-Materialize modals ask to put the modal HTML directly into the DOM while we offer the possibility to inject a component on the fly using MzModalService.
-
-### MediaService
-
-We added the MediaService that allow to customize some behavior according to the view port size.
-
-### Reactive Form support
-
-Another nice advantage that we added to our implementation is the Form Validation. Materialize only provide HTML5 validation while we added support for Reactive Form allowing a more flexible way to do form validation following the same Material Design guidelines.
+- Simplify component usage
+- Simplify components initialization
+- Handle Angular "quirks" with Materialize library
+- Offer component injection when possible
+- Provide a MediaService that allow customization according to view port size
+- Add support for ReactiveForm with validation
 
 ## Installation
 
