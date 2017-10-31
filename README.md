@@ -37,7 +37,7 @@ The main purpose of this library is to simplify the usage of Materialize within 
 
 In other words, we ...
 
-- Simplify component usage
+- Simplify components usage
 - Simplify components initialization
 - Handle Angular "quirks" with Materialize library
 - Offer component injection when possible
