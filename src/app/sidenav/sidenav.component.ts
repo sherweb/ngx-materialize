@@ -1,11 +1,9 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   Input,
   OnDestroy,
   OnInit,
-  Renderer,
 } from '@angular/core';
 
 @Component({
@@ -20,11 +18,18 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() edge: string;
   @Input() fixed: boolean;
   @Input() id: string;
-  @Input() width: number;
   @Input() onClose: Function;
   @Input() onOpen: Function;
+  @Input() width: number;
 
-  constructor(private renderer: Renderer) { }
+  private _opened = false;
+  private collapseButton: JQuery<Element>;
+
+  get opened() { return this._opened };
+  set opened(value: boolean) {
+    this._opened = value;
+    this.collapseButton.sideNav(this._opened ? 'show' : 'hide');
+  }
 
   ngAfterViewInit() {
     this.initCollapseButton();
@@ -32,32 +37,50 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    $(`#${this.collapseButtonId}`).sideNav('destroy');
+    this.collapseButton.sideNav('destroy');
   }
 
   initCollapseButton() {
-    if (!this.collapseButtonId) {
-      return;
+    // fake button if no collapseButtonId is provided
+    this.collapseButton = this.collapseButtonId
+      ? $(`#${this.collapseButtonId}`)
+      : $(document.createElement('template'));
+
+    // make collapse button visible on all resolution if side navigation is not fixed
+    if (!this.fixed) {
+      this.collapseButton.addClass('show-on-large');
     }
 
-    const collapseButton = $(`#${this.collapseButtonId}`)[0];
+    // add data-activates to collapse button
+    this.collapseButton.attr('data-activates', this.id);
 
-    // Add data-activates to collapse button
-    this.renderer.setElementAttribute(collapseButton, 'data-activates', this.id);
+    // extend onOpen function to update opened state
+    const onOpen = this.onOpen || (() => {});
+    this.onOpen = () => {
+      onOpen();
+      this._opened = true;
+    };
 
-    // Initialize collapsible button for side navigation
-    $(collapseButton).sideNav(<any>{
+    // extend onClose function to update opened state
+    const onClose = this.onClose || (() => {});
+    this.onClose = () => {
+      onClose();
+      this._opened = false;
+    };
+
+    // initialize sidenav
+    this.collapseButton.sideNav(<any>{
       closeOnClick: this.closeOnClick || false,
       draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
       menuWidth: isNaN(this.width) ? 300 : this.width,
-      onClose: this.onClose || false,
-      onOpen: this.onOpen || false,
+      onClose: this.onClose,
+      onOpen: this.onOpen,
     });
   }
 
   initCollapsibleLinks() {
-    // Initialize collapsible elements
-    $('.collapsible').collapsible();
+    // initialize collapsible elements
+    $(`#${this.id} .collapsible`).collapsible();
   }
 }
