@@ -46,11 +46,6 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
       ? $(`#${this.collapseButtonId}`)
       : $(document.createElement('template'));
 
-    // make collapse button visible on all resolution if side navigation is not fixed
-    if (!this.fixed) {
-      this.collapseButton.addClass('show-on-large');
-    }
-
     // add data-activates to collapse button
     this.collapseButton.attr('data-activates', this.id);
 

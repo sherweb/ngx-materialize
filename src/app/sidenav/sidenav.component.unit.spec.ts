@@ -86,14 +86,6 @@ describe('MzSidenavComponent:unit', () => {
         createCollapseButton(collapseButtonId);
       });
 
-      it('should not add show-on-large css class on collapsable button when fixed', () => {
-
-        component.fixed = true;
-        component.initCollapseButton();
-
-        expect(queryById(collapseButtonId)[0].classList).not.toContain('show-on-large');
-      });
-
       it('should not add data-activates attribute on collapse button', () => {
 
         component.id = 'sidenav-id';
@@ -130,22 +122,6 @@ describe('MzSidenavComponent:unit', () => {
       beforeEach(() => {
         createCollapseButton(collapseButtonId);
         component.collapseButtonId = collapseButtonId;
-      });
-
-      it('should not add show-on-large css class on collapsable button when fixed', () => {
-
-        component.fixed = true;
-        component.initCollapseButton();
-
-        expect(queryById(collapseButtonId)[0].classList).not.toContain('show-on-large');
-      });
-
-      it('should add show-on-large css class on collapsable button when not fixed', () => {
-
-        component.initCollapseButton();
-
-        expect(component.fixed).toBeFalsy();
-        expect(queryById(collapseButtonId)[0].classList).toContain('show-on-large');
       });
 
       it('should add data-activates attribute on collapse button', () => {
