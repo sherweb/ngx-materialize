@@ -38,7 +38,7 @@ The main purpose of this library is to simplify the usage of Materialize within 
 In other words, we ...
 
 - Simplify components usage
-- Simplify components initialization
+- Initialize components automatically
 - Handle Angular "quirks" with Materialize library
 - Offer component injection when possible
 - Provide a MediaService that allow customization according to view port size
