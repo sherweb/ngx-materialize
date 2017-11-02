@@ -33,11 +33,16 @@
 
 ## Why ng2-materialize?
 
-We are aware that alternatives exposing Material Design components already exist. But, in our case, we want to rely on a stable css framework that does not depend on a specific js framework.
+The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in several component demo pages.
 
-We already know the possibilities Materialize offers. What is left to do is to wrap components that we want to use in Angular component.
+In other words, we ...
 
-If you want to use a component that is not yet implemented, simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2+ components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
+- Simplify components usage
+- Initialize components automatically
+- Handle Angular "quirks" with Materialize library
+- Offer component injection when possible
+- Provide a MediaService that allow customization according to view port size
+- Add support for ReactiveForm with validation
 
 ## Installation
 
