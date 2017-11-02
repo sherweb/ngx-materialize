@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MaterializeModule } from 'ng2-materialize';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -19,7 +19,7 @@ import { ValidationComponent } from './validation.component';
     CodeSnippetModule,
     CommonModule,
     FormsModule,
-    MarkdownToHtmlModule.forChild(),
+    MarkdownModule.forChild(),
     MaterializeModule,
     PropertiesTableModule,
     ReactiveFormsModule,

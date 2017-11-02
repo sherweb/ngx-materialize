@@ -172,8 +172,8 @@
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.3.0.tgz#583c223dd33385a1dda01aaf77b0cd0411c4b524"
 
 "@types/materialize-css@^0.100.0":
-  version "0.100.0"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.0.tgz#2b311b2ca273d6fd689609ab8e8d932966f8f45c"
+  version "0.100.1"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.1.tgz#9ab5b1faba5ba28b6c39ab94c31f77f5fd2f7b68"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"
@@ -195,8 +195,8 @@
     "@types/jquery" "*"
 
 "@types/prismjs@^1.6.0":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.6.2.tgz#0d49b1c8a78a4d129cfd55360b06172a64139de0"
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.6.5.tgz#e222615538ea2df248c72512e1faf346af2640d6"
 
 "@types/q@^0.0.32":
   version "0.0.32"
@@ -3682,15 +3682,6 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-ng2-markdown-to-html@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ng2-markdown-to-html/-/ng2-markdown-to-html-1.3.1.tgz#d60791dea1a1ab273f1fe76f2346e56dabd17afe"
-  dependencies:
-    "@types/marked" "0.3.0"
-    "@types/prismjs" "^1.6.0"
-    marked "^0.3.6"
-    prismjs "^1.6.0"
-
 "ng2-materialize@file:..":
   version "1.6.0"
   dependencies:
@@ -3705,6 +3696,15 @@ ngx-malihu-scrollbar@^1.2.1:
     "@types/mcustomscrollbar" "^2.8.30"
     jquery "^3.0.0"
     malihu-custom-scrollbar-plugin "^3.1.5"
+
+ngx-markdown@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-markdown/-/ngx-markdown-1.4.0.tgz#1ac11602a52abb7998685376949cfd7065b3de82"
+  dependencies:
+    "@types/marked" "0.3.0"
+    "@types/prismjs" "^1.6.0"
+    marked "^0.3.6"
+    prismjs "^1.6.0"
 
 no-case@^2.2.0:
   version "2.3.1"
@@ -4495,8 +4495,8 @@ pretty-error@^2.0.2:
     utila "~0.4"
 
 prismjs@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.6.0.tgz#118d95fb7a66dba2272e343b345f5236659db365"
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.8.3.tgz#4a3d140be5f2614a8987ca2330733a40d8ad207b"
   optionalDependencies:
     clipboard "^1.5.5"
 
@@ -5568,8 +5568,8 @@ timers-browserify@^2.0.2:
     setimmediate "^1.0.4"
 
 tiny-emitter@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.0.tgz#bad327adb1804b42a231afa741532bd884cd09ad"
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
 tmp@0.0.24:
   version "0.0.24"
