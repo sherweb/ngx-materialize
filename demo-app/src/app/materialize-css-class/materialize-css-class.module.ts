@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterializeModule } from 'ng2-materialize';
+import { RouterModule } from '@angular/router';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { MaterializeCssClassComponent } from './materialize-css-class.component';
+import { ROUTES } from './materialize-css-class.routing';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [MaterializeCssClassComponent],
 })

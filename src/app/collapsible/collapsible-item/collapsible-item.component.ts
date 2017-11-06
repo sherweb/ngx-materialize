@@ -1,7 +1,4 @@
-import {
-  Component,
-  Directive,
-  Input } from '@angular/core';
+import { Component, Directive, Input } from '@angular/core';
 
  import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
 

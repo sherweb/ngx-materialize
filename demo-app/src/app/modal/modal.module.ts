@@ -1,20 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterializeModule } from 'ng2-materialize';
+import { MzButtonModule, MzInjectionModule, MzModalModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
 import { ModalExampleComponent } from './modal-example/modal-example.component';
 import { ModalComponent } from './modal.component';
+import { ROUTES } from './modal.routing';
 
 @NgModule({
   imports: [
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule.forRoot(),
+    MzButtonModule,
+    MzInjectionModule,
+    MzModalModule,
     PropertiesTableModule,
-    RouterModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [
     ModalComponent,

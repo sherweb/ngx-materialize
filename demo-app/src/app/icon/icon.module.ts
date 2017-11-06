@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterializeModule } from 'ng2-materialize';
+import { RouterModule } from '@angular/router';
+import { MzIconModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
 import { IconComponent } from './icon.component';
+import { ROUTES } from './icon.routing';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule,
+    MzIconModule,
     PropertiesTableModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [IconComponent],
 })
