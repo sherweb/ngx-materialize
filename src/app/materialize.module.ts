@@ -16,7 +16,6 @@ import { MzInputModule } from './input';
 import { MzMediaModule } from './media';
 import { MzModalModule } from './modal';
 import { MzNavbarModule } from './navbar';
-import { MzPaginationModule } from './pagination';
 import { MzParallaxModule } from './parallax';
 import { MzProgressModule } from './progress';
 import { MzRadioButtonModule } from './radio-button';
@@ -49,7 +48,6 @@ import { MzValidationModule } from './validation';
     MzInputModule,
     MzModalModule,
     MzNavbarModule,
-    MzPaginationModule,
     MzParallaxModule,
     MzProgressModule,
     MzRadioButtonModule,
