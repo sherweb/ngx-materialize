@@ -13,7 +13,7 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install --frozen-locykfile --no-progress
+  - yarn install --frozen-lockfile --no-progress
   - yarn build
   - npm pack
   - 7z x ng2-materialize-*.tgz && 7z x ng2-materialize-*.tar
