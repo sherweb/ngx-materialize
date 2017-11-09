@@ -15,7 +15,6 @@
     ],
     "paths": {
       "@angular/*": ["../node_modules/@angular/*"],
-      "oidc-client": ["../node_modules/oidc-client"],
       "rxjs/*": ["../node_modules/rxjs/*"]
     }
   },
