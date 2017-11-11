@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MzCheckboxModule, MzIconModule, MzInputModule } from 'ng2-materialize';
+import { MzCheckboxModule, MzIconMdiModule, MzInputModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -15,7 +15,7 @@ import { ROUTES } from './input.routing';
     CommonModule,
     FormsModule,
     MzCheckboxModule,
-    MzIconModule,
+    MzIconMdiModule,
     MzInputModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),

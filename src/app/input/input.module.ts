@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzInputContainerComponent } from './input-container/input-container.component';
-import { MzInputPrefixDirective } from './input-prefix/input-prefix.directive';
+import { MzInputContainerComponent } from './input-container';
+import { MzInputPrefixDirective } from './input-prefix';
 import { MzInputDirective } from './input.directive';
 
 @NgModule({

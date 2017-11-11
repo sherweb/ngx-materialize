@@ -8,14 +8,13 @@ import {
   MzCardModule,
   MzCheckboxModule,
   MzDatepickerModule,
-  MzIconModule,
+  MzIconMdiModule,
   MzInputModule,
   MzRadioButtonModule,
   MzSelectModule,
   MzTextAreaModule,
   MzTimepickerModule,
   MzValidationModule,
-
 } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
@@ -37,7 +36,7 @@ import { ROUTES } from './validation.routing';
     MzCardModule,
     MzCheckboxModule,
     MzDatepickerModule,
-    MzIconModule,
+    MzIconMdiModule,
     MzInputModule,
     MzRadioButtonModule,
     MzSelectModule,

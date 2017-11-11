@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzErrorMessageComponent } from './error-message/error-message.component';
+import { MzErrorMessageComponent } from './error-message';
 import { MzValidationComponent } from './validation.component';
 
 @NgModule({

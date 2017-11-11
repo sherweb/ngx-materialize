@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzTabItemComponent } from './tab-item/tab-item.component';
+import { MzTabItemComponent } from './tab-item';
 import { MzTabComponent } from './tab.component';
 
 @NgModule({

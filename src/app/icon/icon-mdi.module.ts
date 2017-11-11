@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzIconDirective } from './icon.directive';
+import { MzIconMdiDirective } from './icon-mdi.directive';
 
 @NgModule({
   declarations: [
-    MzIconDirective,
+    MzIconMdiDirective,
   ],
   exports: [
-    MzIconDirective,
+    MzIconMdiDirective,
   ],
 })
-export class MzIconModule { }
+export class MzIconMdiModule { }

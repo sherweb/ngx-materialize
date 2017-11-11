@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzDropdownDividerComponent } from './dropdown-divider/dropdown-divider.component';
-import { MzDropdownItemComponent } from './dropdown-item/dropdown-item.component';
+import { MzDropdownDividerComponent } from './dropdown-divider';
+import { MzDropdownItemComponent } from './dropdown-item';
 import { MzDropdownComponent } from './dropdown.component';
 
 @NgModule({

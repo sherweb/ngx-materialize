@@ -11,7 +11,7 @@ import { MzCollapsibleModule } from './collapsible';
 import { MzCollectionModule } from './collection';
 import { MzDatepickerModule } from './datepicker';
 import { MzDropdownModule } from './dropdown';
-import { MzIconModule } from './icon';
+import { MzIconMdiModule, MzIconModule } from './icon';
 import { MzInputModule } from './input';
 import { MzMediaModule } from './media';
 import { MzModalModule } from './modal';
@@ -31,6 +31,7 @@ import { MzToastModule } from './toast';
 import { MzTooltipModule } from './tooltip';
 import { MzValidationModule } from './validation';
 
+/* Deprecated */
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +45,7 @@ import { MzValidationModule } from './validation';
     MzDatepickerModule,
     MzDropdownModule,
     MzIconModule,
+    MzIconMdiModule,
     MzInjectionModule,
     MzInputModule,
     MzModalModule,

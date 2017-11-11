@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzAvatarDirective } from './avatar/avatar.directive';
-import { MzCollectionHeaderComponent } from './collection-header/collection-header.component';
-import { MzCollectionItemComponent } from './collection-item/collection-item.component';
-import { MzCollectionLinkDirective } from './collection-link/collection-link.directive';
+import { MzAvatarDirective } from './avatar';
+import { MzCollectionHeaderComponent } from './collection-header';
+import { MzCollectionItemComponent } from './collection-item';
+import { MzCollectionLinkDirective } from './collection-link';
 import { MzCollectionComponent } from './collection.component';
-import { MzSecondaryContentDirective } from './secondary-content/secondary-content.directive';
+import { MzSecondaryContentDirective } from './secondary-content';
 
 @NgModule({
   declarations: [

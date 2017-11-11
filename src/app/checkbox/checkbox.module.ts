@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzCheckboxContainerComponent } from './checkbox-container/checkbox-container.component';
+import { MzCheckboxContainerComponent } from './checkbox-container';
 import { MzCheckboxDirective } from './checkbox.directive';
 
 @NgModule({
