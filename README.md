@@ -137,19 +137,19 @@ export class AppModule { }
 
 ## Usage
 
-You must import `MaterializeModule` inside your module to be able to use Materialize components.
+You must import component module you want to use inside your module to be able to use Materialize components.
 
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { MaterializeModule } from 'ng2-materialize';
++ import { MzButtonModule } from 'ng2-materialize';
 
 import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
     CommonModule,
-+    MaterializeModule.forRoot(),
++   MzButtonModule,
   ],
   declarations: [ HomeComponent ],
 })
