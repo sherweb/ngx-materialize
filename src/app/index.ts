@@ -7,6 +7,7 @@ export * from './collection';
 export * from './datepicker';
 export * from './dropdown';
 export * from './icon';
+export * from './icon-mdi';
 export * from './input';
 export * from './materialize.module';
 export * from './media';

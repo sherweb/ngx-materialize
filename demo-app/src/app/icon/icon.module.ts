@@ -12,8 +12,8 @@ import { ROUTES } from './icon.routing';
   imports: [
     CodeSnippetModule,
     CommonModule,
-    MzIconModule,
     MzIconMdiModule,
+    MzIconModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),
   ],

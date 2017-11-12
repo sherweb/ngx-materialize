@@ -9,7 +9,7 @@ import {
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 
 @Directive({
-  selector: '[mz-icon-mdi], [mzIconMdi]',
+  selector: 'a[mz-icon-mdi], a[mzIconMdi], i[mz-icon-mdi], i[mzIconMdi]',
 })
 export class MzIconMdiDirective extends HandlePropChanges implements AfterViewInit {
   @Input() align: string;
