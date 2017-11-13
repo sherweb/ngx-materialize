@@ -102,7 +102,7 @@ describe('MzDropdownComponent:unit', () => {
         align: 'handleDropdown',
         belowOrigin: 'handleDropdown',
         constrainWidth: 'handleDropdown',
-        dropdownButtonId: 'handleDataActivates',
+        dropdownButtonId: 'handleDataTarget',
         gutter: 'handleDropdown',
         hover: 'handleDropdown',
         id: 'handleDropdown',
@@ -115,7 +115,7 @@ describe('MzDropdownComponent:unit', () => {
 
       expect(Object.keys(component.handlers).length).toBe(Object.keys(handlers).length);
 
-      spyOn(component, 'handleDataActivates');
+      spyOn(component, 'handleDataTarget');
       spyOn(component, 'handleDropdown');
 
       Object.keys(handlers).forEach(key => {
@@ -129,7 +129,7 @@ describe('MzDropdownComponent:unit', () => {
     });
   });
 
-  describe('handleDataActivates', () => {
+  describe('handleDataTarget', () => {
 
     it('should add attribute data-activates', () => {
 
@@ -137,7 +137,7 @@ describe('MzDropdownComponent:unit', () => {
 
       component.dropdownButtonElement = <any>[mockElementRef];
       component.id = 'dropdownId';
-      component.handleDataActivates();
+      component.handleDataTarget();
 
       expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-activates', component.id);
     });
@@ -152,13 +152,11 @@ describe('MzDropdownComponent:unit', () => {
 
       const options: Materialize.DropDownOptions = {
         alignment: 'left',
-        belowOrigin: true,
         constrainWidth: true,
-        gutter: 10,
+        coverTrigger: true,
         hover: true,
         inDuration: 200,
         outDuration: 200,
-        stopPropagation: true,
       };
 
       Object.assign(component, options);
@@ -173,19 +171,19 @@ describe('MzDropdownComponent:unit', () => {
 
   describe('handleProperties', () => {
 
-    it('should call handleDataActivates method', () => {
+    it('should call handleDataTarget method', () => {
 
-      spyOn(component, 'handleDataActivates');
+      spyOn(component, 'handleDataTarget');
       spyOn(component, 'handleDropdown').and.callFake(() => { });
 
       component.handleProperties();
 
-      expect(component.handleDataActivates).toHaveBeenCalled();
+      expect(component.handleDataTarget).toHaveBeenCalled();
     });
 
     it('should call handleDropdown method', () => {
 
-      spyOn(component, 'handleDataActivates').and.callFake(() => { });
+      spyOn(component, 'handleDataTarget').and.callFake(() => { });
       spyOn(component, 'handleDropdown');
 
       component.handleProperties();

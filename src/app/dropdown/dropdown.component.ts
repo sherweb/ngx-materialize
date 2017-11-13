@@ -4,6 +4,7 @@ import {
   ElementRef,
   Input,
   Renderer,
+  ViewChild,
 } from '@angular/core';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
@@ -15,17 +16,22 @@ import { HandlePropChanges } from '../shared/handle-prop-changes';
 })
 export class MzDropdownComponent extends HandlePropChanges implements AfterViewInit {
   @Input() align: string;
-  @Input() belowOrigin: boolean;
-  @Input() constrainWidth: boolean;
   @Input() dropdownButtonId: string;
-  @Input() gutter: number;
+  @Input() constrainWidth: boolean;
+  @Input() coverTrigger: boolean;
   @Input() hover: boolean;
   @Input() id: string;
   @Input() inDuration: number;
+  @Input() onCloseEnd: Function;
+  @Input() onCloseStart: Function;
+  @Input() onOpenEnd: Function;
+  @Input() onOpenStart: Function;
   @Input() outDuration: number;
-  @Input() stopPropagation: boolean;
 
-  dropdownButtonElement: JQuery;
+  @ViewChild('dropdownContent') dropdownContent: Element;
+
+  dropdown: M.Dropdown;
+  dropdownButtonElement: Element;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     super();
@@ -38,30 +44,33 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
   }
 
   close() {
-    setTimeout(() => this.renderer.invokeElementMethod(this.dropdownButtonElement, 'dropdown', ['close']));
+    this.dropdown.close();
   }
 
   initDropdownButtonElement() {
-    this.dropdownButtonElement = $(`#${this.dropdownButtonId}`);
+    this.dropdownButtonElement = document.querySelector(`#${this.dropdownButtonId}`);
+    this.dropdownButtonElement.setAttribute('class', 'dropdown-trigger');
   }
 
   initHandlers() {
     this.handlers = {
       align: () => this.handleDropdown(),
-      belowOrigin: () => this.handleDropdown(),
       constrainWidth: () => this.handleDropdown(),
-      dropdownButtonId: () => this.handleDataActivates(),
-      gutter: () => this.handleDropdown(),
+      coverTrigger: () => this.handleDropdown(),
+      dropdownButtonId: () => this.handleDataTarget(),
       hover: () => this.handleDropdown(),
       id: () => this.handleDropdown(),
       inDuration: () => this.handleDropdown(),
+      onCloseEnd: () => this.handleDropdown(),
+      onCloseStart: () => this.handleDropdown(),
+      onOpenEnd: () => this.handleDropdown(),
+      onOpenStart: () => this.handleDropdown(),
       outDuration: () => this.handleDropdown(),
-      stopPropagation: () => this.handleDropdown(),
     };
   }
 
-  handleDataActivates() {
-    this.renderer.setElementAttribute(this.dropdownButtonElement[0], 'data-activates', this.id);
+  handleDataTarget() {
+    this.renderer.setElementAttribute(this.dropdownButtonElement[0], 'data-target', this.id);
   }
 
   handleDropdown() {
@@ -69,26 +78,28 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
 
     const options: Materialize.DropDownOptions = {
       alignment: this.align,
-      belowOrigin: this.belowOrigin,
+      coverTrigger: this.coverTrigger,
       constrainWidth: this.constrainWidth,
-      gutter: this.gutter,
       hover: this.hover,
       inDuration: this.inDuration,
+      onCloseEnd: this.onCloseEnd,
+      onCloseStart: this.onCloseStart,
+      onOpenEnd: this.onOpenEnd,
+      onOpenStart: this.onCloseStart,
       outDuration: this.outDuration,
-      stopPropagation: this.stopPropagation,
     };
 
     // Initialize dropdown button for dropdown
-    this.renderer.invokeElementMethod(this.dropdownButtonElement, 'dropdown', [options]);
+    this.dropdown = new M.Dropdown(this.dropdownButtonElement, options);
   }
 
   handleProperties() {
-    this.handleDataActivates();
+    this.handleDataTarget();
     this.handleDropdown();
   }
 
   open() {
-    setTimeout(() => this.renderer.invokeElementMethod(this.dropdownButtonElement, 'dropdown', ['open']));
+    this.dropdown.open();
   }
 
   validateProperties() {
@@ -96,7 +107,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
       throw new Error('Attribute [id] from mz-dropdown is required. ' + this.elementRef.nativeElement);
     }
 
-    if (this.dropdownButtonElement.length === 0) {
+    if (this.dropdownButtonElement === null) {
       throw new Error(
         'Attribute [dropdownButtonId] from mz-dropdown is required and should be an existing element. ' +
         this.elementRef.nativeElement);

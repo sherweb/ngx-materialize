@@ -12,7 +12,6 @@ import {
 })
 export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   @Input() backgroundClass: string;
-  @Input() closeOnClick: boolean;
   @Input() collapseButtonId: string;
   @Input() draggable: boolean;
   @Input() edge: string;
@@ -64,8 +63,7 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
     };
 
     // initialize sidenav
-    this.collapseButton.sideNav({
-      closeOnClick: this.closeOnClick || false,
+    this.collapseButton.sidenav({
       draggable: this.draggable != null ? this.draggable : true,
       edge: this.edge || 'left',
       menuWidth: isNaN(this.width) ? 300 : this.width,

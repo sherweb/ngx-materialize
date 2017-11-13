@@ -40,7 +40,7 @@ export class MzTabComponent implements AfterViewInit {
     $(this.tabs.nativeElement).tabs(options);
   }
 
-  selectTab(tabItemId: string) {
-    $(this.tabs.nativeElement).tabs('select_tab', tabItemId);
+  select(tabItemId: string) {
+    $(this.tabs.nativeElement).tabs('select', tabItemId);
   }
 }
