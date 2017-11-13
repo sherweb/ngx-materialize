@@ -159,7 +159,7 @@ export class HomeModule { }
 
 
 ### Alternative
-As an alternative, you can import `MaterializeModule` to make all component availables. This module is **depracated** and it will be removed in a near futur.
+As an alternative, you can import `MaterializeModule` to make all component availables. This module is **depracated** and it will be removed in a near future.
 
  ```diff
   import { CommonModule } from '@angular/common';
