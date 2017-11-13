@@ -142,7 +142,7 @@ You must import component module you want to use inside your module to be able t
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { MzButtonModule } from 'ng2-materialize';
++ import { MzButtonModule, MzInputModule } from 'ng2-materialize';
 
 import { HomeComponent } from './home.component';
 
@@ -150,11 +150,34 @@ import { HomeComponent } from './home.component';
   imports: [
     CommonModule,
 +   MzButtonModule,
++   MzInputModule,
   ],
   declarations: [ HomeComponent ],
 })
 export class HomeModule { }
 ```
+
+
+### Alternative
+As an alternative, you can import `MaterializeModule` to make all component availables. This module is **depracated** and it will be removed in a near futur.
+
+ ```diff
+  import { CommonModule } from '@angular/common';
+  import { NgModule } from '@angular/core';
+ + import { MaterializeModule } from 'ng2-materialize';
+
+
+  import { HomeComponent } from './home.component';
+
+  @NgModule({
+    imports: [
+      CommonModule,
+ +    MaterializeModule.forRoot(),
+     ],
+    declarations: [ HomeComponent ],
+  })
+ export class HomeModule { }
+ ```
 
 ## Available features
 
