@@ -19,7 +19,7 @@ export class DropdownComponent {
         or <code class="language-markup">right</code>`,
       defaultValue: `left`,
     },
-    { name: 'belowOrign',
+    { name: 'coverTrigger',
       mandatory: false,
       type: 'boolean',
       description: `Show the drowdown below the button activator`,

@@ -38,10 +38,10 @@
   "dependencies": {
     "@types/jquery": "^3.2.12",
     "@types/materialize-css": "^0.100.0",
-    "materialize-css": "^0.100.2"
+    "materialize-css": "1.0.0-alpha.1"
   },
   "devDependencies": {
-    "@angular/animations": "^4.0.0",
+    "@angular/animations": "^5.0.1",
     "@angular/cli": "1.1.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
