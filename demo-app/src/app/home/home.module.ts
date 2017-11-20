@@ -14,7 +14,7 @@ import { ROUTES } from './home.routing';
     MzButtonModule,
     MzIconMdiModule,
     MzParallaxModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [HomeComponent],
 })
