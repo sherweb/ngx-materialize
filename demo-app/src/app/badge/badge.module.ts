@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MzBadgeModule } from 'ng2-materialize';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -13,7 +13,7 @@ import { ROUTES } from './badge.routing';
   imports: [
     CodeSnippetModule,
     CommonModule,
-    MarkdownToHtmlModule.forRoot(),
+    MarkdownModule.forRoot(),
     MzBadgeModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),
