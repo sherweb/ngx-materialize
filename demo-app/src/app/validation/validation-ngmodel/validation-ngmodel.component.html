@@ -75,10 +75,10 @@
 
       <div *ngIf="submitted">
         <h5 class="light">Submitted form</h5>
-        <markdown-to-html [data]="submittedValues | json | language: 'json'"></markdown-to-html>
+        <markdown [data]="submittedValues | json | language: 'json'"></markdown>
       </div>
     </div>
-    <div id="html-ngmodel" class="col s12"><markdown-to-html [src]="'app/validation/validation-ngmodel/markdown/component.html'"></markdown-to-html></div>
-    <div id="code-ngmodel" class="col s12"><markdown-to-html [src]="'app/validation/validation-ngmodel/markdown/component.ts'"></markdown-to-html></div>
+    <div id="html-ngmodel" class="col s12"><markdown [src]="'app/validation/validation-ngmodel/markdown/component.html'"></markdown></div>
+    <div id="code-ngmodel" class="col s12"><markdown [src]="'app/validation/validation-ngmodel/markdown/component.ts'"></markdown></div>
   </div>
 </div>

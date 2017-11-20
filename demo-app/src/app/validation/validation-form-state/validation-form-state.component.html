@@ -66,10 +66,10 @@
 
       <div *ngIf="submitted">
         <h5 class="light">Submitted form</h5>
-        <markdown-to-html [data]="values | json | language: 'json'"></markdown-to-html>
+        <markdown [data]="values | json | language: 'json'"></markdown>
       </div>
     </div>
-    <div id="html-form-state" class="col s12"><markdown-to-html [src]="'app/validation/validation-form-state/markdown/component.html'"></markdown-to-html></div>
-    <div id="code-form-state" class="col s12"><markdown-to-html [src]="'app/validation/validation-form-state/markdown/component.ts'"></markdown-to-html></div>
+    <div id="html-form-state" class="col s12"><markdown [src]="'app/validation/validation-form-state/markdown/component.html'"></markdown></div>
+    <div id="code-form-state" class="col s12"><markdown [src]="'app/validation/validation-form-state/markdown/component.ts'"></markdown></div>
   </div>
 </div>

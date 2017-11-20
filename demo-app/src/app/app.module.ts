@@ -4,9 +4,9 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MaterializeModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { ROUTES } from './app.routing';
 
@@ -48,7 +48,7 @@ import { ValidationModule } from './validation/validation.module';
     FormsModule,
     HttpModule,
     MalihuScrollbarModule.forRoot(),
-    MarkdownToHtmlModule.forRoot(),
+    MarkdownModule.forRoot(),
     MaterializeModule.forRoot(),
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
