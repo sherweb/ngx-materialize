@@ -17,12 +17,10 @@ export class MzModalService {
   /**
    * Open modal component.
    *
-   * @template T
    * @param {Type<MzBaseModal>} componentClass
    * @param {*} [options={}]
    * @returns {ComponentRef<MzBaseModal>}
-   *
-   * @memberOf MzModalService
+   * @memberof MzModalService
    */
   open(componentClass: Type<MzBaseModal>, options: any = {}): ComponentRef<MzBaseModal> {
     const componentRef = this.injectionService.appendComponent(componentClass, options);

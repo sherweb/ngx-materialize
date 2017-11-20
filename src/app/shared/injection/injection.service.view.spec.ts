@@ -37,7 +37,7 @@ describe('MzInjectionService:view', () => {
     let nativeElement: any;
 
     function testComponent(): HTMLElement {
-      return nativeElement.querySelector('mz-test');
+      return <HTMLElement>document.querySelector('mz-test');
     }
 
     it('should inject component in the DOM', async(() => {
@@ -51,7 +51,7 @@ describe('MzInjectionService:view', () => {
         // expect not be in the DOM
         expect(testComponent()).toBeNull();
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
         injectionService.appendComponent(MzTestComponent);
 
         // expect to be in the DOM
@@ -68,7 +68,7 @@ describe('MzInjectionService:view', () => {
 
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
         const componentRef = injectionService.appendComponent(MzTestComponent, { inputProperty: 'input-property-x' });
 
         expect(componentRef.instance.inputProperty).toBe('input-property-x');
@@ -84,7 +84,7 @@ describe('MzInjectionService:view', () => {
         const applicationRef: ApplicationRef = TestBed.get(ApplicationRef);
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
         const componentRef = injectionService.appendComponent(MzTestComponent);
 
         // expect to be in the DOM
@@ -116,34 +116,17 @@ describe('MzInjectionService:view', () => {
       });
     }));
 
-    it('should append component to application root component in the DOM when location not provided', async(() => {
+    it('should append component to document.body in the DOM when location not provided', async(() => {
 
       buildComponent(``).then(fixture => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        const applicationRef: ApplicationRef = TestBed.get(ApplicationRef);
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
-
-        // mock _rootComponents as this does not exists in the context of TestBed
-        applicationRef['_rootComponents'] = [fixture.componentRef];
 
         injectionService.appendComponent(MzTestComponent);
 
-        expect(testComponent().parentElement).toBe(fixture.nativeElement);
-      });
-    }));
-
-    it('should throw an error when applicationRef does not have _rootComponents and no default location is set', async(() => {
-
-      buildComponent(``).then(fixture => {
-        nativeElement = fixture.nativeElement;
-        fixture.detectChanges();
-
-        const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
-
-        expect(() => injectionService.appendComponent(MzTestComponent))
-          .toThrowError('View Container not found! It needs to be manually set via setRootViewContainer.');
+        expect(testComponent().parentElement).toBe(document.body);
       });
     }));
   });
@@ -163,7 +146,7 @@ describe('MzInjectionService:view', () => {
 
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
         injectionService.appendComponent(MzTestComponent);
 
         expect(testComponent().parentElement).toBe(fixture.nativeElement);

@@ -10,7 +10,7 @@ import {
 
 @Injectable()
 export class MzInjectionService {
-  private container: ComponentRef<any>;
+  private container: Element;
 
   constructor(
     private applicationRef: ApplicationRef,
@@ -24,17 +24,15 @@ export class MzInjectionService {
    * @template T
    * @param {Type<T>} componentClass
    * @param {*} [options={}]
-   * @param {Element} [location=this.getRootViewContainerNode()]
+   * @param {Element} [location=this.getContainerElement()]
    * @returns {ComponentRef<T>}
-   *
-   * @memberOf MzInjectionService
+   * @memberof MzInjectionService
    */
   appendComponent<T>(
     componentClass: Type<T>,
     options: any = {},
-    location: Element = this.getRootViewContainerNode(),
+    location: Element = this.getContainerElement(),
   ): ComponentRef<T> {
-
     // instantiate component to load
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     const componentRef = componentFactory.create(this.injector);
@@ -58,69 +56,47 @@ export class MzInjectionService {
   }
 
   /**
-   * Overrides the default root view container.
+   * Overrides the default container element.
    *
-   * @param {any} container
-   *
-   * @memberOf MzInjectionService
+   * @param {Element} container
+   * @memberof MzInjectionService
    */
-  setRootViewContainer(container: any): void {
+  setRootViewContainer(container: Element): void {
     this.container = container;
-  }
-
-  /**
-   * Gets the root view container to inject the component to.
-   *
-   * @template T
-   * @returns {ComponentRef<T>}
-   *
-   * @memberOf MzInjectionService
-   */
-  private getRootViewContainer<T>(): ComponentRef<T> {
-    if (this.container) {
-      return this.container;
-    }
-
-    const rootComponents = this.applicationRef['_rootComponents'];
-    if (rootComponents.length) {
-      return rootComponents[0];
-    }
-
-    throw Error('View Container not found! It needs to be manually set via setRootViewContainer.');
   }
 
   /**
    * Gets the html element for a component ref.
    *
+   * @private
    * @param {ComponentRef<any>} componentRef
-   * @returns {HTMLElement}
-   *
-   * @memberOf MzInjectionService
+   * @returns {Element}
+   * @memberof MzInjectionService
    */
-  private getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
-    return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+  private getComponentRootNode(componentRef: ComponentRef<any>): Element {
+    return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as Element;
   }
 
   /**
-   * Gets the root component container html element.
+   * Gets the container element.
    *
-   * @returns {HTMLElement}
-   *
-   * @memberOf MzInjectionService
+   * @private
+   * @returns {Element}
+   * @memberof MzInjectionService
    */
-  private getRootViewContainerNode(): HTMLElement {
-    const rootViewContainer = this.getRootViewContainer();
-    return this.getComponentRootNode(rootViewContainer);
+  private getContainerElement(): Element {
+    return this.container || document.body;
   }
 
   /**
    * Projects the inputs onto the component.
    *
-   * @param {ComponentRef<any>} component
+   * @private
+   * @template T
+   * @param {ComponentRef<T>} component
    * @param {*} options
-   * @returns {ComponentRef<any>}
-   *
-   * @memberOf MzInjectionService
+   * @returns {ComponentRef<T>}
+   * @memberof MzInjectionService
    */
   private projectComponentInputs<T>(component: ComponentRef<T>, options: any): ComponentRef<T> {
     if (options) {
