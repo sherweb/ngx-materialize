@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import {
   MzButtonModule,
   MzCardModule,
@@ -17,6 +16,7 @@ import {
   MzTimepickerModule,
   MzValidationModule,
 } from 'ng2-materialize';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -32,7 +32,7 @@ import { ROUTES } from './validation.routing';
     CodeSnippetModule,
     CommonModule,
     FormsModule,
-    MarkdownToHtmlModule.forRoot(),
+    MarkdownModule.forRoot(),
     MzButtonModule,
     MzCardModule,
     MzCheckboxModule,

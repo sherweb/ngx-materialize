@@ -168,8 +168,8 @@
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.12.tgz#f496823108c3874c97c9a822e675a3926ee64b46"
 
 "@types/materialize-css@^0.100.0":
-  version "0.100.0"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.0.tgz#2b311b2ca273d6fd689609ab8e8d932966f8f45c"
+  version "0.100.1"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.1.tgz#9ab5b1faba5ba28b6c39ab94c31f77f5fd2f7b68"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"

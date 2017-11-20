@@ -59,7 +59,7 @@ describe('MzModalService:view', () => {
         // expect not be in the DOM
         expect(modal()).toBeNull();
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
         modalService.open(MzTestModalComponent, options);
 
         expect(injectionService.appendComponent).toHaveBeenCalledWith(MzTestModalComponent, options);
@@ -78,7 +78,7 @@ describe('MzModalService:view', () => {
         const injectionService: MzInjectionService = TestBed.get(MzInjectionService);
         const modalService: MzModalService = TestBed.get(MzModalService);
 
-        injectionService.setRootViewContainer(fixture.componentRef);
+        injectionService.setRootViewContainer(nativeElement);
 
         const componentRef = modalService.open(MzTestModalComponent);
 

@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { MzButtonModule, MzIconMdiModule, MzSidenavModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routing';
@@ -19,6 +19,7 @@ import { ROUTES } from './app.routing';
     MzButtonModule,
     MzIconMdiModule,
     MzSidenavModule,
+    MarkdownModule.forRoot(),
     RouterModule.forRoot(ROUTES),
   ],
   declarations: [AppComponent],

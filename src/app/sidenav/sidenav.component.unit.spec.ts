@@ -30,7 +30,7 @@ describe('MzSidenavComponent:unit', () => {
 
   afterEach(() => {
     const collapseButton = $(`#${collapseButtonId}`);
-    if (collapseButton.remove) {
+    if (collapseButton && collapseButton.remove) {
       collapseButton.remove();
     }
   });
@@ -62,15 +62,11 @@ describe('MzSidenavComponent:unit', () => {
 
     it('should destroy sidenav', () => {
 
-      const mockCollapseButton = { sideNav: () => {} };
+      const mockCollapseButton = <JQuery>{ sideNav: () => {} };
 
       spyOn(mockCollapseButton, 'sideNav');
 
-      spyOn(window, '$').and.callFake((selector: string): any => {
-        return selector === `#${collapseButtonId}`
-          ? mockCollapseButton
-          : {};
-      });
+      component['collapseButton'] = mockCollapseButton;
 
       component.ngOnDestroy();
 
@@ -81,21 +77,13 @@ describe('MzSidenavComponent:unit', () => {
   describe('initCollapseButton', () => {
 
     function queryById(id: string): JQuery {
-      return $(`#${collapseButtonId}`);
+      return $(`#${id}`);
     }
 
     describe('when no collapseButtonId is provided', () => {
 
       beforeEach(() => {
         createCollapseButton(collapseButtonId);
-      });
-
-      it('should not add show-on-large css class on collapsable button when fixed', () => {
-
-        component.fixed = true;
-        component.initCollapseButton();
-
-        expect(queryById(collapseButtonId)[0].classList).not.toContain('show-on-large');
       });
 
       it('should not add data-activates attribute on collapse button', () => {
@@ -106,13 +94,26 @@ describe('MzSidenavComponent:unit', () => {
         expect(queryById(collapseButtonId).data('activates')).toBeUndefined();
       });
 
-      it('should not initialize sidenav through collapse button', () => {
+      it('should initialize sidenav through empty template', () => {
 
-        spyOn($.fn, 'sideNav');
+        const template = document.createElement('template');
+        const mockTemplate = {
+          sideNav: () => {},
+          addClass: () => {},
+          attr: () => {},
+        };
+
+        spyOn(mockTemplate, 'sideNav');
+
+        spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
+          return selector.nodeName === 'TEMPLATE'
+            ? mockTemplate
+            : null;
+        });
 
         component.initCollapseButton();
 
-        expect($.fn.sideNav).not.toHaveBeenCalled();
+        expect(mockTemplate.sideNav).toHaveBeenCalled();
       });
     });
 
@@ -121,22 +122,6 @@ describe('MzSidenavComponent:unit', () => {
       beforeEach(() => {
         createCollapseButton(collapseButtonId);
         component.collapseButtonId = collapseButtonId;
-      });
-
-      it('should not add show-on-large css class on collapsable button when fixed', () => {
-
-        component.fixed = true;
-        component.initCollapseButton();
-
-        expect(queryById(collapseButtonId)[0].classList).not.toContain('show-on-large');
-      });
-
-      it('should add show-on-large css class on collapsable button when not fixed', () => {
-
-        component.initCollapseButton();
-
-        expect(component.fixed).toBeFalsy();
-        expect(queryById(collapseButtonId)[0].classList).toContain('show-on-large');
       });
 
       it('should add data-activates attribute on collapse button', () => {
@@ -160,8 +145,8 @@ describe('MzSidenavComponent:unit', () => {
           draggable: true,
           edge: 'left',
           menuWidth: 300,
-          onClose: false,
-          onOpen: false,
+          onClose: jasmine.any(Function),
+          onOpen: jasmine.any(Function),
         });
       });
 
@@ -193,6 +178,7 @@ describe('MzSidenavComponent:unit', () => {
 
     it('should initialize collapsible elements', () => {
 
+      const sidenavId = 'sidenav-id';
       const mockCollapsible = { collapsible: () => {} };
       const mockOther = {
         attr: () => {},
@@ -203,11 +189,12 @@ describe('MzSidenavComponent:unit', () => {
       spyOn(mockCollapsible, 'collapsible');
 
       spyOn(window, '$').and.callFake((selector: string): any => {
-        return selector === '.collapsible'
+        return selector === `#${sidenavId} .collapsible`
           ? mockCollapsible
           : mockOther;
       });
 
+      component.id = sidenavId;
       component.initCollapsibleLinks();
 
       expect(mockCollapsible.collapsible).toHaveBeenCalled();
