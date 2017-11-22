@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterializeModule } from 'ng2-materialize';
+import { RouterModule } from '@angular/router';
+import { MzButtonModule, MzIconMdiModule, MzParallaxModule } from 'ng2-materialize';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { HomeComponent } from './home.component';
+import { ROUTES } from './home.routing';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
-    CodeSnippetModule,
-    CommonModule,
     MarkdownModule.forRoot(),
-    MaterializeModule,
+    MzButtonModule,
+    MzIconMdiModule,
+    MzParallaxModule,
+    RouterModule.forChild(ROUTES),
   ],
-  declarations: [ HomeComponent ],
+  declarations: [HomeComponent],
 })
 export class HomeModule { }

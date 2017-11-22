@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { MaterializeModule } from 'ng2-materialize';
+import { MzButtonModule, MzIconMdiModule, MzSidenavModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
 import { SidenavComponent } from './sidenav.component';
+import { ROUTES } from './sidenav.routing';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule,
+    MzButtonModule,
+    MzIconMdiModule,
+    MzSidenavModule,
     PropertiesTableModule,
-    RouterModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [SidenavComponent],
 })

@@ -1,3 +1,4 @@
-export * from './dropdown-divider/dropdown-divider.component';
-export * from './dropdown-item/dropdown-item.component';
+export * from './dropdown-divider';
+export * from './dropdown-item';
 export * from './dropdown.component';
+export * from './dropdown.module';

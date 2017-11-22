@@ -1,90 +1,28 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { MaterializeModule } from 'ng2-materialize';
+import { MzButtonModule, MzIconMdiModule, MzSidenavModule } from 'ng2-materialize';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { MarkdownModule } from 'ngx-markdown';
 
-import { ROUTES } from './app.routing';
-
 import { AppComponent } from './app.component';
-import { BadgeModule } from './badge/badge.module';
-import { ButtonModule } from './button/button.module';
-import { CardModule } from './card/card.module';
-import { CheckboxModule } from './checkbox/checkbox.module';
-import { CollapsibleModule } from './collapsible/collapsible.module';
-import { CollectionModule } from './collection/collection.module';
-import { DatepickerModule } from './datepicker/datepicker.module';
-import { DropdownModule } from './dropdown/dropdown.module';
-import { HomeModule } from './home/home.module';
-import { IconModule } from './icon/icon.module';
-import { InputModule } from './input/input.module';
-import { MaterializeCssClassModule } from './materialize-css-class/materialize-css-class.module';
-import { MediaModule } from './media/media.module';
-import { ModalModule } from './modal/modal.module';
-import { NavbarModule } from './navbar/navbar.module';
-import { ParallaxModule } from './parallax/parallax.module';
-import { ProgressModule } from './progress/progress.module';
-import { RadioButtonModule } from './radio-button/radio-button.module';
-import { SelectModule } from './select/select.module';
-import { SidenavModule } from './sidenav/sidenav.module';
-import { SpinnerModule } from './spinner/spinner.module';
-import { SwitchModule } from './switch/switch.module';
-import { TabModule } from './tab/tab.module';
-import { TextareaModule } from './textarea/textarea.module';
-import { TimepickerModule } from './timepicker/timepicker.module';
-import { ToastModule } from './toast/toast.module';
-import { TooltipModule } from './tooltip/tooltip.module';
-import { ValidationModule } from './validation/validation.module';
+import { ROUTES } from './app.routing';
 
 @NgModule({
   imports: [
     // external modules
     BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpModule,
+    CommonModule,
     MalihuScrollbarModule.forRoot(),
+    MzButtonModule,
+    MzIconMdiModule,
+    MzSidenavModule,
     MarkdownModule.forRoot(),
-    MaterializeModule.forRoot(),
-    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
-
-    // internal modules
-    BadgeModule,
-    ButtonModule,
-    CardModule,
-    CheckboxModule,
-    CollapsibleModule,
-    CollectionModule,
-    DatepickerModule,
-    DropdownModule,
-    HomeModule,
-    IconModule,
-    InputModule,
-    MaterializeCssClassModule,
-    MediaModule,
-    ModalModule,
-    NavbarModule,
-    ParallaxModule,
-    ProgressModule,
-    RadioButtonModule,
-    SelectModule,
-    SidenavModule,
-    SpinnerModule,
-    SwitchModule,
-    TabModule,
-    TextareaModule,
-    TimepickerModule,
-    ToastModule,
-    TooltipModule,
-    ValidationModule,
   ],
   declarations: [AppComponent],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

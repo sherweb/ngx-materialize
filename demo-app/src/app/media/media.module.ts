@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MaterializeModule } from 'ng2-materialize';
+import { RouterModule } from '@angular/router';
+import { MzMediaModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { MediaComponent } from './media.component';
+import { ROUTES } from './media.routing';
 
 @NgModule({
   imports: [
     CodeSnippetModule,
     CommonModule,
-    MaterializeModule.forRoot(),
+    MzMediaModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [MediaComponent],
 })

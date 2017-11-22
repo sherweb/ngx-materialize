@@ -1,21 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterializeModule } from 'ng2-materialize';
+import { RouterModule } from '@angular/router';
+import { MzCheckboxModule, MzInputModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
 import { CheckboxComponent } from './checkbox.component';
+import { ROUTES } from './checkbox.routing';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CodeSnippetModule,
     CommonModule,
     FormsModule,
-    MaterializeModule,
+    MzCheckboxModule,
+    MzInputModule,
     PropertiesTableModule,
+    RouterModule.forChild(ROUTES),
   ],
   declarations: [CheckboxComponent],
 })
