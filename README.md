@@ -33,11 +33,16 @@
 
 ## Why ng2-materialize?
 
-We are aware that alternatives exposing Material Design components already exist. But, in our case, we want to rely on a stable css framework that does not depend on a specific js framework.
+The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in several component demo pages.
 
-We already know the possibilities Materialize offers. What is left to do is to wrap components that we want to use in Angular component.
+In other words, we ...
 
-If you want to use a component that is not yet implemented, simply wrap the existing Materialize components that already meets the Material Design specifications. No need to be an HTML/CSS expert, only to know the Angular 2+ components. Or if you are in a hurry, you can use it directly in HTML rather than in Angular component.
+- Simplify components usage
+- Initialize components automatically
+- Handle Angular "quirks" with Materialize library
+- Offer component injection when possible
+- Provide a MediaService that allow customization according to view port size
+- Add support for ReactiveForm with validation
 
 ## Installation
 
@@ -123,7 +128,7 @@ If you don't want to install a new dependency in your application, you can inclu
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
++ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppModule } from './app.module';
 
@@ -137,24 +142,47 @@ export class AppModule { }
 
 ## Usage
 
-You must import `MaterializeModule` inside your module to be able to use Materialize components.
+You must import component module you want to use inside your module to be able to use Materialize components.
 
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { MaterializeModule } from 'ng2-materialize';
++ import { MzButtonModule, MzInputModule } from 'ng2-materialize';
 
 import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
     CommonModule,
-+    MaterializeModule.forRoot(),
++   MzButtonModule,
++   MzInputModule,
   ],
   declarations: [ HomeComponent ],
 })
 export class HomeModule { }
 ```
+
+
+### Alternative
+As an alternative, you can import `MaterializeModule` to make all component availables. This module is **depracated** and it will be removed in a near future.
+
+ ```diff
+  import { CommonModule } from '@angular/common';
+  import { NgModule } from '@angular/core';
+ + import { MaterializeModule } from 'ng2-materialize';
+
+
+  import { HomeComponent } from './home.component';
+
+  @NgModule({
+    imports: [
+      CommonModule,
+ +    MaterializeModule.forRoot(),
+     ],
+    declarations: [ HomeComponent ],
+  })
+ export class HomeModule { }
+ ```
 
 ## Available features
 
