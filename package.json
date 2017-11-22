@@ -1,6 +1,6 @@
 {
   "name": "ng2-materialize",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "An Angular 2+ wrap around Materialize library",
   "license": "Apache-2.0",
   "repository": "sherweb/ng2-materialize",
