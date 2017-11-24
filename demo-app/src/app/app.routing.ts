@@ -1,5 +1,3 @@
-// tslint:disable:max-line-length
-
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
@@ -12,12 +10,12 @@ const loading = 'Loading';
 const indicator = 'Indicators';
 const service = 'Services';
 
+// tslint:disable:max-line-length
 export const ROUTES: Routes = [
   // home route
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
 
   // components routes - CSS
-  /* tslint:disable:max-line-length */
   { path: 'materialize-css-class', loadChildren: './materialize-css-class/materialize-css-class.module#MaterializeCssClassModule', data: { icon: 'language-css3', text: 'Materialize CSS Class', section: css } },
 
   // components routes - Form controls
@@ -32,7 +30,7 @@ export const ROUTES: Routes = [
   { path: 'textarea', loadChildren: './textarea/textarea.module#TextareaModule', data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
   { path: 'timepicker', loadChildren: './timepicker/timepicker.module#TimepickerModule', data: { icon: 'clock', text: 'Timepicker', section: formControls } },
 
-  // // components routes - Layout
+  // components routes - Layout
   { path: 'card', loadChildren: './card/card.module#CardModule', data: { icon: 'cards-outline', text: 'Card', section: layout } },
   { path: 'collapsible', loadChildren: './collapsible/collapsible.module#CollapsibleModule', data: { icon: 'view-carousel', class: 'rotate90', text: 'Collapsible', section: layout } },
   { path: 'collection', loadChildren: './collection/collection.module#CollectionModule', data: { icon: 'view-sequential', text: 'Collection', section: layout } },
@@ -43,17 +41,17 @@ export const ROUTES: Routes = [
   { path: 'sidenav', loadChildren: './sidenav/sidenav.module#SidenavModule', data: { icon: 'menu', text: 'Sidenav', section: layout } },
   { path: 'tab', loadChildren: './tab/tab.module#TabModule', data: { icon: 'tab', text: 'Tab', section: layout } },
 
-  // // components routes - Loading
+  // components routes - Loading
   { path: 'progress', loadChildren: './progress/progress.module#ProgressModule', data: { icon: 'timer-sand', text: 'Progress', section: loading } },
   { path: 'spinner', loadChildren: './spinner/spinner.module#SpinnerModule', data: { icon: 'reload', text: 'Spinner', section: loading } },
 
-  // // components routes - Indicator
+  // components routes - Indicator
   { path: 'badge', loadChildren: './badge/badge.module#BadgeModule', data: { icon: 'numeric-2-box-outline', text: 'Badge', section: indicator } },
   { path: 'icon', loadChildren: './icon/icon.module#IconModule', data: { icon: 'emoticon-happy', text: 'Icon', section: indicator } },
   { path: 'toast', loadChildren: './toast/toast.module#ToastModule', data: { icon: 'tooltip-text', text: 'Toast', section: indicator } },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipModule', data: { icon: 'tooltip', text: 'Tooltip', section: indicator } },
 
-  // // components routes - Service
+  // components routes - Service
   { path: 'media', loadChildren: './media/media.module#MediaModule', data: { icon: 'monitor', text: 'Media', section: service } },
 
   // redirect to home when route does not exists (must be last route)

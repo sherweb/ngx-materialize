@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/filter';
 
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
 import { MzSidenavComponent } from 'ng2-materialize';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
@@ -23,8 +23,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private renderer: Renderer,
-    private elementRef: ElementRef,
     private mScrollbarService: MalihuScrollbarService,
   ) { }
 
@@ -72,10 +70,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   setNavigationEndEvent() {
     // scroll to top on each route change
     this.router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .subscribe((event: NavigationEnd) => {
-        const parentElement = this.elementRef.nativeElement.parentElement;
-        this.renderer.setElementProperty(parentElement, 'scrollTop', 0);
-      });
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe(() => window.scrollTo(0, 0));
   }
 }
