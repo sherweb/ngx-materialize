@@ -27,7 +27,7 @@ test_script:
   - npm --version
   - yarn --version
   - yarn lint
-  - yarn build:prod --progress false
+  - yarn build:prod --no-progress
 
 after_test:
   - yarn unlink ng2-materialize
