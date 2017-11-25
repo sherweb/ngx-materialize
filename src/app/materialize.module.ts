@@ -47,6 +47,7 @@ const MZ_MODULES = [
   MzIconMdiModule,
   MzInjectionModule,
   MzInputModule,
+  MzMediaModule,
   MzModalModule,
   MzNavbarModule,
   MzParallaxModule,
