@@ -59,6 +59,7 @@ const MZ_MODULES = [
   MzTabModule,
   MzTextAreaModule,
   MzTimepickerModule,
+  MzToastModule,
   MzTooltipModule,
   MzValidationModule,
 ];
