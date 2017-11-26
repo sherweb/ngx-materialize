@@ -37,6 +37,7 @@ export const ROUTES: Routes = [
   { path: 'dropdown', loadChildren: './dropdown/dropdown.module#DropdownModule', data: { icon: 'dots-vertical', text: 'Dropdown', section: layout } },
   { path: 'modal', loadChildren: './modal/modal.module#ModalModule', data: { icon: 'image-filter-none', text: 'Modal', section: layout } },
   { path: 'navbar', loadChildren: './navbar/navbar.module#NavbarModule', data: { icon: 'view-day', text: 'Navbar', section: layout } },
+  { path: 'pagination', loadChildren: './pagination/pagination.module#PaginationModule', data: { icon: 'book-open-page-variant', text: 'Pagination', section: layout } },
   { path: 'parallax', loadChildren: './parallax/parallax.module#ParallaxModule', data: { icon: 'image-area', text: 'Parallax', section: layout } },
   { path: 'sidenav', loadChildren: './sidenav/sidenav.module#SidenavModule', data: { icon: 'menu', text: 'Sidenav', section: layout } },
   { path: 'tab', loadChildren: './tab/tab.module#TabModule', data: { icon: 'tab', text: 'Tab', section: layout } },

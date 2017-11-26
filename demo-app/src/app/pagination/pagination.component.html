@@ -1,0 +1,68 @@
+<h3>Pagition</h3>
+
+<div class="section">
+  <h5 class="light">Basic pagination</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m3">
+      <mz-pagination-page [disabled]="'true'">
+        <a><i mz-icon-mdi [icon]="'chevron-left'"></i></a>
+      </mz-pagination-page>
+      <mz-pagination-page [active]="'true'">
+        <a>1</a>
+      </mz-pagination-page>
+      <mz-pagination-page>
+        <a>2</a>
+      </mz-pagination-page>
+      <mz-pagination-page>
+        <a>3</a>
+      </mz-pagination-page>
+      <mz-pagination-page>
+        <a>4</a>
+      </mz-pagination-page>
+      <mz-pagination-page>
+        <a>5</a>
+      </mz-pagination-page>
+      <mz-pagination-page>
+       <a><i mz-icon-mdi [icon]="'chevron-right'"></i></a>
+      </mz-pagination-page>
+    </mz-pagination>
+
+    <p class="col s12 m9">
+      First <code class="language-markup">mz-pagination-page</code> has property <code class="language-markup">disabled</code> and the second <code class="language-markup">nz-paginaiton-page</code> has property <code class="language-markup">active</code>.
+    </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+    <app-code-snippet>
+&lt;mz-pagination>
+  &lt;mz-pagination-page [disabled]="'true'">
+    &lt;a>&lt;i mz-mdi [icon]="'chevron_left'">&lt;/i>&lt;/a>
+  &lt;/mz-pagination-page>
+  &lt;mz-pagination-page [active]="'true'">
+    &lt;a>1&lt;/a>
+  &lt;/mz-pagination-page>
+  &lt;mz-pagination-page>
+    &lt;a>2&lt;/a>
+  &lt;/mz-pagination-page>
+  &lt;mz-pagination-page>
+    &lt;a>&lt;i mz-mdi [icon]="'chevron_right'">&lt;/i>&lt;/a>
+  &lt;/mz-pagination-page>
+&lt;/mz-pagination>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Pagition page can be customized using the following properties on the <code class="language-markup">mz-pagination-page</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

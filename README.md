@@ -203,6 +203,7 @@ As an alternative, you can import `MaterializeModule` to make all component avai
 * Input
 * Modal
 * Navbar
+* Pagination
 * Parallax
 * Progress
 * Radio-Button
