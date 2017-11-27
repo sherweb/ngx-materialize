@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { MzRadioButtonContainerComponent } from './radio-button-container';
