@@ -22,7 +22,6 @@ export * from './sidenav';
 export * from './spinner';
 export * from './switch';
 export * from './tab';
-export * from './timepicker';
 export * from './textarea';
 export * from './timepicker';
 export * from './toast';

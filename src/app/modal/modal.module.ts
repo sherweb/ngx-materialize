@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { MzModalCloseDirective } from './modal-close';
