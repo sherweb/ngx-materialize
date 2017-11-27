@@ -16,4 +16,4 @@ import { MzTextareaDirective } from './textarea.directive';
     MzTextareaPrefixDirective,
   ],
 })
-export class MzTextAreaModule { }
+export class MzTextareaModule { }

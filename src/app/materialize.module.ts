@@ -26,7 +26,7 @@ import { MzSidenavModule } from './sidenav';
 import { MzSpinnerModule } from './spinner';
 import { MzSwitchModule } from './switch';
 import { MzTabModule } from './tab';
-import { MzTextAreaModule } from './textarea';
+import { MzTextareaModule } from './textarea';
 import { MzTimepickerModule } from './timepicker';
 import { MzToastModule } from './toast';
 import { MzTooltipModule } from './tooltip';
@@ -58,7 +58,7 @@ const MZ_MODULES = [
   MzSpinnerModule,
   MzSwitchModule,
   MzTabModule,
-  MzTextAreaModule,
+  MzTextareaModule,
   MzTimepickerModule,
   MzToastModule,
   MzTooltipModule,

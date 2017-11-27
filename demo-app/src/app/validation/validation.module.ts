@@ -12,7 +12,7 @@ import {
   MzInputModule,
   MzRadioButtonModule,
   MzSelectModule,
-  MzTextAreaModule,
+  MzTextareaModule,
   MzTimepickerModule,
   MzValidationModule,
 } from 'ng2-materialize';
@@ -41,7 +41,7 @@ import { ROUTES } from './validation.routing';
     MzInputModule,
     MzRadioButtonModule,
     MzSelectModule,
-    MzTextAreaModule,
+    MzTextareaModule,
     MzTimepickerModule,
     MzValidationModule,
     PropertiesTableModule,
