@@ -167,6 +167,24 @@ export class HomeModule { }
 We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way. 
 We recommend to use the new component modules when you are building new component/application.
 
+If you still want to import only one module, you can create a separate `NgModule` in your application that imports all the `ng2-materialize` components. You will be able to include this module anywhere you like to use the components.
+
+```
+import { MzInputModule, MzValidationModule } from 'ng2-materialize';
+
+@NgModule({
+  imports: [
+    MzInputModule, 
+    MzValidationModule,
+  ],
+  exports: [
+    MzInputModule, 
+    MzValidationModule,
+  ],
+})
+export class CustomMaterializeModule { }
+```
+
 ## Available features
 
  Page listed in [Native CCS Class](./native-css-class) will not be wrapped.
