@@ -163,26 +163,27 @@ export class HomeModule { }
 ```
 
 
-### Alternative
-As an alternative, you can import `MaterializeModule` to make all component availables. This module is **deprecated** and it will be removed in a near future.
+### MaterializeModule deprecated
+We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way. 
+We recommend to use the new component modules when you are building new component/application.
 
- ```diff
-  import { CommonModule } from '@angular/common';
-  import { NgModule } from '@angular/core';
- + import { MaterializeModule } from 'ng2-materialize';
+If you still want to import only one module, you can create a separate `NgModule` in your application that imports all the `ng2-materialize` components. You will be able to include this module anywhere you like to use the components.
 
+```
+import { MzInputModule, MzValidationModule } from 'ng2-materialize';
 
-  import { HomeComponent } from './home.component';
-
-  @NgModule({
-    imports: [
-      CommonModule,
- +    MaterializeModule.forRoot(),
-     ],
-    declarations: [ HomeComponent ],
-  })
- export class HomeModule { }
- ```
+@NgModule({
+  imports: [
+    MzInputModule, 
+    MzValidationModule,
+  ],
+  exports: [
+    MzInputModule, 
+    MzValidationModule,
+  ],
+})
+export class CustomMaterializeModule { }
+```
 
 ## Available features
 
