@@ -163,26 +163,9 @@ export class HomeModule { }
 ```
 
 
-### Alternative
-As an alternative, you can import `MaterializeModule` to make all component availables. This module is **deprecated** and it will be removed in a near future.
-
- ```diff
-  import { CommonModule } from '@angular/common';
-  import { NgModule } from '@angular/core';
- + import { MaterializeModule } from 'ng2-materialize';
-
-
-  import { HomeComponent } from './home.component';
-
-  @NgModule({
-    imports: [
-      CommonModule,
- +    MaterializeModule.forRoot(),
-     ],
-    declarations: [ HomeComponent ],
-  })
- export class HomeModule { }
- ```
+### MaterializeModule deprecated
+We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way. 
+We recommend to use the new component modules when you are building new component/application.
 
 ## Available features
 
