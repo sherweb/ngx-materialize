@@ -9,6 +9,7 @@ When asking general "how to" questions:
 - [Search for duplicate or closed issues](https://github.com/sherweb/ng2-materialize/issues?utf8=%E2%9C%93&q=is%3Aissue) and make sure that is not an issue related to Materialize or other library.
 - Prepare a [reduced test case](https://css-tricks.com/reduced-test-cases/) for any bugs.
 - Provide a [StackBlitz](https://stackblitz.com/edit/ngx-materialize) is the best way to show your issue.
+
 <!--- Provide a general summary of the issue in the Title above. -->
 
 ## Expected Behavior
