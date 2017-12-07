@@ -220,6 +220,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   listenOptionChanges() {
     const mutationObserverConfiguration: MutationObserverInit = {
       childList: true,
+      subtree: true,
     };
 
     this.mutationObserver = new MutationObserver((mutations: MutationRecord[]) => {

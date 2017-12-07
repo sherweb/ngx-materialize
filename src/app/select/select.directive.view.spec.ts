@@ -151,6 +151,55 @@ describe('MzSelectDirective:view', () => {
           });
         });
       }));
+
+      it('Add option 2 in optgroup', async(() => {
+
+        const selectAsyncOptions = ['Option 1'];
+
+        buildComponent<any>(`
+          <mz-select-container>
+            <select mz-select
+              id="async-options-select"
+              [label]="'Label'"
+              [placeholder]="'Placeholder'"
+            >
+              <optgroup label="Group 1">
+                <option *ngFor="let option of selectAsyncOptions">{{ option }}</option>
+              </optgroup>
+            </select>
+          </mz-select-container>
+        `, {
+          selectAsyncOptions,
+        }).then((fixture) => {
+
+          nativeElement = fixture.nativeElement;
+
+          fixture.detectChanges();
+
+          const optionLength = () => fixture.nativeElement.querySelectorAll('option:not([disabled])').length;
+          const optionGroupLength = () => fixture.nativeElement.querySelectorAll('li.optgroup').length;
+          const optionListLength = () => fixture.nativeElement.querySelectorAll('li.optgroup-option').length;
+
+          expect(optionLength()).toBe(1);
+          expect(optionGroupLength()).toBe(1);
+          expect(optionListLength()).toBe(0);
+
+          fixture.componentInstance.selectAsyncOptions = ['Option 1', 'Option 2'];
+          fixture.detectChanges();
+
+          // Wait for the MutationObserver to detect the native option elements change and for the native select to emit the change event.
+          setTimeout(() => {
+            // The MutationObserver from the select directive detected the native option elements change
+            // and notified the native select component. The native select then calls material_select() to update
+            // the materialize select option list.
+            fixture.detectChanges();
+
+            expect(optionLength()).toBe(2);
+            expect(optionGroupLength()).toBe(1);
+            expect(optionListLength()).toBe(2);
+          });
+        });
+      }));
     });
   });
 
