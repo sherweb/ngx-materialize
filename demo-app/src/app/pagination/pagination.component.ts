@@ -13,18 +13,25 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from './../app.routing.animatio
 export class PaginationComponent {
   properties: IPropertyRow[] = [
     {
-      name: 'active',
+      name: 'currentPage',
       mandatory: false,
-      type: 'boolean',
-      description: `the page element must be active`,
-      defaultValue: 'false',
+      type: 'number',
+      description: `The current page active`,
+      defaultValue: '1',
     },
     {
-      name: 'disabled',
-      mandatory: false,
-      type: 'boolean',
-      description: `If the page element must be disabled`,
-      defaultValue: 'false',
+      name: 'itemsPerPage',
+      mandatory: true,
+      type: 'number',
+      description: `Item per page`,
+      defaultValue: '',
+    },
+    {
+      name: 'totalItems',
+      mandatory: true,
+      type: 'number',
+      description: `Total items`,
+      defaultValue: '',
     },
   ];
 }

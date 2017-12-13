@@ -6,7 +6,6 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
   styleUrls: ['./pagination-page-button.component.scss'],
 })
 export class MzPaginationPageButtonComponent {
-
   @Input() active: boolean;
   @Input() disabled: boolean;
 }
