@@ -114,7 +114,7 @@ See also [Angular CLI 3rd Party Library Installation](https://github.com/angular
 Ng2-materialize offers two "out-of-the-box" options for icons although you are free to use the library of your choice.
 
 ### Material Design Icons
-To use [Material Design Icons](https://materialdesignicons.com/) (community project based on Google Material Icons with lots of added icons), which is used with `mz-icon-mdi` directive, you will need to add the libary with the following command:
+To use [Material Design Icons](https://materialdesignicons.com/) (community project based on Google Material Icons with lots of added icons), which is used with `mz-icon-mdi` directive, you will need to add the library with the following command:
 
 ```
 npm install --save mdi
