@@ -54,7 +54,7 @@ In other words, we ...
 
 ## Installation
 
-The following commands will add Ng2-Materialize library to your `package.json` file along with it dependencies: Materialize CSS and jQuery.
+The following commands will add Ng2-Materialize library to your `package.json` file along with its dependencies: Materialize CSS and jQuery.
 
 ```
 npm install --save ng2-materialize
