@@ -1,14 +1,14 @@
 
   <ul class="pagination">
     <mz-pagination-page-button [disabled]="currentPage === 1">
-      <a><i mz-icon-mdi [icon]="'chevron-left'"></i></a>
+      <a (click)="previousPage()"><i mz-icon-mdi [icon]="'chevron-left'"></i></a>
     </mz-pagination-page-button>
     <mz-pagination-page-button *ngFor="let page of pages"
       [active]="page === currentPage"
     >
-      <a>{{ page }}</a>
+      <a (click)="changePage(page)">{{ page }}</a>
     </mz-pagination-page-button>
-    <mz-pagination-page-button>
-      <a><i mz-icon-mdi [icon]="'chevron-right'"></i></a>
+    <mz-pagination-page-button [disabled]="currentPage === totalPages">
+      <a (click)="nextPage()"><i mz-icon-mdi [icon]="'chevron-right'"></i></a>
     </mz-pagination-page-button>
   </ul>
