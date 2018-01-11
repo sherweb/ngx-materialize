@@ -4,6 +4,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
 
+import { MzInjectionModule } from '../../shared/injection/injection.module';
 import { MzInjectionService } from '../../shared/injection/injection.service';
 import { MzBaseModal } from '../modal-base';
 import { MzModalComponent } from '../modal.component';
@@ -19,13 +20,13 @@ describe('MzModalService:view', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [MzInjectionModule],
       declarations: [
         MzModalComponent,
         MzTestModalComponent,
         MzTestWrapperComponent,
       ],
       providers: [
-        MzInjectionService,
         MzModalService,
       ],
     });

@@ -14,7 +14,6 @@ import { ROUTES } from './modal.routing';
     CodeSnippetModule,
     CommonModule,
     MzButtonModule,
-    MzInjectionModule,
     MzModalModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),
