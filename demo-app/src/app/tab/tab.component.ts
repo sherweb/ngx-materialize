@@ -49,7 +49,8 @@ export class TabComponent {
       name: 'tabItemId',
       mandatory: false,
       type: 'string',
-      description: `Tab item id use for the navigation between each tab. If not specified the tab item id will be the label stripped from special characters and spaces.`,
+      description: `Tab item id use for the navigation between each tab. If not specified the tab item id will be the label `
+                    + ` stripped from special characters and spaces.`,
     },
     {
       name: 'target',
