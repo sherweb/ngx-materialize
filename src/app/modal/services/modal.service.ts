@@ -24,7 +24,7 @@ export class MzModalService {
    */
   open(componentClass: Type<MzBaseModal>, options: any = {}): ComponentRef<MzBaseModal> {
     const componentRef = this.injectionService.appendComponent(componentClass, options);
-    componentRef.instance.modalComponent.onClose.subscribe(() => {
+    componentRef.instance.modalComponent.onClose.first().subscribe(() => {
       componentRef.destroy();
     });
     return componentRef;
