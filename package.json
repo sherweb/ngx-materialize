@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.2.12",
-    "@types/materialize-css": "^0.100.0",
+    "@types/materialize-css": "^0.100.4",
     "materialize-css": "^0.100.2"
   },
   "devDependencies": {

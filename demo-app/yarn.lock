@@ -171,9 +171,9 @@
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.3.0.tgz#583c223dd33385a1dda01aaf77b0cd0411c4b524"
 
-"@types/materialize-css@^0.100.0":
-  version "0.100.1"
-  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.1.tgz#9ab5b1faba5ba28b6c39ab94c31f77f5fd2f7b68"
+"@types/materialize-css@^0.100.4":
+  version "0.100.4"
+  resolved "https://registry.yarnpkg.com/@types/materialize-css/-/materialize-css-0.100.4.tgz#0916aa6f78200539b05b00caf682187db11b0802"
   dependencies:
     "@types/jquery" "*"
     "@types/pickadate" "*"
@@ -3683,10 +3683,10 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
 "ng2-materialize@file:..":
-  version "1.6.0"
+  version "1.8.0-beta.0"
   dependencies:
     "@types/jquery" "^3.2.12"
-    "@types/materialize-css" "^0.100.0"
+    "@types/materialize-css" "^0.100.4"
     materialize-css "^0.100.2"
 
 ngx-malihu-scrollbar@^1.2.1:
