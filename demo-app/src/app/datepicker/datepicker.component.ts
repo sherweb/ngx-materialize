@@ -24,7 +24,7 @@ export class DatepickerComponent {
     onClose: () => alert('Close has been invoked.'),
     onOpen: () => alert('Open has been invoked.'),
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 10,    // Creates a dropdown of 10 years to control year,
+    selectYears: 10,    // Creates a dropdown of 10 years to control year
   };
 
   // playground
