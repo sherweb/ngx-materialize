@@ -116,6 +116,38 @@ describe('MzTabComponent:view', () => {
       });
     });
 
+    it('should replace tab item id non alphanumeric characters', async() => {
+
+      buildComponent(`
+        <mz-tab>
+          <mz-tab-item [label]="'lбabбel'">content</mz-tab-item>
+        </mz-tab>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('#label');
+        expect(tabContent()[0].getAttribute('id')).toBe('label');
+      });
+    });
+
+    it('should have tab item id', async() => {
+
+      buildComponent(`
+        <mz-tab>
+          <mz-tab-item [tabItemId]="'tabItemId'" [label]="'label'">content</mz-tab-item>
+        </mz-tab>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('#tabItemId');
+        expect(tabContent()[0].getAttribute('id')).toBe('tabItemId');
+      });
+    });
+
     it('should select tab item 2', async() => {
 
       buildComponent(`

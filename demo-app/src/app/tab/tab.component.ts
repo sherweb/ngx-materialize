@@ -34,10 +34,23 @@ export class TabComponent {
       defaultValue: `false`,
     },
     {
+      name: 'label',
+      mandatory: true,
+      type: 'string',
+      description: `Label displayed in HTML.`,
+    },
+    {
       name: 'href',
       mandatory: false,
       type: 'string',
       description: `URL to link to an external page`,
+    },
+    {
+      name: 'tabItemId',
+      mandatory: false,
+      type: 'string',
+      description: `Tab item id use for the navigation between each tab. If not specified the tab item id will be the label `
+                    + ` stripped from special characters and spaces.`,
     },
     {
       name: 'target',

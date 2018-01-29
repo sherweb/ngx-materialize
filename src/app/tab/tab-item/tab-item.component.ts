@@ -17,13 +17,14 @@ export class MzTabItemComponent {
   @Input() class: string;
   @Input() disabled: boolean;
   @Input() href: string;
-  @Input() label;
+  @Input() label: string;
+  @Input() tabItemId: string
   @Input() target: string;
 
   tabs: HTMLElement;
   liElement: HTMLElement;
 
   get link(): string {
-    return this.label.replace(/\s+/g, '-').toLowerCase();
+    return this.tabItemId ? this.tabItemId : this.label.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
   }
 }
