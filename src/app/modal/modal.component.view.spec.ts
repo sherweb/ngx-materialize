@@ -3,7 +3,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzModalComponent, MzModalContentDirective, MzModalFooterDirective, MzModalHeaderDirective } from './modal.component';
 
-fdescribe('MzModalComponent:view', () => {
+describe('MzModalComponent:view', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
