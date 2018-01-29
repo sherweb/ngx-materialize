@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { MzPaginationPageButtonComponent } from './pagination-page-button';
 
@@ -11,6 +11,7 @@ export class MzPaginationComponent implements OnInit {
   @Input() itemsPerPage: number;
   @Input() currentPage = 1;
   @Input() totaltItems: number;
+  @Output() changePageEvent = new EventEmitter<number>();
 
   pages: number[];
   totalPages: number;
@@ -23,6 +24,7 @@ export class MzPaginationComponent implements OnInit {
 
   changePage(pageNumber: number) {
     this.currentPage = pageNumber;
+    this.changePageEvent.emit(pageNumber);
   }
 
   previousPage()   {
