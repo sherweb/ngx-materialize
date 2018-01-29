@@ -188,6 +188,19 @@ describe('MzButtonDirective:unit', () => {
         ]);
       });
 
+      it('should add only waves-effect on button element when flat is true', () => {
+
+        const rendererSpy = spyOn(renderer, 'setElementClass');
+
+        directive.flat = true;
+        directive.handleNoWaves();
+
+        expect(rendererSpy.calls.count()).toBe(1);
+        expect(rendererSpy.calls.allArgs()).toEqual([
+          [mockElementRef.nativeElement, 'waves-effect', !directive.noWaves],
+        ]);
+      });
+
       it('should not add waves-effect and waves-light on button element when noWaves is true', () => {
 
         const rendererSpy = spyOn(renderer, 'setElementClass');
