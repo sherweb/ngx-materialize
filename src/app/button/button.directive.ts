@@ -65,6 +65,9 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
 
   handleNoWaves() {
     this.renderer.setElementClass(this.elementRef.nativeElement, 'waves-effect', !this.noWaves);
-    this.renderer.setElementClass(this.elementRef.nativeElement, 'waves-light', !this.noWaves);
+
+    if (!this.flat) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, 'waves-light', !this.noWaves);
+    }
   }
 }
