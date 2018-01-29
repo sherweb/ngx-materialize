@@ -113,6 +113,7 @@ describe('MzButtonDirective:unit', () => {
         directive.flat = true;
         directive.handleFlat();
 
+        expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'btn', !directive.flat);
         expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, 'btn-flat', directive.flat);
       });
 

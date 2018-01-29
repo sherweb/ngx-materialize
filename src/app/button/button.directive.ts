@@ -51,6 +51,7 @@ export class MzButtonDirective extends HandlePropChanges implements OnInit {
   }
 
   handleFlat() {
+    this.renderer.setElementClass(this.elementRef.nativeElement, 'btn', !this.flat);
     this.renderer.setElementClass(this.elementRef.nativeElement, 'btn-flat', this.flat);
   }
 
