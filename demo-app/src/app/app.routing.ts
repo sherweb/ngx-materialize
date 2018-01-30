@@ -21,6 +21,7 @@ export const ROUTES: Routes = [
   // components routes - Form controls
   { path: 'button', loadChildren: './button/button.module#ButtonModule', data: { icon: 'box-shadow', text: 'Button', section: formControls } },
   { path: 'checkbox', loadChildren: './checkbox/checkbox.module#CheckboxModule', data: { icon: 'checkbox-marked', text: 'Checkbox', section: formControls } },
+  { path: 'chip', loadChildren: './chip/chip.module#ChipModule', data: { icon: 'tag', text: 'Chip', section: formControls } },
   { path: 'datepicker', loadChildren: './datepicker/datepicker.module#DatepickerModule', data: { icon: 'calendar', text: 'Datepicker', section: formControls } },
   { path: 'form-validation', loadChildren: './validation/validation.module#ValidationModule', data: { icon: 'checkbox-marked-circle-outline', text: 'Form validation', section: formControls } },
   { path: 'input', loadChildren: './input/input.module#InputModule', data: { icon: 'textbox', text: 'Input', section: formControls } },
