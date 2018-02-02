@@ -31,7 +31,6 @@ describe('MzNavbarItemContainerComponent:view', () => {
 
         expect(itemContainer()).toBeTruthy();
         expect(itemContainer().id).toContain('nav-mobile');
-        expect(itemContainer().classList).toContain('hide-on-med-and-down');
       });
     }));
 
