@@ -143,6 +143,108 @@
 
 <div class="section">
 
+  <h5 class="light">Working with NgControl</h5>
+
+  <div class="section">
+
+    <h6 class="bold">Set chip input value</h6>
+
+    <p>
+      To assign a value to the <code class="language-markup">mz-chip-input</code> component, you need to provide an Array of <code class="language-markup">Materialize.ChipDataObject</code> either with <code class="language-markup">NgModel</code> directive or when setting value to a <code class="language-markup">FormControl</code> when using Reactive Forms.
+    </p>
+
+    <blockquote class="important">
+      <b>IMPORTANT!</b> As the provided value must be an <b>array</b> and that Angular change detection compare objects by reference, you will need to <b>provide a new instance of the array</b> for the <code class="language-markup">mz-chip-input</code> to be correctly updated.
+    </blockquote>
+
+    <p class="bold">example.component.html</p>
+
+    <app-code-snippet>
+&lt;mz-chip-input
+  [placeholder]="'Enter a tag'"
+  [secondaryPlaceholder]="'+Tag'"
+  [(ngModel)]="chips">
+&lt;/mz-chip-input>
+
+&lt;button mz-button (click)="addChip()">Add&lt;/button>
+&lt;button mz-button (click)="removeChip()">Remove&lt;/button>
+    </app-code-snippet>
+
+    <p class="bold">example.component.ts</p>
+
+    <app-code-snippet language="typescript">
+public chips: Materialize.ChipDataObject[] = [
+  &#123; tag: 'Banana' },
+  &#123; tag: 'Kiwi' },
+  &#123; tag: 'Mango' },
+];
+
+addChip() &#123;
+  // deconstruct previous array value and add a new item to create a new
+  // array and force change detection to update mz-chip-input component
+  this.chips = [
+    ...this.chips,
+    &#123; tag: 'Papaya' },
+  ];
+}
+
+removeChip() &#123;
+  // removes last value of array
+  this.chips.pop();
+  // deconstruct previous array value to create a new array and
+  // force change detection to update mz-chip-input component
+  this.chips = [
+    ...this.chips,
+  ];
+}
+    </app-code-snippet>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">Get chip input value</h6>
+
+    <p>
+      The returned value of the <code class="language-markup">mz-chip-input</code> component will be an array of <code class="language-markup">Materialize.ChipDataObject</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-chip-input</code> component makes the form-control completely dynamic. Change the configuration below and see how the chip input reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-chip-input
+        [placeholder]="'Enter a tag'"
+        [secondaryPlaceholder]="'+Tag'"
+        [(ngModel)]="playgroundValue">
+      </mz-chip-input>
+    </div>
+
+    <div class="col s12 m6">
+
+      <p>
+        <button mz-button (click)="addPlaygroundValue()">Add</button>
+        <button mz-button (click)="removePlaygroundValue()">Remove</button>
+      </p>
+
+      <p>
+        Chip input value: {{ playgroundValue | json }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">HTML Structure</h5>
 
   <div class="section">

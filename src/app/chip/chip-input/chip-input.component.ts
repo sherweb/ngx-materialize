@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, NgZone, OnDestroy, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -14,22 +14,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDestroy {
-  @Input() autocompleteOptions?: Materialize.AutoCompleteOptions;
-  @Input() placeholder?: string;
-  @Input() secondaryPlaceholder?: string;
-
+  @Input() autocompleteOptions: Materialize.AutoCompleteOptions;
+  @Input() placeholder: string;
+  @Input() secondaryPlaceholder: string;
   @Output() add = new EventEmitter<Materialize.ChipDataObject>();
   @Output() delete = new EventEmitter<Materialize.ChipDataObject>();
   @Output() select = new EventEmitter<Materialize.ChipDataObject>();
 
   get value(): Materialize.ChipDataObject[] {
-    return this.chipsElement.material_chip('data') as Materialize.ChipDataObject[];
+    return this.chipInputElement.material_chip('data') as Materialize.ChipDataObject[];
   }
 
-  private chipsElement: JQuery;
+  private chipInputElement: JQuery;
+  private onChangeCallback = (_: Materialize.ChipDataObject[]) => {};
 
   constructor(
     private elementRef: ElementRef,
+    private zone: NgZone,
   ) { }
 
   ngOnInit() {
@@ -38,44 +39,47 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   }
 
   ngOnDestroy() {
-    this.chipsElement
+    this.chipInputElement
       .off('chip.add')
       .off('chip.delete')
       .off('chip.select');
   }
 
   initElements() {
-    this.chipsElement = $(this.elementRef.nativeElement);
+    this.chipInputElement = $(this.elementRef.nativeElement);
   }
 
   initMaterializeChip(value?: Materialize.ChipDataObject[]) {
-    this.chipsElement.material_chip({
-      data: value || this.value,
-      placeholder: this.placeholder,
-      secondaryPlaceholder: this.secondaryPlaceholder,
-      autocompleteOptions: this.autocompleteOptions,
+    // fix issue autocomplete is not a function
+    // https://github.com/Dogfalo/materialize/issues/4401
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        this.chipInputElement.material_chip({
+          autocompleteOptions: this.autocompleteOptions,
+          data: value || this.value,
+          placeholder: this.placeholder,
+          secondaryPlaceholder: this.secondaryPlaceholder,
+        });
+      });
     });
 
-    this.chipsElement
-      .on('chip.add', (event, chip: Materialize.ChipDataObject) => {
-        this.onChange(this.value);
-        this.add.emit(chip);
-      })
-      .on('chip.delete', (event, chip: Materialize.ChipDataObject) => {
-        this.onChange(this.value);
-        this.delete.emit(chip);
-      })
-      .on('chip.select', (event, chip: Materialize.ChipDataObject) => {
-        this.select.emit(chip);
-      });
+    this.chipInputElement.on('chip.add', (event, chip: Materialize.ChipDataObject) => {
+      this.onChangeCallback(this.value);
+      this.add.emit(chip);
+    })
+    this.chipInputElement.on('chip.delete', (event, chip: Materialize.ChipDataObject) => {
+      this.onChangeCallback(this.value);
+      this.delete.emit(chip);
+    });
+    this.chipInputElement.on('chip.select', (event, chip: Materialize.ChipDataObject) => {
+      this.select.emit(chip);
+    });
   }
-
-  onChange(value: Materialize.ChipDataObject[]) { };
 
   //#region ControlValueAccessor
 
   registerOnChange(fn: any) {
-    this.onChange = fn;
+    this.onChangeCallback = fn;
   }
 
   registerOnTouched(fn: any) { }
@@ -83,7 +87,7 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   setDisabledState(isDisabled: boolean) { }
 
   writeValue(value: Materialize.ChipDataObject[]) {
-    if (value) {
+    if (value && value !== this.value) {
       this.initMaterializeChip(value);
     }
   }

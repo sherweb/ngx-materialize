@@ -11,6 +11,28 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class ChipComponent {
+  // fake data
+  private readonly fruits = [
+    'Apple',
+    'Banana',
+    'Blueberry',
+    'Cherry',
+    'Cranberry',
+    'Grape',
+    'Grapefruit',
+    'Kiwi',
+    'Lemon',
+    'Lime',
+    'Melon',
+    'Orange',
+    'Papaya',
+    'Pear',
+    'Pineapple',
+    'Rasberry',
+    'Strawberry',
+  ];
+
+  // autocomplete
   autocompleteOptions: Materialize.AutoCompleteOptions = {
     data: {
       'Apple': null,
@@ -19,13 +41,20 @@ export class ChipComponent {
     },
   };
 
+  // control value
+  playgroundValue: Materialize.ChipDataObject[] = [
+    { tag: 'Banana' },
+    { tag: 'Kiwi' },
+    { tag: 'Mango' },
+  ];
+
   value: Materialize.ChipDataObject[] = [
     { tag: 'Banana' },
     { tag: 'Kiwi' },
     { tag: 'Mango' },
   ];
 
-  // table properties
+  // mz-chip table properties
   chipProperties: IPropertyRow[] = [
     { name: 'close',
       mandatory: false,
@@ -40,6 +69,7 @@ export class ChipComponent {
     },
   ];
 
+  // mz-chip-input table properties
   chipInputProperties: IPropertyRow[] = [
     { name: 'autocompleteOptions',
       mandatory: false,
@@ -73,10 +103,29 @@ export class ChipComponent {
     },
   ];
 
+  // playground functions
+  addPlaygroundValue() {
+    const index = this.getRandomNumber(0, this.fruits.length - 1);
+    const fruitToAdd = this.fruits[index];
+    this.playgroundValue = [
+      ...this.playgroundValue,
+      { tag: fruitToAdd },
+    ];
+  }
+
+  removePlaygroundValue() {
+    this.playgroundValue.pop();
+    this.playgroundValue = [
+      ...this.playgroundValue,
+    ];
+  }
+
+  // mz-chip events
   onDeleteTag(tag: string) {
     alert(`Tag deleted: ${tag}`);
   }
 
+  // mz-chip-input events
   onAdd(chip: Materialize.ChipDataObject) {
     alert(`Tag added: ${chip.tag}`);
   };
@@ -87,5 +136,10 @@ export class ChipComponent {
 
   onSelect(chip: Materialize.ChipDataObject) {
     alert(`Tag selected: ${chip.tag}`);
+  }
+
+  // helpers
+  private getRandomNumber(min: number, max: number) {
+    return Math.floor(min + Math.random() * (max + 1 - min))
   }
 }
