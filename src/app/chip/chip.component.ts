@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'mz-chip',
@@ -6,6 +6,8 @@ import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/cor
   styleUrls: ['./chip.component.scss'],
 })
 export class MzChipComponent {
+  @HostBinding('class.chip') true;
+
   @Input() close = false;
   @Output() delete = new EventEmitter<string>();
 
@@ -18,6 +20,6 @@ export class MzChipComponent {
   ) { }
 
   onDelete() {
-    this.delete.emit(this.chipElement.innerText);
+    this.delete.emit(this.chipElement.innerText.trim());
   }
 }

@@ -1,25 +1,110 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzChipComponent } from './chip.component';
 
 describe('MzChipComponent:view', () => {
-  let component: MzChipComponent;
-  let fixture: ComponentFixture<MzChipComponent>;
+  let nativeElement: any;
+
+  function chip(): HTMLElement {
+    return nativeElement.querySelector('.chip');
+  }
+
+  function closeIcon(): HTMLElement {
+    return nativeElement.querySelector('.close');
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MzChipComponent ],
-    })
-    .compileComponents();
+      declarations: [
+        MzChipComponent,
+        MzTestWrapperComponent,
+      ],
+    });
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MzChipComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  describe('chip', () => {
+
+    it('should transclude correctly', async(() => {
+
+      buildComponent(`
+        <mz-chip>
+          chip-x
+        </mz-chip>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(chip().innerText.trim()).toBe('chip-x');
+      });
+    }));
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  describe('close icon', () => {
+
+    it('should be shown correctly when close is true', async(() => {
+
+      buildComponent(`
+        <mz-chip [close]="true">
+          chip-x
+        </mz-chip>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(closeIcon()).not.toBeNull();
+        expect(closeIcon().children[0].nodeName).toBe('svg');
+      });
+    }));
+
+    it('should not be shown when close is false', async(() => {
+
+      buildComponent(`
+        <mz-chip [close]="false">
+          chip-x
+        </mz-chip>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(closeIcon()).toBeNull();
+      });
+    }));
+
+    it('should emit event correctly when clicked', async(() => {
+
+      const onDelete = jasmine.createSpy('onDelete');
+
+      buildComponent(`
+        <mz-chip [close]="true" (delete)="onDelete($event)">
+          chip-x
+        </mz-chip>
+      `, {
+        onDelete,
+      }).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        closeIcon().click();
+
+        expect(onDelete).toHaveBeenCalledWith('chip-x');
+      });
+    }));
+
+    it('should remove chip from the DOM when clicked', async(() => {
+
+      buildComponent(`
+        <mz-chip [close]="true">
+          chip-x
+        </mz-chip>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        closeIcon().click();
+
+        expect(chip()).toBeNull();
+      });
+    }));
   });
 });
