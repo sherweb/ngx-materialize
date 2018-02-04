@@ -6,7 +6,7 @@ import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from 
   styleUrls: ['./chip.component.scss'],
 })
 export class MzChipComponent {
-  @HostBinding('class.chip') true;
+  @HostBinding('class.chip') chipClass = true;
 
   @Input() close = false;
   @Output() delete = new EventEmitter<string>();

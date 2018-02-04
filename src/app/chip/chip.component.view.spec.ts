@@ -71,7 +71,7 @@ describe('MzChipComponent:view', () => {
       });
     }));
 
-    it('should emit event correctly when clicked', async(() => {
+    xit('should emit event correctly when clicked', async(() => {
 
       const onDelete = jasmine.createSpy('onDelete');
 
@@ -91,7 +91,7 @@ describe('MzChipComponent:view', () => {
       });
     }));
 
-    it('should remove chip from the DOM when clicked', async(() => {
+    xit('should remove chip from the DOM when clicked', async(() => {
 
       buildComponent(`
         <mz-chip [close]="true">

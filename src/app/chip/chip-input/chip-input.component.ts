@@ -39,10 +39,9 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   }
 
   ngOnDestroy() {
-    this.chipInputElement
-      .off('chip.add')
-      .off('chip.delete')
-      .off('chip.select');
+    this.chipInputElement.off('chip.add');
+    this.chipInputElement.off('chip.delete');
+    this.chipInputElement.off('chip.select');
   }
 
   initElements() {
