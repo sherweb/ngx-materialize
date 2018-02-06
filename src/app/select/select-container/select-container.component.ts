@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, Input, OnDestroy } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -11,6 +11,8 @@ import { MzSelectDirective } from '../select.directive';
   styleUrls: ['./select-container.component.scss'],
 })
 export class MzSelectContainerComponent implements AfterViewInit, OnDestroy {
+  @Input() inline: boolean;
+
   @ContentChild(MzSelectDirective) mzSelectDirective: MzSelectDirective;
   @ContentChild(MzValidationComponent) mzValidationComponent: MzValidationComponent;
   @ContentChild(NgControl) ngControl: NgControl;

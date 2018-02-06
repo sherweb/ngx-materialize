@@ -26,7 +26,16 @@ export class SelectComponent {
   selectMultipleValues = this.selectMultipleOptions.slice(0, 2);
 
   // table properties
-  properties: IPropertyRow[] = [
+  selectContainerProperties: IPropertyRow[] = [
+    { name: 'inline',
+      mandatory: false,
+      type: 'boolean',
+      description: 'Show select inline',
+      defaultValue: 'false',
+    },
+  ];
+
+  selectProperties: IPropertyRow[] = [
     { name: 'label',
       mandatory: false,
       type: 'string',

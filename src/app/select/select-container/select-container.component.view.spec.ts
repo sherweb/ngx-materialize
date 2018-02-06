@@ -46,6 +46,32 @@ describe('MzSelectContainerComponent:view', () => {
       return nativeElement.querySelector('.input-field');
     }
 
+    it('should have inline css class when inline is true', async(() => {
+
+      buildComponent<MzSelectContainerComponent>(`
+        <mz-select-container [inline]="true"></mz-select-container>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(inputField().classList).toContain('inline');
+      });
+    }));
+
+    it('should not have inline css class when inline is false', async(() => {
+
+      buildComponent<MzSelectContainerComponent>(`
+        <mz-select-container [inline]="false"></mz-select-container>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        expect(inputField().classList).not.toContain('inline');
+      });
+    }));
+
     it('should transclude correctly', async(() => {
 
       buildComponent<MzSelectContainerComponent>(`
