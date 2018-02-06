@@ -168,6 +168,35 @@
 
 <div class="section">
 
+  <h5 class="light">Inline select</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Select can be inline:
+
+      <mz-select-container [inline]="true">
+        <select mz-select
+          id="inline-select"
+          [label]="'Inline'"
+          [placeholder]="'Placeholder'"
+        >
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the select inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-select-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
   <h5 class="light">Disabled select</h5>
 
   <div class="row m-valign-wrapper">
@@ -186,7 +215,7 @@
     </mz-select-container>
 
     <p class="col s12 m6">
-      Disable the input by using the native property <code class="language-markup">disabled</code>.
+      Disable the select by using the native property <code class="language-markup">disabled</code>.
     </p>
   </div>
 </div>
@@ -350,11 +379,29 @@
 
   <h5 class="light">Properties</h5>
 
-  <p>
-    Selects can be customized using the following properties on the <code class="language-markup">select</code> element when adding <code class="language-markup">mz-select</code> directive.
-  </p>
+  <div class="section">
 
-  <app-properties-table
-    [properties]="properties">
-  </app-properties-table>
+    <h6 class="bold">mz-select-container</h6>
+
+    <p>
+      The <code class="language-markup">mz-select-container</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="selectContainerProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-select</h6>
+
+    <p>
+      Selects can be customized using the following properties on the <code class="language-markup">select</code> element when adding <code class="language-markup">mz-select</code> directive.
+    </p>
+
+    <app-properties-table
+      [properties]="selectProperties">
+    </app-properties-table>
+  </div>
 </div>
