@@ -47,11 +47,29 @@
     </p>
 </div>
 
+
+<div class="section">
+  <h5 class="light">Subscribe on page change</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      (changePageEvent)="pageChange($event)"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      You can use the ouput property <code class="language-markup">changePageEvent</code> to call a function when page changed.
+    </p>
+</div>
+
 <div class="section">
 
   <h5 class="light">HTML Structure</h5>
     <app-code-snippet>
 &lt;mz-pagination>
+  (changePageEvent)="function($event)"
   [currentPage]="1"
   [itemsPerPage]="10"
   [totalItems]="100"

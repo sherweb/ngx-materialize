@@ -40,5 +40,16 @@ export class PaginationComponent {
       description: `Total items`,
       defaultValue: '',
     },
+    {
+      name: 'changePageEvent',
+      mandatory: true,
+      type: 'EventEmitter<number>',
+      description: `Event triggered when a page button is clicked. The return value is the new current page.`,
+      defaultValue: '',
+    },
   ];
+
+  pageChange(currentPage: number) {
+    alert(`Current page is : ${currentPage}`)
+  }
 }

@@ -28,19 +28,25 @@ export class MzPaginationComponent implements OnInit {
     this.renderButtons();
   }
 
-  previousPage()   {
-    const previousPage = this.currentPage - 1;
-    this.currentPage = Math.max(1, previousPage);
-    this.renderButtons();
+  previousPage() {
+    if (this.currentPage !== 1) {
+      const previousPage = this.currentPage - 1;
+      this.currentPage = previousPage;
+      this.renderButtons();
+      this.changePageEvent.emit(previousPage);
+    }
   }
 
-  nextPage()   {
-    const nextPage = this.currentPage + 1;
-    this.currentPage = Math.min(this.totalPages, nextPage);
-    this.renderButtons();
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      const nextPage = this.currentPage + 1;
+      this.currentPage = nextPage;
+      this.renderButtons();
+      this.changePageEvent.emit(nextPage);
+    }
   }
 
-  renderButtons() {
+  private renderButtons() {
     const buttonsCount = Math.min(this.maxPageButtons, this.totalPages)
     const maxPosition = this.totalPages - buttonsCount;
     const halfButtons = Math.floor(buttonsCount / 2);
