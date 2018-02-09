@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { MzIconMdiModule } from 'app/icon-mdi/icon-mdi.module';
+import { MzIconModule } from './../icon/icon.module';
 import { MzPaginationPageButtonComponent } from './pagination-page-button/pagination-page-button.component';
 import { MzPaginationComponent } from './pagination.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MzIconMdiModule,
+    MzIconModule,
   ],
   declarations: [
     MzPaginationComponent,

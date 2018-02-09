@@ -27,6 +27,13 @@ export class PaginationComponent {
       defaultValue: '',
     },
     {
+      name: 'itemsPerPage',
+      mandatory: true,
+      type: 'number',
+      description: `Item per page`,
+      defaultValue: '',
+    },
+    {
       name: 'totalItems',
       mandatory: true,
       type: 'number',

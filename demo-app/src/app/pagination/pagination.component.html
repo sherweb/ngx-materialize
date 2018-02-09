@@ -6,7 +6,8 @@
   <div class="row m-valign-wrapper">
     <mz-pagination class="col s12 m4"
       [itemsPerPage]="10"
-      [totaltItems]="100"
+      [maxPageButtons]="5"
+      [totalItems]="100"
     >
     </mz-pagination>
 
@@ -22,7 +23,7 @@
 &lt;mz-pagination>
   [currentPage]="1"
   [itemsPerPage]="10"
-  [totaltItems]="100"
+  [totalItems]="100"
 >
 &lt;/mz-pagination>
   </app-code-snippet>
