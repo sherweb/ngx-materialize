@@ -25,6 +25,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   inputElement: JQuery;
   inputContainerElement: JQuery;
   inputValueSubscription: Subscription;
+  isInitRound = true;
   labelElement: JQuery;
   stopChangePropagation = false;
 
@@ -58,6 +59,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
     this.initDatepicker();
     this.initInputSubscription();
     this.handleProperties();
+    this.isInitRound = false;
   }
 
   ngOnDestroy() {
@@ -69,6 +71,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   initHandlers() {
     this.handlers = {
       label: () => this.handleLabel(),
+      options: () => this.handleOptions(),
       placeholder: () => this.handlePlaceholder(),
     };
   }
@@ -172,6 +175,12 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
 
   handleLabel() {
     this.renderer.invokeElementMethod(this.labelElement, 'text', [this.label]);
+  }
+
+  handleOptions() {
+    if (!this.isInitRound) {
+      this.picker.set(this.options);
+    }
   }
 
   handlePlaceholder() {

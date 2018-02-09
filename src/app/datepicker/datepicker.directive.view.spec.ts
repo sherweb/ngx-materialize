@@ -504,6 +504,44 @@ describe('MzDatepickerDirective:view', () => {
           expect((document.activeElement as HTMLElement).blur).toHaveBeenCalled();
         });
       }));
+
+      it('should be reapplied to datepicker when changed', fakeAsync(() => {
+
+        buildComponent(`
+          <mz-datepicker-container>
+            <input mz-datepicker
+              id="datepicker"
+              [options]="options">
+          </mz-datepicker-container>
+        `, {
+          options: {
+            disable: [new Date('2001,01,01')],
+          },
+        }).then((fixture) => {
+          component = fixture.componentInstance;
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
+          tick();
+
+          let disabledDates = datepicker().get('disable');
+
+          expect(disabledDates).toEqual(component.options.disable);
+
+          component.options = {
+            ...component.options,
+            disable: [
+              new Date('2001, 01, 01'),
+              new Date('2001, 01, 02'),
+            ],
+          };
+
+          fixture.detectChanges();
+
+          disabledDates = datepicker().get('disable');
+
+          expect(disabledDates).toEqual(component.options.disable);
+        });
+      }));
     });
   });
 });
