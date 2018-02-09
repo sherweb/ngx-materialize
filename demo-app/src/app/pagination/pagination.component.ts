@@ -27,11 +27,11 @@ export class PaginationComponent {
       defaultValue: '',
     },
     {
-      name: 'itemsPerPage',
-      mandatory: true,
+      name: 'maxPageButtons',
+      mandatory: false,
       type: 'number',
-      description: `Item per page`,
-      defaultValue: '',
+      description: `Total page buttons to display`,
+      defaultValue: '5',
     },
     {
       name: 'totalItems',

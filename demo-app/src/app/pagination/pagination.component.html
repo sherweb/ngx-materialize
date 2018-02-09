@@ -4,15 +4,46 @@
   <h5 class="light">Basic pagination</h5>
 
   <div class="row m-valign-wrapper">
-    <mz-pagination class="col s12 m4"
+    <mz-pagination class="col s12 m6"
       [itemsPerPage]="10"
-      [maxPageButtons]="5"
       [totalItems]="100"
     >
     </mz-pagination>
 
-    <p class="col s12 m8">
+    <p class="col s12 m6">
       <code class="language-markup">mz-pagination</code> has property <code class="language-markup">itemsPerPage</code> and <code class="language-markup">totalItems</code> to display the number of page.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Active page</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [currentPage]="5"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      You can add <code class="language-markup">currentPage</code> property to select a specific page when rendering.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Maximum page buttons</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [itemsPerPage]="10"
+      [maxPageButtons]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      If you want to change the number displayed page component you can use <code class="language-markup">maxPageButton</code> property.
     </p>
 </div>
 
