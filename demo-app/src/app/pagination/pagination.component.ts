@@ -11,26 +11,42 @@ import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from './../app.routing.animatio
   animations: [ROUTE_ANIMATION],
 })
 export class PaginationComponent {
+
+  // playground
+  paginationCurrentPage = 1;
+  paginationEnableFirstAndLastPageButtons = false;
+  paginationMaxPageButtons = 5;
+  paginationItemPerPage = 10;
+  paginationTotalItems= 50;
+
+  // table properties
   properties: IPropertyRow[] = [
     {
       name: 'currentPage',
       mandatory: false,
       type: 'number',
-      description: `The current page active`,
+      description: `The current active page`,
       defaultValue: '1',
+    },
+    {
+      name: 'enableFirstAndLastPageButtons',
+      mandatory: false,
+      type: 'boolean',
+      description: `Show first and last page buttons`,
+      defaultValue: 'false',
     },
     {
       name: 'itemsPerPage',
       mandatory: true,
       type: 'number',
-      description: `Item per page`,
+      description: `Number of items per page`,
       defaultValue: '',
     },
     {
       name: 'maxPageButtons',
       mandatory: false,
       type: 'number',
-      description: `Total page buttons to display`,
+      description: `Number of page to display`,
       defaultValue: '5',
     },
     {
@@ -41,7 +57,7 @@ export class PaginationComponent {
       defaultValue: '',
     },
     {
-      name: 'changePageEvent',
+      name: 'changePage',
       mandatory: true,
       type: 'EventEmitter<number>',
       description: `Event triggered when a page button is clicked. The return value is the new current page.`,

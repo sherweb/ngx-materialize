@@ -5,7 +5,7 @@ import { buildComponent, MzTestWrapperComponent } from 'app/shared/test-wrapper'
 import { MzPaginationPageButtonComponent } from './pagination-page-button/pagination-page-button.component';
 import { MzPaginationComponent } from './pagination.component';
 
-describe('PaginationComponent:view', () => {
+describe('MzPaginationComponent:view', () => {
   let nativeElement: any;
 
   beforeEach(async(() => {
@@ -174,7 +174,6 @@ describe('PaginationComponent:view', () => {
           fixture.detectChanges();
 
           const paginationPageButtonArray = paginationPageButtons();
-
 
           for (let i = 1; i <= 5; i++) {
             expect(paginationPageButtonArray[i].querySelector('a').innerHTML).toBe(i.toString());

@@ -8,41 +8,47 @@ import { MzPaginationPageButtonComponent } from './pagination-page-button';
   styleUrls: ['./pagination.component.scss'],
 })
 export class MzPaginationComponent implements OnInit {
-  @Input() itemsPerPage: number;
   @Input() currentPage = 1;
+  @Input() enableFirstAndLastPageButtons = false;
+  @Input() itemsPerPage: number;
   @Input() maxPageButtons = 5;
   @Input() totalItems: number;
-  @Output() changePageEvent = new EventEmitter<number>();
+  @Output() changePage = new EventEmitter<number>();
 
-  totalPages: number;
   pages: number[];
+  get totalPages() : number {
+    return this.totalItems / this.itemsPerPage;
+  }
 
   ngOnInit() {
-    this.totalPages = this.totalItems / this.itemsPerPage;
     this.renderButtons();
   }
 
-  changePage(pageNumber: number) {
+  changeCurrentPage(pageNumber: number) {
     this.currentPage = pageNumber;
-    this.changePageEvent.emit(pageNumber);
     this.renderButtons();
+    this.changePage.emit(pageNumber);
   }
 
-  previousPage() {
-    if (this.currentPage !== 1) {
-      const previousPage = this.currentPage - 1;
-      this.currentPage = previousPage;
-      this.renderButtons();
-      this.changePageEvent.emit(previousPage);
-    }
+  firstPage() {
+    this.changeCurrentPage(1);
+  }
+
+  lastPage() {
+    this.changeCurrentPage(this.totalPages);
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       const nextPage = this.currentPage + 1;
-      this.currentPage = nextPage;
-      this.renderButtons();
-      this.changePageEvent.emit(nextPage);
+      this.changeCurrentPage(nextPage);
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage !== 1) {
+      const previousPage = this.currentPage - 1;
+      this.changeCurrentPage(previousPage);
     }
   }
 

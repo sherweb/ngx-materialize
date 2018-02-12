@@ -5,7 +5,7 @@ import { buildComponent, MzTestWrapperComponent } from 'app/shared/test-wrapper'
 import { MzPaginationPageButtonComponent } from './pagination-page-button/pagination-page-button.component';
 import { MzPaginationComponent } from './pagination.component';
 
-describe('PaginationComponent:unit', () => {
+describe('MzPaginationComponent:unit', () => {
   let component: MzPaginationComponent;
   let fixture: ComponentFixture<MzPaginationComponent>;
   let nativeElement: any;
@@ -32,7 +32,7 @@ describe('PaginationComponent:unit', () => {
       return nativeElement.querySelectorAll('mz-pagination-page-button li');
     }
 
-    it('should emit changePageEvent when page button is clicked', async(() => {
+    it('should emit changePage when page button is clicked', async(() => {
       fixture = TestBed.createComponent(MzPaginationComponent);
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
@@ -42,15 +42,15 @@ describe('PaginationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      spyOn(component.changePageEvent, 'emit').and.callThrough();
+      spyOn(component.changePage, 'emit').and.callThrough();
 
       paginationPageButton()[2].querySelector('a').click();
       fixture.detectChanges();
 
-      expect(component.changePageEvent.emit).toHaveBeenCalledWith(2);
+      expect(component.changePage.emit).toHaveBeenCalledWith(2);
     }));
 
-    it('should emit changePageEvent when previous button is clicked', async(() => {
+    it('should emit changePage when previous button is clicked', async(() => {
       fixture = TestBed.createComponent(MzPaginationComponent);
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
@@ -61,15 +61,15 @@ describe('PaginationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      spyOn(component.changePageEvent, 'emit').and.callThrough();
+      spyOn(component.changePage, 'emit').and.callThrough();
 
       paginationPageButton()[0].querySelector('a').click();
       fixture.detectChanges();
 
-      expect(component.changePageEvent.emit).toHaveBeenCalledWith(1);
+      expect(component.changePage.emit).toHaveBeenCalledWith(1);
     }));
 
-    it('should not emit changePageEvent when previous button is clicked and current page is the first one', async(() => {
+    it('should not emit changePage when previous button is clicked and current page is the first one', async(() => {
       fixture = TestBed.createComponent(MzPaginationComponent);
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
@@ -79,15 +79,15 @@ describe('PaginationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      spyOn(component.changePageEvent, 'emit').and.callThrough();
+      spyOn(component.changePage, 'emit').and.callThrough();
 
       paginationPageButton()[0].querySelector('a').click();
       fixture.detectChanges();
 
-      expect(component.changePageEvent.emit).not.toHaveBeenCalledWith(1);
+      expect(component.changePage.emit).not.toHaveBeenCalledWith(1);
     }));
 
-    it('should emit changePageEvent when next button is clicked', async(() => {
+    it('should emit changePage when next button is clicked', async(() => {
       fixture = TestBed.createComponent(MzPaginationComponent);
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
@@ -97,15 +97,15 @@ describe('PaginationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      spyOn(component.changePageEvent, 'emit').and.callThrough();
+      spyOn(component.changePage, 'emit').and.callThrough();
 
       paginationPageButton()[3].querySelector('a').click();
       fixture.detectChanges();
 
-      expect(component.changePageEvent.emit).toHaveBeenCalledWith(2);
+      expect(component.changePage.emit).toHaveBeenCalledWith(2);
     }));
 
-    it('should not emit changePageEvent when next button is clicked and current page is the last one', async(() => {
+    it('should not emit changePage when next button is clicked and current page is the last one', async(() => {
       fixture = TestBed.createComponent(MzPaginationComponent);
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
@@ -116,12 +116,12 @@ describe('PaginationComponent:unit', () => {
 
       fixture.detectChanges();
 
-      spyOn(component.changePageEvent, 'emit').and.callThrough();
+      spyOn(component.changePage, 'emit').and.callThrough();
 
       paginationPageButton()[3].querySelector('a').click();
       fixture.detectChanges();
 
-      expect(component.changePageEvent.emit).not.toHaveBeenCalledWith(2);
+      expect(component.changePage.emit).not.toHaveBeenCalledWith(2);
     }))
   });
 });
