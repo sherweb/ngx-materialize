@@ -124,4 +124,33 @@ describe('MzPaginationComponent:unit', () => {
       expect(component.changePage.emit).not.toHaveBeenCalledWith(2);
     }))
   });
+
+  describe('initHandlers', () => {
+
+    it('should initialize handlers correctly', () => {
+      fixture = TestBed.createComponent(MzPaginationComponent);
+      component = fixture.componentInstance;
+
+      const handlers = {
+        itemsPerPage: 'renderButtons',
+        maxPageButtons: 'renderButtons',
+        totalItems: 'renderButtons',
+      };
+
+      component.initHandlers();
+
+      expect(Object.keys(component.handlers).length).toBe(Object.keys(handlers).length);
+
+      spyOn(component, 'renderButtons').and.callFake(() => { });
+
+      Object.keys(handlers).forEach(key => {
+
+        const handler = handlers[key];
+
+        component[handler]();
+
+        expect(component[handler]).toHaveBeenCalled();
+      });
+    });
+  });
 });

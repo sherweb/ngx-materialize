@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { MzPaginationPageButtonComponent } from './pagination-page-button';
 
 @Component({
@@ -7,7 +8,7 @@ import { MzPaginationPageButtonComponent } from './pagination-page-button';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
 })
-export class MzPaginationComponent implements OnInit {
+export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   @Input() currentPage = 1;
   @Input() enableFirstAndLastPageButtons = false;
   @Input() itemsPerPage: number;
@@ -16,11 +17,16 @@ export class MzPaginationComponent implements OnInit {
   @Output() changePage = new EventEmitter<number>();
 
   pages: number[];
-  get totalPages() : number {
-    return this.totalItems / this.itemsPerPage;
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
+  constructor() {
+    super();
+   }
+
   ngOnInit() {
+    this.initHandlers();
     this.renderButtons();
   }
 
@@ -32,6 +38,14 @@ export class MzPaginationComponent implements OnInit {
 
   firstPage() {
     this.changeCurrentPage(1);
+  }
+
+  initHandlers() {
+    this.handlers = {
+      itemsPerPage: () => this.renderButtons(),
+      maxPageButtons: () => this.renderButtons(),
+      totalItems: () => this.renderButtons(),
+    };
   }
 
   lastPage() {
@@ -52,7 +66,7 @@ export class MzPaginationComponent implements OnInit {
     }
   }
 
-  private renderButtons() {
+  renderButtons() {
     const buttonsCount = Math.min(this.maxPageButtons, this.totalPages)
     const maxPosition = this.totalPages - buttonsCount;
     const halfButtons = Math.floor(buttonsCount / 2);
