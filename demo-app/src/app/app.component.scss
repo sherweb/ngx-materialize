@@ -5,6 +5,18 @@ header {
     .side-nav {
       padding-bottom: 0;
       height: 100%;
+
+      .collapsible {
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+
+      .collapsible-body {
+        background: transparent;
+      }
+
+      .collapsible-header {
+        padding-left: 22px;
+      }
     }
 
     .sidenav-background,
@@ -18,15 +30,36 @@ header {
       right: 16px;
       z-index: 24;
     }
-  }
 
-  .sidenav-header {
-    background: rgba(0,0,0,0.14);
-    display: block;
-    padding-top: 10px;
+    .sidenav-header {
+      background: rgba(0,0,0,0.14);
+      display: block;
+      padding-top: 10px;
+      margin-bottom: 0 !important;
+
+      a {
+        height: auto;
+      }
+    }
 
     a {
-      height: auto;
+      i.caret {
+        float: right;
+        margin-right: 0;
+        -ms-transition: 0.2s;
+        -webkit-transition: 0.2s;
+        -o-transition:  0.2s;
+        transition: 0.2s ease-in-out;
+      }
+
+      &.active {
+        i.caret {
+          -ms-transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          -o-transform:  rotate(180deg);
+          transform: rotate(180deg);
+        }
+      }
     }
   }
 
@@ -45,6 +78,7 @@ header {
     background: rgba(0,0,0,0.14);
     font-weight: 200;
     padding: 14px;
+    margin-bottom: 0;
   }
 }
 
