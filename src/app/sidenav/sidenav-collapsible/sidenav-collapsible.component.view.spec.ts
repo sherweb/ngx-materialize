@@ -58,7 +58,7 @@ describe('MzSidenavCollapsibleComponent:view', () => {
         const li = collapsible.children[0];
         expect(li.nodeName).toBe('LI');
         expect(li.classList.length).toBe(0);
-        expect(li.children.length).toBe(2);
+        expect(li.children.length).toBe(3);
 
         // collapsible-header
         const collapsibleHeader = li.children[0];
@@ -68,8 +68,13 @@ describe('MzSidenavCollapsibleComponent:view', () => {
         expect(collapsibleHeader.classList).toContain('waves-effect');
         expect(collapsibleHeader.innerHTML).toBe('some-text');
 
+        // mz-sidenav-collapsible-header
+        const mzSidenavCollapsibleHeader = li.children[1];
+        expect(mzSidenavCollapsibleHeader.nodeName).toBe('MZ-SIDENAV-COLLAPSIBLE-HEADER');
+        expect(mzSidenavCollapsibleHeader.children.length).toBe(0);
+
         // collapsible-body
-        const collapsibleBody = li.children[1];
+        const collapsibleBody = li.children[2];
         expect(collapsibleBody.nodeName).toBe('DIV');
         expect(collapsibleBody.classList.length).toBe(1);
         expect(collapsibleBody.classList).toContain('collapsible-body');

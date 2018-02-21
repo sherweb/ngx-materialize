@@ -2,6 +2,7 @@
 <div class="section">
   <app-code-snippet>import &#123; MzCollapsibleModule &#125; from 'ng2-materialize'</app-code-snippet>
 </div>
+
 <h5 class="light">Accordion</h5>
 
 <div class="row">
@@ -142,6 +143,35 @@
     Preopen a section from a Collapsible using <code class="language-markup">active</code> input property on <code class="language-markup">mz-collapsible-item</code>.
   </p>
 </div>
+
+<div class="section">
+
+    <h5 class="light">Playground</h5>
+
+    <p>
+      The <code class="language-markup">mz-collapsible-item</code> component can be dynamically manipulated when used with <code class="language-markup">*ngFor</code> allowing you to add, remove or replace items in the list.
+    </p>
+
+    <div class="row">
+
+      <mz-collapsible class="col s12 m8 l6" mode="accordion">
+
+        <mz-collapsible-item *ngFor="let item of playgroundCollapsibleItems">
+          <mz-collapsible-item-header><i mz-icon-mdi [icon]="item.icon"></i>{{ item.header }}</mz-collapsible-item-header>
+          <mz-collapsible-item-body><p>{{ item.body }}</p></mz-collapsible-item-body>
+        </mz-collapsible-item>
+
+      </mz-collapsible>
+
+      <div class="col s12 m4 l6">
+
+        <button mz-button (click)="add()">Add new item</button>
+        <button mz-button (click)="remove()">Remove last item</button>
+        <button mz-button (click)="replace()">Replace all</button>
+
+      </div>
+    </div>
+  </div>
 
 <div class="section">
 
