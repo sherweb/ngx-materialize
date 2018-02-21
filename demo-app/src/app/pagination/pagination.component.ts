@@ -17,7 +17,7 @@ export class PaginationComponent {
   paginationEnableFirstAndLastPageButtons = false;
   paginationMaxPageButtons = 5;
   paginationItemPerPage = 10;
-  paginationTotalItems= 50;
+  paginationTotalItems = 50;
 
   // table properties
   properties: IPropertyRow[] = [
@@ -64,6 +64,21 @@ export class PaginationComponent {
       defaultValue: '',
     },
   ];
+
+  get paginationTogalPages(): number {
+    return this.paginationTotalItems / this.paginationItemPerPage;
+  }
+
+  get pageOptions(): Array<number> {
+    return Array(this.paginationTogalPages).fill(0).map((x, i) => i + 1);
+
+  }
+
+  onChange() {
+    if (this.paginationCurrentPage > (this.paginationTogalPages)) {
+      this.paginationCurrentPage = 1;
+    }
+  }
 
   pageChange(currentPage: number) {
     alert(`Current page is : ${currentPage}`)

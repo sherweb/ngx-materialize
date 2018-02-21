@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MzCheckboxModule, MzInputModule, MzPaginationModule } from 'ng2-materialize';
+import { MzCheckboxModule, MzInputModule, MzPaginationModule, MzSelectModule } from 'ng2-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -17,6 +17,7 @@ import { ROUTES } from './pagination.routing';
     MzCheckboxModule,
     MzInputModule,
     MzPaginationModule,
+    MzSelectModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),
   ],

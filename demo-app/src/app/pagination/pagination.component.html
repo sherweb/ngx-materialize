@@ -118,19 +118,22 @@
 
     <div class="col s12 m6">
 
-      <mz-input-container>
-        <input mz-input
+      <mz-select-container>
+        <select mz-select
           id="pagination-current-page"
           [label]="'Current page'"
           [(ngModel)]="paginationCurrentPage"
-          type="number">
-      </mz-input-container>
+        >
+          <option *ngFor="let pageOption of pageOptions" [ngValue]="pageOption">{{ pageOption }}</option>
+        </select>
+      </mz-select-container>
 
       <mz-input-container>
         <input mz-input
           id="pagination-item-per-page"
           [label]="'Item per page'"
           [(ngModel)]="paginationItemPerPage"
+          (ngModelChange)="onChange()"
           type="number">
       </mz-input-container>
 
@@ -147,6 +150,7 @@
           id="pagination-total-items"
           [label]="'Total items'"
           [(ngModel)]="paginationTotalItems"
+          (ngModelChange)="onChange()"
           type="number">
       </mz-input-container>
 

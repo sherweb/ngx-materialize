@@ -15,6 +15,6 @@
       <a (click)="nextPage()"><i mz-icon [icon]="'chevron_right'"></i></a>
     </mz-pagination-page-button>
     <mz-pagination-page-button [disabled]="currentPage === totalPages" *ngIf="enableFirstAndLastPageButtons">
-      <a (click)="firstPage()"><i mz-icon [icon]="'last_page'"></i></a>
+      <a (click)="lastPage()"><i mz-icon [icon]="'last_page'"></i></a>
     </mz-pagination-page-button>
   </ul>
