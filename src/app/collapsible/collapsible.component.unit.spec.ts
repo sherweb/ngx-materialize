@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MzCollapsibleComponent } from './collapsible.component';
 
@@ -71,11 +71,7 @@ describe('MzCollapsibleComponent:unit', () => {
 
   describe('initCollapsible', () => {
 
-    function forceSetTimeoutEnd() {
-      tick(1); // force setTimeout execution
-    }
-
-    it('should initialize collapsible using jquery', fakeAsync(() => {
+    it('should initialize collapsible using jquery', async(() => {
 
       component.onClose = () => {};
       component.onOpen = () => {};
@@ -92,8 +88,6 @@ describe('MzCollapsibleComponent:unit', () => {
 
       component.initCollapsible();
 
-      forceSetTimeoutEnd();
-
       expect(component.renderer.invokeElementMethod)
         .toHaveBeenCalledWith(
           mockJQueryCollapsibleNativeElement,
@@ -104,16 +98,5 @@ describe('MzCollapsibleComponent:unit', () => {
           }],
         );
     }));
-
-    it('should call detectChanges', () => {
-
-      component.mode = 'accordion';
-
-      spyOn(component.changeDetectorRef, 'detectChanges').and.callThrough();
-
-      component.initCollapsible();
-
-      expect(component.changeDetectorRef.detectChanges).toHaveBeenCalled();
-    });
   });
 });

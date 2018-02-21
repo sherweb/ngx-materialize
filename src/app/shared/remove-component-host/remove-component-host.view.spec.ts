@@ -1,5 +1,4 @@
 import { Component, ElementRef } from '@angular/core';
-
 import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
@@ -26,7 +25,7 @@ class MzTestRemoveHostComponent extends MzRemoveComponentHost {
 
 describe('MzRemoveComponentHost:view', () => {
 
-  let nativeElement: any;
+  let nativeElement: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -39,33 +38,68 @@ describe('MzRemoveComponentHost:view', () => {
 
   describe('ngOnInit', () => {
 
-    it('should move children out of the component and delete the component tag', async(() => {
+    it('should move children out of the component and keep the component tag', async(() => {
 
-      buildComponent(
+      buildComponent<MzTestRemoveHostComponent>(
         `<mz-test-remove-host></mz-test-remove-host>`,
       ).then(fixture => {
         fixture.detectChanges();
         nativeElement = fixture.nativeElement;
 
+        const divListElement = nativeElement.querySelector('div.list') as HTMLElement;
+        const divEmptyElement = nativeElement.querySelector('div.empty') as HTMLElement;
+        const mzTestRemoveHost = nativeElement.querySelector('mz-test-remove-host') as HTMLElement;
 
-        expect(nativeElement.querySelector('z-test-remove-host')).toBeNull();
-        expect(nativeElement.querySelector('div.list')).toBeTruthy();
+        // children has been moved out and component tag kept
+        expect(nativeElement.childElementCount).toBe(3);
+        expect(divListElement).toBeTruthy();
+        expect(divEmptyElement).toBeTruthy();
+        expect(mzTestRemoveHost).toBeTruthy();
 
-        const firstLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.one');
+        // component tag is empty
+        expect(mzTestRemoveHost.childElementCount).toBe(0);
+
+        // children content has been moved correctly
+        const firstLiElement = divListElement.querySelector('ul li.one') as HTMLElement;
         expect(firstLiElement).toBeTruthy();
         expect(firstLiElement.innerText).toBe('One');
 
-        const secondLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.two');
+        const secondLiElement = divListElement.querySelector('ul li.two') as HTMLElement;
         expect(secondLiElement).toBeTruthy();
         expect(secondLiElement.innerText).toBe('Two');
 
-        const threeLiElement: HTMLElement = nativeElement.querySelector('div.list ul li.three');
-        expect(threeLiElement).toBeTruthy();
-        expect(threeLiElement.innerText).toBe('Three');
+        const thirdLiElement = divListElement.querySelector('ul li.three') as HTMLElement;
+        expect(thirdLiElement).toBeTruthy();
+        expect(thirdLiElement.innerText).toBe('Three');
 
-        const divEmptyElement: HTMLElement = nativeElement.querySelector('div.empty');
         expect(divEmptyElement).toBeTruthy();
+        expect(divEmptyElement.childElementCount).toBe(0);
         expect(divEmptyElement.innerText).toBe('Empty');
+      });
+    }));
+  });
+
+  describe('ngOnDestroy', () => {
+
+    it('should remove moved out element', async(() => {
+
+      buildComponent<{ visible: boolean }>(
+        `<mz-test-remove-host *ngIf="visible"></mz-test-remove-host>`,
+        { visible: true },
+      ).then(fixture => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        const mzTestRemoveHost = () => nativeElement.querySelector('mz-test-remove-host') as HTMLElement;
+
+        expect(mzTestRemoveHost()).toBeTruthy();
+        expect(nativeElement.childElementCount).toBe(3);
+
+        fixture.componentInstance.visible = false;
+        fixture.detectChanges();
+
+        expect(mzTestRemoveHost()).toBeFalsy();
+        expect(nativeElement.childElementCount).toBe(0);
       });
     }));
   });

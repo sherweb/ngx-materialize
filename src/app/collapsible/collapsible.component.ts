@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
@@ -25,7 +24,9 @@ export class MzCollapsibleComponent implements AfterViewInit {
   @ViewChild('collapsible') collapsible: ElementRef;
   @ContentChildren(MzCollapsibleItemComponent) items: QueryList<MzCollapsibleItemComponent>;
 
-  constructor(public changeDetectorRef: ChangeDetectorRef, public renderer: Renderer) { }
+  constructor(
+    public renderer: Renderer,
+  ) { }
 
   ngAfterViewInit(): void {
     this.handleDataCollapsible();
@@ -39,11 +40,7 @@ export class MzCollapsibleComponent implements AfterViewInit {
       onOpen: this.onOpen,
     };
 
-    // need setTimeout otherwise loading directly on the page cause an error
-    setTimeout(() => this.renderer.invokeElementMethod($(this.collapsible.nativeElement), 'collapsible', [options]));
-
-    // forcing changes detection for unit test
-    this.changeDetectorRef.detectChanges();
+    this.renderer.invokeElementMethod($(this.collapsible.nativeElement), 'collapsible', [options]);
   }
 
   handleDataCollapsible() {

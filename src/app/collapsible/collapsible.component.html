@@ -1,6 +1,7 @@
 <ul #collapsible
   class="collapsible"
   [class.popout]="popout"
+  [hidden]="items.length === 0"
 >
-  <ng-content select="mz-collapsible-item"></ng-content>
+  <ng-content></ng-content>
 </ul>
