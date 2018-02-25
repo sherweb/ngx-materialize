@@ -85,7 +85,7 @@
 
   <div class="row m-valign-wrapper">
     <mz-pagination class="col s12 m6"
-      (changePage)="pageChange($event)"
+      (pageChanged)="pageChange($event)"
       [itemsPerPage]="10"
       [totalItems]="100"
     >
@@ -171,7 +171,7 @@
   <h5 class="light">HTML Structure</h5>
     <app-code-snippet>
 &lt;mz-pagination
-  (changePage)="function($event)"
+  (pageChanged)="onPageChange($event)"
   [currentPage]="1"
   [enableFirstAndLastButton]="false"
   [itemsPerPage]="10"

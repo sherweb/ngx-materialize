@@ -14,7 +14,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   @Input() itemsPerPage: number;
   @Input() maxPageButtons = 5;
   @Input() totalItems: number;
-  @Output() changePage = new EventEmitter<number>();
+  @Output() pageChanged = new EventEmitter<number>();
 
   pages: number[];
   get totalPages(): number {
@@ -23,7 +23,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
 
   constructor() {
     super();
-   }
+  }
 
   ngOnInit() {
     this.initHandlers();
@@ -33,7 +33,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   changeCurrentPage(pageNumber: number) {
     this.currentPage = pageNumber;
     this.renderButtons();
-    this.changePage.emit(pageNumber);
+    this.pageChanged.emit(pageNumber);
   }
 
   firstPage() {

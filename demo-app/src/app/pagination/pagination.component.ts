@@ -57,8 +57,8 @@ export class PaginationComponent {
       defaultValue: '',
     },
     {
-      name: 'changePage',
-      mandatory: true,
+      name: 'pageChanged',
+      mandatory: false,
       type: 'EventEmitter<number>',
       description: `Event triggered when a page button is clicked. The return value is the new current page.`,
       defaultValue: '',
