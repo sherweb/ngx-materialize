@@ -117,9 +117,17 @@ h6 {
 
 /* Materialize-CSS addons */
 
-blockquote.important {
-  background: rgba(238, 110, 115, 0.14);
+blockquote {
   padding: 1rem 1.5rem;
+
+  &.important {
+    background: rgba(238, 110, 115, 0.14);
+  }
+
+  &.info {
+    background: rgba(0, 137, 236, 0.14);
+    border-left-color: rgb(0, 137, 236);
+  }
 }
 
 .medium {
