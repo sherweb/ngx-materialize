@@ -11,7 +11,7 @@ describe('MzChipComponent:view', () => {
   }
 
   function closeIcon(): HTMLElement {
-    return nativeElement.querySelector('.close');
+    return nativeElement.querySelector('i.close');
   }
 
   beforeEach(async(() => {
@@ -53,7 +53,8 @@ describe('MzChipComponent:view', () => {
         fixture.detectChanges();
 
         expect(closeIcon()).not.toBeNull();
-        expect(closeIcon().children[0].nodeName).toBe('svg');
+        expect(closeIcon().classList).toContain('material-icons');
+        expect(closeIcon().innerHTML).toBe('close');
       });
     }));
 

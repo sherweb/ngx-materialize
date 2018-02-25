@@ -20,6 +20,12 @@ export class MzChipComponent {
   ) { }
 
   onDelete() {
-    this.delete.emit(this.chipElement.innerText.trim());
+    let value = '';
+    for (let i = 0; i < this.chipElement.childNodes.length; i++) {
+      if (this.chipElement.childNodes.item(i).nodeType === Node.TEXT_NODE) {
+        value += this.chipElement.childNodes.item(i).nodeValue;
+      }
+    }
+    this.delete.emit(value.trim());
   }
 }
