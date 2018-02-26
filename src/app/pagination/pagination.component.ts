@@ -14,7 +14,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   @Input() itemsPerPage: number;
   @Input() maxPageButtons = 5;
   @Input() totalItems: number;
-  @Output() pageChanged = new EventEmitter<number>();
+  @Output() pageChange = new EventEmitter<number>();
 
   pages: number[];
   get totalPages(): number {
@@ -33,7 +33,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   changeCurrentPage(pageNumber: number) {
     this.currentPage = pageNumber;
     this.renderButtons();
-    this.pageChanged.emit(pageNumber);
+    this.pageChange.emit(pageNumber);
   }
 
   firstPage() {
@@ -42,6 +42,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
 
   initHandlers() {
     this.handlers = {
+      currentPage: () => this.renderButtons(),
       itemsPerPage: () => this.renderButtons(),
       maxPageButtons: () => this.renderButtons(),
       totalItems: () => this.renderButtons(),
@@ -70,6 +71,10 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
     const buttonsCount = Math.min(this.maxPageButtons, this.totalPages)
     const maxPosition = this.totalPages - buttonsCount;
     const halfButtons = Math.floor(buttonsCount / 2);
+
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.pages[0];
+    }
 
     let hiddenPagesBefore = (this.currentPage - halfButtons);
     if (hiddenPagesBefore > maxPosition) {

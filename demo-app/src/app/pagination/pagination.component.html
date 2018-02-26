@@ -85,7 +85,7 @@
 
   <div class="row m-valign-wrapper">
     <mz-pagination class="col s12 m6"
-      (pageChanged)="pageChange($event)"
+      (pageChange)="pageChange($event)"
       [itemsPerPage]="10"
       [totalItems]="100"
     >
@@ -109,9 +109,10 @@
       <mz-pagination
         [currentPage]="paginationCurrentPage"
         [enableFirstAndLastPageButtons]="paginationEnableFirstAndLastPageButtons"
-        [maxPageButtons]="paginationMaxPageButtons"
         [itemsPerPage]="paginationItemPerPage"
+        [maxPageButtons]="paginationMaxPageButtons"
         [totalItems]="paginationTotalItems"
+        (pageChange)="playgroundPageChange($event)"
       >
       </mz-pagination>
     </div>
@@ -133,7 +134,6 @@
           id="pagination-item-per-page"
           [label]="'Item per page'"
           [(ngModel)]="paginationItemPerPage"
-          (ngModelChange)="onChange()"
           type="number">
       </mz-input-container>
 
@@ -150,7 +150,6 @@
           id="pagination-total-items"
           [label]="'Total items'"
           [(ngModel)]="paginationTotalItems"
-          (ngModelChange)="onChange()"
           type="number">
       </mz-input-container>
 

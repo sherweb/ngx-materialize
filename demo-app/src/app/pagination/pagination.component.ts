@@ -57,7 +57,7 @@ export class PaginationComponent {
       defaultValue: '',
     },
     {
-      name: 'pageChanged',
+      name: 'pageChange',
       mandatory: false,
       type: 'EventEmitter<number>',
       description: `Event triggered when a page button is clicked. The return value is the new current page.`,
@@ -66,7 +66,7 @@ export class PaginationComponent {
   ];
 
   get paginationTogalPages(): number {
-    return this.paginationTotalItems / this.paginationItemPerPage;
+    return Math.ceil(this.paginationTotalItems / this.paginationItemPerPage);
   }
 
   get pageOptions(): Array<number> {
@@ -74,13 +74,11 @@ export class PaginationComponent {
 
   }
 
-  onChange() {
-    if (this.paginationCurrentPage > (this.paginationTogalPages)) {
-      this.paginationCurrentPage = 1;
-    }
-  }
-
   pageChange(currentPage: number) {
     alert(`Current page is : ${currentPage}`)
+  }
+
+  playgroundPageChange(currentPage: number) {
+    this.paginationCurrentPage = currentPage;
   }
 }
