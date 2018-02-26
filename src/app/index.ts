@@ -2,6 +2,7 @@ export * from './badge';
 export * from './button';
 export * from './card';
 export * from './checkbox';
+export * from './chip';
 export * from './collapsible';
 export * from './collection';
 export * from './datepicker';

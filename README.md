@@ -233,6 +233,7 @@ export class CustomMaterializeModule { }
 * Button
 * Card
 * Checkbox
+* Chip
 * Collapsible
 * Collection
 * Datepicker

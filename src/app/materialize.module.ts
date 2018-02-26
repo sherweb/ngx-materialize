@@ -7,6 +7,7 @@ import { MzBadgeModule } from './badge';
 import { MzButtonModule } from './button';
 import { MzCardModule } from './card';
 import { MzCheckboxModule } from './checkbox';
+import { MzChipModule } from './chip';
 import { MzCollapsibleModule } from './collapsible';
 import { MzCollectionModule } from './collection';
 import { MzDatepickerModule } from './datepicker';
@@ -39,6 +40,7 @@ const MZ_MODULES = [
   MzButtonModule,
   MzCardModule,
   MzCheckboxModule,
+  MzChipModule,
   MzCollapsibleModule,
   MzCollectionModule,
   MzDatepickerModule,
