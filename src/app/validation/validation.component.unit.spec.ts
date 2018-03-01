@@ -110,7 +110,7 @@ describe('MzValidationComponent:unit', () => {
       component.nativeElement = $(mockInput);
 
       expect(component.formControlDisabled).toBeTruthy();
-      expect(component.ngControl.control.disabled).toBeTruthy()
+      expect(component.ngControl.control.disabled).toBeTruthy();
     });
 
     it('should not disable form control when disable is false', () => {
@@ -121,7 +121,7 @@ describe('MzValidationComponent:unit', () => {
       component.nativeElement = $(mockInput);
 
       expect(component.formControlDisabled).toBeFalsy();
-      expect(component.ngControl.control.enabled).toBeTruthy()
+      expect(component.ngControl.control.enabled).toBeTruthy();
     });
   });
 
@@ -136,7 +136,7 @@ describe('MzValidationComponent:unit', () => {
       spyOn(component, 'isNativeSelectElement').and.returnValue(false);
 
       expect(component.elementToAddValidation).toBe(component.nativeElement);
-    })
+    });
 
     it('should return input select dropdown element when element ref is a select', fakeAsync(() => {
 

@@ -18,7 +18,7 @@ export class MzTabItemComponent {
   @Input() disabled: boolean;
   @Input() href: string;
   @Input() label: string;
-  @Input() tabItemId: string
+  @Input() tabItemId: string;
   @Input() target: string;
 
   tabs: HTMLElement;

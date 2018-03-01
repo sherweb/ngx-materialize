@@ -33,7 +33,7 @@ describe('MzErrorMessageComponent:unit', () => {
     component = fixture.componentInstance;
     component.control = formControl;
     component.control.setValue('value');
-    component.control.setErrors({ 'required': '' })
+    component.control.setErrors({ 'required': '' });
     component.errorMessageResource = {
       required: 'error-message',
     };
@@ -86,5 +86,5 @@ describe('MzErrorMessageComponent:unit', () => {
 
       expect(component.buildErrorMessage).toHaveBeenCalled();
     });
-  })
+  });
 });

@@ -36,7 +36,7 @@ describe('MzErrorMessageComponent:view', () => {
     it('should display an error-messsage when form control is touched and invalid', async(()  => {
 
       formControl.markAsTouched();
-      formControl.setErrors({ 'required': '' })
+      formControl.setErrors({ 'required': '' });
 
       buildComponent<MzErrorMessageComponent>(`
         <mz-error-message [control]="formControl" [errorMessageResource]="errorMessageResource"></mz-error-message>`, {
@@ -55,7 +55,7 @@ describe('MzErrorMessageComponent:view', () => {
     it('should display an error-messsage when form control is dirty and invalid', async(()  => {
 
       formControl.markAsDirty();
-      formControl.setErrors({ 'required': '' })
+      formControl.setErrors({ 'required': '' });
 
       buildComponent<MzErrorMessageComponent>(`
         <mz-error-message [control]="formControl" [errorMessageResource]="errorMessageResource"></mz-error-message>`, {

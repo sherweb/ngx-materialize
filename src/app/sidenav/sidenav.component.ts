@@ -25,7 +25,7 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   private _opened = false;
   private collapseButton: JQuery<Element>;
 
-  get opened() { return this._opened };
+  get opened() { return this._opened; }
   set opened(value: boolean) {
     this._opened = value;
     this.collapseButton.sideNav(this._opened ? 'show' : 'hide');

@@ -224,7 +224,7 @@ describe('MzValidationComponent:view', () => {
 
         const errorMessageResource: ErrorMessageResource = {
           minlength: 'Too short',
-        }
+        };
 
         const formControlValue = 'value-x';
 
@@ -234,7 +234,7 @@ describe('MzValidationComponent:view', () => {
 
         formGroup = new FormGroup({
           'formControl': new FormControl({ value: '', disabled: useCase.disabled }, minLenghtValidatorFn),
-        })
+        });
 
         buildComponent<any>(`
           <form [formGroup]="formGroup">
@@ -295,7 +295,7 @@ describe('MzValidationComponent:view', () => {
 
       const errorMessageResource: ErrorMessageResource = {
         minlength: 'Too short',
-      }
+      };
 
       const formControlValue = 'value-x';
 
@@ -343,7 +343,7 @@ describe('MzValidationComponent:view', () => {
 
       const errorMessageResource: ErrorMessageResource = {
         minlength: 'Too short',
-      }
+      };
 
       const formControlValue = 'value-x';
 
@@ -391,7 +391,7 @@ describe('MzValidationComponent:view', () => {
 
       const errorMessageResource: ErrorMessageResource = {
         minlength: 'Too short',
-      }
+      };
 
       const formControlValue = 'value-x';
 
@@ -461,7 +461,7 @@ describe('MzValidationComponent:view', () => {
 
     const errorMessageResource: ErrorMessageResource = {
       required: 'Required',
-    }
+    };
 
     describe('input', () => {
 

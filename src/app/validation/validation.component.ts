@@ -24,9 +24,6 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   styleUrls: ['./validation.component.scss'],
 })
 export class MzValidationComponent implements AfterViewInit, OnDestroy {
-  private _formControlDisabled = false;
-  private _required = false;
-
   errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
   labelElement: HTMLElement;
   nativeElement: JQuery;
@@ -35,13 +32,16 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   // native properties
   @Input() id: string;
 
+  // component properties
+  @Input() errorMessageResource: ErrorMessageResource;
+
+  private _formControlDisabled = false;
+  private _required = false;
+
   @HostBinding('attr.required')
   @Input()
   get required() { return this._required; }
   set required(value: any) { this._required = (value != null && `${value}` !== 'false'); }
-
-  // component properties
-  @Input() errorMessageResource: ErrorMessageResource;
 
   @Input()
   get formControlDisabled() { return this._formControlDisabled; }

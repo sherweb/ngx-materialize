@@ -160,7 +160,7 @@ describe('MzTabComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        $(tab()).tabs('select_tab', 'label2')
+        $(tab()).tabs('select_tab', 'label2');
         fixture.detectChanges();
 
         expect(tabItems()[1].querySelector('a').classList).toContain('active');
