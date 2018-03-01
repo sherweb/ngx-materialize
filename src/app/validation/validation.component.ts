@@ -24,9 +24,6 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
   styleUrls: ['./validation.component.scss'],
 })
 export class MzValidationComponent implements AfterViewInit, OnDestroy {
-  private _formControlDisabled = false;
-  private _required = false;
-
   errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
   labelElement: HTMLElement;
   nativeElement: JQuery;
@@ -35,13 +32,16 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
   // native properties
   @Input() id: string;
 
+  // component properties
+  @Input() errorMessageResource: ErrorMessageResource;
+
+  private _formControlDisabled = false;
+  private _required = false;
+
   @HostBinding('attr.required')
   @Input()
   get required() { return this._required; }
   set required(value: any) { this._required = (value != null && `${value}` !== 'false'); }
-
-  // component properties
-  @Input() errorMessageResource: ErrorMessageResource;
 
   @Input()
   get formControlDisabled() { return this._formControlDisabled; }
@@ -68,12 +68,6 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
     return this.nativeElement[0].nodeName === 'SELECT';
   }
 
-  @HostListener('focusout', ['$event.target'])
-  onFocusOut(target: Event) {
-    this.ngControl.control.markAsTouched();
-    this.setValidationState();
-  }
-
   constructor(
     private elementRef: ElementRef,
     private resolver: ComponentFactoryResolver,
@@ -81,6 +75,12 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
     public ngControl: NgControl,
     public renderer: Renderer,
   ) { }
+
+  @HostListener('focusout', ['$event.target'])
+  onFocusOut(target: Event) {
+    this.ngControl.control.markAsTouched();
+    this.setValidationState();
+  }
 
   ngAfterViewInit() {
     this.initElements();

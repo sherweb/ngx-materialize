@@ -26,7 +26,6 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   }
 
   private chipInputElement: JQuery;
-  private onChangeCallback = (data: Materialize.ChipDataObject[]) => {};
 
   constructor(
     private elementRef: ElementRef,
@@ -92,4 +91,6 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   }
 
   //#endregion ControlValueAccessor
+
+  private onChangeCallback = (data: Materialize.ChipDataObject[]) => {};
 }

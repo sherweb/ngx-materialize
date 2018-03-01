@@ -26,7 +26,7 @@
   "scripts": {
     "clean:build": "rimraf -- dist inline-template",
     "clean": "npm run clean:build && rimraf -- node_modules",
-    "lint": "tslint \"src/**/*.ts\"",
+    "lint": "ng lint --type-check",
     "ng": "ng",
     "start": "cd demo-app && npm start",
     "test": "ng test",
