@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ActivitySector, Province, User } from '../../models';
+import { ActivitySector, Province, User } from '../models';
 
 @Component({
   selector: 'app-validation-playground',
