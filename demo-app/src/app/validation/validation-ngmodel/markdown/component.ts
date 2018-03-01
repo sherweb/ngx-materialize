@@ -48,6 +48,10 @@ export class ValidationNgmodelComponent {
   }
 
   onSubmit() {
+    if (!this.form.valid) {
+      return;
+    }
+
     this.submitted = true;
     this.submittedValues = this.form.value;
   }

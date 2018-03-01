@@ -98,6 +98,10 @@ export class ValidationFormStateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if (!this.form.valid) {
+      return;
+    }
+
     this.submitted = true;
     this.values = Object.assign({}, this.form.value);
   }
