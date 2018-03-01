@@ -87,7 +87,7 @@ export class ValidationPlaygroundComponent implements OnInit {
       required: 'Last name is required.',
     },
     postalCode: {
-      pattern : 'Postal code is invalid.',
+      pattern: 'Postal code is invalid.',
     },
     phoneNumber: {
       pattern: 'Phone number format is invaild. (XXX-XXX-XXXX)',
@@ -195,7 +195,7 @@ export class ValidationPlaygroundComponent implements OnInit {
 
     this.userForm.get('hasJob').setValue(this.hasJob);
     this.userForm.get('jobPrivate').setValue(this.user.jobPrivate);
-    this.userForm.get('jobType').setValue(this.user.jobType)
+    this.userForm.get('jobType').setValue(this.user.jobType);
     this.userForm.get('gender').setValue(this.user.gender);
   }
 
@@ -209,6 +209,10 @@ export class ValidationPlaygroundComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.userForm.valid) {
+      return;
+    }
+
     this.submitted = true;
     this.user = Object.assign({}, this.userForm.value);
   }

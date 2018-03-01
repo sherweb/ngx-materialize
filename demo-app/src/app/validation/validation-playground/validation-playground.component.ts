@@ -210,6 +210,10 @@ export class ValidationPlaygroundComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.userForm.valid) {
+      return;
+    }
+
     this.submitted = true;
     this.user = Object.assign({}, this.userForm.value);
   }

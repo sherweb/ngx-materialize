@@ -56,6 +56,10 @@ export class ValidationNgmodelComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.form.valid) {
+      return;
+    }
+
     this.submitted = true;
     this.submittedValues = this.form.value;
   }
