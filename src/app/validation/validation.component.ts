@@ -68,6 +68,12 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
     return this.nativeElement[0].nodeName === 'SELECT';
   }
 
+  @HostListener('focusout', ['$event.target'])
+  onFocusOut(target: Event) {
+    this.ngControl.control.markAsTouched();
+    this.setValidationState();
+  }
+
   constructor(
     private elementRef: ElementRef,
     private resolver: ComponentFactoryResolver,
@@ -75,12 +81,6 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
     public ngControl: NgControl,
     public renderer: Renderer,
   ) { }
-
-  @HostListener('focusout', ['$event.target'])
-  onFocusOut(target: Event) {
-    this.ngControl.control.markAsTouched();
-    this.setValidationState();
-  }
 
   ngAfterViewInit() {
     this.initElements();

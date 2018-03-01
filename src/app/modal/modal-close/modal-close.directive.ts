@@ -7,11 +7,11 @@ import { MzModalComponent } from '../modal.component';
 })
 export class MzModalCloseDirective {
 
-  constructor(
-    private modalComponent: MzModalComponent,
-  ) { }
-
   @HostListener('click') onclick() {
     this.modalComponent.close();
   }
+
+  constructor(
+    private modalComponent: MzModalComponent,
+  ) { }
 }
