@@ -44,6 +44,7 @@
 /libpeerconnection.log
 /typings
 npm-debug.log
+package-lock.json
 test-results.xml
 testem.log
 *.log
