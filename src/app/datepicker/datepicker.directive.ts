@@ -88,7 +88,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
       this.options.format = this.format;
     }
     if (this.formatSubmit) {
-      this.options.formatSubmit = this.formatSubmit
+      this.options.formatSubmit = this.formatSubmit;
     }
 
     // extends onClose function to fix datepicker focus issue

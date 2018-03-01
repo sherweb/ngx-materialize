@@ -65,7 +65,7 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
     this.chipInputElement.on('chip.add', (event, chip: Materialize.ChipDataObject) => {
       this.onChangeCallback(this.value);
       this.add.emit(chip);
-    })
+    });
     this.chipInputElement.on('chip.delete', (event, chip: Materialize.ChipDataObject) => {
       this.onChangeCallback(this.value);
       this.delete.emit(chip);

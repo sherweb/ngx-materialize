@@ -82,6 +82,7 @@
     ],
     "radix": true,
     "semicolon": [
+      true,
       "always"
     ],
     "triple-equals": [
@@ -149,7 +150,6 @@
     /**
      * tslint-microsoft-contrib
      */
-    "no-empty-interfaces": true,
     "no-unnecessary-local-variable": true
   }
 }

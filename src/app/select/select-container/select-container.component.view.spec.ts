@@ -125,7 +125,7 @@ describe('MzSelectContainerComponent:view', () => {
 
         [true, false].forEach(disabled => {
           if (disabled) {
-            formGroup.get('formControl').disable()
+            formGroup.get('formControl').disable();
           } else {
             formGroup.get('formControl').enable();
           }
@@ -141,7 +141,7 @@ describe('MzSelectContainerComponent:view', () => {
 
       const errorMessageResource: ErrorMessageResource = {
         required: 'Required',
-      }
+      };
 
       buildComponent<any>(`
         <form [formGroup]="formGroup">
@@ -223,8 +223,8 @@ describe('MzSelectContainerComponent:view', () => {
     it('should have correctly value when control value changes using object value', fakeAsync(() => {
 
       interface Option {
-        text: string,
-        value: number,
+        text: string;
+        value: number;
       }
 
       const options = [
@@ -320,8 +320,8 @@ describe('MzSelectContainerComponent:view', () => {
       it('should have correctly value when control value changes using object value', fakeAsync(() => {
 
         interface Option {
-          text: string,
-          value: number,
+          text: string;
+          value: number;
         }
 
         const options: Option[] = [

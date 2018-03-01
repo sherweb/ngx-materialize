@@ -24,7 +24,7 @@ describe('MzTimepickerDirective:view', () => {
     let nativeElement: any;
 
     function input(): HTMLInputElement {
-      return nativeElement.querySelector('input')
+      return nativeElement.querySelector('input');
     }
 
     function label(): HTMLLabelElement {
@@ -75,7 +75,7 @@ describe('MzTimepickerDirective:view', () => {
     let nativeElement: any;
 
     function input(): HTMLInputElement {
-      return nativeElement.querySelector('input')
+      return nativeElement.querySelector('input');
     }
 
     it('should be shown correctly when provided', async(() => {
@@ -378,7 +378,7 @@ describe('MzTimepickerDirective:view', () => {
 
         expect(input().value).toBe('');
 
-        $(input()).val('05:45PM')
+        $(input()).val('05:45PM');
         $(input()).change();
 
         expect(input().value).toBe('05:45PM');

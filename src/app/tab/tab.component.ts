@@ -35,7 +35,7 @@ export class MzTabComponent implements AfterViewInit {
       onShow: this.onShow,
       responsiveThreshold: this.responsiveThreshold,
       swipeable: this.swipeable,
-    }
+    };
 
     $(this.tabs.nativeElement).tabs(options);
   }

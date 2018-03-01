@@ -655,9 +655,9 @@ describe('MzSelectDirective:unit', () => {
         const spyOnUpdateEmit = spyOn(directive.onUpdate, 'emit');
 
         [false, null, undefined].forEach(filledIn => {
-          spyInitMaterialSelect.calls.reset()
-          spyInitFilledIn.calls.reset()
-          spyHandleDomEvents.calls.reset()
+          spyInitMaterialSelect.calls.reset();
+          spyInitFilledIn.calls.reset();
+          spyHandleDomEvents.calls.reset();
           spyOnUpdateEmit.calls.reset();
 
           directive.filledIn = filledIn;

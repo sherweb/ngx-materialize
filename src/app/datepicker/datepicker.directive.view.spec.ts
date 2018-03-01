@@ -27,7 +27,7 @@ describe('MzDatepickerDirective:view', () => {
     }
 
     function input(): HTMLInputElement {
-      return nativeElement.querySelector('input')
+      return nativeElement.querySelector('input');
     }
 
     function label(): HTMLLabelElement {
@@ -74,7 +74,7 @@ describe('MzDatepickerDirective:view', () => {
     let nativeElement: any;
 
     function input(): HTMLInputElement {
-      return nativeElement.querySelector('input')
+      return nativeElement.querySelector('input');
     }
 
     it('should be shown correctly when provided', async(() => {
@@ -490,7 +490,7 @@ describe('MzDatepickerDirective:view', () => {
           tick();
 
           // force datepicker to open setting focus automatically
-          datepicker().open()
+          datepicker().open();
           tick();
 
           spyOn(console, 'log');
