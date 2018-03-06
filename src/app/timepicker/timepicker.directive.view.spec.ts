@@ -1,9 +1,43 @@
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MzValidationModule } from 'app';
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzTimepickerContainerComponent, MzTimepickerDirective } from './';
+
+@Component({
+  selector: `mz-test-timepicker`,
+  template: `
+    <form [formGroup]="form">
+      <mz-timepicker-container>
+        <input mz-timepicker mz-validation
+          id="timepicker-id"
+          type="text"
+          [errorMessageResource]="errorMessages.timepicker"
+          [formControlName]="'timepicker'">
+      </mz-timepicker-container>
+      <button id="submit" mz-button [disabled]="!form.valid">submit</button>
+    </form>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+class MzTestTimepickerComponent {
+  errorMessages = {
+    timepicker: {
+      required: 'This field is required',
+    },
+  };
+  form: FormGroup;
+
+  constructor(formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      timepicker: [null, Validators.required],
+    });
+  }
+}
 
 describe('MzTimepickerDirective:view', () => {
 
@@ -11,10 +45,14 @@ describe('MzTimepickerDirective:view', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        ReactiveFormsModule,
+        MzValidationModule,
+        NoopAnimationsModule,
       ],
       declarations: [
         MzTimepickerContainerComponent,
         MzTimepickerDirective,
+        MzTestTimepickerComponent,
         MzTestWrapperComponent,
       ],
     });
@@ -384,6 +422,63 @@ describe('MzTimepickerDirective:view', () => {
         expect(input().value).toBe('05:45PM');
         expect(component.time).toBe('05:45PM');
       });
+    }));
+  });
+
+  describe('validation', () => {
+    let component: MzTestTimepickerComponent;
+    let fixture: ComponentFixture<MzTestTimepickerComponent>;
+    let nativeElement: HTMLElement;
+
+    function input(): HTMLInputElement {
+      return nativeElement.querySelector('input.timepicker') as HTMLInputElement;
+    }
+
+    function timepicker(): Pickadate.DatePicker {
+      return $(input()).pickadate('picker');
+    }
+
+    function errorMessage(): HTMLElement {
+      return nativeElement.querySelector('mz-error-message') as HTMLElement;
+    }
+
+    function submitButton(): HTMLButtonElement {
+      return nativeElement.querySelector('button#submit') as HTMLButtonElement;
+    }
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MzTestTimepickerComponent);
+      component = fixture.componentInstance;
+      nativeElement = fixture.nativeElement;
+      fixture.detectChanges();
+    });
+
+    it('should be reflected correctly when used with ChangeStrategy.OnPush', fakeAsync(() => {
+
+      // initial state
+      expect(errorMessage().innerText.trim()).toBe('');
+      expect(component.form.valid).toBeFalsy();
+      expect(submitButton().hasAttribute('disabled')).toBeTruthy();
+
+      // invalid
+      $(input()).val(null);
+      $(input()).change();
+      component.form.get('timepicker').markAsDirty();
+      fixture.detectChanges();
+
+      expect(errorMessage().innerText.trim()).toBe(component.errorMessages.timepicker.required);
+      expect(component.form.valid).toBeFalsy();
+      expect(submitButton().hasAttribute('disabled')).toBeTruthy();
+
+      // valid
+      $(input()).val('05:45PM');
+      $(input()).change();
+      fixture.detectChanges();
+      tick();
+
+      expect(errorMessage().innerText.trim()).toBe('');
+      expect(component.form.valid).toBeTruthy();
+      expect(submitButton().hasAttribute('disabled')).toBeFalsy();
     }));
   });
 });
