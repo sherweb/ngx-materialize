@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "build": "ng build --dev",
-    "build:prod": "ng build --prod --aot",
+    "build:prod": "ng build --prod --aot --no-progress",
     "clean": "rimraf -- dist typings node_modules",
     "lint": "tslint \"src/**/*.ts\"",
     "ng": "ng",
