@@ -6,7 +6,7 @@ describe('MzDatepickerDirective:unit', () => {
   let directive: MzDatepickerDirective;
 
   beforeEach(() => {
-    directive = new MzDatepickerDirective(null, null, null);
+    directive = new MzDatepickerDirective(null, null, null, null);
   });
 
   describe('ngOnDestroy', () => {

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -47,6 +47,7 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
 
   constructor(
     @Optional() private ngControl: NgControl,
+    private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private renderer: Renderer,
   ) {
@@ -131,6 +132,10 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
 
         // set label active status
         this.setLabelActive();
+
+        // mark for change detection
+        // fix form validation with ChangeDetectionStrategy.OnPush
+        this.changeDetectorRef.markForCheck();
       });
     }
   }

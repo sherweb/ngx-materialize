@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -33,6 +33,7 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
 
   constructor(
     @Optional() private ngControl: NgControl,
+    private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private renderer: Renderer,
     private zone: NgZone,
@@ -88,6 +89,10 @@ export class MzTimepickerDirective extends HandlePropChanges implements OnInit, 
       // set ngControl value according to selected time in timepicker
       this.inputElement.on('change', (event: JQuery.Event<HTMLInputElement>) => {
         this.ngControl.control.setValue(event.target.value);
+
+        // mark for change detection
+        // fix form validation with ChangeDetectionStrategy.OnPush
+        this.changeDetectorRef.markForCheck();
       });
     }
   }

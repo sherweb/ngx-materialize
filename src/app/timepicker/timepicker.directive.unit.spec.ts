@@ -14,7 +14,7 @@ describe('MzTimepickerDirective:unit', () => {
   }
 
   beforeEach(() => {
-    directive = new MzTimepickerDirective(null, null, null, null);
+    directive = new MzTimepickerDirective(null, null, null, null, null);
     directive.inputElement = createInputElement();
   });
 
