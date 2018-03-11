@@ -59,7 +59,6 @@ jobs:
           key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ./demo-app/node_modules
-      # Test the source code
       # Cache the dist folder for the deploy job
       - save_cache:
           paths:
@@ -67,14 +66,17 @@ jobs:
           key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
     deploy:
-        steps:
+      filters:
+          tags:
+            only: /v[0-9]+(\.[0-9]+)*/
+      steps:
+        # Checkout the code from the branch into the working_directory
+        - checkout
         # Restore cache from the build job which contains the
         # dist folder that needs to be deployed
         - restore_cache:
-            key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+         # Deploy to Github Pages
         - run:
-            name: Deploy to gh-pages
-            command: cd demo-app && yarn install && yarn gh-pages:deploy
-        release:
-        tag: /v[0-9]+(\.[0-9]+)*/
-        owner: sherweb
+          name: Deploy to gh-pages
+          command: cd demo-app && yarn install && yarn gh-pages:deploy
