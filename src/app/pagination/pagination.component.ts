@@ -33,6 +33,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   changeCurrentPage(pageNumber: number) {
     this.currentPage = pageNumber;
     this.pageChange.emit(pageNumber);
+    this.renderButtons();
   }
 
   firstPage() {
