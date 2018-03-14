@@ -72,10 +72,6 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
     const maxPosition = this.totalPages - buttonsCount;
     const halfButtons = Math.floor(buttonsCount / 2);
 
-    if (this.currentPage > this.totalPages) {
-      this.currentPage = this.pages[0];
-    }
-
     let hiddenPagesBefore = (this.currentPage - halfButtons);
     if (hiddenPagesBefore > maxPosition) {
       hiddenPagesBefore = maxPosition + 1;
@@ -85,5 +81,9 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
     const to = Math.min(this.totalPages, from + this.maxPageButtons - 1);
 
     this.pages = Array(buttonsCount).fill(0).map((x, i) => from + i);
+
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.pages[0];
+    }
   }
 }
