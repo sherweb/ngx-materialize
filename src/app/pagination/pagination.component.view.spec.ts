@@ -116,6 +116,47 @@ describe('MzPaginationComponent:view', () => {
       });
     }));
 
+    it('should active first page when first button is clicked', async(() => {
+
+      buildComponent(`
+        <mz-pagination class="col s12 m4"
+          [itemsPerPage]="10"
+          [totalItems]="20"
+        >
+        </mz-pagination>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        paginationPageButtons()[3].querySelector('a').click();
+        fixture.detectChanges();
+
+        paginationPageButtons()[0].querySelector('a').click();
+        fixture.detectChanges();
+
+        expect(paginationPageButtons()[1].classList).toContain('active');
+      });
+    }));
+
+    it('should active last page when last button is clicked', async(() => {
+
+      buildComponent(`
+        <mz-pagination class="col s12 m4"
+          [itemsPerPage]="10"
+          [totalItems]="20"
+        >
+        </mz-pagination>
+      `).then((fixture) => {
+        nativeElement = fixture.nativeElement;
+        fixture.detectChanges();
+
+        paginationPageButtons()[3].querySelector('a').click();
+        fixture.detectChanges();
+
+        expect(paginationPageButtons()[2].classList).toContain('active');
+      });
+    }));
+
     it('should active page 2 when next page button is clicked and page 1 button contain wave-effect', async(() => {
 
       buildComponent(`
@@ -201,7 +242,7 @@ describe('MzPaginationComponent:view', () => {
             expect(paginationPageButtonArray[i].querySelector('a').innerHTML).toBe(i.toString());
           }
           expect(paginationPageButtonArray.length).toBe(12);
-        })
+        });
       }));
 
       it('should show page 3, 4, 5, 6 and 7 when current page is 5', async(() => {
@@ -223,7 +264,7 @@ describe('MzPaginationComponent:view', () => {
             expect(paginationPageButtonArray[i].querySelector('a').innerHTML).toBe((i + 2).toString());
           }
           expect(paginationPageButtonArray.length).toBe(7);
-        })
+        });
       }));
 
       it('should show page 1, 2, 3, 4 and 5 when current page is 1', async(() => {
@@ -244,7 +285,7 @@ describe('MzPaginationComponent:view', () => {
             expect(paginationPageButtonArray[i].querySelector('a').innerHTML).toBe((i).toString());
           }
           expect(paginationPageButtonArray.length).toBe(7);
-        })
+        });
       }));
 
       it('should show page 6, 7, 8, 9 and 10 when current page is 10', async(() => {
@@ -266,7 +307,26 @@ describe('MzPaginationComponent:view', () => {
             expect(paginationPageButtonArray[i].querySelector('a').innerHTML).toBe((i + 5).toString());
           }
           expect(paginationPageButtonArray.length).toBe(7);
-        })
+        });
+      }));
+
+      it('should go to page 1 when current page is 6 and the total item is change to 50', async(() => {
+
+        buildComponent(`
+          <mz-pagination class="col s12 m4"
+            [currentPage]="6"
+            [itemsPerPage]="10"
+            [totalItems]="50"
+          >
+          </mz-pagination>
+        `).then((fixture) => {
+          nativeElement = fixture.nativeElement;
+          fixture.detectChanges();
+
+          const paginationPageButtonArray = paginationPageButtons();
+
+          expect(paginationPageButtons()[1].classList).toContain('active');
+        });
       }));
     });
   });

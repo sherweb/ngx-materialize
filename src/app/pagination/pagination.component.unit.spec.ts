@@ -110,7 +110,7 @@ describe('MzPaginationComponent:unit', () => {
       nativeElement = fixture.nativeElement;
       component = fixture.componentInstance;
 
-      component.currentPage = 2
+      component.currentPage = 2;
       component.totalItems = 20;
       component.itemsPerPage = 10;
 
@@ -122,7 +122,7 @@ describe('MzPaginationComponent:unit', () => {
       fixture.detectChanges();
 
       expect(component.pageChange.emit).not.toHaveBeenCalledWith(2);
-    }))
+    }));
   });
 
   describe('initHandlers', () => {
