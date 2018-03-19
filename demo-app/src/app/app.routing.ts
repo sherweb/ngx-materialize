@@ -49,6 +49,7 @@ export const ROUTES: Routes = [
   // components routes - Indicator
   { path: 'badge', loadChildren: './badge/badge.module#BadgeModule', data: { icon: 'numeric-2-box-outline', text: 'Badge', section: indicator } },
   { path: 'icon', loadChildren: './icon/icon.module#IconModule', data: { icon: 'emoticon-happy', text: 'Icon', section: indicator } },
+  { path: 'feature-discovery', loadChildren: './feature-discovery/feature-discovery.module#FeatureDiscoveryModule', data: { icon: 'asterisk', text: 'Feature Discovery', section: indicator } },
   { path: 'toast', loadChildren: './toast/toast.module#ToastModule', data: { icon: 'tooltip-text', text: 'Toast', section: indicator } },
   { path: 'tooltip', loadChildren: './tooltip/tooltip.module#TooltipModule', data: { icon: 'tooltip', text: 'Tooltip', section: indicator } },
 
