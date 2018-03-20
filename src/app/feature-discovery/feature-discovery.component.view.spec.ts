@@ -1,6 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
-import { NOOP } from '@angular/core/src/view/util';
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzFeatureDiscoveryComponent } from './feature-discovery.component';
 
