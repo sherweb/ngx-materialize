@@ -12,6 +12,7 @@ import { MzCollapsibleModule } from './collapsible';
 import { MzCollectionModule } from './collection';
 import { MzDatepickerModule } from './datepicker';
 import { MzDropdownModule } from './dropdown';
+import { MzFeatureDiscoveryModule } from './feature-discovery';
 import { MzIconModule } from './icon';
 import { MzIconMdiModule } from './icon-mdi';
 import { MzInputModule } from './input';
@@ -45,6 +46,7 @@ const MZ_MODULES = [
   MzCollectionModule,
   MzDatepickerModule,
   MzDropdownModule,
+  MzFeatureDiscoveryModule,
   MzIconModule,
   MzIconMdiModule,
   MzInjectionModule,

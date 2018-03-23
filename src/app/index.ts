@@ -7,6 +7,7 @@ export * from './collapsible';
 export * from './collection';
 export * from './datepicker';
 export * from './dropdown';
+export * from './feature-discovery';
 export * from './icon';
 export * from './icon-mdi';
 export * from './input';

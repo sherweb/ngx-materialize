@@ -238,6 +238,7 @@ export class CustomMaterializeModule { }
 * Collection
 * Datepicker
 * Dropdown
+* Feature discovery
 * Form validation
 * Icon
 * Input
