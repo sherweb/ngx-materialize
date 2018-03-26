@@ -120,6 +120,7 @@ describe('MzPaginationComponent:view', () => {
 
       buildComponent(`
         <mz-pagination class="col s12 m4"
+          [enableFirstAndLastPageButtons]="true"
           [itemsPerPage]="10"
           [totalItems]="20"
         >
@@ -134,7 +135,7 @@ describe('MzPaginationComponent:view', () => {
         paginationPageButtons()[0].querySelector('a').click();
         fixture.detectChanges();
 
-        expect(paginationPageButtons()[1].classList).toContain('active');
+        expect(paginationPageButtons()[2].classList).toContain('active');
       });
     }));
 
@@ -142,6 +143,7 @@ describe('MzPaginationComponent:view', () => {
 
       buildComponent(`
         <mz-pagination class="col s12 m4"
+          [enableFirstAndLastPageButtons]="true"
           [itemsPerPage]="10"
           [totalItems]="20"
         >
@@ -153,7 +155,7 @@ describe('MzPaginationComponent:view', () => {
         paginationPageButtons()[3].querySelector('a').click();
         fixture.detectChanges();
 
-        expect(paginationPageButtons()[2].classList).toContain('active');
+        expect(paginationPageButtons()[3].classList).toContain('active');
       });
     }));
 
