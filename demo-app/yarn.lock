@@ -288,9 +288,9 @@ amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
 
-angular-cli-ghpages@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/angular-cli-ghpages/-/angular-cli-ghpages-0.5.1.tgz#acaeb9932bc6b29b5a34c7a885bfacd74c4d5524"
+angular-cli-ghpages@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/angular-cli-ghpages/-/angular-cli-ghpages-0.5.2.tgz#9551c5022c6982d0e4c5c7c97a21cd29d728b14d"
   dependencies:
     commander "2.9.0"
     denodeify "1.2.1"
