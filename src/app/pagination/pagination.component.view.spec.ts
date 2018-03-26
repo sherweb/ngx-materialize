@@ -152,7 +152,7 @@ describe('MzPaginationComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        paginationPageButtons()[3].querySelector('a').click();
+        paginationPageButtons()[4].querySelector('a').click();
         fixture.detectChanges();
 
         expect(paginationPageButtons()[3].classList).toContain('active');
