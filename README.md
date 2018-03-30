@@ -24,9 +24,6 @@
     This library is an <a href="https://angular.io/">Angular 2+</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
   <p align="center">
-    The purpose of this library is to simplify the usage within the Angular framework.
-  </p>
-  <p align="center">
     Demo and documentation : <a href="https://sherweb.github.io/ng2-materialize/">https://sherweb.github.io/ng2-materialize/</a>
   </p>
 </div>
@@ -44,16 +41,26 @@ In other words, we ...
 - Provide a MediaService that allow customization according to view port size
 - Add support for ReactiveForm with validation
 
+
+### Table of contents
+- [Installation](#installation)
+- [Icons](#icons)
+- [Animation](#animation)
+- [Usage](#usage)
+- [Available features](#available-features)
+- [Demo application](#demo-application)
+- [Contribute](#contribute)
+- [Credits](#credits)
+
 ## Installation
 
-The following commands will add Ng2-Materialize library to your `package.json` file along with it dependencies: Materialize CSS, jQuery and Mdi (Mdi icons library is optional as your are free to use the icon library of your choice).
+The following commands will add Ng2-Materialize library to your `package.json` file along with its dependencies: Materialize CSS and jQuery.
 
 ```
 npm install --save ng2-materialize
-npm install --save mdi    #optional
 ```
 
-Don't forget to include jQuery, Materialize, and Mdi in your application.
+Don't forget to include Materialize and jQuery in your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
@@ -62,8 +69,7 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ```diff
 "styles": [
   "styles.scss",
-+ "../node_modules/materialize-css/dist/css/materialize.min.css",
-+ "../node_modules/mdi/css/materialdesignicons.min.css"   #optional
++ "../node_modules/materialize-css/dist/css/materialize.min.css"
 ],
 "scripts": [
 + "../node_modules/jquery/dist/jquery.min.js",
@@ -102,6 +108,38 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 ```
 
 See also [Angular CLI 3rd Party Library Installation](https://github.com/angular/angular-cli/wiki/overview#global-library-installation) and [Using MaterializeCSS with your Angular 2 Angular CLI App](https://medium.com/@ladyleet/using-materializecss-with-your-angular-2-angular-cli-app-2eb64b05a1d2#.8p3uba85g).
+
+## Icons
+
+Ng2-materialize offers two "out-of-the-box" options for icons although you are free to use the library of your choice.
+
+### Material Design Icons
+To use [Material Design Icons](https://materialdesignicons.com/) (community project based on Google Material Icons with lots of added icons), which is used with `mz-icon-mdi` directive, you will need to add the library with the following command:
+
+```
+npm install --save mdi
+```
+
+Don't forget to include Mdi library to your application.
+
+If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
+
+#### .angular-cli.json
+
+```diff
+"styles": [
+  "styles.scss",
+  "../node_modules/materialize-css/dist/css/materialize.min.css",
++ "../node_modules/mdi/css/materialdesignicons.min.css"
+],
+```
+
+### Material Icons
+To use [Material Icons](https://material.io/icons/) (official Google Material Icons library), which is used with `mz-icon` directive, you will need to add the following into the `<head>` tag of your `index.html` file:
+
+```html
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
 
 ## Animation
 Some components are using advance animation transition. You need to install `@angular/animations` and include `BrowserAnimationsModule` if you want those animation to work.
@@ -164,7 +202,7 @@ export class HomeModule { }
 
 
 ### MaterializeModule deprecated
-We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way. 
+We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way.
 We recommend to use the new component modules when you are building new component/application.
 
 If you still want to import only one module, you can create a separate `NgModule` in your application that imports all the `ng2-materialize` components. You will be able to include this module anywhere you like to use the components.
@@ -174,11 +212,11 @@ import { MzInputModule, MzValidationModule } from 'ng2-materialize';
 
 @NgModule({
   imports: [
-    MzInputModule, 
+    MzInputModule,
     MzValidationModule,
   ],
   exports: [
-    MzInputModule, 
+    MzInputModule,
     MzValidationModule,
   ],
 })
@@ -195,15 +233,18 @@ export class CustomMaterializeModule { }
 * Button
 * Card
 * Checkbox
+* Chip
 * Collapsible
 * Collection
 * Datepicker
 * Dropdown
+* Feature discovery
 * Form validation
 * Icon
 * Input
 * Modal
 * Navbar
+* Pagination
 * Parallax
 * Progress
 * Radio-Button
