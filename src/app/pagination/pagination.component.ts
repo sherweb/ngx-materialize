@@ -68,7 +68,7 @@ export class MzPaginationComponent extends HandlePropChanges implements OnInit {
   }
 
   renderButtons() {
-    const buttonsCount = Math.min(this.maxPageButtons, this.totalPages)
+    const buttonsCount = Math.min(this.maxPageButtons, this.totalPages);
     const maxPosition = this.totalPages - buttonsCount;
     const halfButtons = Math.floor(buttonsCount / 2);
 
