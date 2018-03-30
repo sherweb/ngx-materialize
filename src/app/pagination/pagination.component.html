@@ -1,0 +1,20 @@
+
+  <ul class="pagination">
+    <mz-pagination-page-button [disabled]="currentPage === 1" *ngIf="enableFirstAndLastPageButtons">
+      <a (click)="firstPage()"><i mz-icon [icon]="'first_page'"></i></a>
+    </mz-pagination-page-button>
+    <mz-pagination-page-button [disabled]="currentPage === 1">
+      <a (click)="previousPage()"><i mz-icon [icon]="'chevron_left'"></i></a>
+    </mz-pagination-page-button>
+    <mz-pagination-page-button *ngFor="let page of pages"
+      [active]="page === currentPage"
+    >
+      <a (click)="changeCurrentPage(page)">{{ page }}</a>
+    </mz-pagination-page-button>
+    <mz-pagination-page-button [disabled]="currentPage === totalPages">
+      <a (click)="nextPage()"><i mz-icon [icon]="'chevron_right'"></i></a>
+    </mz-pagination-page-button>
+    <mz-pagination-page-button [disabled]="currentPage === totalPages" *ngIf="enableFirstAndLastPageButtons">
+      <a (click)="lastPage()"><i mz-icon [icon]="'last_page'"></i></a>
+    </mz-pagination-page-button>
+  </ul>

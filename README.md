@@ -244,6 +244,7 @@ export class CustomMaterializeModule { }
 * Input
 * Modal
 * Navbar
+* Pagination
 * Parallax
 * Progress
 * Radio-Button

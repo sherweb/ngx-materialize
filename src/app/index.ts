@@ -15,6 +15,7 @@ export * from './materialize.module';
 export * from './media';
 export * from './modal';
 export * from './navbar';
+export * from './pagination';
 export * from './parallax';
 export * from './progress';
 export * from './radio-button';
