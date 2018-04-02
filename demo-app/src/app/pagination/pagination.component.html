@@ -50,21 +50,6 @@
 </div>
 
 <div class="section">
-  <h5 class="light">Basic pagination</h5>
-
-  <div class="row m-valign-wrapper">
-    <mz-pagination class="col s12 m6"
-      [itemsPerPage]="10"
-      [totalItems]="100"
-    >
-    </mz-pagination>
-
-    <p class="col s12 m6">
-      By setting <code class="language-markup">itemsPerPage</code> and <code class="language-markup">totalItems</code> input property on <code class="language-markup">mz-pagination</code> component, the number of available pages will automatically be calculated.
-    </p>
-</div>
-
-<div class="section">
   <h5 class="light">First and last page button</h5>
 
   <div class="row m-valign-wrapper">
@@ -170,7 +155,7 @@
   <h5 class="light">HTML Structure</h5>
     <app-code-snippet>
 &lt;mz-pagination
-  (pageChanged)="onPageChange($event)"
+  (pageChange)="onPageChange($event)"
   [currentPage]="1"
   [enableFirstAndLastPageButtons]="false"
   [itemsPerPage]="10"
