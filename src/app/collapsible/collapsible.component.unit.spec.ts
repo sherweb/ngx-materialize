@@ -99,4 +99,42 @@ describe('MzCollapsibleComponent:unit', () => {
         );
     }));
   });
+
+  describe('open', () => {
+    it('should open first collapsible item', () => {
+
+      const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
+
+      spyOn(window, '$').and.callFake((selector: any) => {
+        return selector === component.collapsible.nativeElement
+          ? mockCollapsibleElement
+          : {};
+      });
+
+      spyOn(mockCollapsibleElement, 'collapsible');
+
+      component.open(0);
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith('open', 0);
+    });
+  });
+
+  describe('close', () => {
+    it('should close first collapsible item', () => {
+
+      const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
+
+      spyOn(window, '$').and.callFake((selector: any) => {
+        return selector === component.collapsible.nativeElement
+          ? mockCollapsibleElement
+          : {};
+      });
+
+      spyOn(mockCollapsibleElement, 'collapsible');
+
+      component.close(0);
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith('close', 0);
+    });
+  });
 });
