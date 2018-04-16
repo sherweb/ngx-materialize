@@ -76,27 +76,25 @@ describe('MzCollapsibleComponent:unit', () => {
       component.onClose = () => {};
       component.onOpen = () => {};
 
-      const mockJQueryCollapsibleNativeElement = { collapsible: true };
+      const mockCollapsibleElement = { collapsible: (options: Materialize.CollapsibleOptions) => { } };
 
-      spyOn(component.renderer, 'invokeElementMethod');
+      spyOn(mockCollapsibleElement, 'collapsible');
 
       spyOn(window, '$').and.callFake((selector: any) => {
         return selector === component.collapsible.nativeElement
-          ? mockJQueryCollapsibleNativeElement
-          : {};
+        ? mockCollapsibleElement
+        : {};
       });
 
       component.initCollapsible();
 
-      expect(component.renderer.invokeElementMethod)
-        .toHaveBeenCalledWith(
-          mockJQueryCollapsibleNativeElement,
-          'collapsible', [{
-            accordion: false,
-            onClose: component.onClose,
-            onOpen: component.onOpen,
-          }],
-        );
+      const expectCollapsibleOption = <Materialize.CollapsibleOptions> {
+        accordion: false,
+        onClose: component.onClose,
+        onOpen: component.onOpen,
+      };
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith(expectCollapsibleOption);
     }));
   });
 
