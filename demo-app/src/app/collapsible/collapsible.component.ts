@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { MzCollapsibleComponent } from 'ng2-materialize';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
-import { MzCollapsibleComponent } from './../../../../src/app/collapsible/collapsible.component';
 
 @Component({
   selector: 'app-collapsible',
