@@ -6,7 +6,7 @@ jobs:
     filters:
       branches:
         ignore: gh-pages
-    working_directory: ~/app
+    working_directory: ~/lib
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -26,13 +26,10 @@ jobs:
       # Test the source code
       - run:
           name: Test
-          command: xvfb-run -a yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
+          command: yarn test --single-run --no-progress --browser=ChromeNoSandbox
       - store_artifacts:
           path: test-results.xml
           prefix: tests
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
       # Lint the source code
       - run:
           name: Lint
