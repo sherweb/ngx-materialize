@@ -26,14 +26,17 @@ jobs:
       # Test the source code
       - run:
           name: Test
-          command: yarn test --single-run --no-progress --browser=ChromeNoSandbox
+          command: yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
       - store_artifacts:
           path: test-results.xml
           prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
       # Lint the source code
       - run:
           name: Lint
-          command: yarn lint --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+          command: ng lint --type-check --format junit > tslint.xml
       - store_artifacts:
           path: tslint.xml
           prefix: lint
