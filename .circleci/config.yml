@@ -10,7 +10,6 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - run: mkdir ~/junit
       # Restore local dependencies from cache
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
@@ -28,14 +27,9 @@ jobs:
       - run:
           name: Test
           command: xvfb-run -a yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
-          environment:
-            JUNIT_REPORT_PATH: ./junit/
-            JUNIT_REPORT_NAME: test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
       - store_artifacts:
-          path: ~/junit
+          path: test-results.xml
+          prefix: tests
       - store_artifacts:
           path: coverage
           prefix: coverage
@@ -46,10 +40,7 @@ jobs:
       - store_artifacts:
           path: tslint.xml
           prefix: lint
-      # Restore demo-app dependencies from cache
-      - restore_cache:
-          name: Restore demo-app cache
-          key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
+      # Build the source code
       - run:
           name: Build
           command: yarn build
@@ -58,14 +49,10 @@ jobs:
       steps:
         # Checkout the code from the branch into the working_directory
         - checkout
-        # Restore cache from the build job which contains the
-        # dist folder that needs to be deployed
-        - restore_cache:
-          key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-         # Deploy to Github Pages
+        # Build and Deploy demo-app to Github Pages
         - run:
-          name: Deploy to gh-pages
-          command: cd demo-app && yarn install && yarn gh-pages:deploy
+            name: Deploy to gh-pages
+            command: cd demo-app && yarn install && yarn gh-pages:deploy
 
     workflows:
       version: 2

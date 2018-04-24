@@ -40,8 +40,7 @@ module.exports = function (config) {
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml', 'junit'],
     junitReporter: {
-      outputDir: process.env.JUNIT_REPORT_PATH,
-      outputFile: process.env.JUNIT_REPORT_NAME,
+      outputFile: 'test-results.xml',
       useBrowserName: false
     },
     port: 9876,
