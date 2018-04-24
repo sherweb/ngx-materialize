@@ -52,18 +52,7 @@ jobs:
           key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
       - run:
           name: Build
-          command: cd demo-app && yarn install && yarn build:prod
-      # Cache demo-app dependencies if they don't exist
-      - save_cache:
-          name: Save demo-app cache
-          key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
-          paths:
-            - ./demo-app/node_modules
-      # Cache the dist folder for the deploy job
-      - save_cache:
-          paths:
-            - dist
-          key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          command: yarn build
 
     deploy:
       steps:
