@@ -36,7 +36,7 @@ jobs:
       # Lint the source code
       - run:
           name: Lint
-          command: ng lint --type-check --format junit > tslint.xml
+          command: yarn lint --format junit > tslint.xml
       - store_artifacts:
           path: tslint.xml
           prefix: lint
