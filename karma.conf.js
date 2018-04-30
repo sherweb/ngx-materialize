@@ -37,11 +37,10 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'coverage-istanbul']
+              ? ['progress', 'kjhtml', 'junit', 'coverage-istanbul']
               : ['progress', 'kjhtml', 'junit'],
     junitReporter: {
-      outputDir: process.env.JUNIT_REPORT_PATH,
-      outputFile: process.env.JUNIT_REPORT_NAME,
+      outputFile: 'test-results.xml',
       useBrowserName: false
     },
     port: 9876,

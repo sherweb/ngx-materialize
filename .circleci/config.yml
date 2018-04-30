@@ -3,14 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/node:8-browsers
-    filters:
-      branches:
-        ignore: gh-pages
-    working_directory: ~/app
+    working_directory: ~/lib
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      - run: mkdir ~/junit
       # Restore local dependencies from cache
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
@@ -27,15 +23,10 @@ jobs:
       # Test the source code
       - run:
           name: Test
-          command: xvfb-run -a yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
-          environment:
-            JUNIT_REPORT_PATH: ./junit/
-            JUNIT_REPORT_NAME: test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
+          command: yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
       - store_artifacts:
-          path: ~/junit
+          path: test-results.xml
+          prefix: tests
       - store_artifacts:
           path: coverage
           prefix: coverage
@@ -46,46 +37,38 @@ jobs:
       - store_artifacts:
           path: tslint.xml
           prefix: lint
-      # Restore demo-app dependencies from cache
-      - restore_cache:
-          name: Restore demo-app cache
-          key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
+      # Build the source code
       - run:
           name: Build
-          command: cd demo-app && yarn install && yarn build:prod
-      # Cache demo-app dependencies if they don't exist
-      - save_cache:
-          name: Save demo-app cache
-          key: demo-app-dependency-cache-{{ checksum "yarn.lock" }}
-          paths:
-            - ./demo-app/node_modules
-      # Cache the dist folder for the deploy job
-      - save_cache:
-          paths:
-            - dist
-          key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-
-    deploy:
-      steps:
-        # Checkout the code from the branch into the working_directory
-        - checkout
-        # Restore cache from the build job which contains the
-        # dist folder that needs to be deployed
-        - restore_cache:
-          key: dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-         # Deploy to Github Pages
-        - run:
+          command: yarn build
+  deploy:
+    docker:
+      - image: circleci/node:8-browsers
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+      # Build and Deploy demo-app to Github Pages
+      - run:
           name: Deploy to gh-pages
           command: cd demo-app && yarn install && yarn gh-pages:deploy
 
-    workflows:
-      version: 2
-      build-and-deploy:
-        jobs:
-          - build
-          - deploy:
-              requires:
-                - build
-              filters:
-                tags:
-                  only: /v[0-9]+(\.[0-9]+)*/
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      # Build for all branches other than gh-pages and for all tags
+      - build:
+          filters:
+            branches:
+              ignore: gh-pages
+            tags:
+              only: /.*/
+      # Deploy for tags marked by a version number only on master branch
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
