@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:8-browsers
-    filters:
-      branches:
-        ignore: gh-pages
     working_directory: ~/lib
     steps:
       # Checkout the code from the branch into the working_directory
@@ -44,24 +41,26 @@ jobs:
       - run:
           name: Build
           command: yarn build
+  deploy:
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+      # Build and Deploy demo-app to Github Pages
+      - run:
+          name: Deploy to gh-pages
+          command: cd demo-app && yarn install && yarn gh-pages:deploy
 
-    deploy:
-      steps:
-        # Checkout the code from the branch into the working_directory
-        - checkout
-        # Build and Deploy demo-app to Github Pages
-        - run:
-            name: Deploy to gh-pages
-            command: cd demo-app && yarn install && yarn gh-pages:deploy
-
-    workflows:
-      version: 2
-      build-and-deploy:
-        jobs:
-          - build
-          - deploy:
-              requires:
-                - build
-              filters:
-                tags:
-                  only: /v[0-9]+(\.[0-9]+)*/
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+        filters:
+          branches:
+            ignore: gh-pages
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
