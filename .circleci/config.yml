@@ -42,6 +42,8 @@ jobs:
           name: Build
           command: yarn build
   deploy:
+    docker:
+      - image: circleci/node:8-browsers
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
