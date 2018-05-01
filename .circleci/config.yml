@@ -44,30 +44,22 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:8-browsers
+    working_directory: ~/app
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
       # Install demo-app dependencies
       - run:
-          name: Install demo-app local dependencies
+          name: Install demo-app dependencies
           command: cd demo-app && yarn install --frozen-lockfile --no-progress
       # Build and Deploy demo-app to Github Pages
       - run:
           name: Deploy to gh-pages
-          command: gh-pages:deploy
+          command: cd demo-app && gh-pages:deploy
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      # Build for all branches other than gh-pages and for all tags
-      - build:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: gh-pages
       # Deploy for tags marked by a version number only on master branch
-      - deploy:
-          requires:
-            - build
+      - deploy
