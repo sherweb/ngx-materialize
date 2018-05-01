@@ -55,10 +55,10 @@ jobs:
       # Build and Deploy demo-app to Github Pages
       - run:
           name: Build demo-app
-          command: cd demo-app && npm run ng build --prod --aot --base-href /ng2-materialize/
+          command: cd demo-app && yarn gh-pages:build
       - run:
           name: Deploy to gh-pages
-          command: cd demo-app && npm run angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\"
+          command: cd demo-app && yarn gh-pages:deploy
 
 workflows:
   version: 2
