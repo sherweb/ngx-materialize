@@ -59,16 +59,16 @@ workflows:
       # Build for all branches other than gh-pages and for all tags
       - build:
           filters:
-            branches:
-              ignore: gh-pages
             tags:
               only: /.*/
+            branches:
+              ignore: gh-pages
       # Deploy for tags marked by a version number only on master branch
       - deploy:
           requires:
             - build
           filters:
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*/
             branches:
               only: master
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*/
