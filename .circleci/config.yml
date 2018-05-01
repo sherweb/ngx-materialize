@@ -54,8 +54,11 @@ jobs:
           command: cd demo-app && yarn install --frozen-lockfile --no-progress
       # Build and Deploy demo-app to Github Pages
       - run:
+          name: Build demo-app
+          command: cd demo-app && ng build --prod --aot --base-href /ng2-materialize/
+      - run:
           name: Deploy to gh-pages
-          command: cd demo-app && yarn gh-pages:deploy
+          command: cd demo-app && angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\"
 
 workflows:
   version: 2
