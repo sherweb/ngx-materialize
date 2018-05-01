@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "build": "ng build --dev",
-    "build:prod": "ng build --prod --aot",
+    "build:prod": "ng build --prod --aot --no-progress",
     "clean": "rimraf -- dist typings node_modules",
     "lint": "tslint \"src/**/*.ts\"",
     "ng": "ng",
@@ -15,7 +15,7 @@
     "test": "ng test --watch=false",
     "test:watch": "ng test",
     "gh-pages:build": "npm run build:prod -- --base-href /ng2-materialize/",
-    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\""
+    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent"
   },
   "private": true,
   "dependencies": {
