@@ -55,7 +55,7 @@ jobs:
       # Build and Deploy demo-app to Github Pages
       - run:
           name: Deploy to gh-pages
-          command: cd demo-app && gh-pages:deploy
+          command: cd demo-app && yarn gh-pages:deploy
 
 workflows:
   version: 2
