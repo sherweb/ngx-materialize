@@ -52,10 +52,11 @@ jobs:
       - run:
           name: Install demo-app dependencies
           command: cd demo-app && yarn install --frozen-lockfile --no-progress
-      # Build and Deploy demo-app to Github Pages
+      # Build demo-app
       - run:
           name: Build demo-app
           command: cd demo-app && yarn gh-pages:build
+      # Deploy demo-app to Github Pages
       - run:
           name: Deploy to gh-pages
           command: cd demo-app && yarn gh-pages:deploy
