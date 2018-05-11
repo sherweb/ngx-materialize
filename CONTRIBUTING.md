@@ -21,7 +21,7 @@ A bug is a demonstrable problem that is caused by the code in the repository. Go
 ### Guidelines for bug reports
 - Check if the issue has already been reported - use the GitHub issue search to ensure the issue is not already reported.
 - Check if the issue has been fixed - try to reproduce it using the latest master or development branch in the repository.
-- Check if the issue is related our library - check if the issue is reported on Materilaize [issue page](https://github.com/Dogfalo/materialize/issues) or any other libraries (Angular, Zone.Js, etc).
+- Check if the issue is related to our library - check if the issue is reported on Materilaize [issue page](https://github.com/Dogfalo/materialize/issues) or any other libraries (Angular, Zone.Js, etc).
 - Isolate the problem — provide a reduced snippet of your Typescript/HMTL code with only useful information related to the bug.
 
 ## Feature requests
