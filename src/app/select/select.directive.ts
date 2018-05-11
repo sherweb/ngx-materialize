@@ -130,7 +130,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   handleDOMEvents() {
     this.inputElement.on('blur focus', (event: JQuery.Event) => {
       const customEvent = document.createEvent('CustomEvent');
-        customEvent.initCustomEvent(event.type, true, false, event.target);
+      customEvent.initCustomEvent(event.type, true, false, event.target);
       this.selectElement[0].dispatchEvent(customEvent);
     });
   }
