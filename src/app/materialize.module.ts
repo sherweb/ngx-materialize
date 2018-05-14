@@ -12,12 +12,14 @@ import { MzCollapsibleModule } from './collapsible';
 import { MzCollectionModule } from './collection';
 import { MzDatepickerModule } from './datepicker';
 import { MzDropdownModule } from './dropdown';
+import { MzFeatureDiscoveryModule } from './feature-discovery';
 import { MzIconModule } from './icon';
 import { MzIconMdiModule } from './icon-mdi';
 import { MzInputModule } from './input';
 import { MzMediaModule } from './media';
 import { MzModalModule } from './modal';
 import { MzNavbarModule } from './navbar';
+import { MzPaginationModule } from './pagination';
 import { MzParallaxModule } from './parallax';
 import { MzProgressModule } from './progress';
 import { MzRadioButtonModule } from './radio-button';
@@ -45,6 +47,7 @@ const MZ_MODULES = [
   MzCollectionModule,
   MzDatepickerModule,
   MzDropdownModule,
+  MzFeatureDiscoveryModule,
   MzIconModule,
   MzIconMdiModule,
   MzInjectionModule,
@@ -52,6 +55,7 @@ const MZ_MODULES = [
   MzMediaModule,
   MzModalModule,
   MzNavbarModule,
+  MzPaginationModule,
   MzParallaxModule,
   MzProgressModule,
   MzRadioButtonModule,

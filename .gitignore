@@ -47,6 +47,7 @@ npm-debug.log
 package-lock.json
 test-results.xml
 testem.log
+tslint.xml
 *.log
 *.tar
 *.tgz
