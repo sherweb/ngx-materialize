@@ -145,7 +145,7 @@
 </div>
 
 <div class="section">
-  <h5 class="light">Programmatically open or close a Section</h5>
+  <h5 class="light">Open/close programmatically</h5>
 
   <div class="row">
 
@@ -181,7 +181,7 @@
     </mz-collapsible>
 
     <div class="col s12 m4 l6">
-      <p>Programmatically open or close a section using <code class="language-markup">open</code> or <code class="language-markup">close</code> method on <code class="language-markup">mz-collapsible</code>.</p>
+      <p>Collapsible sections can be programmatically open or close with <code class="language-markup">open</code> or <code class="language-markup">close</code> method using a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-collapsible</code> element.</p>
       <button mz-button (click)="openFirstSection()">Open first section</button>
       <button mz-button (click)="closeFirstSection()">Close first section</button>
     </div>
@@ -275,6 +275,10 @@
 
   <h5 class="light">Methods</h5>
 
+  <p>
+    The <code class="language-markup">mz-collapsible</code> component expose methods to programmatically interact with the collapsible sections. To use them you need to add a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-collapsible</code> element.
+  </p>
+
   <div class="section">
     <h6 class="bold">open(index: number): void</h6>
 
@@ -288,7 +292,7 @@
         <tr>
           <td>index</td>
           <td>number</td>
-          <td>The zero base index of collapsible items</td>
+          <td>The zero base index of collapsible section to open</td>
         </tr>
       </tbody>
     </table>
@@ -307,7 +311,7 @@
         <tr>
           <td>index</td>
           <td>number</td>
-          <td>The zero base index of collapsible items</td>
+          <td>The zero base index of collapsible section to close</td>
         </tr>
       </tbody>
     </table>

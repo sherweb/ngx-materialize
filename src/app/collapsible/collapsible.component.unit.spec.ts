@@ -99,7 +99,8 @@ describe('MzCollapsibleComponent:unit', () => {
   });
 
   describe('open', () => {
-    it('should open first collapsible item', () => {
+
+    it('should open collapsible item with specified index', () => {
 
       const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
 
@@ -118,7 +119,8 @@ describe('MzCollapsibleComponent:unit', () => {
   });
 
   describe('close', () => {
-    it('should close first collapsible item', () => {
+
+    it('should close collapsible item with specified index', () => {
 
       const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
 
