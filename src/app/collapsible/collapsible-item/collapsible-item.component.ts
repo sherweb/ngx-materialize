@@ -1,6 +1,6 @@
 import { Component, Directive, Input } from '@angular/core';
 
- import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
+import { MzRemoveComponentHost } from '../../shared/remove-component-host/remove-component-host';
 
 @Component({
   selector: 'mz-collapsible-item',

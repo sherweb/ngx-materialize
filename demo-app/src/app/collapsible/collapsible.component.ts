@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MzCollapsibleComponent } from 'ng2-materialize';
 
 import { ROUTE_ANIMATION, ROUTE_ANIMATION_HOST } from '../app.routing.animation';
 import { IPropertyRow } from '../shared/properties-table/properties-table.component';
@@ -11,6 +12,8 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
   animations: [ROUTE_ANIMATION],
 })
 export class CollapsibleComponent {
+
+  @ViewChild('collapsibleProgrammatically') collapsibleProgrammatically: MzCollapsibleComponent;
 
   // fake data
   simpleCollapsibleItems = [
@@ -123,6 +126,14 @@ export class CollapsibleComponent {
         dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
     });
+  }
+
+  closeFirstSection() {
+    this.collapsibleProgrammatically.close(0);
+  }
+
+  openFirstSection() {
+    this.collapsibleProgrammatically.open(0);
   }
 
   remove() {

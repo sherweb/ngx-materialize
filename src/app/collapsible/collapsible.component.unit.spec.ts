@@ -76,27 +76,65 @@ describe('MzCollapsibleComponent:unit', () => {
       component.onClose = () => {};
       component.onOpen = () => {};
 
-      const mockJQueryCollapsibleNativeElement = { collapsible: true };
+      const mockCollapsibleElement = { collapsible: (options: Materialize.CollapsibleOptions) => { } };
 
-      spyOn(component.renderer, 'invokeElementMethod');
+      spyOn(mockCollapsibleElement, 'collapsible');
 
       spyOn(window, '$').and.callFake((selector: any) => {
         return selector === component.collapsible.nativeElement
-          ? mockJQueryCollapsibleNativeElement
-          : {};
+        ? mockCollapsibleElement
+        : {};
       });
 
       component.initCollapsible();
 
-      expect(component.renderer.invokeElementMethod)
-        .toHaveBeenCalledWith(
-          mockJQueryCollapsibleNativeElement,
-          'collapsible', [{
-            accordion: false,
-            onClose: component.onClose,
-            onOpen: component.onOpen,
-          }],
-        );
+      const expectCollapsibleOption = <Materialize.CollapsibleOptions> {
+        accordion: false,
+        onClose: component.onClose,
+        onOpen: component.onOpen,
+      };
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith(expectCollapsibleOption);
     }));
+  });
+
+  describe('open', () => {
+
+    it('should open collapsible item with specified index', () => {
+
+      const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
+
+      spyOn(window, '$').and.callFake((selector: any) => {
+        return selector === component.collapsible.nativeElement
+          ? mockCollapsibleElement
+          : {};
+      });
+
+      spyOn(mockCollapsibleElement, 'collapsible');
+
+      component.open(0);
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith('open', 0);
+    });
+  });
+
+  describe('close', () => {
+
+    it('should close collapsible item with specified index', () => {
+
+      const mockCollapsibleElement = { collapsible: (method: string, index: number) => { } };
+
+      spyOn(window, '$').and.callFake((selector: any) => {
+        return selector === component.collapsible.nativeElement
+          ? mockCollapsibleElement
+          : {};
+      });
+
+      spyOn(mockCollapsibleElement, 'collapsible');
+
+      component.close(0);
+
+      expect(mockCollapsibleElement.collapsible).toHaveBeenCalledWith('close', 0);
+    });
   });
 });
