@@ -1,0 +1,233 @@
+<h3>Navbar</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzNavbarModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <h5 class="light">Simple Navbar with items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Simple navbar with items defined by <code class="language-markup">mz-navbar-item-container</code> and <code class="language-markup">mz-navbar-item</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Navbar with custom style</h5>
+
+  <div class="col s12">
+    <mz-navbar [navbarClass]="'blue'">
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with custom style defined by <code class="language-markup">navbarClass</code> property on <code class="language-markup">mz-navbar</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Right aligned items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="javascript:void(0)" class="brand-logo left">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with logo and right aligned items defined by <code class="language-markup">align</code> property on <code class="language-markup">mz-navbar-item-container</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Left aligned items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="javascript:void(0)" class="brand-logo right">Logo</a>
+      <mz-navbar-item-container [align]="'left'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with logo and left aligned items defined by <code class="language-markup">align</code> property on <code class="language-markup">mz-navbar-item-container</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Centering the logo</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="javascript:void(0)" class="brand-logo center">Logo</a>
+      <mz-navbar-item-container [align]="'right'" class="hide-on-med-and-down">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with centered logo
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Centering the logo, and left and right items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <mz-navbar-item-container [align]="'left'" class="hide-on-med-and-down">
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+      </mz-navbar-item-container>
+      <a href="javascript:void(0)" class="brand-logo center">Logo</a>
+      <mz-navbar-item-container [align]="'right'" class="hide-on-med-and-down">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with centered logo and two <code class="language-markup">mz-navbar-item-container</code> left and right aligned
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Active items</h5>
+
+  <div class="col s12">
+    <mz-navbar>
+      <a href="javascript:void(0)" class="brand-logo left">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item [active]="true"><a routerLink="js">JavaScript</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with an active item defined by <code class="language-markup">active</code> property on <code class="language-markup">mz-navbar-item</code>
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Navbar dropdown menu</h5>
+
+  <div class="col s12">
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="javascript:void(0)">one</a></li>
+      <li><a href="javascript:void(0)">two</a></li>
+      <li class="divider"></li>
+      <li><a href="javascript:void(0)">three</a></li>
+    </ul>
+    <mz-navbar>
+      <a href="javascript:void(0)" class="brand-logo left">Logo</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a href="javascript:void(0)">Sass</a></mz-navbar-item>
+        <mz-navbar-item><a href="javascript:void(0)">Components</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+        <mz-navbar-item>
+          <a class="dropdown-button" href="javascript:void(0)" data-activates="dropdown1">
+            Dropdown
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+  </div>
+  <p class="col s12 m9">
+    Navbar with an item as dropdown
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-navbar>
+  &lt;a href="#" class="brand-logo">Logo&lt;/a>
+  &lt;mz-navbar-item-container [align]="'right'">
+    &lt;mz-navbar-item>&lt;a href="#">Sass&lt;/a>&lt;/mz-navbar-item>
+    &lt;mz-navbar-item>&lt;a href="#">Components&lt;/a>&lt;/mz-navbar-item>
+    &lt;mz-navbar-item>&lt;a routerLink="js">JavaScript&lt;/a>&lt;/mz-navbar-item>
+  &lt;/mz-navbar-item-container>
+&lt;/mz-navbar>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-navbar</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar</code> will transclude any contents into a <code class="language-markup">nav</code> tag, and can host <code class="language-markup">mz-navbar-item-container</code>.
+    </p>
+
+    <p>
+      It can be customized using the following property on the <code class="language-markup">mz-navbar</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="navbarProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-navbar-item-container</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar-item-container</code> will transclude any contents, and can host <code class="language-markup">mz-navbar-item</code>.
+    </p>
+
+    <p>
+      It can be customized using the following property on the <code class="language-markup">mz-navbar-item-container</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="navbarItemContainerProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-navbar-item</h6>
+
+    <p>
+      <code class="language-markup">mz-navbar-item</code> will transclude any contents.
+    </p>
+
+    <p>
+      It can be customized using the following properties on the <code class="language-markup">mz-navbar</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="navbarItemProperties">
+    </app-properties-table>
+  </div>
+</div>

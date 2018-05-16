@@ -1,0 +1,21 @@
+<mz-parallax class="header-background" [height]="245">
+  <img src="assets/home-header-bg.png">
+</mz-parallax>
+
+<div class="header-content valign-wrapper">
+  <img class="angular-logo" src="assets/angular.png">
+  <i mz-icon-mdi class="plus-logo" [icon]="'plus'"></i>
+  <img class="materialize-logo" src="assets/materialize.png">
+
+  <button mz-button
+    class="github-button"
+    (click)="navigateToGithub()">
+    <i mz-icon-mdi [icon]="'github-circle'" [align]="'left'"></i>Github
+  </button>
+</div>
+
+<markdown>
+  # ngx-materialize [![CircleCI status](https://circleci.com/gh/sherweb/ngx-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955)](https://circleci.com/gh/sherweb/ngx-materialize) [![AppVeyor status](https://ci.appveyor.com/api/projects/status/github/sherweb/ngx-materialize?branch=master&svg=true)](https://ci.appveyor.com/project/sherweb/ngx-materialize) [![NPM Version](https://img.shields.io/npm/v/ngx-materialize.svg?style=flat)](https://www.npmjs.com/package/ngx-materialize) [![License](https://img.shields.io/npm/l/ngx-materialize.svg)](https://opensource.org/licenses/Apache-2.0)
+</markdown>
+
+<markdown [src]="'README.md'"></markdown>

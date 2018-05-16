@@ -1,0 +1,91 @@
+<h3>Badge</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzBadgeModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <h5 class="light">Basic badge</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge [value]="4"></mz-badge>
+
+    <p class="col s12 m10">
+      Badge doesn't have any particular style by default. Only the value is displayed.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Customized badge captions</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [new]="true">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Setting the <code class="language-markup">new</code> property to true will give a background to the badge.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [badgeClass]="'red'">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Badge background color can be set in the <code class="language-markup">badgeClass</code> property. All of the materialize color classes are available.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [caption]="'My caption'">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Custom caption can be used for the badge using the <code class="language-markup">caption</code> property.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <mz-badge
+      [value]="4"
+      [caption]="'My caption'"
+      [badgeClass]="'blue'"
+      [new]="true">
+    </mz-badge>
+
+    <p class="col s12 m10">
+      Custom caption can be used in combinaison with a custom background.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+    <app-code-snippet>
+&lt;mz-badge
+  [value]="4"
+  [caption]="'My caption'"
+  [badgeClass]="'blue'"
+  [new]="true">
+&lt;/mz-badge>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Badges can be customized using the following properties on the <code class="language-markup">mz-badge</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

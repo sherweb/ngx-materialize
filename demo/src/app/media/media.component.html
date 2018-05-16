@@ -1,0 +1,180 @@
+<h3>Media</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzMediaModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<p>
+  Ngx-materialize provide the <code class="language-markup">MzMediaService</code> to evaluate whether a given media (small, medium, large, extra-large) is true or false according to current device screen resolution.
+</p>
+
+<div class="section">
+
+  <h5 class="light">Demo</h5>
+
+  <div class="section">
+    <p>
+      Below you will find the value of the <code class="language-markup">media</code> observable property available with the <code class="language-markup">MzMediaService</code>. Resize your browser to see the value changes according to your view port.
+    </p>
+
+    <div class="json-sample">
+      {{ media | async | json }}
+    </div>
+  </div>
+
+  <p>
+    Here is another example to illustrate the utility of the service that uses the breakpoints to change the color of left rectangle according to the screen resolution.
+  </p>
+
+  <div class="row">
+    <div class="col s6">
+      <div class="{{ (media | async).alias }}-is-active demo"></div>
+    </div>
+
+    <div class="col s6">
+      <div class="s-is-active label">small (s)</div>
+      <div class="m-is-active label">medium (m)</div>
+      <div class="l-is-active label">large (l)</div>
+      <div class="xl-is-active label">xlarge (xl)</div>
+    </div>
+  </div>
+
+  <p>
+    Using <code class="language-markup">isActive(breakpoing: string)</code> method in <code class="language-markup">MzMediaService</code> you can evaluate if a given breakpoint is true or false according to current device's resolution. Resize your browser to see the true/false value change according to the screen resolution.
+  </p>
+
+  <div class="json-sample">
+    <div><b>mediaService.isActive('gt-s')</b> => <b class="active-{{ greaterThanSmall | async }}">{{ greaterThanSmall | async }}</b></div>
+    <div><b>mediaService.isActive('gt-m')</b> => <b class="active-{{ greaterThanMedium | async }}">{{ greaterThanMedium | async }}</b></div>
+    <div><b>mediaService.isActive('gt-l')</b> => <b class="active-{{ greaterThanLarge | async }}">{{ greaterThanLarge | async }}</b></div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">MzMediaService</h5>
+
+  <div class="section">
+    <h6 class="bold">isActive(breakpoint: string): Observable&lt;boolean></h6>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>breakpoint</td>
+          <td>string</td>
+          <td>The <a href="#media-breakpoint">media breakpoint</a> to evaluate</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Returns</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Observable&lt;boolean></td>
+          <td>A boolean observable representing whether or not the given breakpoint is true of false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h6 class="bold">media: Observable&lt;Media></h6>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Returns</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Observable&lt;Media></td>
+          <td>An observable object containing current window height, width and media size (<code class="language-markup">s</code>, <code class="language-markup">l</code>, <code class="language-markup">m</code> or <code class="language-markup">xl</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Usage</h5>
+
+  <div class="section">
+    <h6>example.component.ts</h6>
+
+    <app-code-snippet [language]="'typescript'">
+public smallResolution: Observable&lt;boolean>;
+
+constructor(private mediaService: MzMediaService) &#123;
+  this.smallResolution = this.mediaService.isActive('s'); // small screen resolution
+}
+    </app-code-snippet>
+  </div>
+
+  <div class="section">
+    <h6>example.component.html</h6>
+
+    <app-code-snippet>
+&lt;div *ngIf="smallResolution | async">
+  I am only visible on a small resolution device
+&lt;/div>
+    </app-code-snippet>
+  </div>
+</div>
+
+<div id="media-breakpoint" class="section scrollspy">
+
+  <h5 class="light">Media Breakpoints</h5>
+
+  <p>
+    Breakpoints use the same screen width as <a href="http://materializecss.com/grid.html#grid-responsive" target="_blank">Materialize Screen Sizes</a>
+  </p>
+
+  <table class="striped responsive-table">
+    <thead>
+      <th>Breakpoint</th>
+      <th>Screen Size</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="language-markup">s</code> or <code class="language-markup">lt-m</code></td>
+        <td>>= 0px and <= 600px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">gt-s</code></td>
+        <td>> 600px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">m</code></td>
+        <td>> 600px and <= 992px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">gt-m</code></td>
+        <td>> 992px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">lt-l</code></td>
+        <td>>= 0px and <= 992px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">l</code></td>
+        <td>> 992px and <= 1200px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">gt-l</code> or <code class="language-markup">xl</code></td>
+        <td>> 1200px</td>
+      </tr>
+      <tr>
+        <td><code class="language-markup">lt-xl</code></td>
+        <td>>= 0px and <= 1200px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -11,7 +11,7 @@
       "url": "http://localhost:4200/",
       "sourceMaps": true,
       "webRoot": "${workspaceRoot}",
-      "diagnosticLogging": true,
+      "trace": true,
       "sourceMapPathOverrides": {
           "webpack:///../*": "${webRoot}/*"
       },
@@ -25,7 +25,7 @@
       "port": 9222,
       "sourceMaps": true,
       "webRoot": "${workspaceRoot}",
-      "diagnosticLogging": true,
+      "trace": true,
       "sourceMapPathOverrides": {
           "webpack:///../*": "${webRoot}/*"
       }

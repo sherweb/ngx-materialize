@@ -1,0 +1,314 @@
+<h3>Chip</h3>
+
+<div class="section">
+  <app-code-snippet>import &#123; MzChipModule &#125; from 'ngx-materialize'</app-code-snippet>
+
+  <blockquote class="info">
+    Chips require you to import <b>Material Icons</b> as per Materialize documentation as they append the close icon programmatically in the DOM and therefore we don't have any control on it.
+  </blockquote>
+</div>
+
+<div class="section">
+  <h5 class="light">Basic chip</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip>Banana</mz-chip>
+      <mz-chip>Kiwi</mz-chip>
+      <mz-chip>Mango</mz-chip>
+    </div>
+    <p class="col s12 m6">
+      Add text inside <code class="language-markup">mz-chip</code> element to create a basic chip.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip with close icon</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip [close]="true">Banana</mz-chip>
+      <mz-chip [close]="true">Kiwi</mz-chip>
+      <mz-chip [close]="true">Mango</mz-chip>
+    </div>
+    <p class="col s12 m6">
+      Use the <code class="language-markup">close</code> input property on <code class="language-markup">mz-chip</code> element to automatically add a closing icon.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+    <h5 class="light">Chip delete event</h5>
+
+    <div class="row m-valign-wrapper">
+      <div class="col s12 m6">
+        <mz-chip [close]="true" (delete)="onDeleteTag($event)">Remove me</mz-chip>
+      </div>
+      <p class="col s12 m6">
+        Using <code class="language-markup">delete</code> output events allow you to get a hook on chip removal.
+      </p>
+    </div>
+  </div>
+
+<div class="section">
+  <h5 class="light">Chip with image</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip>
+        <img src="assets/select-icon-1.jpg">
+        John Doe
+      </mz-chip>
+      <mz-chip>
+        <img src="assets/select-icon-2.jpg">
+        Jane Doe
+      </mz-chip>
+      <mz-chip>
+        <img src="assets/select-icon-3.jpg">
+        Katy Smith
+      </mz-chip>
+    </div>
+    <p class="col s12 m6">
+      You can optionaly add an <code class="language-markup">img</code> element inside the <code class="language-markup">mz-chip</code> element to give a contact chip appearance.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip input</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip-input></mz-chip-input>
+    </div>
+    <p class="col s12 m6">
+      Type your tag text and press enter to add tags. You can delete them by either clicking on the close icon or using your delete button.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip input initial value</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip-input [(ngModel)]="value"></mz-chip-input>
+    </div>
+    <p class="col s12 m6">
+      <code class="language-markup">mz-chip</code> initial value can be set using <code class="language-markup">ngModel</code> or when bind to a <code class="language-markup">formControl</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip input placeholders</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip-input [placeholder]="'Enter a tag'" [secondaryPlaceholder]="'+Tag'"></mz-chip-input>
+    </div>
+    <p class="col s12 m6">
+      You can specify placeholders by using <code class="language-markup">placeholder</code> input property and/or <code class="language-markup">secondaryPlaceholder</code> property for secondary placeholder when adding additional chips.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip input autocomplete</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip-input [placeholder]="'Start typing'" [autocompleteOptions]="autocompleteOptions"></mz-chip-input>
+    </div>
+    <p class="col s12 m6">
+        You can configure autocomplete with <code class="language-markup">autocompleteOptions</code> input properties.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Chip input events</h5>
+
+  <div class="row m-valign-wrapper">
+    <div class="col s12 m6">
+      <mz-chip-input
+        [placeholder]="'Enter a tag'"
+        (add)="onAdd($event)"
+        (delete)="onDelete($event)"
+        (select)="onSelect($event)">
+      </mz-chip-input>
+    </div>
+    <p class="col s12 m6">
+      <code class="language-markup">mz-chip-input</code> exposes <code class="language-markup">add</code>, <code class="language-markup">delete</code> and <code class="language-markup">select</code> output events for hooking into chips functionality.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Working with NgControl</h5>
+
+  <div class="section">
+
+    <h6 class="bold">Set chip input value</h6>
+
+    <p>
+      To assign a value to the <code class="language-markup">mz-chip-input</code> component, you need to provide an Array of <code class="language-markup">Materialize.ChipDataObject</code> either with <code class="language-markup">NgModel</code> directive or when setting value to a <code class="language-markup">FormControl</code> when using Reactive Forms.
+    </p>
+
+    <blockquote class="important">
+      <b>IMPORTANT!</b> As the provided value must be an <b>array</b> and that Angular change detection compare objects by reference, you will need to <b>provide a new instance of the array</b> for the <code class="language-markup">mz-chip-input</code> to be correctly updated.
+    </blockquote>
+
+    <p class="bold">example.component.html</p>
+
+    <app-code-snippet>
+&lt;mz-chip-input
+  [placeholder]="'Enter a tag'"
+  [secondaryPlaceholder]="'+Tag'"
+  [(ngModel)]="chips">
+&lt;/mz-chip-input>
+
+&lt;button mz-button (click)="addChip()">Add&lt;/button>
+&lt;button mz-button (click)="removeChip()">Remove&lt;/button>
+    </app-code-snippet>
+
+    <p class="bold">example.component.ts</p>
+
+    <app-code-snippet language="typescript">
+public chips: Materialize.ChipDataObject[] = [
+  &#123; tag: 'Banana' },
+  &#123; tag: 'Kiwi' },
+  &#123; tag: 'Mango' },
+];
+
+addChip() &#123;
+  // deconstruct previous array value and add a new item to create a new
+  // array and force change detection to update mz-chip-input component
+  this.chips = [
+    ...this.chips,
+    &#123; tag: 'Papaya' },
+  ];
+}
+
+removeChip() &#123;
+  // removes last value of array
+  this.chips.pop();
+  // deconstruct previous array value to create a new array and
+  // force change detection to update mz-chip-input component
+  this.chips = [
+    ...this.chips,
+  ];
+}
+    </app-code-snippet>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">Get chip input value</h6>
+
+    <p>
+      The returned value of the <code class="language-markup">mz-chip-input</code> component will be an array of <code class="language-markup">Materialize.ChipDataObject</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-chip-input</code> component makes the form-control completely dynamic. Change the configuration below and see how the chip input reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-chip-input
+        [placeholder]="'Enter a tag'"
+        [secondaryPlaceholder]="'+Tag'"
+        [(ngModel)]="playgroundValue">
+      </mz-chip-input>
+    </div>
+
+    <div class="col s12 m6">
+
+      <p>
+        <button mz-button (click)="addPlaygroundValue()">Add</button>
+        <button mz-button (click)="removePlaygroundValue()">Remove</button>
+      </p>
+
+      <p>
+        Chip input value: {{ playgroundValue | json }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <div class="section">
+    <h6 class="bold">mz-chip</h6>
+    <p>
+      <app-code-snippet>
+&lt;mz-chip
+  [close]="true"
+  (delete)="onDelete($event)">
+  &lt;img src="assets/select-icon-1.jpg">
+  John Doe
+&lt;/mz-chip>
+      </app-code-snippet>
+    </p>
+  </div>
+
+  <div class="section">
+    <h6 class="bold">mz-chip-input</h6>
+    <p>
+      <app-code-snippet>
+&lt;mz-chip-input
+  [autocompleteOptions]="autocompleteOptions"
+  [placeholder]="'Enter a tag'"
+  [secondaryPlaceholder]="'+Tag'"
+  (add)="onAdd($event)"
+  (delete)="onDelete($event)"
+  (select)="onSelect($event)">
+&lt;/mz-chip-input>
+      </app-code-snippet>
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-chip</h6>
+
+    <p>
+      The <code class="language-markup">mz-chip</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="chipProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-chip-input</h6>
+
+    <p>
+      The <code class="language-markup">mz-chip-input</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="chipInputProperties">
+    </app-properties-table>
+  </div>
+</div>

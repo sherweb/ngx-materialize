@@ -1,0 +1,258 @@
+<h3>Button</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzButtonModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<h5 class="light">Basic button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button>
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Simple basic button
+  </p>
+</div>
+
+<h5 class="light">Styled button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      class="red"
+    >
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Basic button with <code class="language-markup">buttonClass</code> property as <i>red</i>
+  </p>
+</div>
+
+<h5 class="light">Styled text button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      class="yellow-text"
+    >
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Basic button with <code class="language-markup">textClass</code> property as <i>yellow-text</i>
+  </p>
+</div>
+
+<h5 class="light">Large button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      [large]="true"
+    >
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    The button has a larger height with<code class="language-markup">large</code> property
+  </p>
+</div>
+
+<h5 class="light">Flat button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <a mz-button
+      [flat]="true"
+    >
+      button
+    </a>
+  </div>
+
+  <p class="col s12 m9">
+    The link has a flat elevation with <code class="language-markup">flat</code> property
+  </p>
+</div>
+
+<h5 class="light">Float button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      [float]="true"
+    >
+      <i mz-icon [icon]="'add'"></i>
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button is round and floating with <code class="language-markup">float</code> property
+  </p>
+</div>
+
+<h5 class="light">Flat & float button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      [flat]="true"
+      [float]="true"
+    >
+      <i mz-icon class="black-text" [icon]="'menu'"></i>
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button is flat, round and floating with these properties : <code class="language-markup">float</code> & <code class="language-markup">flat</code>
+  </p>
+</div>
+
+<h5 class="light">Button with left icon</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button>
+      <i mz-icon [icon]="'cloud'" [align]="'left'"></i>
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button with a left icon set by <code class="language-markup">align</code> property when using <code class="language-markup">mz-icon</code> directive
+  </p>
+</div>
+
+<h5 class="light">Button with right icon</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button>
+      <i mz-icon [icon]="'cloud'" [align]="'right'"></i>
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button with a right icon set by <code class="language-markup">align</code> property when using <code class="language-markup">mz-icon</code> directive
+  </p>
+</div>
+
+<h5 class="light">Button with styled icon</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button>
+      <i mz-icon class="red-text" [icon]="'cloud'" [align]="'left'"></i>
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button with a red color set by <code class="language-markup">class</code> property as <code class="language-markup">red-text</code>
+  </p>
+</div>
+
+<h5 class="light">Button with Material Design Icon (mdi)</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button>
+      <i mz-icon-mdi [icon]="'owl'" [align]="'left'"></i>
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Button with icon set by <code class="language-markup">icon</code> property as <code class="language-markup">owl</code> and using <code class="language-markup">mz-icon-mdi</code> directive
+  </p>
+</div>
+
+<h5 class="light">Disabled button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      [disabled]="true"
+    >
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Buttom becomes disabled with <code class="language-markup">disabled</code> property
+  </p>
+</div>
+
+<h5 class="light">Clickable button</h5>
+
+<div class="row m-valign-wrapper">
+
+  <div class="col s12 m3">
+    <button mz-button
+      type="submit"
+      (click)="this.clicked($event)"
+    >
+      button
+    </button>
+  </div>
+
+  <p class="col s12 m9">
+    Buttom has a submit type with <code class="language-markup">submit</code> property and a callback function with <code class="language-markup">(click)</code> event binding
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;button mz-button>
+  button
+&lt;/button>
+  </app-code-snippet>
+
+</div>
+
+
+<div class="section">
+
+  <h5 class="light">Link Button</h5>
+
+  <app-code-snippet>
+&lt;a mz-button>
+  button
+&lt;/a>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    The button can be customized using the following properties on the <code class="language-markup">button</code> element when adding <code class="language-markup">mz-button</code> directive.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

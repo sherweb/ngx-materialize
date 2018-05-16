@@ -1,0 +1,314 @@
+<h3>Collection</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzCollectionModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+
+  <h5 class="light">Basic collection</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <mz-collection-item>Collection item 1</mz-collection-item>
+        <mz-collection-item>Collection item 2</mz-collection-item>
+        <mz-collection-item>Collection item 3</mz-collection-item>
+        <mz-collection-item>Collection item 4</mz-collection-item>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      The <code class="language-markup">mz-collection</code> component allow you to group list objects together.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;mz-collection-item>Collection item 1&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 2&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 3&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 4&lt;/mz-collection-item>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Headers</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <mz-collection-header><h4>Collection header</h4></mz-collection-header>
+        <mz-collection-item>Collection item 1</mz-collection-item>
+        <mz-collection-item>Collection item 2</mz-collection-item>
+        <mz-collection-item>Collection item 3</mz-collection-item>
+        <mz-collection-item>Collection item 4</mz-collection-item>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      You can add a header to the list by using the <code class="language-markup">mz-collection-header</code> element.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;mz-collection-header>&lt;h4>Collection header&lt;/h4>&lt;/mz-collection-header>
+  &lt;mz-collection-item>Collection item 1&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 2&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 3&lt;/mz-collection-item>
+  &lt;mz-collection-item>Collection item 4&lt;/mz-collection-item>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Secondary Content</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <mz-collection-item>
+          Collection item 1
+          <a href="collection#!1" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item>
+          Collection item 2
+          <a href="collection#!2" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item>
+          Collection item 3
+          <a href="collection#!3" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item>
+          Collection item 4
+          <a href="collection#!4" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      Use <code class="language-markup">mz-secondary-content</code> directive on an element to make it floats to the right.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;mz-collection-item>
+    Collection item 1
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item>
+    Collection item 2
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item>
+    Collection item 3
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item class="test">
+    Collection item 4
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Avatar Content</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <mz-collection-item [avatar]="true">
+          <img mz-avatar src="assets/select-icon-1.jpg">
+          <div class="title">Title 1</div>
+          <div>First Line</div>
+          <div>Second Line</div>
+          <a mz-secondary-content href="collection#!1"><i mz-icon-mdi [icon]="'star'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [avatar]="true">
+          <i mz-avatar mz-icon-mdi [icon]="'facebook'" class="indigo"></i>
+          <div class="title">Title 2</div>
+          <div>First Line</div>
+          <div>Second Line</div>
+          <a mz-secondary-content href="collection#!2"><i mz-icon-mdi [icon]="'star'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [avatar]="true">
+          <i mz-avatar mz-icon-mdi [icon]="'twitter'" class="blue lighten-1"></i>
+          <div class="title">Title 3</div>
+          <div>First Line</div>
+          <div>Second Line</div>
+          <a mz-secondary-content href="collection#!3"><i mz-icon-mdi [icon]="'star'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [avatar]="true">
+          <i mz-avatar mz-icon-mdi [icon]="'youtube-play'" class="red accent-4"></i>
+          <div class="title">Title 4</div>
+          <div>First Line</div>
+          <div>Second Line</div>
+          <a mz-secondary-content href="collection#!4"><i mz-icon-mdi [icon]="'star'"></i></a>
+        </mz-collection-item>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      To use the avatar collection style you need to set <code class="language-markup">avatar</code> attribute value to <code class="language-markup">true</code> on the <code class="language-markup">mz-collection-item</code> element. Then apply <code class="language-markup">mz-avatar</code> directive on the html element that represent the circle avatar to be left floated.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;mz-collection-item [avatar]="true">
+    &lt;img mz-avatar src="assets/select-icon-1.jpg">
+    &lt;div class="title">Title 1&lt;/div>
+    &lt;div>First Line&lt;/div>
+    &lt;div>Second Line&lt;/div>
+    &lt;a mz-secondary-content href="#!">&lt;i mz-icon-mdi [icon]="'star'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [avatar]="true">
+    &lt;i mz-avatar mz-icon-mdi [icon]="'facebook'" class="indigo">&lt;/i>
+    &lt;div class="title">Title 2&lt;/div>
+    &lt;div>First Line&lt;/div>
+    &lt;div>Second Line&lt;/div>
+    &lt;a mz-secondary-content href="#!">&lt;i mz-icon-mdi [icon]="'star'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [avatar]="true">
+    &lt;i mz-avatar mz-icon-mdi [icon]="'twitter'" class="blue lighten-1">&lt;/i>
+    &lt;div class="title">Title 3&lt;/div>
+    &lt;div>First Line&lt;/div>
+    &lt;div>Second Line&lt;/div>
+    &lt;a mz-secondary-content href="#!">&lt;i mz-icon-mdi [icon]="'star'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [avatar]="true">
+    &lt;i mz-avatar mz-icon-mdi [icon]="'youtube-play'" class="red accent-4">&lt;/i>
+    &lt;div class="title">Title 4&lt;/div>
+    &lt;div>First Line&lt;/div>
+    &lt;div>Second Line&lt;/div>
+    &lt;a mz-secondary-content href="#!">&lt;i mz-icon-mdi [icon]="'star'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Dismissable Content</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <mz-collection-item [dismissable]="true">
+          Collection item 1
+          <a href="collection#!1" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [dismissable]="true">
+          Collection item 2
+          <a href="collection#!2" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [dismissable]="true">
+          Collection item 3
+          <a href="collection#!3" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+        <mz-collection-item [dismissable]="true">
+          Collection item 4
+          <a href="collection#!4" mz-secondary-content><i mz-icon-mdi [icon]="'send'"></i></a>
+        </mz-collection-item>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      Set <code class="language-markup">dismissable</code> property to <code class="language-markup">true</code> on an <code class="language-markup">mz-collection-item</code> element to enable the collection item to be swiped away. This is only for touch enabled devices.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;mz-collection-item [dismissable]="true">
+    Collection item 1
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [dismissable]="true">
+    Collection item 2
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [dismissable]="true">
+    Collection item 3
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+  &lt;mz-collection-item [dismissable]="true">
+    Collection item 4
+    &lt;a href="#!" mz-secondary-content>&lt;i mz-icon-mdi [icon]="'send'">&lt;/i>&lt;/a>
+  &lt;/mz-collection-item>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Links collection</h5>
+
+  <div class="row">
+
+    <div class="col s12 m7">
+      <mz-collection>
+        <a mz-collection-link href="collection#!1">Collection item 1</a>
+        <a mz-collection-link [active]="true" href="collection#!2">Collection item 2</a>
+        <a mz-collection-link href="collection#!3">Collection item 3</a>
+        <a mz-collection-link href="collection#!4">Collection item 4</a>
+      </mz-collection>
+    </div>
+
+    <p class="col s12 m5">
+      Alternatively, to have a list of link objects you can use an HTML anchor element and add <code class="language-markup">mz-collection-link</code> directive.<br>
+      <br>
+      Set <code class="language-markup">active</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-link-collection-item</code> to highlight the list item.
+    </p>
+  </div>
+
+  <app-code-snippet>
+&lt;mz-collection>
+  &lt;a mz-collection-link href="#!">Collection item 1&lt;/a>
+  &lt;a mz-collection-link [active]="true" href="#!">Collection item 2&lt;/a>
+  &lt;a mz-collection-link href="#!">Collection item 3&lt;/a>
+  &lt;a mz-collection-link href="#!">Collection item 4&lt;/a>
+&lt;/mz-collection>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-collection-item</h6>
+
+    <p>
+      Collection items can be customized using the following properties on the <code class="language-markup">mz-collection-item</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="collectionItemProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-collection-link</h6>
+
+    <p>
+      The <code class="language-markup">mz-collection-link</code> directive can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="collectionLinkProperties">
+    </app-properties-table>
+  </div>
+</div>

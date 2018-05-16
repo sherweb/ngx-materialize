@@ -1,0 +1,73 @@
+<h3>Progress</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzProgressModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<h5 class="light">Determinate</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6"
+    [percentage]="determinate">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    Using <code class="language-markup">percentage</code> input property you can define the percentage of completion of the progress bar.
+  </p>
+</div>
+
+<h5 class="light">Indeterminate</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    When <code class="language-markup">percentage</code> input property is not provided on <code class="language-markup">mz-progress</code> tag the progress bar will be shown as indeterminate.
+  </p>
+</div>
+
+<h5 class="light">Colors</h5>
+
+<div class="row valign-wrapper">
+
+  <mz-progress
+    class="valign col s12 m8 l6"
+    [backgroundClass]="'blue lighten-4'"
+    [percentage]="55"
+    [progressClass]="'blue'">
+  </mz-progress>
+
+  <p class="col s12 m4 l6">
+    Optionally, colors can be customized using <code class="language-markup">backgroundClass</code> and/or <code class="language-markup">progressClass</code> input properties but are <u>not required</u>.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-progress
+  [backgroundClass]="'blue lighten-4'"
+  [percentage]="55"
+  [progressClass]="'blue'">
+&lt;/mz-progress>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Progress can be customized using the following properties on the <code class="language-markup">mz-progress</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>
