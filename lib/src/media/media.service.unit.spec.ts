@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import 'rxjs/add/operator/first';
+import { first } from 'rxjs/operators';
 
 import { MzMediaService } from './media.service';
 
@@ -47,7 +47,7 @@ describe('MzMediaService:unit', () => {
 
         dispatchEvent(new CustomEvent('resize'));
 
-        mediaService.media.first().subscribe(media => {
+        mediaService.media.pipe(first()).subscribe(media => {
           expect(media.alias).toBe(useCase.alias);
           expect(media.windowHeight).toBe(useCase.windowHeight);
           expect(media.windowWidth).toBe(useCase.windowWidth);
@@ -104,7 +104,7 @@ describe('MzMediaService:unit', () => {
       useCases.forEach(useCase => {
         mockWindowSize(0, useCase.windowWidth);
 
-        mediaService.isActive(useCase.alias).first().subscribe(isActive => {
+        mediaService.isActive(useCase.alias).pipe(first()).subscribe(isActive => {
           expect(isActive).toBe(useCase.isActive);
         });
       });
@@ -128,7 +128,7 @@ describe('MzMediaService:unit', () => {
       ];
 
       useCases.forEach(breakpoint => {
-        mediaService.isActive(breakpoint).first().subscribe(
+        mediaService.isActive(breakpoint).pipe(first()).subscribe(
           isActive => {
             // safetynet as this should never be called in this tests
             expect(true).toBeFalsy();

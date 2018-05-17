@@ -87,9 +87,9 @@ describe('MzRadioButtonDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockInputElement = { input: true, parent: (selector: string) => {} };
-      const mockInputContainerElement = { inputContainer: true };
-      const mockLabelElement = { label: true };
+      const mockInputElement = $({ input: true, parent: (selector: string) => {} });
+      const mockInputContainerElement = $({ inputContainer: true });
+      const mockLabelElement = $({ label: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
@@ -120,12 +120,12 @@ describe('MzRadioButtonDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const inputId = 'input-id';
-      const mockRadioInputElement = { input: true };
+      const mockRadioInputElement = $({ input: true });
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
       directive.id = inputId;
-      directive.inputElement = <any>mockRadioInputElement;
+      directive.inputElement = mockRadioInputElement;
       directive.createLabelElement();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockRadioInputElement, 'after', [mockLabelElement]);
@@ -137,7 +137,7 @@ describe('MzRadioButtonDirective:unit', () => {
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
-      const mockJQueryLabelElement = { jQueryLabelElement: true };
+      const mockJQueryLabelElement = $({ jQueryLabelElement: true });
 
       spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
         return selector.outerHTML === mockLabelElement.outerHTML
@@ -160,11 +160,11 @@ describe('MzRadioButtonDirective:unit', () => {
 
         spyOn(console, 'error');
 
-        const mockInputElement = { input: true };
-        const mockInputContainerElement = { inputContainer: true, length: 0 };
+        const mockInputElement = $({ input: true });
+        const mockInputContainerElement = $({ inputContainer: true, length: 0 });
 
-        directive.inputElement = <any>mockInputElement;
-        directive.inputContainerElement = <any>mockInputContainerElement;
+        directive.inputElement = mockInputElement;
+        directive.inputContainerElement = mockInputContainerElement;
         directive.handleProperties();
 
         expect(console.error).toHaveBeenCalledWith(

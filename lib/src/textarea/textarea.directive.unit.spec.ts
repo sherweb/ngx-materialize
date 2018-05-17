@@ -128,9 +128,9 @@ describe('MzTextareaDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockTextareaElement = { textarea: true, parent: (selector: string) => {} };
-      const mockTextareaContainerElement = { textareaContainer: true };
-      const mockLabelElement = { label: true };
+      const mockTextareaElement = $({ textarea: true, parent: (selector: string) => {} });
+      const mockTextareaContainerElement = $({ textareaContainer: true });
+      const mockLabelElement = $({ label: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
@@ -155,7 +155,7 @@ describe('MzTextareaDirective:unit', () => {
 
     it('should call initTextarea after textareaElement has been selected', () => {
 
-      const mockTextareaElement = { textarea: true, parent: (selector: string) => {} };
+      const mockTextareaElement = $({ textarea: true, parent: (selector: string) => {} });
 
       spyOn(directive, 'initTextarea');
 
@@ -243,7 +243,7 @@ describe('MzTextareaDirective:unit', () => {
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', textareaId);
 
-      const mockJQueryLabelElement = { jQueryLabelElement: true };
+      const mockJQueryLabelElement = $({ jQueryLabelElement: true });
 
       spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
         return selector.outerHTML === mockLabelElement.outerHTML

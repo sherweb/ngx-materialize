@@ -291,9 +291,9 @@ describe('MzSelectDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockSelectElement = { select: true, parents: (selector: string) => { } };
-      const mockSelectContainerElement = { selectContainer: true };
-      const mockLabelElement = { label: true };
+      const mockSelectElement = $({ select: true, parents: (selector: string) => { } });
+      const mockSelectContainerElement = $({ selectContainer: true });
+      const mockLabelElement = $({ label: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
@@ -341,7 +341,7 @@ describe('MzSelectDirective:unit', () => {
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', selectId);
 
-      const mockJQueryLabelElement = { jQueryLabelElement: true };
+      const mockJQueryLabelElement = $({ jQueryLabelElement: true });
 
       spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
         return selector.outerHTML === mockLabelElement.outerHTML
@@ -364,11 +364,11 @@ describe('MzSelectDirective:unit', () => {
 
         spyOn(console, 'error');
 
-        const mockSelectElement = { select: true };
-        const mockSelectContainerElement = { selectContainer: true, length: 0 };
+        const mockSelectElement = $({ select: true });
+        const mockSelectContainerElement = $({ selectContainer: true, length: 0 });
 
-        directive.selectElement = <any>mockSelectElement;
-        directive.selectContainerElement = <any>mockSelectContainerElement;
+        directive.selectElement = mockSelectElement;
+        directive.selectContainerElement = mockSelectContainerElement;
         directive.handleProperties();
 
         expect(console.error).toHaveBeenCalledWith(

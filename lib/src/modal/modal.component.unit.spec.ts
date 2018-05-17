@@ -66,7 +66,7 @@ describe('MzModalComponent:unit', () => {
     it('should get modal element correctly', () => {
 
       const mockModalElementRef = new ElementRef({ modalElementRef: true });
-      const mockModalElement = { modalElement: true };
+      const mockModalElement = $({ modalElement: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockModalElementRef.nativeElement
@@ -111,11 +111,11 @@ describe('MzModalComponent:unit', () => {
     it('should initialize modal correctly', () => {
 
       const mockModalElement = { modalElement: true };
-      const modalOptions = { modalOptions: true };
+      const modalOptions = { dismissible: true };
 
       spyOn(component.renderer, 'invokeElementMethod');
 
-      component.modalElement = <any>mockModalElement;
+      component.modalElement = $(mockModalElement);
       component.options = modalOptions;
       component.initModal();
 
@@ -186,12 +186,12 @@ describe('MzModalComponent:unit', () => {
 
     it('should invoke open method on modal', () => {
 
-      const mockModalElement = { modalElement: true };
-      const modalOptions = { modalOptions: true };
+      const mockModalElement = $({ modalElement: true });
+      const modalOptions = { dismissible: true };
 
       spyOn(component.renderer, 'invokeElementMethod');
 
-      component.modalElement = <any>mockModalElement;
+      component.modalElement = mockModalElement;
       component.options = modalOptions;
       component.open();
 
@@ -203,12 +203,12 @@ describe('MzModalComponent:unit', () => {
 
     it('should invoke close method on modal', () => {
 
-      const mockModalElement = { modalElement: true };
-      const modalOptions = { modalOptions: true };
+      const mockModalElement = $({ modalElement: true });
+      const modalOptions = { dismissible: true };
 
       spyOn(component.renderer, 'invokeElementMethod');
 
-      component.modalElement = <any>mockModalElement;
+      component.modalElement = mockModalElement;
       component.options = modalOptions;
       component.close();
 

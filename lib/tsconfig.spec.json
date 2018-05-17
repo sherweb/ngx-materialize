@@ -4,6 +4,8 @@
     "outDir": "../out-tsc/spec",
     "types": [
       "jasmine",
+      "jquery",
+      "materialize-css",
       "node"
     ]
   },

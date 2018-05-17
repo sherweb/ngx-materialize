@@ -87,9 +87,9 @@ describe('MzCheckboxDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockCheckboxElement = { checkbox: true, parent: (selector: string) => {} };
-      const mockCheckboxContainerElement = { checkboxContainer: true };
-      const mockLabelElement = { label: true };
+      const mockCheckboxElement = $({ checkbox: true, parent: (selector: string) => {} });
+      const mockCheckboxContainerElement = $({ checkboxContainer: true });
+      const mockLabelElement = $({ label: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
@@ -120,12 +120,12 @@ describe('MzCheckboxDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const checkboxId = 'checkbox-id';
-      const mockCheckboxElement = { checkbox: true };
+      const mockCheckboxElement = $({ checkbox: true });
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', checkboxId);
 
       directive.id = checkboxId;
-      directive.checkboxElement = <any>mockCheckboxElement;
+      directive.checkboxElement = mockCheckboxElement;
       directive.createLabelElement();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockCheckboxElement, 'after', [mockLabelElement]);
@@ -137,7 +137,7 @@ describe('MzCheckboxDirective:unit', () => {
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', checkboxId);
 
-      const mockJQueryLabelElement = { jQueryLabelElement: true };
+      const mockJQueryLabelElement = $({ jQueryLabelElement: true });
 
       spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
         return selector.outerHTML === mockLabelElement.outerHTML
@@ -160,11 +160,11 @@ describe('MzCheckboxDirective:unit', () => {
 
         spyOn(console, 'error');
 
-        const mockCheckboxElement = { checkbox: true };
-        const mockCheckboxContainerElement = { checkboxContainer: true, length: 0 };
+        const mockCheckboxElement = $({ checkbox: true });
+        const mockCheckboxContainerElement = $({ checkboxContainer: true, length: 0 });
 
-        directive.checkboxElement = <any>mockCheckboxElement;
-        directive.checkboxContainerElement = <any>mockCheckboxContainerElement;
+        directive.checkboxElement = mockCheckboxElement;
+        directive.checkboxContainerElement = mockCheckboxContainerElement;
         directive.handleProperties();
 
         expect(console.error).toHaveBeenCalledWith(
@@ -179,9 +179,9 @@ describe('MzCheckboxDirective:unit', () => {
 
         spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
-        const mockCheckboxContainerElement = { checkboxContainer: true, length: 0 };
+        const mockCheckboxContainerElement = $({ checkboxContainer: true, length: 0 });
 
-        directive.checkboxContainerElement = <any>mockCheckboxContainerElement;
+        directive.checkboxContainerElement = mockCheckboxContainerElement;
         directive.handleProperties();
 
         expect(HandlePropChanges.prototype.executePropHandlers).not.toHaveBeenCalled();
@@ -194,9 +194,9 @@ describe('MzCheckboxDirective:unit', () => {
 
         spyOn(HandlePropChanges.prototype, 'executePropHandlers');
 
-        const mockCheckboxContainerElement = { checkboxContainer: true, length: 1 };
+        const mockCheckboxContainerElement = $({ checkboxContainer: true, length: 1 });
 
-        directive.checkboxContainerElement = <any>mockCheckboxContainerElement;
+        directive.checkboxContainerElement = mockCheckboxContainerElement;
         directive.handleProperties();
 
         expect(HandlePropChanges.prototype.executePropHandlers).toHaveBeenCalled();
@@ -211,9 +211,9 @@ describe('MzCheckboxDirective:unit', () => {
       spyOn(renderer, 'invokeElementMethod');
 
       const label = 'label-x';
-      const mockLabelElement = { label: true };
+      const mockLabelElement = $({ label: true });
 
-      directive.labelElement = <any>mockLabelElement;
+      directive.labelElement = mockLabelElement;
       directive.label = label;
       directive.handleLabel();
 
@@ -224,9 +224,9 @@ describe('MzCheckboxDirective:unit', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
-      const mockLabelElement = { label: true };
+      const mockLabelElement = $({ label: true });
 
-      directive.labelElement = <any>mockLabelElement;
+      directive.labelElement = mockLabelElement;
       directive.handleLabel();
 
       expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockLabelElement, 'text', [undefined]);

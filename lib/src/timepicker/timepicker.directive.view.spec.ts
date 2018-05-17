@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MzValidationModule } from 'app';
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { MzValidationModule } from '../validation/validation.module';
 import { MzTimepickerContainerComponent, MzTimepickerDirective } from './';
 
 @Component({

@@ -72,7 +72,7 @@ describe('MzDropdownComponent:unit', () => {
 
       spyOn(renderer, 'invokeElementMethod');
 
-      component.dropdownButtonElement = mockElementRef.nativeElement;
+      component.dropdownButtonElement = $(mockElementRef.nativeElement);
 
       component.close();
 

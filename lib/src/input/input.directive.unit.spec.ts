@@ -133,9 +133,9 @@ describe('MzInputDirective:unit', () => {
 
     it('should get elements correctly', () => {
 
-      const mockInputElement = { input: true, parent: (selector: string) => {} };
-      const mockInputContainerElement = { inputContainer: true };
-      const mockLabelElement = { label: true };
+      const mockInputElement = $({ input: true, parent: (selector: string) => {} });
+      const mockInputContainerElement = $({ inputContainer: true });
+      const mockLabelElement = $({ label: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
@@ -215,7 +215,7 @@ describe('MzInputDirective:unit', () => {
       const mockLabelElement = document.createElement('label');
       mockLabelElement.setAttribute('for', inputId);
 
-      const mockJQueryLabelElement = { jQueryLabelElement: true };
+      const mockJQueryLabelElement = $({ jQueryLabelElement: true });
 
       spyOn(window, '$').and.callFake((selector: HTMLElement): any => {
         return selector.outerHTML === mockLabelElement.outerHTML

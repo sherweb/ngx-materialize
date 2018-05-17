@@ -3,8 +3,8 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MzValidationModule } from 'app';
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { MzValidationModule } from '../validation/validation.module';
 import { MzDatepickerContainerComponent, MzDatepickerDirective } from './';
 
 @Component({

@@ -30,11 +30,14 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
+/package
 /typings
 package-lock.json
 test-results.xml
 tslint.xml
 *.log
+*.tar
+*.tgz
 
 # System Files
 .DS_Store

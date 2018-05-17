@@ -87,7 +87,7 @@ describe('MzTooltipDirective:unit', () => {
 
     it('should initialize targetElement correctly', () => {
 
-      const mockTargetElement = { targetElement: true };
+      const mockTargetElement = $({ targetElement: true });
 
       spyOn(window, '$').and.callFake((selector: any): any => {
         return selector === mockElementRef.nativeElement
