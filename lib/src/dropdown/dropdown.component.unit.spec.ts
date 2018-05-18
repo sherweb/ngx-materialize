@@ -2,6 +2,7 @@ import { ElementRef, Renderer } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { MzTestWrapperComponent } from '../shared/test-wrapper';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzDropdownComponent } from './dropdown.component';
 
 describe('MzDropdownComponent:unit', () => {
@@ -16,7 +17,9 @@ describe('MzDropdownComponent:unit', () => {
         MzDropdownComponent,
         MzTestWrapperComponent,
       ],
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 
@@ -70,21 +73,24 @@ describe('MzDropdownComponent:unit', () => {
 
     it('should invoke close method', fakeAsync(() => {
 
+      const mockDropdownButtonElement = $({ button: true });
+
       spyOn(renderer, 'invokeElementMethod');
 
-      component.dropdownButtonElement = $(mockElementRef.nativeElement);
+      component.dropdownButtonElement = mockDropdownButtonElement;
 
       component.close();
 
       forceSetTimeoutEnd();
 
-      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockElementRef.nativeElement, 'dropdown', ['close']);
+      expect(renderer.invokeElementMethod).toHaveBeenCalledWith(mockDropdownButtonElement, 'dropdown', ['close']);
     }));
   });
 
   describe('initDropdownButtonElement', () => {
 
     it('should get dropdown button element correctly', () => {
+
       const mockDropdownButtonElement = { button: true };
 
       spyOn(window, '$').and.callFake((selector: any): any => {
@@ -98,6 +104,7 @@ describe('MzDropdownComponent:unit', () => {
   describe('initHandlers', () => {
 
     it('should initialize handlers correctly', () => {
+
       const handlers = {
         align: 'handleDropdown',
         belowOrigin: 'handleDropdown',
@@ -211,6 +218,7 @@ describe('MzDropdownComponent:unit', () => {
   });
 
   describe('validateProperties', () => {
+
     it('should throw an error when dropdownButtonId is not provided', () => {
 
       component.dropdownButtonElement = <any>[];

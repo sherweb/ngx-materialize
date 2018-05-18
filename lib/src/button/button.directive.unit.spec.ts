@@ -2,6 +2,7 @@ import { ElementRef, Renderer } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzButtonDirective } from './button.directive';
 
 describe('MzButtonDirective:unit', () => {
@@ -12,7 +13,9 @@ describe('MzButtonDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 

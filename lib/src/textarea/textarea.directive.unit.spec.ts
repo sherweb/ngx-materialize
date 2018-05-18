@@ -4,6 +4,7 @@ import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzTextareaDirective } from './textarea.directive';
 
 describe('MzTextareaDirective:unit', () => {
@@ -18,7 +19,9 @@ describe('MzTextareaDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 

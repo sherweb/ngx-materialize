@@ -41,9 +41,9 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   suspend = false;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
-    private renderer: Renderer,
+    public changeDetectorRef: ChangeDetectorRef,
+    public renderer: Renderer,
   ) {
     super();
   }

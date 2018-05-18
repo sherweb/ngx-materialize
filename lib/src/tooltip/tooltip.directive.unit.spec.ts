@@ -1,6 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzTooltipDirective } from './tooltip.directive';
 
 describe('MzTooltipDirective:unit', () => {
@@ -12,7 +13,9 @@ describe('MzTooltipDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 

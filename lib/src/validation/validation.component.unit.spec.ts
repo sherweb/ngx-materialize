@@ -4,6 +4,7 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { FormControl, FormsModule, NgControl } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzErrorMessageComponent, MzValidationComponent } from './';
 
 export class MockElementRef extends ElementRef {
@@ -31,7 +32,7 @@ describe('MzValidationComponent:unit', () => {
       ],
       providers: [
         { provide: NgControl, useClass: MockNgControl },
-        Renderer,
+        { provide: Renderer, useValue: mockRenderer },
       ],
     });
 

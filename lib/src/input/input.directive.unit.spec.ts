@@ -4,6 +4,7 @@ import { FormControl, NgControl, NgModel } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzInputDirective } from './input.directive';
 
 describe('MzInputDirective:unit', () => {
@@ -19,7 +20,9 @@ describe('MzInputDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 

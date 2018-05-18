@@ -2,6 +2,7 @@ import { ChangeDetectorRef, ElementRef, Renderer } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { MockChangeDetectorRef, mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzSelectDirective } from './select.directive';
 
 describe('MzSelectDirective:unit', () => {
@@ -14,14 +15,17 @@ describe('MzSelectDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ChangeDetectorRef, Renderer],
+      providers: [
+        { provide: ChangeDetectorRef, useClass: MockChangeDetectorRef },
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 
   beforeEach(() => {
     changeDetectorRef = TestBed.get(ChangeDetectorRef);
     renderer = TestBed.get(Renderer);
-    directive = new MzSelectDirective(changeDetectorRef, mockElementRef, renderer);
+    directive = new MzSelectDirective(mockElementRef, changeDetectorRef, renderer);
   });
 
   describe('ngOnInit', () => {

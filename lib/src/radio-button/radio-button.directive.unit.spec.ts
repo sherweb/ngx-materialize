@@ -2,6 +2,7 @@ import { ElementRef, Renderer } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzRadioButtonDirective } from './radio-button.directive';
 
 describe('MzRadioButtonDirective:unit', () => {
@@ -13,7 +14,9 @@ describe('MzRadioButtonDirective:unit', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     });
   });
 

@@ -2,6 +2,7 @@ import { ElementRef, Renderer } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { mockRenderer } from '../shared/test-wrapper/mocks';
 import { MzModalComponent } from './modal.component';
 
 describe('MzModalComponent:unit', () => {
@@ -12,7 +13,9 @@ describe('MzModalComponent:unit', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [MzModalComponent],
-      providers: [Renderer],
+      providers: [
+        { provide: Renderer, useValue: mockRenderer },
+      ],
     })
     .compileComponents();
   }));
@@ -110,12 +113,12 @@ describe('MzModalComponent:unit', () => {
 
     it('should initialize modal correctly', () => {
 
-      const mockModalElement = { modalElement: true };
+      const mockModalElement = $({ modalElement: true });
       const modalOptions = { dismissible: true };
 
       spyOn(component.renderer, 'invokeElementMethod');
 
-      component.modalElement = $(mockModalElement);
+      component.modalElement = mockModalElement;
       component.options = modalOptions;
       component.initModal();
 
