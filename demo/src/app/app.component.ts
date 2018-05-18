@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Route, Router } from '@angular/router';
-import { MzSidenavComponent } from 'ngx-materialize';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
+import { MzSidenavComponent } from 'ngx-materialize';
 import { filter } from 'rxjs/operators';
 
 abstract class SectionRoutesPair {

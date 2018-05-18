@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 import {
   MzButtonModule,
   MzCardModule,
@@ -16,7 +17,6 @@ import {
   MzTimepickerModule,
   MzValidationModule,
 } from 'ngx-materialize';
-import { MarkdownModule } from 'ngx-markdown';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';

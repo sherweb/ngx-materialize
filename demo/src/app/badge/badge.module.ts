@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MzBadgeModule } from 'ngx-materialize';
 import { MarkdownModule } from 'ngx-markdown';
+import { MzBadgeModule } from 'ngx-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';

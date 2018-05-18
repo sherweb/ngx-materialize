@@ -23,7 +23,7 @@ export class MzModalComponent extends HandlePropChanges implements OnInit, After
   @Input() fixedFooter: boolean;
   @Input() fullscreen: boolean;
   @Input() options: Materialize.ModalOptions;
-  @Output() onClose = new EventEmitter<void>();
+  @Output() onClose = new EventEmitter<void>(); // tslint:disable-line:no-output-on-prefix
   @ViewChild('modal') modalElementRef: ElementRef;
 
   modalElement: JQuery;

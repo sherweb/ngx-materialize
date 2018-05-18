@@ -75,7 +75,7 @@ export class PaginationComponent {
   }
 
   pageChange(currentPage: number) {
-    alert(`Current page is : ${currentPage}`)
+    alert(`Current page is : ${currentPage}`);
   }
 
   playgroundPageChange(currentPage: number) {

@@ -6,7 +6,7 @@ export interface IPropertyRow {
   type: string;
   description: string;
   defaultValue?: string;
-};
+}
 
 @Component({
   selector: 'app-properties-table',

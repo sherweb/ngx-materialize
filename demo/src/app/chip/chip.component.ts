@@ -128,7 +128,7 @@ export class ChipComponent {
   // mz-chip-input events
   onAdd(chip: Materialize.ChipDataObject) {
     alert(`Tag added: ${chip.tag}`);
-  };
+  }
 
   onDelete(chip: Materialize.ChipDataObject) {
     alert(`Tag deleted: ${chip.tag}`);
@@ -140,6 +140,6 @@ export class ChipComponent {
 
   // helpers
   private getRandomNumber(min: number, max: number) {
-    return Math.floor(min + Math.random() * (max + 1 - min))
+    return Math.floor(min + Math.random() * (max + 1 - min));
   }
 }

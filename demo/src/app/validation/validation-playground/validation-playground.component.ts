@@ -196,7 +196,7 @@ export class ValidationPlaygroundComponent implements OnInit {
 
     this.userForm.get('hasJob').setValue(this.hasJob);
     this.userForm.get('jobPrivate').setValue(this.user.jobPrivate);
-    this.userForm.get('jobType').setValue(this.user.jobType)
+    this.userForm.get('jobType').setValue(this.user.jobType);
     this.userForm.get('gender').setValue(this.user.gender);
   }
 
