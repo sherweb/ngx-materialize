@@ -39,7 +39,11 @@ export class MzMediaService {
   isActive(breakpoint: string): Observable<boolean> {
     return new Observable<boolean>(subscriber => {
       this.media.subscribe((media: Media) => {
-        subscriber.next(this.isActiveBreakpoint(breakpoint));
+        try {
+          subscriber.next(this.isActiveBreakpoint(breakpoint));
+        } catch (error) {
+          subscriber.error(error);
+        }
       });
     });
   }
