@@ -17,12 +17,13 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run link:mz && ng serve",
+    "build:demo": "ng build demo",
+    "build:lib": "ng build lib",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "typings install"
+    "postinstall": "typings install",
+    "link:mz": "rimraf node_modules/ngx-materialize && linklocal"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
@@ -64,8 +65,9 @@
     "karma-coverage-istanbul-reporter": "~1.4.2",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "linklocal": "^2.8.2",
     "ng-packagr": "^3.0.0-rc.2",
-    "protractor": "~5.3.0",
+    "rimraf": "^2.6.2",
     "ts-node": "~5.0.1",
     "tsickle": ">=0.25.5",
     "tslib": "^1.7.1",
