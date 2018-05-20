@@ -146,7 +146,7 @@ export class MzValidationComponent implements AfterViewInit, OnDestroy {
 
   subscribeStatusChanges() {
     this.statusChangesSubscription = this.ngControl.control.statusChanges.subscribe((status: string) => {
-      // TODO Find a better way to handle validation after the form subscription. (see demo-app form-validation)
+      // TODO Find a better way to handle validation after the form subscription. (see demo form-validation)
       // wait for the valueChanges method from FormGroup to have been triggered before handling the validation state
       // /!\ race condition warning /!\
       setTimeout(() => this.setValidationState());

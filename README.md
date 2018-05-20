@@ -1,6 +1,6 @@
 <div class="readme-github-logo">
   <p align="center">
-    <img src="https://github.com/sherweb/ng2-materialize/raw/master/demo-app/src/assets/ng2-materialize-circle.png">
+    <img src="https://github.com/sherweb/ng2-materialize/raw/master/demo/src/assets/ng2-materialize-circle.png">
   </p>
   <h1 align="center">ng2-materialize</h1>
   <div align="center">
@@ -264,7 +264,7 @@ export class CustomMaterializeModule { }
 
 ## Demo application
 
-A demo application is available at [https://sherweb.github.io/ng2-materialize/](https://sherweb.github.io/ng2-materialize/), or refer to the `./demo-app` folder and its [README](./demo-app/README.md).
+A demo application is available at [https://sherweb.github.io/ng2-materialize/](https://sherweb.github.io/ng2-materialize/), or refer to the `./demo` folder and its [README](./demo/README.md).
 
 ## Road map
 
