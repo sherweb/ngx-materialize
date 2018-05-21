@@ -17,13 +17,13 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "npm run link:mz && ng serve",
+    "start": "npm run link:lib && ng serve",
     "build:demo": "ng build demo",
     "build:lib": "ng build lib",
+    "link:lib": "rimraf node_modules/ngx-materialize && linklocal",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "typings install",
-    "link:mz": "rimraf node_modules/ngx-materialize && linklocal"
+    "postinstall": "typings install"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
