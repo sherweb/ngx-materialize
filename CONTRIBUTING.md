@@ -13,7 +13,7 @@
 
 ## Code of Conduct
 
-Please read and follow our [Code of Conduct](https://github.com/sherweb/ng2-materialize/blob/master/CODE_OF_CONDUCT.md).
+Please read and follow our [Code of Conduct](https://github.com/sherweb/ngx-materialize/blob/master/CODE_OF_CONDUCT.md).
 
 ## Reporting Bugs
 A bug is a demonstrable problem that is caused by the code in the repository. Good bug reports are extremely helpful! Unclear issues with little explanations will be closed.

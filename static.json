@@ -1,5 +1,5 @@
 {
-  "root": "demo-app/dist/",
+  "root": "demo/dist/",
   "routes": {
     "/**": "/index.html"
   }
