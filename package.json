@@ -20,10 +20,14 @@
     "start": "npm run link:lib && ng serve",
     "build:demo": "ng build demo",
     "build:lib": "ng build lib",
+    "postbuild:lib": "cpx ./README.md ./dist/lib",
     "link:lib": "rimraf node_modules/ngx-materialize && linklocal",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "typings install"
+    "lint:ci": "tslint lib/src/**/*.ts --project lib/tsconfig.lib.json --config lib/tslint.json",
+    "postinstall": "typings install",
+    "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",
+    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
@@ -57,7 +61,10 @@
     "@types/jquery": "^3.2.12",
     "@types/materialize-css": "^0.100.4",
     "@types/node": "~8.9.4",
+    "angular-cli-ghpages": "^0.5.2",
+
     "codelyzer": "~4.2.1",
+    "cpx": "^1.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~1.7.1",
@@ -65,6 +72,7 @@
     "karma-coverage-istanbul-reporter": "~1.4.2",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-junit-reporter": "^1.2.0",
     "linklocal": "^2.8.2",
     "ng-packagr": "^3.0.0-rc.2",
     "rimraf": "^2.6.2",
@@ -73,6 +81,7 @@
     "tslib": "^1.7.1",
     "tslint": "~5.9.1",
     "tslint-eslint-rules": "^5.2.0",
+    "tslint-junit-formatter": "^5.1.0",
     "tslint-microsoft-contrib": "^5.0.3",
     "typescript": "~2.7.2",
     "typings": "^2.0.0"

@@ -8,21 +8,21 @@ jobs:
       - checkout
       # Restore lib dependencies from cache
       - restore_cache:
-          key: lib-dependency-cache-{{ checksum "yarn.lock" }}
+          key: lib-dependency-cache-{{ checksum "./lib/yarn.lock" }}
       # Install lib dependencies
       - run:
           name: Install lib dependencies
-          command: yarn install --frozen-lockfile --no-progress
+          command: cd lib && yarn install --frozen-lockfile --no-progress && cd ..
       # Cache lib dependencies if they don't exist
       - save_cache:
           key: lib-dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-            - ./node_modules
+            - ./lib/node_modules
       # Test the source code
       - run:
           name: Test
-          command: yarn test --single-run --code-coverage --no-progress --browser=ChromeNoSandbox
+          command: yarn test --watch=false --code-coverage --no-progress
       - store_artifacts:
           path: test-results.xml
           prefix: tests
@@ -32,41 +32,41 @@ jobs:
       # Lint the source code
       - run:
           name: Lint
-          command: yarn lint --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+          command: yarn lint:ci --formatters-dir node_modules/tslint-junit-formatter/formatters --format junit -o tslint.xml
       - store_artifacts:
           path: tslint.xml
           prefix: lint
       # Build the source code
       - run:
           name: Build
-          command: yarn build
+          command: yarn build:lib
   deploy:
     docker:
       - image: circleci/node:8-browsers
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      # Restore demo-app dependencies from cache
+      # Restore demo dependencies from cache
       - restore_cache:
-          key: demo-dependency-cache-{{ checksum "./demo-app/yarn.lock" }}
-      # Install demo-app dependencies
+          key: demo-dependency-cache-{{ checksum "./yarn.lock" }}
+      # Install demo dependencies
       - run:
-          name: Install demo-app dependencies
-          command: cd demo-app && yarn install --frozen-lockfile --no-progress
+          name: Install demo dependencies
+          command: yarn install --frozen-lockfile --no-progress
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: demo-dependency-cache-{{ checksum "./demo-app/yarn.lock" }}
+          key: demo-dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-            - ./demo-app/node_modules
-      # Build demo-app
+            - ./node_modules
+      # Build demo
       - run:
           name: Build
-          command: cd demo-app && yarn gh-pages:build
-      # Deploy demo-app to Github Pages
+          command: yarn gh-pages:build
+      # Deploy demo to Github Pages
       - run:
           name: Deploy to gh-pages
-          command: cd demo-app && yarn gh-pages:deploy
+          command: yarn gh-pages:deploy
 
 workflows:
   version: 2
