@@ -64,16 +64,16 @@ Don't forget to include Materialize and jQuery in your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
-#### .angular-cli.json
+#### angular.json
 
 ```diff
 "styles": [
-  "styles.scss",
-+ "../node_modules/materialize-css/dist/css/materialize.min.css"
+  "src/styles.scss",
++ "node_modules/materialize-css/dist/css/materialize.min.css"
 ],
 "scripts": [
-+ "../node_modules/jquery/dist/jquery.min.js",
-+ "../node_modules/materialize-css/dist/js/materialize.min.js"
++ "node_modules/jquery/dist/jquery.min.js",
++ "node_modules/materialize-css/dist/js/materialize.min.js"
 ],
 ```
 
@@ -124,13 +124,13 @@ Don't forget to include Mdi library to your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
-#### .angular-cli.json
+#### angular.json
 
 ```diff
 "styles": [
-  "styles.scss",
-  "../node_modules/materialize-css/dist/css/materialize.min.css",
-+ "../node_modules/mdi/css/materialdesignicons.min.css"
+  "src/styles.scss",
+  "node_modules/materialize-css/dist/css/materialize.min.css",
++ "node_modules/mdi/css/materialdesignicons.min.css"
 ],
 ```
 
