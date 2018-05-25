@@ -81,27 +81,17 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 
 ```diff
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "outDir": "../out-tsc/app",
-    "target": "es5",
     "module": "es2015",
-    "baseUrl": "",
     "types": [
 +      "jquery",
 +      "materialize-css"
     ]
   },
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
   ]
 }
