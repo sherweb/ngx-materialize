@@ -24,6 +24,7 @@
     "link:lib": "rimraf node_modules/ngx-materialize && linklocal",
     "test": "ng test",
     "lint:ci": "ng lint lib --format checkstyle > tslint.xml",
+    "lint:demo": "ng lint demo",
     "lint:lib": "ng lint lib",
     "postinstall": "typings install",
     "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",

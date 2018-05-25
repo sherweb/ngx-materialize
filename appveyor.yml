@@ -25,7 +25,7 @@ test_script:
   - node --version
   - npm --version
   - yarn --version
-  - yarn lint
+  - yarn lint:demo
   - yarn build:demo --prod --no-progress
 
 after_test:
