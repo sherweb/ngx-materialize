@@ -24,7 +24,7 @@
     "link:lib": "rimraf node_modules/ngx-materialize && linklocal",
     "test": "ng test",
     "lint": "ng lint",
-    "lint:ci": "tslint lib/src/**/*.ts --project lib/tsconfig.lib.json --config lib/tslint.json",
+    "lint:ci": "cd lib && tslint src/**/*.ts --project tsconfig.lib.json --config tslint.json --formatters-dir ../node_modules/tslint-junit-formatter/formatters --format junit -o ../tslint.xml",
     "postinstall": "typings install",
     "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",
     "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
