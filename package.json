@@ -27,7 +27,8 @@
     "lint:ci": "tslint lib/src/**/*.ts --project lib/tsconfig.lib.json --config lib/tslint.json",
     "postinstall": "typings install",
     "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",
-    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent"
+    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
+    "publish:lib": "cd dist/lib && npm pack"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",

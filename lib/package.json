@@ -4,6 +4,17 @@
   "description": "An Angular wrap around Materialize library",
   "license": "Apache-2.0",
   "repository": "sherweb/ngx-materialize",
+  "keywords": [
+    "angular",
+    "ng",
+    "ngx",
+    "material",
+    "material-design",
+    "materialize",
+    "materializecss",
+    "component",
+    "ui"
+  ],
   "dependencies": {
     "@types/jquery": "^3.2.12",
     "@types/materialize-css": "^0.100.4",
