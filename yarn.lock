@@ -6484,10 +6484,6 @@ tslint-eslint-rules@^5.2.0:
     tslib "1.9.0"
     tsutils "2.8.0"
 
-tslint-junit-formatter@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/tslint-junit-formatter/-/tslint-junit-formatter-5.1.0.tgz#afd2071466227aad41c044191bbd1c6f9ba7541e"
-
 tslint-microsoft-contrib@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/tslint-microsoft-contrib/-/tslint-microsoft-contrib-5.0.3.tgz#6fc3e238179cd72045c2b422e4d655f4183a8d5c"
