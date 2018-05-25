@@ -29,6 +29,7 @@
     "postinstall": "typings install",
     "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",
     "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
+    "heroku-postbuild": "yarn install && yarn build:demo --prod --aot",
     "publish:lib": "cd dist/lib && npm pack"
   },
   "dependencies": {
