@@ -42,7 +42,6 @@
     "@angular/router": "^6.0.0",
     "core-js": "^2.5.4",
     "highlightjs": "^9.10.0",
-    "materialize-css": "^0.100.2",
     "ngx-materialize": "file:./lib",
     "ngx-malihu-scrollbar": "^1.3.2",
     "ngx-markdown": "^1.6.0",
@@ -59,8 +58,6 @@
     "@angular/language-service": "^6.0.0",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
-    "@types/jquery": "^3.2.12",
-    "@types/materialize-css": "^0.100.4",
     "@types/node": "~8.9.4",
     "angular-cli-ghpages": "^0.5.2",
 

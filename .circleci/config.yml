@@ -6,19 +6,19 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      # Restore lib dependencies from cache
+      # Restore dependencies from cache
       - restore_cache:
-          key: lib-dependency-cache-{{ checksum "./lib/yarn.lock" }}
-      # Install lib dependencies
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      # Install dependencies
       - run:
-          name: Install lib dependencies
-          command: cd lib && yarn install --frozen-lockfile --no-progress && cd ..
-      # Cache lib dependencies if they don't exist
+          name: Install dependencies
+          command: yarn install --frozen-lockfile --no-progress
+      # Cache dependencies if they don't exist
       - save_cache:
-          key: lib-dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-            - ./lib/node_modules
+            - ./node_modules
       # Test the source code
       - run:
           name: Test
@@ -46,16 +46,16 @@ jobs:
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
-      # Restore demo dependencies from cache
+      # Restore dependencies from cache
       - restore_cache:
-          key: demo-dependency-cache-{{ checksum "./yarn.lock" }}
-      # Install demo dependencies
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      # Install dependencies
       - run:
-          name: Install demo dependencies
+          name: Install dependencies
           command: yarn install --frozen-lockfile --no-progress
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: demo-dependency-cache-{{ checksum "yarn.lock" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
             - ./node_modules
