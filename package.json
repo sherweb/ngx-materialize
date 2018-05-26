@@ -17,17 +17,17 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "npm run link:lib && ng serve",
+    "start": "yarn link:lib && ng serve",
     "build:demo": "ng build demo",
     "build:lib": "ng build lib",
     "postbuild:lib": "cpx ./README.md ./dist/lib",
     "link:lib": "rimraf node_modules/ngx-materialize && linklocal",
-    "test": "ng test",
     "lint:ci": "ng lint lib --format checkstyle > tslint.xml",
     "lint:demo": "ng lint demo",
     "lint:lib": "ng lint lib",
+    "test": "ng test",
     "postinstall": "typings install",
-    "gh-pages:build": "npm run build:demo --prod -- --base-href /ngx-materialize/ && cp ./dist/demo/index.html ./dist/demo/404.html",
+    "gh-pages:build": "yarn build:demo --prod --aot --base-href /ngx-materialize/",
     "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
     "heroku-postbuild": "yarn install && yarn build:demo --prod --aot",
     "publish:lib": "cd dist/lib && npm pack"
@@ -62,7 +62,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "angular-cli-ghpages": "^0.5.2",
-
     "codelyzer": "~4.2.1",
     "cpx": "^1.5.0",
     "jasmine-core": "~2.99.1",

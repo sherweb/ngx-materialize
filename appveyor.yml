@@ -26,7 +26,7 @@ test_script:
   - npm --version
   - yarn --version
   - yarn lint:demo
-  - yarn build:demo --prod --no-progress
+  - yarn build:demo --prod --aot --no-progress
 
 after_test:
   - yarn unlink ngx-materialize
