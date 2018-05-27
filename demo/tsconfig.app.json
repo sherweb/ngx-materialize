@@ -11,6 +11,9 @@
       "prismjs"
     ]
   },
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  },
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts",

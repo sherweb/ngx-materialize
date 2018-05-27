@@ -33,17 +33,21 @@
             ],
             "styles": [
               "demo/src/styles.scss",
+              "node_modules/highlightjs/styles/default.css",
+              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
               "node_modules/materialize-css/dist/css/materialize.min.css",
               "node_modules/mdi/css/materialdesignicons.min.css",
-              "node_modules/highlightjs/styles/default.css",
-              "node_modules/prismjs/themes/prism.css",
-              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+              "node_modules/prismjs/themes/prism.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/materialize-css/dist/js/materialize.min.js",
               "node_modules/highlightjs/highlight.pack.min.js",
-              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
+              "node_modules/materialize-css/dist/js/materialize.min.js",
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-diff.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js"
             ]
           },
           "configurations": {
