@@ -70,7 +70,7 @@ describe('MzModalService:view', () => {
       });
     }));
 
-    it('should remove component from the DOM when onClose output is emitted', async(() => {
+    it('should remove component from the DOM when close output is emitted', async(() => {
 
       buildComponent(``).then(fixture => {
         nativeElement = fixture.nativeElement;
@@ -88,7 +88,7 @@ describe('MzModalService:view', () => {
         // expect to be in the DOM
         expect(modal()).toBeDefined();
 
-        componentRef.instance.modalComponent.onClose.emit();
+        componentRef.instance.modalComponent.close.emit();
 
         expect(componentRef.destroy).toHaveBeenCalled();
 

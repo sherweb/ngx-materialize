@@ -23,7 +23,7 @@ export class MzModalComponent extends HandlePropChanges implements OnInit, After
   @Input() fixedFooter: boolean;
   @Input() fullscreen: boolean;
   @Input() options: Materialize.ModalOptions;
-  @Output() onClose = new EventEmitter<void>(); // tslint:disable-line:no-output-on-prefix
+  @Output() close = new EventEmitter<void>();
   @ViewChild('modal') modalElementRef: ElementRef;
 
   modalElement: JQuery;
@@ -61,21 +61,21 @@ export class MzModalComponent extends HandlePropChanges implements OnInit, After
   }
 
   handleOptions() {
-    // extend complete function to emit onClose on callback return
+    // extend complete function to emit close event on callback return
     const originalCompleteFn = this.options && this.options.complete || (() => {});
     this.options = Object.assign({}, this.options, {
       complete: () => {
         originalCompleteFn();
-        this.onClose.emit();
+        this.close.emit();
       },
     });
   }
 
-  open() {
+  openModal() {
     this.renderer.invokeElementMethod(this.modalElement, 'modal', ['open']);
   }
 
-  close() {
+  closeModal() {
     this.renderer.invokeElementMethod(this.modalElement, 'modal', ['close']);
   }
 }

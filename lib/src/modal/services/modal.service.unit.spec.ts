@@ -40,7 +40,7 @@ describe('MzModalService:unit', () => {
       destroy: () => null,
       instance: {
         modalComponent: {
-          onClose: new EventEmitter<void>(),
+          close: new EventEmitter<void>(),
         },
       },
     };
@@ -56,14 +56,14 @@ describe('MzModalService:unit', () => {
       expect(injectionService.appendComponent).toHaveBeenCalledWith(MzTestModalComponent, options);
     });
 
-    it('should destroy created modal component when onClose is emmited', () => {
+    it('should destroy created modal component when close event is emmited', () => {
 
       spyOn(injectionService, 'appendComponent').and.returnValue(mockComponentRef);
       spyOn(mockComponentRef, 'destroy');
 
       modalService.open(MzTestModalComponent);
 
-      mockComponentRef.instance.modalComponent.onClose.emit();
+      mockComponentRef.instance.modalComponent.close.emit();
 
       expect(mockComponentRef.destroy).toHaveBeenCalled();
     });

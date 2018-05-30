@@ -8,7 +8,7 @@ import { MzModalComponent } from '../modal.component';
 export class MzModalCloseDirective {
 
   @HostListener('click') onclick() {
-    this.modalComponent.close();
+    this.modalComponent.closeModal();
   }
 
   constructor(

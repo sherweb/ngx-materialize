@@ -140,9 +140,9 @@ describe('MzModalComponent:unit', () => {
 
   describe('handleOptions', () => {
 
-    it('should emit onClose when no options is not provided', () => {
+    it('should emit close event when no options is not provided', () => {
 
-      spyOn(component.onClose, 'emit');
+      spyOn(component.close, 'emit');
 
       component.options = undefined;
       component.handleOptions();
@@ -151,12 +151,12 @@ describe('MzModalComponent:unit', () => {
 
       component.options.complete();
 
-      expect(component.onClose.emit).toHaveBeenCalled();
+      expect(component.close.emit).toHaveBeenCalled();
     });
 
-    it('should emit onClose when option is provided without complete callback', () => {
+    it('should emit close event when option is provided without complete callback', () => {
 
-      spyOn(component.onClose, 'emit');
+      spyOn(component.close, 'emit');
 
       component.options = { opacity: 0.5 };
       component.handleOptions();
@@ -165,13 +165,13 @@ describe('MzModalComponent:unit', () => {
 
       component.options.complete();
 
-      expect(component.onClose.emit).toHaveBeenCalled();
+      expect(component.close.emit).toHaveBeenCalled();
     });
 
-    it('should modify complete callback to emit onClose when option is provided with complete callback', () => {
+    it('should modify complete callback to emit close event when option is provided with complete callback', () => {
 
       spyOn(console, 'log');
-      spyOn(component.onClose, 'emit');
+      spyOn(component.close, 'emit');
 
       component.options = { opacity: 0.5, complete: () => console.log('console-x') };
       component.handleOptions();
@@ -181,11 +181,11 @@ describe('MzModalComponent:unit', () => {
       component.options.complete();
 
       expect(console.log).toHaveBeenCalledWith('console-x');
-      expect(component.onClose.emit).toHaveBeenCalled();
+      expect(component.close.emit).toHaveBeenCalled();
     });
   });
 
-  describe('open', () => {
+  describe('openModal', () => {
 
     it('should invoke open method on modal', () => {
 
@@ -196,13 +196,13 @@ describe('MzModalComponent:unit', () => {
 
       component.modalElement = mockModalElement;
       component.options = modalOptions;
-      component.open();
+      component.openModal();
 
       expect(component.renderer.invokeElementMethod).toHaveBeenCalledWith(mockModalElement, 'modal', ['open']);
     });
   });
 
-  describe('close', () => {
+  describe('closeModal', () => {
 
     it('should invoke close method on modal', () => {
 
@@ -213,7 +213,7 @@ describe('MzModalComponent:unit', () => {
 
       component.modalElement = mockModalElement;
       component.options = modalOptions;
-      component.close();
+      component.closeModal();
 
       expect(component.renderer.invokeElementMethod).toHaveBeenCalledWith(mockModalElement, 'modal', ['close']);
     });

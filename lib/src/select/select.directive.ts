@@ -26,7 +26,7 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   // directive properties
   @Input() label: string;
   @Input() filledIn: boolean;
-  @Output() onUpdate = new EventEmitter(); // tslint:disable-line:no-output-on-prefix
+  @Output() update = new EventEmitter();
 
   checkboxElements: JQuery;
   labelElement: JQuery;
@@ -239,6 +239,6 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
 
     // wait for materialize select to be initialized
     // /!\ race condition warning /!\
-    setTimeout(() => this.onUpdate.emit());
+    setTimeout(() => this.update.emit());
   }
 }

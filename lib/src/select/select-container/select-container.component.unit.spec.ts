@@ -26,7 +26,7 @@ describe('MzSelectContainerComponent:unit', () => {
 
     it('should remove subscriptions correctly', () => {
       const mockSelectDirective = <MzSelectDirective>{
-        onUpdate: new EventEmitter(),
+        update: new EventEmitter(),
         inputElement: { off: () => null },
       };
 
@@ -41,7 +41,7 @@ describe('MzSelectContainerComponent:unit', () => {
 
       component.ngOnDestroy();
 
-      expect(mockSelectDirective.onUpdate.closed).toBeTruthy();
+      expect(mockSelectDirective.update.closed).toBeTruthy();
       expect(mockSelectDirective.inputElement.off).toHaveBeenCalled();
 
       expect(component.statusChangesSubscription.closed).toBeTruthy();

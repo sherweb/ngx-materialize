@@ -656,13 +656,13 @@ describe('MzSelectDirective:unit', () => {
         const spyInitMaterialSelect = spyOn(directive, 'initMaterialSelect');
         const spyInitFilledIn = spyOn(directive, 'initFilledIn');
         const spyHandleDomEvents = spyOn(directive, 'handleDOMEvents');
-        const spyOnUpdateEmit = spyOn(directive.onUpdate, 'emit');
+        const spyUpdateEmit = spyOn(directive.update, 'emit');
 
         [false, null, undefined].forEach(filledIn => {
           spyInitMaterialSelect.calls.reset();
           spyInitFilledIn.calls.reset();
           spyHandleDomEvents.calls.reset();
-          spyOnUpdateEmit.calls.reset();
+          spyUpdateEmit.calls.reset();
 
           directive.filledIn = filledIn;
           directive.updateMaterialSelect();
@@ -670,11 +670,11 @@ describe('MzSelectDirective:unit', () => {
           expect(spyInitMaterialSelect).toHaveBeenCalled();
           expect(spyInitFilledIn).not.toHaveBeenCalled();
           expect(spyHandleDomEvents).toHaveBeenCalled();
-          expect(spyOnUpdateEmit).not.toHaveBeenCalled();
+          expect(spyUpdateEmit).not.toHaveBeenCalled();
 
           tick();
 
-          expect(spyOnUpdateEmit).toHaveBeenCalled();
+          expect(spyUpdateEmit).toHaveBeenCalled();
         });
       }));
 
@@ -682,7 +682,7 @@ describe('MzSelectDirective:unit', () => {
         spyOn(directive, 'initMaterialSelect');
         spyOn(directive, 'initFilledIn');
         spyOn(directive, 'handleDOMEvents');
-        spyOn(directive.onUpdate, 'emit');
+        spyOn(directive.update, 'emit');
 
         directive.filledIn = true;
         directive.updateMaterialSelect();
@@ -690,11 +690,11 @@ describe('MzSelectDirective:unit', () => {
         expect(directive.initMaterialSelect).toHaveBeenCalled();
         expect(directive.initFilledIn).toHaveBeenCalled();
         expect(directive.handleDOMEvents).toHaveBeenCalled();
-        expect(directive.onUpdate.emit).not.toHaveBeenCalled();
+        expect(directive.update.emit).not.toHaveBeenCalled();
 
         tick();
 
-        expect(directive.onUpdate.emit).toHaveBeenCalled();
+        expect(directive.update.emit).toHaveBeenCalled();
       }));
     });
   });

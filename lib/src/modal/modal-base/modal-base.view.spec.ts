@@ -27,14 +27,14 @@ describe('MzBaseModal:view', () => {
 
     it('should open modal component', async(() => {
 
-      spyOn(MzModalComponent.prototype, 'open');
+      spyOn(MzModalComponent.prototype, 'openModal');
 
       buildComponent(
         `<mz-test-modal></mz-test-modal>`,
       ).then(fixture => {
         fixture.detectChanges();
 
-        expect(MzModalComponent.prototype.open).toHaveBeenCalled();
+        expect(MzModalComponent.prototype.openModal).toHaveBeenCalled();
       });
     }));
   });

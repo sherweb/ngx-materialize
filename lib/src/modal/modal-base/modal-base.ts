@@ -9,6 +9,6 @@ export abstract class MzBaseModal implements AfterViewInit {
   @ViewChild(MzModalComponent) modalComponent: MzModalComponent;
 
   ngAfterViewInit() {
-    this.modalComponent.open();
+    this.modalComponent.openModal();
   }
 }
