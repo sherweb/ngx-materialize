@@ -107,7 +107,7 @@ Ngx-materialize offers two "out-of-the-box" options for icons although you are f
 To use [Material Design Icons](https://materialdesignicons.com/) (community project based on Google Material Icons with lots of added icons), which is used with `mz-icon-mdi` directive, you will need to add the library with the following command:
 
 ```
-npm install --save mdi
+npm install --save @mdi/font
 ```
 
 Don't forget to include Mdi library to your application.
@@ -120,7 +120,7 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 "styles": [
   "src/styles.scss",
   "node_modules/materialize-css/dist/css/materialize.min.css",
-+ "node_modules/mdi/css/materialdesignicons.min.css"
++ "node_modules/@mdi/font/css/materialdesignicons.min.css"
 ],
 ```
 

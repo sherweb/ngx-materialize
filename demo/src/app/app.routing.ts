@@ -29,7 +29,7 @@ export const ROUTES: Routes = [
   { path: 'select', loadChildren: './select/select.module#SelectModule', data: { icon: 'menu-down-outline', text: 'Select', section: formControls } },
   { path: 'switch', loadChildren: './switch/switch.module#SwitchModule', data: { icon: 'toggle-switch', text: 'Switch', section: formControls } },
   { path: 'textarea', loadChildren: './textarea/textarea.module#TextareaModule', data: { icon: 'cursor-text', text: 'Textarea', section: formControls } },
-  { path: 'timepicker', loadChildren: './timepicker/timepicker.module#TimepickerModule', data: { icon: 'clock', text: 'Timepicker', section: formControls } },
+  { path: 'timepicker', loadChildren: './timepicker/timepicker.module#TimepickerModule', data: { icon: 'clock-outline', text: 'Timepicker', section: formControls } },
 
   // components routes - Layout
   { path: 'card', loadChildren: './card/card.module#CardModule', data: { icon: 'cards-outline', text: 'Card', section: layout } },
