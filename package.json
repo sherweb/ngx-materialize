@@ -28,7 +28,7 @@
     "test": "ng test",
     "postinstall": "typings install",
     "gh-pages:build": "yarn build:demo --prod --aot --base-href /ngx-materialize/",
-    "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
+    "gh-pages:deploy": "angular-cli-ghpages --dir=\"dist/demo\" --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
     "heroku-postbuild": "yarn install && yarn build:demo --prod --aot",
     "publish:lib": "npm publish ./dist/lib"
   },
