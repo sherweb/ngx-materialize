@@ -4,11 +4,11 @@ import {
   MzSidenavCollapsibleComponent,
   MzSidenavCollapsibleContentDirective,
   MzSidenavCollapsibleHeaderComponent,
-} from './sidenav-collapsible';
-import { MzSidenavDividerComponent } from './sidenav-divider';
-import { MzSidenavHeaderComponent } from './sidenav-header';
-import { MzSidenavLinkComponent } from './sidenav-link';
-import { MzSidenavSubheaderComponent } from './sidenav-subheader';
+} from './sidenav-collapsible/index';
+import { MzSidenavDividerComponent } from './sidenav-divider/index';
+import { MzSidenavHeaderComponent } from './sidenav-header/index';
+import { MzSidenavLinkComponent } from './sidenav-link/index';
+import { MzSidenavSubheaderComponent } from './sidenav-subheader/index';
 import { MzSidenavComponent } from './sidenav.component';
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } f
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'textarea[mzTextarea], textarea[mz-textarea]',

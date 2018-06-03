@@ -15,7 +15,7 @@ import {
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { ErrorMessageResource, MzErrorMessageComponent } from './error-message';
+import { ErrorMessageResource, MzErrorMessageComponent } from './error-message/index';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

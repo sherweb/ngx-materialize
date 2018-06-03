@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { MzNavbarItemComponent } from './navbar-item';
-import { MzNavbarItemContainerComponent } from './navbar-item-container';
+import { MzNavbarItemContainerComponent } from './navbar-item-container/index';
+import { MzNavbarItemComponent } from './navbar-item/index';
 import { MzNavbarComponent } from './navbar.component';
 
 @NgModule({

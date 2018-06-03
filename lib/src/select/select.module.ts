@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MzSelectContainerComponent } from './select-container';
+import { MzSelectContainerComponent } from './select-container/index';
 import { MzSelectDirective } from './select.directive';
 
 @NgModule({

@@ -6,7 +6,7 @@ import {
   Renderer,
 } from '@angular/core';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'a[mz-icon-mdi], a[mzIconMdi], i[mz-icon-mdi], i[mzIconMdi]',

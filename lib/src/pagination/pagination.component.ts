@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
-import { MzPaginationPageButtonComponent } from './pagination-page-button';
+import { HandlePropChanges } from '../shared/index';
+import { MzPaginationPageButtonComponent } from './pagination-page-button/index';
 
 @Component({
   selector: 'mz-pagination',

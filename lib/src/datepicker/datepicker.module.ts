@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MzDatepickerContainerComponent } from './datepicker-container';
+import { MzDatepickerContainerComponent } from './datepicker-container/index';
 import { MzDatepickerDirective } from './datepicker.directive';
 
 @NgModule({

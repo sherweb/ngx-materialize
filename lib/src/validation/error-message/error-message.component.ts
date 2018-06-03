@@ -13,7 +13,7 @@ import {
 import { AbstractControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { ErrorMessageResource } from './models';
+import { ErrorMessageResource } from './models/index';
 
 @Component({
   selector: 'mz-error-message',

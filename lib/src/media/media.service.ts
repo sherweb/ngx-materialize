@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map, publishReplay, refCount, startWith } from 'rxjs/operators';
 
-import { MatchOperator, Media, MediaBreakpoint } from './models';
+import { MatchOperator, Media, MediaBreakpoint } from './models/index';
 
 @Injectable()
 export class MzMediaService {

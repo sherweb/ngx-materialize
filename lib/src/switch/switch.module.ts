@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MzSwitchContainerComponent } from './switch-container';
+import { MzSwitchContainerComponent } from './switch-container/index';
 import { MzSwitchDirective } from './switch.directive';
 
 @NgModule({

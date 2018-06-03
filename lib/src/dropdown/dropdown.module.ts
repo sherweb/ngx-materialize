@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { MzDropdownDividerComponent } from './dropdown-divider';
-import { MzDropdownItemComponent } from './dropdown-item';
+import { MzDropdownDividerComponent } from './dropdown-divider/index';
+import { MzDropdownItemComponent } from './dropdown-item/index';
 import { MzDropdownComponent } from './dropdown.component';
 
 @NgModule({

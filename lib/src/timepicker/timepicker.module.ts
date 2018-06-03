@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { MzTimepickerContainerComponent } from './timepicker-container';
+import { MzTimepickerContainerComponent } from './timepicker-container/index';
 import { MzTimepickerDirective } from './timepicker.directive';
 
 @NgModule({

@@ -1,2 +1,2 @@
 export * from './error-message.component';
-export * from './models';
+export * from './models/index';

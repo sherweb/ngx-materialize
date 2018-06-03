@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 
-import { MzRemoveComponentHost } from '../../shared/remove-component-host';
+import { MzRemoveComponentHost } from '../../shared/remove-component-host/index';
 
 @Component({
   selector: 'mz-collection-item',

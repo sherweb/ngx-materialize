@@ -1,2 +1,2 @@
-export * from './sidenav-collapsible-header';
+export * from './sidenav-collapsible-header/index';
 export * from './sidenav-collapsible.component';

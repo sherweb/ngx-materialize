@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 
 import { MzInjectionModule } from '../shared/injection/injection.module';
-import { MzModalCloseDirective } from './modal-close';
+import { MzModalCloseDirective } from './modal-close/index';
 import {
   MzModalComponent,
   MzModalContentDirective,
   MzModalFooterDirective,
   MzModalHeaderDirective,
 } from './modal.component';
-import { MzModalService } from './services';
+import { MzModalService } from './services/index';
 
 @NgModule({
   imports: [MzInjectionModule],

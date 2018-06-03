@@ -6,7 +6,7 @@ import {
     Renderer,
 } from '@angular/core';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: `

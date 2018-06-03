@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostBinding, Input, OnInit, Renderer } from '@angular/core';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'input[mzCheckbox], input[mz-checkbox]',

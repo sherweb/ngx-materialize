@@ -6,7 +6,7 @@ import {
 import { first } from 'rxjs/operators';
 
 import { MzInjectionService } from '../../shared/injection/injection.service';
-import { MzBaseModal } from '../modal-base';
+import { MzBaseModal } from '../modal-base/index';
 
 @Injectable()
 export class MzModalService {

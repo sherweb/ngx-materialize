@@ -3,7 +3,7 @@ import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'input[mzTimepicker], input[mz-timepicker]',

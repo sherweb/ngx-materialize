@@ -4,7 +4,7 @@ import {
   MzCollapsibleItemBodyDirective,
   MzCollapsibleItemComponent,
   MzCollapsibleItemHeaderDirective,
-} from './collapsible-item';
+} from './collapsible-item/index';
 import { MzCollapsibleComponent } from './collapsible.component';
 
 @NgModule({

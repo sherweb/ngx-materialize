@@ -3,7 +3,7 @@ import { NgControl } from '@angular/forms';
 import { interval, Observable, Subscription } from 'rxjs';
 import { first, skipWhile } from 'rxjs/operators';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'input[mzInput], input[mz-input]',

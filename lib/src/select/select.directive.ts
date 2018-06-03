@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'select[mzSelect], select[mz-select]',

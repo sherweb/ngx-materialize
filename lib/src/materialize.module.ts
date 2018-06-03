@@ -3,37 +3,37 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MzBadgeModule } from './badge';
-import { MzButtonModule } from './button';
-import { MzCardModule } from './card';
-import { MzCheckboxModule } from './checkbox';
-import { MzChipModule } from './chip';
-import { MzCollapsibleModule } from './collapsible';
-import { MzCollectionModule } from './collection';
-import { MzDatepickerModule } from './datepicker';
-import { MzDropdownModule } from './dropdown';
-import { MzFeatureDiscoveryModule } from './feature-discovery';
-import { MzIconModule } from './icon';
-import { MzIconMdiModule } from './icon-mdi';
-import { MzInputModule } from './input';
-import { MzMediaModule } from './media';
-import { MzModalModule } from './modal';
-import { MzNavbarModule } from './navbar';
-import { MzPaginationModule } from './pagination';
-import { MzParallaxModule } from './parallax';
-import { MzProgressModule } from './progress';
-import { MzRadioButtonModule } from './radio-button';
-import { MzSelectModule } from './select';
-import { MzInjectionModule } from './shared';
-import { MzSidenavModule } from './sidenav';
-import { MzSpinnerModule } from './spinner';
-import { MzSwitchModule } from './switch';
-import { MzTabModule } from './tab';
-import { MzTextareaModule } from './textarea';
-import { MzTimepickerModule } from './timepicker';
-import { MzToastModule } from './toast';
-import { MzTooltipModule } from './tooltip';
-import { MzValidationModule } from './validation';
+import { MzBadgeModule } from './badge/badge.module';
+import { MzButtonModule } from './button/button.module';
+import { MzCardModule } from './card/card.module';
+import { MzCheckboxModule } from './checkbox/checkbox.module';
+import { MzChipModule } from './chip/chip.module';
+import { MzCollapsibleModule } from './collapsible/collapsible.module';
+import { MzCollectionModule } from './collection/collection.module';
+import { MzDatepickerModule } from './datepicker/datepicker.module';
+import { MzDropdownModule } from './dropdown/dropdown.module';
+import { MzFeatureDiscoveryModule } from './feature-discovery/feature-discovery.module';
+import { MzIconMdiModule } from './icon-mdi/icon-mdi.module';
+import { MzIconModule } from './icon/icon.module';
+import { MzInputModule } from './input/input.module';
+import { MzMediaModule } from './media/media.module';
+import { MzModalModule } from './modal/modal.module';
+import { MzNavbarModule } from './navbar/navbar.module';
+import { MzPaginationModule } from './pagination/pagination.module';
+import { MzParallaxModule } from './parallax/parallax.module';
+import { MzProgressModule } from './progress/progress.module';
+import { MzRadioButtonModule } from './radio-button/radio-button.module';
+import { MzSelectModule } from './select/select.module';
+import { MzInjectionModule } from './shared/injection/injection.module';
+import { MzSidenavModule } from './sidenav/sidenav.module';
+import { MzSpinnerModule } from './spinner/spinner.module';
+import { MzSwitchModule } from './switch/switch.module';
+import { MzTabModule } from './tab/tab.module';
+import { MzTextareaModule } from './textarea/textarea.module';
+import { MzTimepickerModule } from './timepicker/timepicker.module';
+import { MzToastModule } from './toast/toast.module';
+import { MzTooltipModule } from './tooltip/tooltip.module';
+import { MzValidationModule } from './validation/validation.module';
 
 const MZ_MODULES = [
   CommonModule,
@@ -71,7 +71,11 @@ const MZ_MODULES = [
   MzValidationModule,
 ];
 
-/* Deprecated */
+/**
+ * @deprecated
+ * Import specific component modules instead (MzBadgeModule, MzCardModule, etc)
+ * https://github.com/sherweb/ng2-materialize#materializemodule-deprecated
+ */
 @NgModule({
   imports: MZ_MODULES,
   exports: MZ_MODULES,

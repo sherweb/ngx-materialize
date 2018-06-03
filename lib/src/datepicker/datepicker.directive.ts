@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnDestroy
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { HandlePropChanges } from '../shared/handle-prop-changes';
+import { HandlePropChanges } from '../shared/index';
 
 @Directive({
   selector: 'input[mzDatepicker], input[mz-datepicker]',
