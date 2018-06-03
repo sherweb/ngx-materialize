@@ -30,7 +30,7 @@
     "gh-pages:build": "yarn build:demo --prod --aot --base-href /ngx-materialize/",
     "gh-pages:deploy": "angular-cli-ghpages --name=\"CircleCI\" --email=\"circleci@email.com\" --no-silent",
     "heroku-postbuild": "yarn install && yarn build:demo --prod --aot",
-    "publish:lib": "cd dist/lib && npm pack"
+    "publish:lib": "npm publish ./dist/lib"
   },
   "dependencies": {
     "@angular/animations": "^6.0.0",
@@ -42,9 +42,9 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
+    "@mdi/font": "^2.4.85",
     "core-js": "^2.5.4",
     "highlightjs": "^9.10.0",
-    "@mdi/font": "^2.4.85",
     "ngx-malihu-scrollbar": "^1.3.2",
     "ngx-markdown": "^1.6.0",
     "ngx-materialize": "file:./lib",
