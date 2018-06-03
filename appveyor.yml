@@ -13,12 +13,12 @@ platform:
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn install --frozen-lockfile
+  - yarn install --frozen-lockfile --no-progress
   - yarn build:lib --prod
   - npm pack ./dist/lib
   - 7z x ngx-materialize-*.tgz && 7z x ngx-materialize-*.tar
   - cd package && yarn link && cd ..
-  - yarn install --frozen-lockfile
+  - yarn install --frozen-lockfile --no-progress
   - yarn link ngx-materialize
 
 test_script:
@@ -26,7 +26,7 @@ test_script:
   - npm --version
   - yarn --version
   - yarn lint:demo
-  - yarn build:demo --prod
+  - yarn build:demo --prod --no-progress
 
 after_test:
   - yarn unlink ngx-materialize
