@@ -1,0 +1,188 @@
+<h3>Radio Button</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzRadioButtonModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    Ngx-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-radio-button</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic radio button</h5>
+
+  <div class="row">
+
+    <div class="col s12 m5 l3">
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          [label]="'Radio checked'"
+          id="basic-radio-1"
+          name="basic-radio"
+          checked="checked"
+          type="radio">
+      </mz-radio-button-container>
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          [label]="'Radio unchecked'"
+          id="basic-radio-2"
+          name="basic-radio"
+          type="radio">
+      </mz-radio-button-container>
+    </div>
+
+    <p class="col s12 m7 l9">
+      The radio button text is set with <code class="language-markup">label</code> property. To group radio buttons add the native <code class="language-markup">name</code> property with the same corresponding value for each of the radio buttons in the group.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Gap radio button</h5>
+
+  <div class="row">
+
+    <div class="col s12 m5 l3">
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          [label]="'Radio checked'"
+          [withGap]="true"
+          id="gap-radio-1"
+          name="gap-radio"
+          checked="checked"
+          type="radio">
+      </mz-radio-button-container>
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          [label]="'Radio unchecked'"
+          [withGap]="true"
+          id="gap-radio-2"
+          name="gap-radio"
+          type="radio">
+      </mz-radio-button-container>
+    </div>
+
+    <p class="col s12 m7 l9">
+      Optionally you can use the gap styling on the radio button by setting <code class="language-markup">withGap</code> property to <code class="language-markup">true</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-radio-button</code> directive makes the form-control completely dynamic. Change the configuration below and see how the radio-button reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          name="radio-group"
+          id="radio-option-1"
+          value="Option 1"
+          [label]="radioOption1Label"
+          [withGap]="radioWithGap"
+          [disabled]="radioDisabled"
+          [(ngModel)]="radioValue"
+          type="radio">
+      </mz-radio-button-container>
+
+      <mz-radio-button-container>
+        <input mz-radio-button
+          name="radio-group"
+          id="radio-option-2"
+          value="Option 2"
+          [label]="radioOption2Label"
+          [withGap]="radioWithGap"
+          [disabled]="radioDisabled"
+          [(ngModel)]="radioValue"
+          type="radio">
+      </mz-radio-button-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="radio-label-1"
+          [label]="'Label - Option 1'"
+          [(ngModel)]="radioOption1Label"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="radio-label-2"
+          [label]="'Label - Option 2'"
+          [(ngModel)]="radioOption2Label"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="radio-withgap"
+          [label]="'With Gap'"
+          [filledIn]="true"
+          [(ngModel)]="radioWithGap"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="radio-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="radioDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Radio value: {{ radioValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The input element <b>must be</b> contained inside the <code class="language-markup">mz-radio-button-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-radio-button-container>
+  &lt;input mz-radio-button
+    [label]="'Radio text'"
+    [withGap]="true"
+    id="radio-button-id"
+    name="radio-group"
+    type="radio">
+&lt;/mz-radio-button-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Radio buttons can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-radio-button</code> directive.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

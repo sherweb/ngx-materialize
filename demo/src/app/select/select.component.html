@@ -1,0 +1,407 @@
+<h3>Select</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzSelectModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    Ngx-Materialize leverage the use of the native HTML select by using the <code class="language-markup">mz-select</code> directive directly on the select element tag to ease the fact that you might use third party library that would ask you to add properties directly on the native element. Take note that the select <u>must be</u> contained inside a <code class="language-markup">mz-select-container</code> component otherwise an error will be shown in the console.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic select</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="basic-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      Label and placeholder can be combined using both <code class="language-markup">label</code> and <code class="language-markup">placeholder</code> properties.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="basic-select-placeholder"
+        [placeholder]="'Placeholder'"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      You can omit the floating label and use only a placeholder by providing only the <code class="language-markup">placeholder</code> property.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Multiple select</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select multiple
+        id="multiple-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      You can add the property <code class="language-markup">multiple</code> to get the multiple select and select several options
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select multiple
+        id="multiple-select-filledin"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+        [filledIn]="true"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      The <code class="language-markup">filledIn</code> property can be set to true when using multiple select
+    </p>
+  </div>
+ </div>
+
+<div class="section">
+
+  <h5 class="light">Option groups</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="option-groups-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+      >
+        <optgroup label="Group 1">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+        </optgroup>
+        <optgroup label="Group 2">
+          <option value="3">Option 3</option>
+          <option value="4">Option 4</option>
+        </optgroup>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      The directive supports <code class="language-markup">optgroup</code> elements to regroup options
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Circle images</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="circle-select"
+        [label]="'Images in select'"
+        [placeholder]="'Choose your option'"
+      >
+        <option data-icon="assets/select-icon-1.jpg" class="circle">Option 1</option>
+        <option data-icon="assets/select-icon-2.jpg" class="circle">Option 2</option>
+        <option data-icon="assets/select-icon-3.jpg" class="circle">Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      You can add icons to your options in any type of select. In the option you add the image source with the <code class="language-markup">data-icon attribute</code>. You can also add the <code class="language-markup">circle</code> class to your icon.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="circle-left-select"
+        [label]="'Images in select'"
+        [placeholder]="'Choose your option'"
+      >
+        <option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1</option>
+        <option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2</option>
+        <option data-icon="assets/select-icon-3.jpg" class="left circle">Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      By default the icon will be aligned on the right but you can add the <code class="language-markup">left</code> class to align your icon to the left of the select.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Inline select</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Select can be inline:
+
+      <mz-select-container [inline]="true">
+        <select mz-select
+          id="inline-select"
+          [label]="'Inline'"
+          [placeholder]="'Placeholder'"
+        >
+          <option>Option 1</option>
+          <option>Option 2</option>
+          <option>Option 3</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the select inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-select-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled select</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="disabled-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+        [disabled]="true"
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      Disable the select by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Async options</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-select-container class="col s12 m6">
+      <select mz-select
+        id="async-options-select"
+        [label]="'Label'"
+        [placeholder]="'Placeholder'"
+      >
+        <option *ngFor="let option of selectAsyncOptions | async">{{ option }}</option>
+      </select>
+    </mz-select-container>
+
+    <p class="col s12 m6">
+      Pass your async options to property <code class="language-markup">options</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-select</code> directive makes the form-control completely dynamic. Change the configuration below and see how the select reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+        <select mz-select
+          id="select"
+          [label]="selectLabel"
+          [placeholder]="selectPlaceholder"
+          [disabled]="selectDisabled"
+          [(ngModel)]="selectValue"
+        >
+          <option *ngFor="let selectOption of selectOptions" [value]="selectOption">{{ selectOption }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="select-label"
+          [label]="'Label'"
+          [(ngModel)]="selectLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="select-placeholder"
+          [label]="'Placeholder'"
+          [(ngModel)]="selectPlaceholder"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="select-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="selectDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Selected value: {{ selectValue }}
+      </p>
+    </div>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+         <select mz-select multiple
+          id="select-multiple"
+          [label]="'Label'"
+          [placeholder]="'Placeholder'"
+          [(ngModel)]="selectMultipleValues"
+        >
+          <option *ngFor="let selectMultipleOption of selectMultipleOptions" [value]="selectMultipleOption">{{ selectMultipleOption }}</option>
+        </select>
+      </mz-select-container>
+    </div>
+
+    <div class="col s12 m6">
+      <p>
+        Selected values: {{ selectMultipleValues | json }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The select element <b>must be</b> contained inside the <code class="language-markup">mz-select-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-select-container>
+  &lt;select mz-select
+    id="options-select"
+    [label]="'Label'"
+    [placeholder]="'Placeholder'"
+  >
+    &lt;optgroup label="Group 1">
+      &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
+      &lt;option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2&lt;/option>
+    &lt;/optgroup>
+    &lt;optgroup label="Group 2">
+      &lt;option data-icon="assets/select-icon-3.jpg" class="left circle">Option 3&lt;/option>
+    &lt;/optgroup>
+  &lt;/select>
+&lt;/mz-select-container>
+  </app-code-snippet>
+</div>
+
+
+<div class="section">
+
+  <h5 class="light">Multiple</h5>
+
+  <app-code-snippet>
+&lt;mz-select-container>
+  &lt;select multiple mz-select
+    id="options-select"
+    [label]="'Label'"
+    [placeholder]="'Placeholder'"
+  >
+    &lt;optgroup label="Group 1">
+      &lt;option data-icon="assets/select-icon-1.jpg" class="left circle">Option 1&lt;/option>
+      &lt;option data-icon="assets/select-icon-2.jpg" class="left circle">Option 2&lt;/option>
+    &lt;/optgroup>
+    &lt;optgroup label="Group 2">
+      &lt;option data-icon="assets/select-icon-3.jpg" class="left circle">Option 3&lt;/option>
+    &lt;/optgroup>
+  &lt;/select>
+&lt;/mz-select-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-select-container</h6>
+
+    <p>
+      The <code class="language-markup">mz-select-container</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="selectContainerProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-select</h6>
+
+    <p>
+      Selects can be customized using the following properties on the <code class="language-markup">select</code> element when adding <code class="language-markup">mz-select</code> directive.
+    </p>
+
+    <app-properties-table
+      [properties]="selectProperties">
+    </app-properties-table>
+  </div>
+</div>

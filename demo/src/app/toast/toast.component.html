@@ -1,0 +1,119 @@
+<h3>Toast</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzToastModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<p>
+  Materialize provides a toast implementation that will be automatically placed and sized according to the device's screen resolution. Toasts are programmatically triggered using the service <code class="language-markup">MzToastService</code> and can be customized through the parameters of the method <code class="language-markup">show</code>.
+</p>
+
+<div class="section">
+
+  <h5 class="light">Basic toast</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="showBasicToast()">Toast</button>
+    </div>
+
+    <p class="col s12 m9">
+      Basic toast using a custom message with a 4000 ms delay
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Styled toast</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="showStyledToast()">Toast</button>
+    </div>
+
+    <p class="col s12 m9">
+      Toasts can be customized by providing a class name to the <code class="language-markup">MzToastService</code>
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Custom toast</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="showCustomToast()">Toast</button>
+    </div>
+
+    <p class="col s12 m9">
+      You can pass an HTML string as the first argument as well as shown in this example where we pass in text a flat button. If you call an external function instead of in-line JavaScript, you will not need to escape quotation marks.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Callback toast</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="showCallbackToast()">Toast</button>
+    </div>
+
+    <p class="col s12 m9">
+      You can tell the toast to execute a callback function when it has been dismissed
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    To trigger a toast you must use the service <code class="language-markup">MzToastService</code> and invoke <code class="language-markup">show</code> method with the desired parameters. A common example is to add the click event to a button to trigger the toast as shown below.
+  </p>
+
+  <p class="bold">example.component.html</p>
+
+  <app-code-snippet>
+&lt;button mz-button (click)="showToast()">Toast&lt;/button>
+  </app-code-snippet>
+
+  <p class="bold">example.component.ts</p>
+
+  <app-code-snippet>
+constructor(
+  private toastService: MzToastService,
+) &#123; &#125;
+
+showToast() &#123;
+  this.toastService.show('I am a toast!', 4000, 'green', () => alert('Toast has been dismissed'));
+&#125;
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Service methods</h5>
+
+  <p>
+    Toasts can be customized using the following parameters on the method <code class="language-markup">show</code> of the service <code class="language-markup">ToastService</code>.
+  </p>
+
+  <p class="method-name bold">show(message: string, displayLength: number, className?: string, completeCallback?: Function): void</p>
+
+  <table class="striped responsive-table">
+    <tbody>
+      <tr *ngFor="let property of properties">
+        <td>{{ property.name }}</td>
+        <td>{{ property.type }}</td>
+        <td [innerHTML]="property.description"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

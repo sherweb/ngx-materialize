@@ -1,0 +1,270 @@
+<h3>Timepicker</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzTimepickerModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    Ngx-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-timepicker</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic timepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        [label]="'Label'"
+        id="basic-timepicker"
+        placeholder="Placeholder"
+        type="text" />
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      Label and placeholder can be combined using both <code class="language-markup">label</code> and <code class="language-markup">placeholder</code> properties.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        [label]="'Label as placeholder'"
+        id="basic-timepicker-label"
+        type="text" />
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      To use the floating label directly as a placeholder provide only the <code class="language-markup">label</code> property.
+    </p>
+  </div>
+
+<div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        id="basic-timepicker-placeholder"
+        placeholder="Placeholder"
+        type="text" />
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      You can omit the floating label and use only a placeholder by providing only the <code class="language-markup">placeholder</code> property.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Inline timepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Timepicker can be inline:
+
+      <mz-timepicker-container [inline]="true">
+        <input mz-timepicker
+          [label]="'Time'"
+          id="inline-timepicker"
+          type="text">
+      </mz-timepicker-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the input inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-timepicker-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled timepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        [label]="'Disabled'"
+        id="disabled-timepicker"
+        type="text"
+        disabled>
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      Disable the timepicker input by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Icon Prefixes</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <i mz-icon-mdi mz-input-prefix
+        [icon]="'clock'">
+      </i>
+      <input mz-timepicker
+        [label]="'Time'"
+        id="prefix-timepicker"
+        type="tel" />
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      To use an icon prefix add the icon inside the <code class="language-markup">mz-timepicker-container</code> component with the <code class="language-markup">mz-input-prefix</code> directive on the icon tag.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Timepicker options</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        [label]="'Time'"
+        [options]="options"
+        id="options-timepicker"
+        type="tel" />
+    </mz-timepicker-container>
+
+    <p class="col s12 m6">
+      To customize the behavior of a timepicker you can use the <code class="language-markup">options</code> input property and provide a <code class="language-markup">Options</code> object with the <code class="language-markup">mz-timepicker</code> directive.
+    </p>
+  </div>
+
+  <blockquote>
+    Materialize uses <code class="language-markup">ClockPicker</code> library to create the materialized time picker. You can find a complete list of available options with how to use it by following this link: <a href="https://github.com/weareoutman/clockpicker#options" target="_blank">https://github.com/weareoutman/clockpicker#options</a>.
+  </blockquote>
+
+  <app-code-snippet [language]="'typescript'">
+public timepickerOptions: Pickadate.TimeOptions = &#123;
+  default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+  fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+  twelvehour: false, // Use AM/PM or 24-hour format
+  donetext: 'OK', // text for done-button
+  cleartext: 'Clear', // text for clear-button
+  canceltext: 'Cancel', // Text for cancel-button
+  autoclose: true, // automatic close timepicker
+  ampmclickable: true, // make AM PM clickable
+  aftershow: () => alert('AfterShow has been invoked.'), // function for after opening timepicker
+};
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-timepicker</code> directive makes the form-control completely dynamic. Change the configuration below and see how the timepicker reacts.
+  </p>
+
+  <div class="row">
+
+    <mz-timepicker-container class="col s12 m6">
+      <input mz-timepicker
+        id="timepicker"
+        [label]="timepickerLabel"
+        [placeholder]="timepickerPlaceholder"
+        [disabled]="timepickerDisabled"
+        [options]="timepickerOptions"
+        [(ngModel)]="timepickerValue"
+        type="text" />
+    </mz-timepicker-container>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="timepicker-label"
+          [label]="'Label'"
+          [(ngModel)]="timepickerLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="timepicker-placeholder"
+          [label]="'Placeholder'"
+          [(ngModel)]="timepickerPlaceholder"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="timepicker-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="timepickerDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Timepicker value: {{ timepickerValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The input element <b>must be</b> contained inside the <code class="language-markup">mz-timepicker-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-timepicker-container class="col s12">
+  &lt;i mz-icon-mdi mz-input-prefix
+    [icon]="'clock'">
+  &lt;/i>
+  &lt;input mz-timepicker
+    [label]="'Lunch time'"
+    [options]="options"
+    id="timepicker"
+    placeholder="Select lunch time"
+    type="text">
+&lt;/mz-timepicker-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-timepicker-container</h6>
+
+    <p>
+      The <code class="language-markup">mz-timepicker-container</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="timepickerContainerProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-timepicker</h6>
+
+    <p>
+      Timepickers can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-timepicker</code> directive.
+    </p>
+
+    <app-properties-table
+      [properties]="timepickerProperties">
+    </app-properties-table>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<h3>Card</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzCardModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<h5 class="light">Basic card</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Simple basic card combining title, content and actions.
+  </p>
+</div>
+
+<h5 class="light">No action</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Action bar won't be displayed if <code class="language-markup">mz-card-action</code> tag is not present or if it does not contain any action.
+  </p>
+</div>
+
+<h5 class="light">No title</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card class="amber lighten-1">
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Title will also be hidden if <code class="language-markup">mz-card-title</code> tag is not present. This could be usefull to alert the user when combined with appropriate color.
+  </p>
+</div>
+
+<h5 class="light">Colors and hoverable</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card class="color-hoverable white-text" [hoverable]="true">
+      <mz-card-title>
+        Card Title
+      </mz-card-title>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Optionally, colors can be customized using <code class="language-markup">class</code> property.<br>
+    <br>
+    An animation for box-shadow can also be added using <code class="language-markup">hoverable</code> input properties. Roll your cursor over and out of the card to see the animation.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+<app-code-snippet>
+&lt;mz-card
+  class="blue-grey darken-1 white-text"
+  [hoverable]="true">
+  &lt;mz-card-title>
+    Card Title
+  &lt;/mz-card-title>
+  &lt;mz-card-content>
+    I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+  &lt;/mz-card-content>
+  &lt;mz-card-action>
+    &lt;a href="#">This is a link&lt;/a>
+    &lt;a href="#">This is a link&lt;/a>
+  &lt;/mz-card-action>
+&lt;/mz-card>
+</app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Cards can be customized using the following properties on the <code class="language-markup">mz-card</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

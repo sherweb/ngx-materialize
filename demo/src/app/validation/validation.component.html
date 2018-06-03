@@ -1,0 +1,160 @@
+<h3>Form validation</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzValidationModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    The <code class="language-markup">mz-validation</code> can be used as a directive on <strong>input</strong>, <strong>checkbox</strong>, <strong>radio button</strong>, <strong>select</strong>, <strong>textarea</strong>.
+    For the <strong>radio button</strong>, the error message is not supported because it is considered a best pratique to always specify a default value.
+    The component module must use the <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">Reactive Form</a> to work with the validation directive.
+  </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Configuration</h5>
+  <p>
+    <code class="language-markup">ReactiveFormModule</code> should be added in component module or application module.
+  </p>
+  <markdown [src]="'app/validation/markdown/component.module.diff'"></markdown>
+</div>
+
+<div class="section">
+  <h5 class="light">Tips</h5>
+  <ul class="browser-default">
+    <li>
+      <p>To disable the browser native validation (example: when you click Enter on any required field), you have to add <code class="language-markup">novalidate</code> attribute to form element.</p>
+      <app-code-snippet>
+        &lt;form novalidate>&lt;/form>
+      </app-code-snippet>
+    </li>
+    <li>
+      <p>
+        To make a field required in form we have to add both the <code class="language-markup">required</code> attribute on HTML element and add <code class="language-markup">Validators.required</code> function
+        as validator function in form control contructor. At the moment there is no method in Angular 2 to get the validator function list applied on a from control.
+      </p>
+    </li>
+    <li>
+      <p>
+        To use select in your form group, take a look at the offical <a href="https://angular.io/api/forms/SelectControlValueAccessor#how-to-use" target="_blank">Angular documentation</a> on how to use select controls with form directives.
+      </p>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <h5 class="light">Playground</h5>
+  <p>
+    This is a demo that demonstrate the form validation with <code class="language-markup">mz-validation</code> and Reactive Form. Here a list of each field with validation :
+  </p>
+  <ul class="browser-default">
+    <li>Activity sector: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Address 1: Required</li>
+    <li>Job description: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Job title: Required only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Job type: Enabled only if "Has Job?" is checked. Otherwise the field is disabled.</li>
+    <li>Last Name: Required</li>
+    <li>Name: Required, min length and max length</li>
+    <li>Province: Required</li>
+    <li>Phone number: Pattern (the input accept this format : XXX-XXX-XXXX)</li>
+    <li>Postal Code : Pattern (the input accept US and Canada postal code)</li>
+    <li>Hear about us: Required</li>
+    <li>Term of service: Required</li>
+  </ul>
+  <app-validation-playground></app-validation-playground>
+</div>
+
+<div class="section">
+  <h5 class="light">Disabling form controls</h5>
+  <p>
+    Disabling form control can be achieve in two different ways when using <code class="language-markup">mz-validation</code>:
+  </p>
+  <ul class="browser-default">
+    <li>Using <a href="https://angular.io/api/forms/FormControl#how-to-use" target="_blank">FormControl</a> form state object with <code class="language-markup">disabled</code> property</li>
+    <li>Using <code class="language-markup">formControlDisabled</code> input binding</li>
+  </ul>
+  <blockquote>
+    Be carefull, you <b>CANNOT</b> use both ways at the same time or you'll get an error from Angular
+  </blockquote>
+
+  <div class="section">
+    <h6 class="bold">Using form state object with <code class="language-markup">disabled</code> property</h6>
+    <p>
+      This method ask you to set the <code class="language-markup">disabled</code> state of a field programmatically directly in the <a href="https://angular.io/api/forms/FormControl#how-to-use" target="_blank">FormControl</a> declaration.
+    </p>
+    <app-code-snippet [language]="'typescript'">
+this.form = this.formBuilder.group(&#123;
+  checkbox: [this.values.checkbox],
+  input: [
+    &#123; value: this.values.input, disabled: this.values.checkbox },
+    Validators.required,
+  ],
+});
+    </app-code-snippet>
+    <p>
+      To react on value changes and dynamically enabled/disable a field you will need to subscribe on <code class="language-markup">valueChanges</code> event emitter and trigger the state manually on the desired controls. Of course don't forget to unsubscribe the subscription when leaving your component.
+    </p>
+        <app-code-snippet [language]="'typescript'">
+this.form.get('checkbox').valueChanges.subscribe((checked: boolean) => &#123;
+  if (checked) &#123;
+    this.form.get('input').disable();
+  } else &#123;
+    this.form.get('input').enable();
+  }
+});
+    </app-code-snippet>
+    <div class="section">
+      <p>Here is an implementation example of dynamically disabling input field using the form state object method.</p>
+      <app-validation-form-state></app-validation-form-state>
+    </div>
+
+    <h6 class="bold">Using <code class="language-markup">formControlDisabled</code> input binding</h6>
+    <p>
+      Alternatively we offer the possibility to use the <code class="language-markup">formControlDisabled</code> input binding in the HTML template to set the enable/disable state of a form control. This way you won't need to set the <code class="language-markup">disabled</code> property programmatically on the FormControl and no need to subscribe on the <code class="language-markup">valueChanges</code> event emitter. The <code class="language-markup">formControlDisabled</code> input binding will automatically react dynamically to the value changes.
+    </p>
+    <app-code-snippet>
+&lt;mz-input-container class="col s10">
+  &lt;input mz-input mz-validation required
+    id="input-binding"
+    formControlName="input"
+    type="text"
+    [errorMessageResource]="errorMessages.input"
+    [formControlDisabled]="!form.controls['checkbox'].value"
+    [label]="'Form State Input'">
+&lt;/mz-input-container>
+    </app-code-snippet>
+    <div class="section">
+      <p>Here is an implementation example of dynamically disabling input field using the <code class="language-markup">formControlDisabled</code> input binding.</p>
+      <app-validation-binding></app-validation-binding>
+  </div>
+</div>
+
+<div class="section">
+  <h5 class="light">Template driven form</h5>
+  <p>
+    The <code class="language-markup">mz-validation</code> directive can also be used with a template driven form.
+  </p>
+  <app-validation-ngmodel></app-validation-ngmodel>
+</div>
+
+<div class="section">
+  <h5 class="light">Properties</h5>
+  <p>
+    Form control error message can be customized using the following propertie when adding <code class="language-markup">mz-validation</code> directive.
+  </p>
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>
+
+<div class="section">
+  <h5 class="light">Classes</h5>
+  <div class="section">
+    <h6 class="bold">ErrorMessageResource</h6>
+    <p>
+      This class contains all message error types that can be use in a form control.
+    </p>
+    <app-properties-table
+      [properties]="errorMessageRessourceProperties">
+    </app-properties-table>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+<h3>Dropdown</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzDropdownModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<h5 class="light">Basic dropdown</h5>
+
+<div class="row">
+
+  <div class="col s12 m6 l6">
+    <a mz-button id="btn-dropdown-basic" href="javascript:void(0)">Dropdown</a>
+
+    <mz-dropdown
+      [id]="'dropdown-basic'"
+      [dropdownButtonId]="'btn-dropdown-basic'"
+    >
+      <mz-dropdown-item><a href="javascript:void(0)">One</a></mz-dropdown-item>
+      <mz-dropdown-item><a href="javascript:void(0)">Two</a></mz-dropdown-item>
+      <mz-dropdown-item><a href="javascript:void(0)">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m6 l6">
+    Simple basic dropdown.
+  </p>
+</div>
+
+<h5 class="light">Divider</h5>
+
+<div class="row">
+
+  <div class="col s12 m6 l6">
+    <a mz-button id="btn-dropdown-divider" href="javascript:void(0)">Dropdown</a>
+
+    <mz-dropdown
+      [id]="'dropdown-divider'"
+      [dropdownButtonId]="'btn-dropdown-divider'"
+    >
+      <mz-dropdown-item><a href="javascript:void(0)">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m6 l6">
+    Dropdown with divider between each <code class="language-markup">mz-dropdown-item</code>.
+  </p>
+</div>
+
+<h5 class="light">Dropdown with options</h5>
+
+<div class="row">
+
+  <div class="col s12 m6 l6">
+    <a mz-button id="btn-dropdown-with-options" href="javascript:void(0)">Dropdown button with long text</a>
+
+    <mz-dropdown
+      [id]="'dropdown-with-options'"
+      [align]="'right'"
+      [constrainWidth]="false"
+      [belowOrigin]="true"
+      [hover]="true"
+      [dropdownButtonId]="'btn-dropdown-with-options'"
+    >
+      <mz-dropdown-item><a href="javascript:void(0)">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+  </div>
+
+  <p class="col s12 m6 l6">
+    Dropdown with <code class="language-markup">hover</code> and <code class="language-markup">belowOrigin</code> set to true, <code class="language-markup">align</code> set to right, and <code class="language-markup">constrainWidth</code> set to false.
+  </p>
+</div>
+
+<h5 class="light">Programatically trigger event</h5>
+
+<div class="row">
+
+  <div class="col s12 m6 l6">
+    <a mz-button id="btn-dropdown-programatically" href="javascript:void(0)">Dropdown</a>
+
+    <mz-dropdown #dropdown
+      [id]="'dropdown-programatically'"
+      [dropdownButtonId]="'btn-dropdown-programatically'"
+    >
+      <mz-dropdown-item><a href="javascript:void(0)">One</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Two</a></mz-dropdown-item>
+      <mz-dropdown-divider></mz-dropdown-divider>
+      <mz-dropdown-item><a href="javascript:void(0)">Three</a></mz-dropdown-item>
+    </mz-dropdown>
+
+    <button mz-button (click)="dropdown.close()">Close</button>
+
+    <button mz-button (click)="dropdown.open()">Open</button>
+  </div>
+
+  <p class="col s12 m6 l6">
+    Open and close a dropdown programatically.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-dropdown
+  [id]="'dropdown-demo'"
+  [align]="'left'"
+  [belowOrigin]="false"
+  [constrainWidth]="true"
+  [dropdownButtonId]="'btn-dropdown-demo'"
+  [gutter]="true"
+  [hover]="true"
+  [inDuration]="300"
+  [outDuration]="300"
+  [stopPropagation]="true"
+>
+  &lt;mz-dropdown-item>&lt;a href="#!">One&lt;/a>&lt;/mz-dropdown-item>
+  &lt;mz-dropdown-item>&lt;a href="#!">Two&lt;/a>&lt;/mz-dropdown-item>
+  &lt;mz-dropdown-divider>&lt;/mz-dropdown-divider>
+  &lt;mz-dropdown-item>&lt;a href="#!">Three&lt;/a>&lt;/mz-dropdown-item>
+&lt;/mz-dropdown>
+
+&lt;a mz-button id="btn-dropdown-demo" href="#">Dropdown&lt;/a>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <p>
+      Dropdown can be customized using the following properties on the <code class="language-markup">mz-dropdown</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="properties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h5 class="light">Methods</h5>
+
+    <div class="section">
+
+      <h6 class="bold">open</h6>
+
+      <p>
+        Open the dropdown.
+      </p>
+
+      <app-code-snippet>
+        #dropwdown.open();
+      </app-code-snippet>
+
+      <div class="section">
+        <span class="bold">Returns</span>
+
+        <p>
+          void
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+
+      <h6 class="bold">close</h6>
+
+      <p>
+        Close the dropdown.
+      </p>
+
+      <app-code-snippet>
+        #dropwdown.close();
+      </app-code-snippet>
+
+      <div class="section">
+        <span class="bold">Returns</span>
+
+        <p>
+          void
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<h3>Switch</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzSwitchModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    Ngx-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-switch</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic switch</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-switch-container class="col s12 m4">
+      <input mz-switch
+        [off]="'Off'"
+        [on]="'On'"
+        type="checkbox">
+    </mz-switch-container>
+
+    <p class="col s12 m8">
+      Switch labels can be set using <code class="language-markup">on</code> and <code class="language-markup">off</code> properties but are not mandatory.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled switch</h5>
+
+  <div class="row m-valign-wrapper">
+
+      <mz-switch-container class="col s12 m4">
+          <input mz-switch
+            [off]="'Off'"
+            [on]="'On'"
+            disabled
+            type="checkbox">
+        </mz-switch-container>
+
+    <p class="col s12 m8">
+      Disable the input by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-switch</code> directive makes the form-control completely dynamic. Change the configuration below and see how the input reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m4">
+
+      <mz-switch-container>
+        <input mz-switch
+          [off]="labelOff"
+          [on]="labelOn"
+          [disabled]="switchDisabled"
+          [(ngModel)]="switchValue"
+          type="checkbox">
+      </mz-switch-container>
+    </div>
+
+    <div class="col s12 m4">
+
+      <mz-input-container>
+        <input mz-input
+          id="switch-label-on"
+          [label]="'Label On'"
+          [(ngModel)]="labelOn"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="switch-label-off"
+          [label]="'Label Off'"
+          [(ngModel)]="labelOff"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="switch-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="switchDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Switch value: {{ switchValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The switch element <b>must be</b> contained inside the <code class="language-markup">mz-switch-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-switch-container>
+  &lt;input mz-switch
+    id="switch-id"
+    [off]="'Off'"
+    [on]="'On'"
+    type="checkbox">
+&lt;/mz-switch-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Switches can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-switch</code> directive.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

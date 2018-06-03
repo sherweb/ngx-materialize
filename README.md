@@ -1,34 +1,34 @@
 <div class="readme-github-logo">
   <p align="center">
-    <img src="https://github.com/sherweb/ng2-materialize/raw/master/demo-app/src/assets/ng2-materialize-circle.png">
+    <img src="https://github.com/sherweb/ngx-materialize/raw/master/demo/src/assets/ngx-materialize-circle.png">
   </p>
-  <h1 align="center">ng2-materialize</h1>
+  <h1 align="center">ngx-materialize</h1>
   <div align="center">
-    <a href="https://circleci.com/gh/sherweb/ng2-materialize">
-      <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ng2-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
+    <a href="https://circleci.com/gh/sherweb/ngx-materialize">
+      <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ngx-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
     </a>
-    <a href="https://ci.appveyor.com/project/sherweb/ng2-materialize">
-      <img alt="AppVeyor Status" src="https://ci.appveyor.com/api/projects/status/github/sherweb/ng2-materialize?branch=master&svg=true">
+    <a href="https://ci.appveyor.com/project/sherweb/ngx-materialize">
+      <img alt="AppVeyor Status" src="https://ci.appveyor.com/api/projects/status/github/sherweb/ngx-materialize?branch=master&svg=true">
     </a>
-    <a href="https://www.npmjs.com/package/ng2-materialize">
-      <img alt="NPM Version" src="https://img.shields.io/npm/v/ng2-materialize.svg?style=flat">
+    <a href="https://www.npmjs.com/package/ngx-materialize">
+      <img alt="NPM Version" src="https://img.shields.io/npm/v/ngx-materialize.svg?style=flat">
     </a>
     <a href="https://opensource.org/licenses/Apache-2.0">
-      <img alt="License" src="https://img.shields.io/npm/l/ng2-materialize.svg">
+      <img alt="License" src="https://img.shields.io/npm/l/ngx-materialize.svg">
     </a>
   </div>
 </div>
 
 <div class="readme-summary">
   <p align="center">
-    This library is an <a href="https://angular.io/">Angular 2+</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
+    This library is an <a href="https://angular.io/">Angular</a> wrap around <a href="http://materializecss.com/">Materialize</a> library, a responsive CSS/JS framework that implements Material Design specifications from Google.
   </p>
   <p align="center">
-    Demo and documentation : <a href="https://sherweb.github.io/ng2-materialize/">https://sherweb.github.io/ng2-materialize/</a>
+    Demo and documentation : <a href="https://sherweb.github.io/ngx-materialize/">https://sherweb.github.io/ngx-materialize/</a>
   </p>
 </div>
 
-## Why ng2-materialize?
+## Why ngx-materialize?
 
 The main purpose of this library is to simplify the usage of Materialize within the Angular framework which make it more dynamic. To illustrate this, we have Playground sections in several component demo pages.
 
@@ -54,26 +54,26 @@ In other words, we ...
 
 ## Installation
 
-The following commands will add Ng2-Materialize library to your `package.json` file along with its dependencies: Materialize CSS and jQuery.
+The following commands will add ngx-materialize library to your `package.json` file along with its dependencies: Materialize CSS and jQuery.
 
 ```
-npm install --save ng2-materialize
+npm install --save ngx-materialize
 ```
 
 Don't forget to include Materialize and jQuery in your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
-#### .angular-cli.json
+#### angular.json
 
 ```diff
 "styles": [
-  "styles.scss",
-+ "../node_modules/materialize-css/dist/css/materialize.min.css"
+  "src/styles.scss",
++ "node_modules/materialize-css/dist/css/materialize.min.css"
 ],
 "scripts": [
-+ "../node_modules/jquery/dist/jquery.min.js",
-+ "../node_modules/materialize-css/dist/js/materialize.min.js"
++ "node_modules/jquery/dist/jquery.min.js",
++ "node_modules/materialize-css/dist/js/materialize.min.js"
 ],
 ```
 
@@ -81,27 +81,17 @@ If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can f
 
 ```diff
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "outDir": "../out-tsc/app",
-    "target": "es5",
     "module": "es2015",
-    "baseUrl": "",
     "types": [
 +      "jquery",
 +      "materialize-css"
     ]
   },
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
   ]
 }
@@ -111,26 +101,26 @@ See also [Angular CLI 3rd Party Library Installation](https://github.com/angular
 
 ## Icons
 
-Ng2-materialize offers two "out-of-the-box" options for icons although you are free to use the library of your choice.
+Ngx-materialize offers two "out-of-the-box" options for icons although you are free to use the library of your choice.
 
 ### Material Design Icons
 To use [Material Design Icons](https://materialdesignicons.com/) (community project based on Google Material Icons with lots of added icons), which is used with `mz-icon-mdi` directive, you will need to add the library with the following command:
 
 ```
-npm install --save mdi
+npm install --save @mdi/font
 ```
 
 Don't forget to include Mdi library to your application.
 
 If you are using [Angular-CLI](https://github.com/angular/angular-cli) you can follow the example below :
 
-#### .angular-cli.json
+#### angular.json
 
 ```diff
 "styles": [
-  "styles.scss",
-  "../node_modules/materialize-css/dist/css/materialize.min.css",
-+ "../node_modules/mdi/css/materialdesignicons.min.css"
+  "src/styles.scss",
+  "node_modules/materialize-css/dist/css/materialize.min.css",
++ "node_modules/@mdi/font/css/materialdesignicons.min.css"
 ],
 ```
 
@@ -185,7 +175,7 @@ You must import component module you want to use inside your module to be able t
 ```diff
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-+ import { MzButtonModule, MzInputModule } from 'ng2-materialize';
++ import { MzButtonModule, MzInputModule } from 'ngx-materialize';
 
 import { HomeComponent } from './home.component';
 
@@ -205,10 +195,10 @@ export class HomeModule { }
 We will continue to maintain this module for a period of time to allow you to migrate your existing components to the new way.
 We recommend to use the new component modules when you are building new component/application.
 
-If you still want to import only one module, you can create a separate `NgModule` in your application that imports all the `ng2-materialize` components. You will be able to include this module anywhere you like to use the components.
+If you still want to import only one module, you can create a separate `NgModule` in your application that imports all the `ngx-materialize` components. You will be able to include this module anywhere you like to use the components.
 
 ```
-import { MzInputModule, MzValidationModule } from 'ng2-materialize';
+import { MzInputModule, MzValidationModule } from 'ngx-materialize';
 
 @NgModule({
   imports: [
@@ -264,7 +254,7 @@ export class CustomMaterializeModule { }
 
 ## Demo application
 
-A demo application is available at [https://sherweb.github.io/ng2-materialize/](https://sherweb.github.io/ng2-materialize/), or refer to the `./demo-app` folder and its [README](./demo-app/README.md).
+A demo application is available at [https://sherweb.github.io/ngx-materialize/](https://sherweb.github.io/ngx-materialize/), or refer to the `./demo` folder and its [README](./demo/README.md).
 
 ## Road map
 

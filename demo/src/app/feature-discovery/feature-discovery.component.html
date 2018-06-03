@@ -1,0 +1,84 @@
+<h3>Feature Discovery</h3>
+
+<div class="section">
+  <app-code-snippet>import &#123; MzFeatureDiscoveryModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+
+<div class="section">
+  <h5 class="light">Tap target</h5>
+
+  <p>
+    Feature discovery prompts have more impact when they are presented to the right users at contextually relevant moments. When presented to the wrong user at the wrong time, they can be intrusive and annoying.
+  </p>
+
+  <div>
+    <button mz-button (click)="featureDiscovery.open()">Open tap target</button>
+    <button mz-button (click)="featureDiscovery.close()">Close tap target</button>
+  </div>
+
+  <mz-feature-discovery class="teal white-text" [targetId]="'star-button'" #featureDiscovery>
+    <h5>I am here</h5>
+    <p>Provide value and encourage return visits by introducing users to new features and functionality at contextually relevant moments.</p>
+  </mz-feature-discovery>
+
+  <div class="fixed-action-btn">
+    <button id="star-button" mz-button [float]="true" [large]="true">
+      <i mz-icon-mdi [icon]="'star'"></i>
+    </button>
+  </div>
+</div>
+
+<div id="html-structure" class="section scrollspy">
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    Feature discovery visibility is triggered progammatically using the <code class="language-markup">open</code> and <code class="language-markup">close</code> methods on the <code class="language-markup">mz-feature-discovery</code> component by using a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> as shown on the example below. Specify the element to emphase by providing its id through the <code class="language-markup">targetId</code> property of <code class="language-markup">mz-feature-discovery</code> component.
+  </p>
+
+  <app-code-snippet>
+&lt;!-- open/close buttons -->
+&lt;button mz-button (click)="featureDiscovery.open()">Open tap target&lt;/button>
+&lt;button mz-button (click)="featureDiscovery.close()">Close tap target&lt;/button>
+
+&lt;!-- tap target -->
+&lt;button id="star-button" mz-button [float]="true" [large]="true">
+  &lt;i mz-icon-mdi [icon]="'star'">&lt;/i>
+&lt;/button>
+
+&lt;!-- mz-feature-discovery component -->
+&lt;mz-feature-discovery [targetId]="'star-button'" #featureDiscovery>
+  &lt;h5>I am here&lt;/h5>
+  &lt;p>Provide value and encourage return visits by introducing users to new features and functionality at contextually relevant moments.&lt;/p>
+&lt;/mz-feature-discovery>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Feature discovery can be customized using the following properties on the <code class="language-markup">mz-feature-discovery</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>
+
+<div class="section">
+  <h5 class="light">Methods</h5>
+
+  <p>
+    The <code class="language-markup">mz-feature-discovery</code> component expose methods to programmatically interact with feacture discovery. To use them you need to add a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-feature-discovery</code> element. Refer to the <a href="#html-structure">HTML Structure</a> section above for a concrete example.
+  </p>
+
+  <div class="section">
+    <h6 class="bold">open(): void</h6>
+    <p>Opens feature discovery</p>
+  </div>
+
+  <div class="section">
+    <h6 class="bold">close(): void</h6>
+    <p>Closes feature discovery</p>
+  </div>
+</div>

@@ -3,31 +3,19 @@
 # compiled output
 /dist
 /documentation
-/package
 /tmp
 /out-tsc
-/out
-/package
-
-# transpiled output
-/inline-template
-/src/inline-template
-*.ngsummary.json
-*.ngfactory.ts
-*.ngstyle.ts
 
 # dependencies
-/node_modules
-/src/node_modules
+**/node_modules
 
 # IDEs and editors
 /.idea
-*.iml
 .project
 .classpath
 .c9/
-.settings/
 *.launch
+.settings/
 *.sublime-workspace
 
 # IDE - VSCode
@@ -42,20 +30,15 @@
 /connect.lock
 /coverage
 /libpeerconnection.log
+/package
 /typings
-npm-debug.log
 package-lock.json
 test-results.xml
-testem.log
 tslint.xml
 *.log
 *.tar
 *.tgz
 
-# e2e
-/e2e/*.js
-/e2e/*.map
-
-#System Files
+# System Files
 .DS_Store
 Thumbs.db

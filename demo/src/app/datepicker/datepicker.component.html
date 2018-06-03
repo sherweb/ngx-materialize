@@ -1,0 +1,324 @@
+<h3>Datepicker</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzDatepickerModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    Ngx-Materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-datepicker</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic datepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        [label]="'Label'"
+        id="basic-datepicker"
+        placeholder="Placeholder"
+        type="text" />
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      Label and placeholder can be combined using both <code class="language-markup">label</code> and <code class="language-markup">placeholder</code> properties.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        [label]="'Label as placeholder'"
+        [ngModel]
+        id="basic-datepicker-label"
+        type="text" />
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      To use the floating label directly as a placeholder provide only the <code class="language-markup">label</code> property.
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        id="basic-datepicker-placeholder"
+        placeholder="Placeholder"
+        type="text" />
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      You can omit the floating label and use only a placeholder by providing only the <code class="language-markup">placeholder</code> property.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Inline datepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m6">
+
+      Datepicker can be inline:
+
+      <mz-datepicker-container [inline]="true">
+        <input mz-datepicker
+          [label]="'Date'"
+          [ngModel]
+          id="inline-datepicker"
+          type="text">
+      </mz-datepicker-container>
+    </div>
+
+    <p class="col s12 m6">
+      To show the input inline set <code class="language-markup">inline</code> property to <code class="language-markup">true</code> on <code class="language-markup">mz-datepicker-container</code> component.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled datepicker</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        [label]="'Disabled'"
+        id="disabled-datepicker"
+        type="text"
+        disabled>
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      Disable the datepicker input by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Icon Prefixes</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <i mz-icon-mdi mz-input-prefix
+        [icon]="'calendar'">
+      </i>
+      <input mz-datepicker
+        [label]="'Date'"
+        [ngModel]
+        id="prefix-datepicker"
+        type="tel" />
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      To use an icon prefix add the icon inside the <code class="language-markup">mz-datepicker-container</code> component with the <code class="language-markup">mz-input-prefix</code> directive on the icon tag.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Datepicker options</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        [label]="'Date'"
+        [ngModel]
+        [options]="options"
+        id="options-datepicker"
+        type="tel" />
+    </mz-datepicker-container>
+
+    <p class="col s12 m6">
+      To customize the behavior of a datepicker you can use the <code class="language-markup">options</code> input property and provide a <code class="language-markup">Pickadate.Options</code> object with the <code class="language-markup">mz-datepicker</code> directive.
+    </p>
+  </div>
+
+  <blockquote>
+    Materialize uses <code class="language-markup">pickadate.js</code> library to create the materialized date picker. You can find a complete list of available options with how to use it by following this link: <a href="http://amsul.ca/pickadate.js/date/#options" target="_blank">http://amsul.ca/pickadate.js/date/#options</a>.
+  </blockquote>
+
+  <app-code-snippet [language]="'typescript'">
+public datepickerOptions: Pickadate.DateOptions = &#123;
+  clear: 'Clear', // Clear button text
+  close: 'Ok',    // Ok button text
+  today: 'Today', // Today button text
+  closeOnClear: true,
+  closeOnSelect: false,
+  format: 'dddd, dd mmm, yyyy', // Visible date format (defaulted to formatSubmit if provided otherwise 'd mmmm, yyyy')
+  formatSubmit: 'yyyy-mm-dd',   // Return value format (used to set/get value)
+  onClose: () => alert('Close has been invoked.'),
+  onOpen: () => alert('Open has been invoked.'),
+  selectMonths: true, // Creates a dropdown to control month
+  selectYears: 10,    // Creates a dropdown of 10 years to control year,
+};
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Working with NgControl</h5>
+
+  <div class="section">
+
+    <h6 class="bold">Set datepicker value</h6>
+
+    <p>
+      To assign a value to the datepicker, you will need to use same format specified in the <code class="language-markup">formatSubmit</code> property of the <code class="language-markup">options</code> input binding. If no <code class="language-markup">formatSubmit</code> is provided it will need to use the <code class="language-markup">format</code> option property or its default value.
+    </p>
+
+    <p class="bold">example.component.html</p>
+
+    <app-code-snippet>
+&lt;mz-datepicker-container class="col s12">
+  &lt;input mz-datepicker
+    [label]="'Date of birth'"
+    [options]="options"
+    [(ngModel)]="dateOfBirth"
+    id="datepicker"
+    placeholder="Select your birth date"
+    type="text">
+&lt;/mz-datepicker-container>
+    </app-code-snippet>
+
+    <p class="bold">example.component.ts</p>
+
+    <app-code-snippet language="typescript">
+public options: Pickadate.DateOptions = &#123;
+  format: 'dddd, dd mmm, yyyy',
+  formatSubmit: 'yyyy-mm-dd',
+};
+
+public dateOfBirth = '2017-08-12'; // use formatSubmit format to set datepicker value
+    </app-code-snippet>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">Get datepicker value</h6>
+
+    <p>
+      The returned value of the selected date will be formatted as specified with the <code class="language-markup">formatSubmit</code> property of the <code class="language-markup">options</code> input binding. If no <code class="language-markup">formatSubmit</code> is provided it will use the <code class="language-markup">format</code> option property or its default value.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-datepicker</code> directive makes the form-control completely dynamic. Change the configuration below and see how the datepicker reacts.
+  </p>
+
+  <div class="row">
+
+    <mz-datepicker-container class="col s12 m6">
+      <input mz-datepicker
+        id="datepicker"
+        [label]="datepickerLabel"
+        [placeholder]="datepickerPlaceholder"
+        [disabled]="datepickerDisabled"
+        [options]="datepickerOptions"
+        [(ngModel)]="datepickerValue"
+        type="text" />
+    </mz-datepicker-container>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="datepicker-label"
+          [label]="'Label'"
+          [(ngModel)]="datepickerLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="datepicker-placeholder"
+          [label]="'Placeholder'"
+          [(ngModel)]="datepickerPlaceholder"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="datepicker-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="datepickerDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Datepicker value: {{ datepickerValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The input element <b>must be</b> contained inside the <code class="language-markup">mz-datepicker-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-datepicker-container class="col s12">
+  &lt;i mz-icon-mdi mz-input-prefix
+    [icon]="'calendar'">
+  &lt;/i>
+  &lt;input mz-datepicker
+    [label]="'Date of birth'"
+    [options]="options"
+    id="datepicker"
+    placeholder="Select your birth date"
+    type="text">
+&lt;/mz-datepicker-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-datepicker-container</h6>
+
+    <p>
+      The <code class="language-markup">mz-datepicker-container</code> component can be customized using the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="datepickerContainerProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-datepicker</h6>
+
+    <p>
+      Datepickers can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-datepicker</code> directive.
+    </p>
+
+    <app-properties-table
+      [properties]="datepickerProperties">
+    </app-properties-table>
+  </div>
+</div>

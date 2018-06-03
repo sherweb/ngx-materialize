@@ -14,28 +14,26 @@ platform:
 install:
   - ps: Install-Product node $env:nodejs_version
   - yarn install --frozen-lockfile --no-progress
-  - yarn build
-  - npm pack
-  - 7z x ng2-materialize-*.tgz && 7z x ng2-materialize-*.tar
+  - yarn build:lib --prod
+  - npm pack ./dist/lib
+  - 7z x ngx-materialize-*.tgz && 7z x ngx-materialize-*.tar
   - cd package && yarn link && cd ..
-  - cd demo-app
   - yarn install --frozen-lockfile --no-progress
-  - yarn link ng2-materialize
+  - yarn link ngx-materialize
 
 test_script:
   - node --version
   - npm --version
   - yarn --version
-  - yarn lint
-  - yarn build:prod --no-progress
+  - yarn lint:demo
+  - yarn build:demo --prod --no-progress
 
 after_test:
-  - yarn unlink ng2-materialize
-  - cd.. && cd package && yarn unlink
+  - yarn unlink ngx-materialize
+  - cd package && yarn unlink && cd ..
 
 build: off
 
 cache:
   - node_modules -> yarn.lock
-  - demo-app/node_modules -> demo-app/yarn.lock
   - "%LOCALAPPDATA%/Yarn"

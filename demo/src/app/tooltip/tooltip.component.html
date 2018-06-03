@@ -1,0 +1,160 @@
+<h3>Tooltip</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzTooltipModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+
+  <h5 class="light">Basic tooltip</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m5">
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'">Tooltip</button>
+    </div>
+
+    <p class="col s12 m7">
+      By default tooltips will be positioned <code class="language-markup">bottom</code> when rolling over the element
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Positioned tooltip</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m5">
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'" [position]="'bottom'">Bottom</button>
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'" [position]="'top'">Top</button>
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'" [position]="'left'">Left</button>
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'" [position]="'right'">Right</button>
+    </div>
+
+    <p class="col s12 m7">
+      You can control the position of the tooltip by providing the <code class="language-markup">position</code> property with either <code class="langauge-markup">bottom</code>, <code class="langauge-markup">top</code>, <code class="langauge-markup">left</code> or <code class="langauge-markup">right</code> value
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Delayed tooltip</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m5">
+      <button mz-button mz-tooltip [tooltip]="'I am a tooltip'" [delay]="1000">Tooltip</button>
+    </div>
+
+    <p class="col s12 m7">
+      The <code class="markup-language">delay</code> input property will allow you to set the delay in millisecond before the tooltips appears (1000ms in this example)
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML enabled tooltip</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m5">
+      <button mz-button mz-tooltip [tooltip]="'I am a custom <b class=\'red-text\'>HTML</b> tooltip'" [html]="true">Tooltip</button>
+    </div>
+
+    <p class="col s12 m7">
+      You can write custom HTML inside the <code class="language-markup">tooltip</code> property by setting <code class="markup-language">html</code> input property to <code class="language-markup">true</code>
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-tooltip</code> directive makes the tooltip completely dynamic. Change the configuration below and see how the tooltip reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m5">
+      <button mz-button mz-tooltip [tooltip]="tooltip" [position]="position" [delay]="delay" [html]="html">Tooltip</button>
+    </div>
+
+    <div class="col s12 m7">
+      <mz-input-container>
+        <input mz-input
+          id="tooltip-text"
+          [label]="'Tooltip'"
+          [(ngModel)]="tooltip"
+          type="text">
+      </mz-input-container>
+
+      <mz-select-container>
+        <select mz-select
+          id="tooltip-position"
+          [label]="'Position'"
+          [placeholder]="'Position'"
+          [(ngModel)]="position"
+        >
+          <option>bottom</option>
+          <option>top</option>
+          <option>left</option>
+          <option>right</option>
+        </select>
+      </mz-select-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="tooltip-delay"
+          [label]="'Delay'"
+          [(ngModel)]="delay"
+          [validate]="true"
+          type="number">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="tooltip-html"
+          [label]="'Allow custom HTML'"
+          [filledIn]="true"
+          [(ngModel)]="html"
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The <code class="language-markup">mz-tooltip</code> directive can be placed on any HTML element.
+  </p>
+
+  <app-code-snippet>
+&lt;button mz-button mz-tooltip
+  [tooltip]="'I am a custom &lt;b class=\'red-text\'>HTML&lt;/b> tooltip'"
+  [position]="'top'"
+  [html]="true"
+  [delay]="1000">
+  Tooltip
+&lt;/button>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Tooltips can be customized using the following properties on any HTML element when adding <code class="language-markup">mz-tooltip</code> directive.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

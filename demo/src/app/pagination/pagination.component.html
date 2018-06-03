@@ -1,0 +1,179 @@
+<h3>Pagition</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzPaginationModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <h5 class="light">Basic pagination</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      By setting <code class="language-markup">itemsPerPage</code> and <code class="language-markup">totalItems</code> input property on <code class="language-markup">mz-pagination</code> component, the number of available pages will automatically be calculated.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Active page</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [currentPage]="5"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      Use <code class="language-markup">currentPage</code> input property to select a specific page when rendering.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Displayed pages</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [itemsPerPage]="10"
+      [maxPageButtons]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      Optionally, you can change the number of displayed pages by using <code class="language-markup">maxPageButton</code> proprety. When no value is provided the number of displayed pages is defaulted to 5.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">First and last page button</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      [enableFirstAndLastPageButtons]="true"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      You can show first page and last page buttons by setting <code class="language-markup">enableFirstAndLastPageButtons</code> input property to <code class="language-markup">true</code>.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Listen to page change</h5>
+
+  <div class="row m-valign-wrapper">
+    <mz-pagination class="col s12 m6"
+      (pageChange)="pageChange($event)"
+      [itemsPerPage]="10"
+      [totalItems]="100"
+    >
+    </mz-pagination>
+
+    <p class="col s12 m6">
+      You can use the ouput property <code class="language-markup">changePage</code> to call a function when page changed.
+    </p>
+</div>
+
+<div class="section">
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-pagination</code> directive makes the form-control completely dynamic. Change the configuration below and see how the checkbox reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+      <mz-pagination
+        [currentPage]="paginationCurrentPage"
+        [enableFirstAndLastPageButtons]="paginationEnableFirstAndLastPageButtons"
+        [itemsPerPage]="paginationItemPerPage"
+        [maxPageButtons]="paginationMaxPageButtons"
+        [totalItems]="paginationTotalItems"
+        (pageChange)="playgroundPageChange($event)"
+      >
+      </mz-pagination>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-select-container>
+        <select mz-select
+          id="pagination-current-page"
+          [label]="'Current page'"
+          [(ngModel)]="paginationCurrentPage"
+        >
+          <option *ngFor="let pageOption of pageOptions" [ngValue]="pageOption">{{ pageOption }}</option>
+        </select>
+      </mz-select-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="pagination-item-per-page"
+          [label]="'Item per page'"
+          [(ngModel)]="paginationItemPerPage"
+          type="number">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="pagination-max-page-buttons"
+          [label]="'Max page button'"
+          [(ngModel)]="paginationMaxPageButtons"
+          type="number">
+      </mz-input-container>
+
+      <mz-input-container>
+        <input mz-input
+          id="pagination-total-items"
+          [label]="'Total items'"
+          [(ngModel)]="paginationTotalItems"
+          type="number">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox-enable-first-last-page-buttons"
+          [label]="'Enabled first and last page buttons'"
+          [filledIn]="true"
+          [(ngModel)]="paginationEnableFirstAndLastPageButtons"
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+    <app-code-snippet>
+&lt;mz-pagination
+  (pageChange)="onPageChange($event)"
+  [currentPage]="1"
+  [enableFirstAndLastPageButtons]="false"
+  [itemsPerPage]="10"
+  [totalItems]="100"
+>
+&lt;/mz-pagination>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Pagination can be customized using the following properties on the <code class="language-markup">mz-pagination</code> element.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

@@ -1,0 +1,211 @@
+<h3>Checkbox</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzCheckboxModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+
+  <p>
+    Ngx-materialize leverage the use of the native HTML input by using the <code class="language-markup">mz-checkbox</code> directive directly on the input element tag to ease the fact that you might use third party library that would ask you to add properties directly on that native input element.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Basic checkbox</h5>
+
+  <div class="row">
+
+    <div class="col s12 m5 l3">
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Unchecked'"
+          id="basic-checbox"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Checked'"
+          id="checked-checbox"
+          checked
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Indeterminate'"
+          id="indeterminate-checkbox"
+          checked
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+
+    <p class="col s12 m7 l9">
+      Checkboxes use outline styling by default. Use <code class="language-markup">label</code> property to provide a clickable label to the checkbox.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Filled checkbox</h5>
+
+  <div class="row">
+
+    <div class="col s12 m5 l3">
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Filled in unchecked'"
+          [filledIn]="true"
+          id="filledin-checbox"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Filled in checked'"
+          [filledIn]="true"
+          id="filledin-checked-checbox"
+          checked
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+
+    <p class="col s12 m7 l9">
+      To use the filled styling on the checkbox set <code class="language-markup">filledIn</code> property to <code class="language-markup">true</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Disabled checkbox</h5>
+
+  <div class="row">
+
+    <div class="col s12 m5 l3">
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Disabled unchecked'"
+          id="disabled-checbox"
+          disabled="disabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Disabled checked'"
+          id="disabled-checbox"
+          disabled="disabled"
+          checked="checked"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          [label]="'Filled in disabled checked'"
+          [filledIn]="true"
+          id="disabled-filledin--checbox"
+          disabled="disabled"
+          checked="checked"
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+
+    <p class="col s12 m7 l9">
+      Disable the checkbox by using the native property <code class="language-markup">disabled</code>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Playground</h5>
+
+  <p>
+    The input properties of the <code class="language-markup">mz-checkbox</code> directive makes the form-control completely dynamic. Change the configuration below and see how the checkbox reacts.
+  </p>
+
+  <div class="row">
+
+    <div class="col s12 m6">
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox"
+          [label]="checkboxLabel"
+          [filledIn]="checkboxFilledIn"
+          [disabled]="checkboxDisabled"
+          [(ngModel)]="checkboxValue"
+          type="checkbox">
+      </mz-checkbox-container>
+    </div>
+
+    <div class="col s12 m6">
+
+      <mz-input-container>
+        <input mz-input
+          id="checkbox-label"
+          [label]="'Label'"
+          [(ngModel)]="checkboxLabel"
+          type="text">
+      </mz-input-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox-filledIn"
+          [label]="'Filled In'"
+          [filledIn]="true"
+          [(ngModel)]="checkboxFilledIn"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <mz-checkbox-container>
+        <input mz-checkbox
+          id="checkbox-disabled"
+          [label]="'Disabled'"
+          [filledIn]="true"
+          [(ngModel)]="checkboxDisabled"
+          type="checkbox">
+      </mz-checkbox-container>
+
+      <p>
+        Checkbox value: {{ checkboxValue }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    The input element <b>must be</b> contained inside the <code class="language-markup">mz-checkbox-container</code> component otherwise an error will be shown in the console.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-checkbox-container>
+  &lt;input mz-checkbox
+    [label]="'Label'"
+    id="checkbox-id"
+    type="checkbox">
+&lt;/mz-checkbox-container>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Checkboxes can be customized using the following properties on the <code class="language-markup">input</code> element when adding <code class="language-markup">mz-checkbox</code> directive.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>

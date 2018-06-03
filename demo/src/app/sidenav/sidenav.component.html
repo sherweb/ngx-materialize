@@ -1,0 +1,278 @@
+<h3>Sidenav</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzSidenavModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+
+  <h5 class="light">Fixed navigation</h5>
+
+  <p>
+    The side navigation on the left of this demo application is an example of implementation of the <code class="language-markup">mz-sidenav</code> component with <code class="language-markup">fixed</code> property set to <code class="language-markup">true</code>. On small resolution the side navigation will be automatically hidden so you need to add a collapse button to allow the sidenav to be toggled.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Hidden navigation</h5>
+
+  <p>
+    The side navigation will be hidden on all screen resolution if <code class="language-markup">fixed</code> property is either omitted or false on the <code class="language-markup">mz-sidenav</code> component. To be able to toggle the side navigation visibility add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> trought the <code class="language-markup">collapseButtonId</code> property of the <code class="language-markup">mz-sidenav</code> component.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Collapse Button</h5>
+
+  <p>
+    To toggle the side navigation add a <code class="language-markup">mz-button</code> component and supply the button <code class="language-markup">id</code> to the <code class="language-markup">mz-sidenav</code> component trought the <code class="language-markup">collapseButtonId</code> property. To avoid the collapse button to be visible at the same time as a fixed side navigation on large resolution, add the class <code class="language-markup">hide-on-large-only</code> to the <code class="language-markup">mz-button</code> element.
+  </p>
+
+  <button mz-button id="btn-sidenav-demo">Open</button>
+
+  <mz-sidenav #sidenav
+    [id]="'sidenav-demo'"
+    [collapseButtonId]="'btn-sidenav-demo'"
+    [edge]="'right'">
+
+    <mz-sidenav-header>
+      <div class="user-view">
+        <img class="circle avatar" src="assets/sidenav-demo-avatar.png">
+        <div class="white-text name">King Nobody</div>
+        <div class="white-text email">king.nobody@gmail.com</div>
+      </div>
+    </mz-sidenav-header>
+
+    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+
+    <mz-sidenav-link>
+      <a>First Link</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link [active]="true">
+      <a>Active Link</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link>
+      <a class="waves-effect">Second Link With Waves</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-divider></mz-sidenav-divider>
+
+    <mz-sidenav-link>
+      <a><i mz-icon-mdi [icon]="'cloud'"></i>Third Link With Icon</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link>
+      <a mz-icon-mdi [icon]="'earth'">Fourth Link With Icon</a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-divider></mz-sidenav-divider>
+
+    <mz-sidenav-subheader>Collapsible Subheader</mz-sidenav-subheader>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        Collapsible
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        <i mz-icon-mdi [icon]="'menu-right'" class="caret"></i>Collapsible With Carret
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect">Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+
+    <mz-sidenav-collapsible>
+
+      <mz-sidenav-collapsible-header>
+        <i mz-icon-mdi [icon]="'diamond'"></i>Collapsible With Icon
+      </mz-sidenav-collapsible-header>
+
+      <mz-sidenav-collapsible-content>
+
+        <mz-sidenav-link>
+          <a class="waves-effect"><i mz-icon-mdi [icon]="'palette'"></i>First Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect"><i mz-icon-mdi [icon]="'flash'"></i>Second Link</a>
+        </mz-sidenav-link>
+
+        <mz-sidenav-link>
+          <a class="waves-effect"><i mz-icon-mdi [icon]="'gamepad'"></i>Third Link</a>
+        </mz-sidenav-link>
+      </mz-sidenav-collapsible-content>
+    </mz-sidenav-collapsible>
+  </mz-sidenav>
+</div>
+
+<div class="section">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;mz-sidenav
+  [id]="'sidenav-demo'"
+  [collapseButtonId]="'btn-sidenav-demo'">
+  &lt;mz-sidenav-header>
+    Sidenav header
+  &lt;/mz-sidenav-header>
+  &lt;mz-sidenav-subheader>Link Subheader&lt;/mz-sidenav-subheader>
+  &lt;mz-sidenav-link>
+    &lt;a href="#">First Link&lt;/a>
+  &lt;/mz-sidenav-link>
+  &lt;mz-sidenav-divider>&lt;/mz-sidenav-divider>
+  &lt;mz-sidenav-link [active]="true">
+    &lt;a href="#">Active Link&lt;/a>
+  &lt;/mz-sidenav-link>
+  &lt;mz-sidenav-divider>&lt;/mz-sidenav-divider>
+  &lt;mz-sidenav-link>
+    &lt;a href="#" class="waves-effect">Second Link With Waves&lt;/a>
+  &lt;/mz-sidenav-link>
+&lt;/mz-sidenav>
+</app-code-snippet>
+<app-code-snippet>
+&lt;button mz-button id="btn-sidenav-demo">
+  Open
+&lt;/button>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Dropdown variation</h5>
+
+  <p>
+    You can add collapsible menus to your sidebar by using the <code class="language-markup">mz-sidenav-collapsible</code> component.
+  </p>
+
+  <app-code-snippet>
+&lt;mz-sidenav>
+  &lt;mz-sidenav-collapsible [onClose]="closeFunctionCallback" [onOpen]="openFunctionCallback">
+    &lt;mz-sidenav-collapsible-header>
+       &lt;i mz-icon-mdi [icon]="'menu-right'" class="caret">&lt;/i>Collapsible
+    &lt;/mz-sidenav-collapsible-header>
+    &lt;mz-sidenav-collapsible-content>
+      &lt;mz-sidenav-link>
+        &lt;a href="#" class="waves-effect">First Link&lt;/a>
+      &lt;/mz-sidenav-link>
+      &lt;mz-sidenav-link>
+        &lt;a href="#" class="waves-effect">Second Link&lt;/a>
+      &lt;/mz-sidenav-link>
+    &lt;/mz-sidenav-collapsible-content>
+  &lt;/mz-sidenav-collapsible>
+&lt;/mz-sidenav>
+  </app-code-snippet>
+
+</div>
+
+<div class="section">
+
+  <h5 class="light">Open/close programmatically</h5>
+
+  <p>
+    Although the collapsible button way has been created to facilitate the use of the sidenav for the common <i>"side of the page menu"</i> use-case, you can also access the <code class="language-markup">opened</code> state of the sidenav and change its boolean value from <code class="language-markup">false</code> to <code class="language-markup">true</code> (or the other way around) to open or close it programmatically. To do so you will need to add a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-sidenav</code> and then change the value of the <code class="language-markup">opened</code> boolean property.
+  </p>
+
+  <button mz-button (click)="sidenav.opened = !sidenav.opened">Open</button>
+  <span class="sidenav-opened">sidenav.opened = <b>{{ sidenav.opened }}</b></span>
+</div>
+
+<div class="section">
+  <app-code-snippet>
+&lt;mz-sidenav #sidenav [id]="'sidenav-demo'">
+  ...
+&lt;/mz-sidenav>
+</app-code-snippet>
+<app-code-snippet>
+&lt;button mz-button (click)="sidenav.opened = !sidenav.opened">
+  Open
+&lt;/button>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <h6 class="bold">mz-sidenav</h6>
+
+    <p>
+      Side navigation can be customized using the following properties on the <code class="language-markup">mz-sidenav</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavProperties">
+    </app-properties-table>
+
+    <p>
+      Using <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on <code class="language-markup">mz-sidenav</code> element gives you access to the following properties.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavVariableProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-sidenav-link</h6>
+
+    <p>
+      Links can be customized using the following properties on the <code class="language-markup">mz-sidenav-link</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavLinkProperties">
+    </app-properties-table>
+  </div>
+
+  <div class="section">
+
+    <h6 class="bold">mz-sidenav-collapsible</h6>
+
+    <p>
+      Collapsibles can be customized using the following properties on the <code class="language-markup">mz-sidenav-collapsible</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="sidenavCollapsibleProperties">
+    </app-properties-table>
+  </div>
+</div>

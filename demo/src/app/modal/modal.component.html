@@ -1,0 +1,393 @@
+<h3>Modal</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzModalModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+
+  <h5 class="light">Basic modal</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="basicModal.openModal()">Modal</button>
+
+      <mz-modal #basicModal>
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+    </div>
+
+    <p class="col s12 m9">
+      By default modal actions will scroll with the content of the modal
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Fixed footer modal</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="fixedFooterModal.openModal()">Modal</button>
+
+      <mz-modal #fixedFooterModal [fixedFooter]="true">
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+    </div>
+
+    <p class="col s12 m9">
+      To have the action buttons to be visible all the time when scrolling very long content you can set <code class="language-markup">fixedFooter</code> input property to <code class="language-markup">true</code> on the <code class="language-markup">mz-modal</code> element.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Bottom sheet modal</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="bottomSheetModal.openModal()">Modal</button>
+
+      <mz-modal #bottomSheetModal [fixedFooter]="true" [bottomSheet]="true">
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+    </div>
+
+    <p class="col s12 m9">
+      You can have the modal displayed at the bottom of the screen by setting <code class="language-markup">bottomSheet</code> input property to <code class="language-markup">true</code> on the <code class="language-markup">mz-modal</code> element.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Fullscreen modal</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="fullscreenModal.openModal()">Fixed footer modal</button>
+
+      <mz-modal #fullscreenModal [fixedFooter]="true" [fullscreen]="true">
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+
+      <button mz-button (click)="bottomSheetFullscreenModal.openModal()">Bottom sheet modal</button>
+
+      <mz-modal #bottomSheetFullscreenModal [fixedFooter]="true" [bottomSheet]="true" [fullscreen]="true">
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+    </div>
+
+    <p class="col s12 m9">
+      You can set the modal to open in fullscreen by setting the <code class="language-markup">fullscreen</code> input property to <code class="language-markup">true</code> on the <code class="language-markup">mz-modal</code> element. When used with basic or fixed footer modals the aspect of modal will be kept with a padding around the modal while when applied on bottom sheet modals it won't keep any padding and behave like a page transition. Note that you can make it fullscreen only on specific screen resolution by using <a [routerLink]="'/media'">MzMediaService</a>.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Modal Options</h5>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="optionsModal.openModal()">Modal</button>
+
+      <mz-modal #optionsModal [fixedFooter]="true" [options]="modalOptions">
+        <mz-modal-header>
+          <h4>Modal Title</h4>
+        </mz-modal-header>
+        <mz-modal-content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+          <br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </mz-modal-content>
+        <mz-modal-footer>
+          <button mz-button [flat]="true" mz-modal-close>Disagree</button>
+          <button mz-button [flat]="true" mz-modal-close>Agree</button>
+        </mz-modal-footer>
+      </mz-modal>
+    </div>
+
+    <p class="col s12 m9">
+      To customize the behavior of each modal you can use the <code class="language-markup">options</code> input property and provide a <code class="language-markup">Materialize.ModalOptions</code> object on the <code class="language-markup">mz-modal</code> element.
+    </p>
+  </div>
+
+  <app-code-snippet [language]="'typescript'">
+public modalOptions: Materialize.ModalOptions = &#123;
+  dismissible: false, // Modal can be dismissed by clicking outside of the modal
+  opacity: .5, // Opacity of modal background
+  inDuration: 300, // Transition in duration
+  outDuration: 200, // Transition out duration
+  startingTop: '100%', // Starting top style attribute
+  endingTop: '10%', // Ending top style attribute
+  ready: (modal, trigger) => &#123; // Callback for Modal open. Modal and trigger parameters available.
+    alert('Ready');
+    console.log(modal, trigger);
+  },
+  complete: () => &#123; alert('Closed'); } // Callback for Modal close
+};
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Modal Close Directive</h5>
+
+  <p>
+    To make an action button or anchor to close the modal, just add the <code class="language-markup">mz-modal-close</code> directive to your button or anchor.
+  </p>
+</div>
+
+<div id="html-structure" class="section scrollspy">
+
+  <h5 class="light">HTML Structure</h5>
+
+  <p>
+    Modals are triggered progammatically using the method <code class="language-markup">openModal</code> on the component <code class="language-markup">mz-modal</code> by using a template reference variable as shown on the example below.
+  </p>
+
+  <app-code-snippet>
+&lt;button mz-button (click)="bottomSheetModal.openModal()">Modal&lt;/button>
+
+&lt;mz-modal #bottomSheetModal [fixedFooter]="true" [bottomSheet]="true" [options]="modalOptions">
+  &lt;mz-modal-header>
+    &lt;h4>Modal Title&lt;/h4>
+  &lt;/mz-modal-header>
+  &lt;mz-modal-content>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  &lt;/mz-modal-content>
+  &lt;mz-modal-footer>
+    &lt;button mz-button [flat]="true" mz-modal-close>Disagree&lt;/button>
+    &lt;button mz-button [flat]="true" mz-modal-close>Agree&lt;/button>
+  &lt;/mz-modal-footer>
+&lt;/mz-modal>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <div class="section">
+
+    <p>
+      Modals can be customized using the following properties on the <code class="language-markup">mz-modal</code> element.
+    </p>
+
+    <app-properties-table
+      [properties]="properties">
+    </app-properties-table>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Methods</h5>
+
+  <p>
+    The <code class="language-markup">mz-modal</code> component expose methods to programmatically interact with the modal. To use them you need to add a <a href="https://angular.io/guide/template-syntax#ref-vars" target="_blank">template reference variable</a> on the <code class="language-markup">mz-modal</code> element. Refer to the <a href="#html-structure">HTML Structure</a> section above for a concrete example.
+  </p>
+
+  <div class="section">
+    <h6 class="bold">openModal(): void</h6>
+    <p>Opens the modal</p>
+  </div>
+
+  <div class="section">
+    <h6 class="bold">closeModal(): void</h6>
+    <p>Closes the modal</p>
+  </div>
+</div>
+
+<div class="section">
+
+  <h5 class="light">MzModalService</h5>
+
+  <p>
+    Alternatively, the service <code class="language-markup">MzModalService</code> allow you to trigger modals programmatically without having to add the modal directly to the DOM of your page. When closing the modal the service will automatically take care of removing it from the DOM. To do so you will need to create a component that extends <code class="language-markup">MzBaseModal</code> and pass it to the <code class="language-markup">open</code> method of the service. Aslo, as the component will be created dynamically, don't forget to add the component to load as an <code class="langauge-markup">entryComponents</code> in your module to allow template compiler to include it in the compilation.
+  </p>
+
+  <div class="row m-valign-wrapper">
+
+    <div class="col s12 m3">
+      <button mz-button (click)="openServiceModal()">Modal Service</button>
+    </div>
+
+    <p class="col s12 m9">
+      Inspect the DOM to see that <code class="language-markup">app-modal-example</code> component is added inside the <code class="language-markup">body</code> element when modal is opened and then removed when closed.
+    </p>
+  </div>
+
+  <p class="bold">example.component.html</p>
+
+  <app-code-snippet>
+&lt;button mz-button (click)="openServiceModal()">Modal Service&lt;/button>
+  </app-code-snippet>
+
+  <p class="bold">example.component.ts</p>
+
+  <app-code-snippet [language]="'typescript'">
+import &#123; Component } from '@angular/core';
+import &#123; MzModalService } from 'ngx-materialize';
+import &#123; ModalExampleComponent } from './modal-example/modal-example.component';
+
+@Component(&#123; ... })
+export class ExampleComponent &#123;
+
+  constructor(private modalService: MzModalService) &#123; }
+
+  public openServiceModal() &#123;
+    this.modalService.open(ModalExampleComponent);
+  }
+}
+  </app-code-snippet>
+
+  <p class="bold">modal-example.component.html</p>
+
+  <app-code-snippet>
+&lt;mz-modal [fixedFooter]="true">
+  &lt;mz-modal-header>
+    &lt;h4>Modal Title&lt;/h4>
+  &lt;/mz-modal-header>
+  &lt;mz-modal-content>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  &lt;/mz-modal-content>
+  &lt;mz-modal-footer>
+    &lt;button mz-button [flat]="true" mz-modal-close>Disagree&lt;/button>
+    &lt;button mz-button [flat]="true" mz-modal-close>Agree&lt;/button>
+  &lt;/mz-modal-footer>
+&lt;/mz-modal>
+  </app-code-snippet>
+
+  <p class="bold">modal-example.component.ts</p>
+
+  <app-code-snippet [language]="'typescript'">
+import &#123; Component } from '@angular/core';
+import &#123; MzBaseModal, MzModalComponent } from 'ngx-materialize';
+
+@Component(&#123; ... })
+export class ModalExampleComponent extends MzBaseModal &#123;
+}
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Methods</h5>
+
+  <div class="section">
+    <h6 class="bold">open(componentClass: Type&lt;MzBaseModal>, options: any = &#123;}): ComponentRef&lt;MzBaseModal></h6>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>componentClass</td>
+          <td>T extends <code class="language-markup">MzBaseModal</code></td>
+          <td>The component to show as modal</td>
+        </tr>
+        <tr>
+          <td>options</td>
+          <td>any</td>
+          <td>The input binding values of the component</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="striped responsive-table">
+      <thead>
+        <th>Returns</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ComponentRef&lt;MzBaseModal></td>
+          <td>A component reference to the component to show as modal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

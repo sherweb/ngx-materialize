@@ -1,0 +1,159 @@
+<h3>Icon</h3>
+<div class="section">
+  <app-code-snippet>import &#123; MzIconModule, MzIconMdiModule &#125; from 'ngx-materialize'</app-code-snippet>
+</div>
+<div class="section">
+  <p>
+    The <code class="language-markup">mz-icon</code> directive support <a href="https://material.io/icons/" target="_blank">Material Icons</a> and the <code class="language-markup">mz-icon-mdi</code> directive <a href="https://materialdesignicons.com/" target="_blank">Material Design Icons</a>. Its use is not mandatory, but it provides an easy icons integration.
+  </p>
+
+  <p>
+    You may use one, both, or neither of these implementation of icons. Although we suggest you to use Material Design Icons due to the fact that not only it provides access to all the Google icons but it has a lot of community added icons that might be usefull.
+  </p>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Material Icons</h5>
+  <h6><a href="https://material.io/icons/" target="_blank">https://material.io/icons/</a></h6>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon
+      class="col s12 m2"
+      [icon]="'cloud'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">cloud</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon
+      class="col s12 m2"
+      [icon]="'cloud'"
+      [size]="'medium'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">size</code> property as <code class="language-markup">medium</code>
+    </p>
+  </div>
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;i mz-icon
+  [align]="'right'"
+  [icon]="'cloud'"
+  [size]="'medium'">
+&lt;/i>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Material Design Icons</h5>
+  <h6><a href="https://materialdesignicons.com/" target="_blank">https://materialdesignicons.com/</a></h6>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon-mdi
+      class="col s12 m2"
+      [icon]="'sword'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon-mdi
+      class="col s12 m2 red-text"
+      [icon]="'puzzle'">
+    </i>
+
+    <p class="col s12 m10">
+    <code class="language-markup">class</code> property as <code class="language-markup">red-text</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <i mz-icon-mdi
+      class="col s12 m2"
+      [icon]="'puzzle'"
+      [size]="'36px'">
+    </i>
+
+    <p class="col s12 m10">
+      <code class="language-markup">size</code> property as <code class="language-markup">36px</code>
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <span class="col s12 m2">
+      <i mz-icon-mdi
+        [align]="'left'"
+        [flip]="'h'"
+        [icon]="'sword'">
+      </i>
+    </span>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code> and <code class="language-markup">flip</code> to <code class="language-markup">h</code> (horizontal)
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <span class="col s12 m2">
+      <i mz-icon-mdi
+        [align]="'left'"
+        [icon]="'sword'"
+        [rotate]="'180'">
+      </i>
+    </span>
+
+    <p class="col s12 m10">
+      <code class="language-markup">icon</code> property as <code class="language-markup">sword</code> and <code class="language-markup">rotate</code> to 180 degree
+    </p>
+  </div>
+
+  <div class="row m-valign-wrapper">
+    <a mz-icon-mdi
+      class="col s12 m2"
+      [icon]="'puzzle'"
+      [size]="'18px'"
+      href="javascript:void(0)">
+      Link
+    </a>
+
+    <p class="col s12 m10">
+      <code class="language-markup">mz-icon-mdi</code> directive added to <code class="language-markup">a</code> tag
+    </p>
+  </div>
+
+  <h5 class="light">HTML Structure</h5>
+
+  <app-code-snippet>
+&lt;i mz-icon-mdi
+  [align]="'right'"
+  [flip]="'v'"
+  [icon]="'puzzle'"
+  [rotate]="'45'"
+  [size]="'36px'">
+&lt;/i>
+  </app-code-snippet>
+</div>
+
+<div class="section">
+
+  <h5 class="light">Properties</h5>
+
+  <p>
+    Icons can be customized using the following properties on the <code class="language-markup">i</code> element when using the directive <code class="language-markup">mz-icon</code> or <code class="language-markup">mz-icon-mdi</code>.
+  </p>
+
+  <app-properties-table
+    [properties]="properties">
+  </app-properties-table>
+</div>
