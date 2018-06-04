@@ -43,7 +43,7 @@ export class MzIconDirective extends HandlePropChanges implements AfterViewInit 
       this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
     }
     if (this.align) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
+      this.renderer.setElementClass(this.elementRef.nativeElement, this.align, true);
     }
   }
 
@@ -56,7 +56,7 @@ export class MzIconDirective extends HandlePropChanges implements AfterViewInit 
       this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
     }
     if (this.size) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this.size, !!this.size);
+      this.renderer.setElementClass(this.elementRef.nativeElement, this.size, true);
     }
   }
 }

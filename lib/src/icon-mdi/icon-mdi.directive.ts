@@ -47,7 +47,7 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
       this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
     }
     if (this.align) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
+      this.renderer.setElementClass(this.elementRef.nativeElement, this.align, true);
     }
   }
 
