@@ -3,7 +3,7 @@
     <img src="https://github.com/sherweb/ngx-materialize/raw/master/demo/src/assets/ngx-materialize-circle.png">
   </p>
   <h1 align="center">ngx-materialize</h1>
-  <div align="center">
+  <p align="center">
     <a href="https://circleci.com/gh/sherweb/ngx-materialize">
       <img alt="CircleCI Status" src="https://circleci.com/gh/sherweb/ngx-materialize.svg?style=shield&circle-token=4f457a3c93c34ad9cdf21cbe53605dad94f21955">
     </a>
@@ -16,7 +16,7 @@
     <a href="https://opensource.org/licenses/Apache-2.0">
       <img alt="License" src="https://img.shields.io/npm/l/ngx-materialize.svg">
     </a>
-  </div>
+  </p>
 </div>
 
 <div class="readme-summary">
