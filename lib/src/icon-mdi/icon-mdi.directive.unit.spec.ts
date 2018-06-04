@@ -116,11 +116,11 @@ describe('MzIconMdiDirective:unit', () => {
 
     it('should not add align css class when align is not provided', () => {
 
-      spyOn(renderer, 'setElementClass');
+      const spy = spyOn(renderer, 'setElementClass');
 
       directive.handleAlign();
 
-      expect(renderer.setElementClass).toHaveBeenCalledWith(mockElementRef.nativeElement, directive.align, false);
+      expect(spy.calls.count()).toEqual(0);
     });
 
     it('should remove previous css class when provided', () => {

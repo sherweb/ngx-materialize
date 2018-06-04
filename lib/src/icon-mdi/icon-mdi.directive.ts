@@ -46,7 +46,9 @@ export class MzIconMdiDirective extends HandlePropChanges implements AfterViewIn
     if (previousValue) {
       this.renderer.setElementClass(this.elementRef.nativeElement, previousValue, false);
     }
-    this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
+    if (this.align) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, this.align, !!this.align);
+    }
   }
 
   handleFlip(previousValue?: string) {
