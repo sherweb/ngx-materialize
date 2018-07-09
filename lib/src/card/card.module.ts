@@ -9,6 +9,7 @@ import {
   MzCardImageTitleDirective,
   MzCardTitleDirective,
  } from './card.component';
+import { MzHalfwayFabDirective } from './halfway-fab/halfway-fab.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -19,6 +20,7 @@ import {
     MzCardImageDirective,
     MzCardImageTitleDirective,
     MzCardTitleDirective,
+    MzHalfwayFabDirective,
   ],
   exports: [
     MzCardActionDirective,
@@ -27,6 +29,7 @@ import {
     MzCardImageDirective,
     MzCardImageTitleDirective,
     MzCardTitleDirective,
+    MzHalfwayFabDirective,
   ],
 })
 export class MzCardModule { }

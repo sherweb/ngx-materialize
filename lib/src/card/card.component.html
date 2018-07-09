@@ -5,14 +5,16 @@
   </div>
 </div>
 
-<div class="card-content">
-  <div #cardTitle class="card-title" *ngIf="hasCardTitle">
-    <ng-content select="mz-card-title"></ng-content>
+<div [class.card-stacked]="horizontal">
+  <div class="card-content">
+    <div #cardTitle class="card-title" *ngIf="hasCardTitle">
+      <ng-content select="mz-card-title"></ng-content>
+    </div>
+
+    <ng-content select="mz-card-content"></ng-content>
   </div>
 
-  <ng-content select="mz-card-content"></ng-content>
-</div>
-
-<div #cardAction class="card-action" *ngIf="hasCardAction">
-  <ng-content select="mz-card-action"></ng-content>
+  <div #cardAction class="card-action" *ngIf="hasCardAction">
+    <ng-content select="mz-card-action"></ng-content>
+  </div>
 </div>

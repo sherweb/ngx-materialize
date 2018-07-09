@@ -12,6 +12,12 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
 })
 export class CardComponent {
   properties: IPropertyRow[] = [
+    { name: 'horizontal',
+      mandatory: false,
+      type: 'boolean',
+      description: `Change the card image to horizontal`,
+      defaultValue: `false`,
+    },
     { name: 'hoverable',
       mandatory: false,
       type: 'boolean',

@@ -45,6 +45,19 @@ describe('MzCardComponent:view', () => {
       });
     }));
 
+    it('should set horizontal css class when horizontal is true', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card [horizontal]="true"></mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(card().classList).toContain('horizontal');
+      });
+    }));
+
     it('should set hoverable css class when hoverable is true', async(() => {
 
       buildComponent<MzCardComponent>(`
@@ -87,7 +100,7 @@ describe('MzCardComponent:view', () => {
     }));
   });
 
-  fdescribe('card-image', () => {
+  describe('card-image', () => {
     let nativeElement: any;
 
     function cardImage(): HTMLElement {
@@ -133,7 +146,7 @@ describe('MzCardComponent:view', () => {
         return nativeElement.querySelector('.card-image .card-title');
       }
 
-      fit('should transclude mz-card-image-title', async(() => {
+      it('should transclude mz-card-image-title', async(() => {
 
         buildComponent<MzCardComponent>(`
           <mz-card>
