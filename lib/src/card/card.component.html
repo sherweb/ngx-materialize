@@ -1,5 +1,11 @@
-<div class="card-content">
+<div #cardImage class="card-image" *ngIf="hasCardImage">
+  <ng-content select="mz-card-image"></ng-content>
+  <div class="card-title" *ngIf="hasCardImageTitle">
+    <ng-content select="mz-card-image-title"></ng-content>
+  </div>
+</div>
 
+<div class="card-content">
   <div #cardTitle class="card-title" *ngIf="hasCardTitle">
     <ng-content select="mz-card-title"></ng-content>
   </div>
