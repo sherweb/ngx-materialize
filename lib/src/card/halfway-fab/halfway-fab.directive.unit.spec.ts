@@ -4,13 +4,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { buildComponent, MzTestWrapperComponent } from '../../shared/test-wrapper';
 import { MzHalfwayFabDirective } from './halfway-fab.directive';
 
-fdescribe('MzHalfwayFab:unit', () => {
+describe('MzHalfwayFab:unit', () => {
   let nativeElement: any;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MzHalfwayFabDirective,
         NoopAnimationsModule,
       ],
       declarations: [
@@ -26,9 +25,9 @@ fdescribe('MzHalfwayFab:unit', () => {
 
   it('should add halfway-fab class', async() => {
     buildComponent(`
-      <buttom mz-halfway-fab>
+      <button mz-halfway-fab>
         test
-      </buttom>
+      </button>
     `).then((fixture) => {
       nativeElement = fixture.nativeElement;
       fixture.detectChanges();

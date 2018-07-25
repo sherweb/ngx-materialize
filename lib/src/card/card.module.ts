@@ -9,10 +9,13 @@ import {
   MzCardImageTitleDirective,
   MzCardTitleDirective,
  } from './card.component';
-import { MzHalfwayFabDirective } from './halfway-fab/halfway-fab.directive';
+import { MzHalfwayFabModule } from './halfway-fab/halfway-fab.module';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MzHalfwayFabModule,
+  ],
   declarations: [
     MzCardActionDirective,
     MzCardComponent,
@@ -20,7 +23,6 @@ import { MzHalfwayFabDirective } from './halfway-fab/halfway-fab.directive';
     MzCardImageDirective,
     MzCardImageTitleDirective,
     MzCardTitleDirective,
-    MzHalfwayFabDirective,
   ],
   exports: [
     MzCardActionDirective,
@@ -29,7 +31,6 @@ import { MzHalfwayFabDirective } from './halfway-fab/halfway-fab.directive';
     MzCardImageDirective,
     MzCardImageTitleDirective,
     MzCardTitleDirective,
-    MzHalfwayFabDirective,
   ],
 })
 export class MzCardModule { }
