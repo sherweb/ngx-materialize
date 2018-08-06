@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { map, publishReplay, refCount, startWith } from 'rxjs/operators';
 
@@ -32,8 +33,12 @@ export class MzMediaService {
     },
   ];
 
-  constructor() {
-    this.media = this.registerWindowResizeListener();
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    if (isPlatformBrowser(platformId)) {
+      this.media = this.registerWindowResizeListener();
+    } else {
+      this.media = Observable.create();
+    }
   }
 
   isActive(breakpoint: string): Observable<boolean> {
