@@ -1,3 +1,9 @@
+---
+name: Issue report
+about: Create a report to help us improve
+
+---
+
 <!-- Before opening an issue here make sure, that you have read the template completly through -->
 
 When asking general "how to" questions:
