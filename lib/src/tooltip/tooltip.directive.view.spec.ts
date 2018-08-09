@@ -20,7 +20,7 @@ describe('MzTooltipDirective:view', () => {
     });
   }));
 
-  fdescribe('ngAfterViewInit', () => {
+  describe('ngAfterViewInit', () => {
 
     it('should call initTooltip method', () => {
 
@@ -39,6 +39,8 @@ describe('MzTooltipDirective:view', () => {
         const directiveInstance = directiveElement.injector.get(MzTooltipDirective);
 
         spyOn(directiveInstance, 'initTooltip');
+
+        directiveInstance.ngAfterViewInit();
 
         expect(directiveInstance.initTooltip).toHaveBeenCalled();
       });

@@ -128,7 +128,7 @@ describe('MzTabComponent:view', () => {
         fixture.detectChanges();
 
         expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('#label');
-        expect(tabContent()[0].getAttribute('id')).toBe('label');
+        expect(tabContent().querySelector('div').getAttribute('id')).toBe('label');
       });
     });
 
@@ -144,7 +144,7 @@ describe('MzTabComponent:view', () => {
         fixture.detectChanges();
 
         expect(tabItems()[0].querySelector('a').getAttribute('href')).toBe('#tabItemId');
-        expect(tabContent()[0].getAttribute('id')).toBe('tabItemId');
+        expect(tabContent().querySelector('div').getAttribute('id')).toBe('tabItemId');
       });
     });
 
