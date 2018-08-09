@@ -16,7 +16,7 @@ describe('MzTooltipDirective:view', () => {
       ],
       declarations: [
         MzTestWrapperComponent,
-      ]
+      ],
     });
   }));
 
