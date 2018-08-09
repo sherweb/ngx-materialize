@@ -47,7 +47,6 @@ describe('MzTooltipDirective:view', () => {
     });
   });
 
-
   describe('checkbox', () => {
 
     it('should add tooltip on label', async(() => {

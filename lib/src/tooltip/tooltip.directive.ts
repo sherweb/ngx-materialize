@@ -35,7 +35,7 @@ export class MzTooltipDirective implements OnInit, AfterViewInit, OnChanges, OnD
   }
 
   ngOnDestroy() {
-      this.renderer.invokeElementMethod(this.targetElement, 'tooltip', ['remove']);
+    this.renderer.invokeElementMethod(this.targetElement, 'tooltip', ['remove']);
   }
 
   initElements() {
