@@ -12,7 +12,15 @@ import { IPropertyRow } from '../shared/properties-table/properties-table.compon
 })
 export class CardComponent {
   properties: IPropertyRow[] = [
-    { name: 'hoverable',
+    {
+      name: 'horizontal',
+      mandatory: false,
+      type: 'boolean',
+      description: `Change the card image to horizontal`,
+      defaultValue: `false`,
+    },
+    {
+      name: 'hoverable',
       mandatory: false,
       type: 'boolean',
       description: `Box-shadow css animnation on card rollover`,

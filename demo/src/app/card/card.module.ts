@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MzCardModule } from 'ngx-materialize';
+import { MzButtonModule, MzCardModule, MzIconModule } from 'ngx-materialize';
 
 import { CodeSnippetModule } from '../shared/code-snippet/code-snippet.module';
 import { PropertiesTableModule } from '../shared/properties-table/properties-table.module';
@@ -12,7 +12,9 @@ import { ROUTES } from './card.routing';
   imports: [
     CodeSnippetModule,
     CommonModule,
+    MzButtonModule,
     MzCardModule,
+    MzIconModule,
     PropertiesTableModule,
     RouterModule.forChild(ROUTES),
   ],

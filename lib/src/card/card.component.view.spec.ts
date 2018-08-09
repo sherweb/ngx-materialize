@@ -45,6 +45,19 @@ describe('MzCardComponent:view', () => {
       });
     }));
 
+    it('should set horizontal css class when horizontal is true', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card [horizontal]="true"></mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(card().classList).toContain('horizontal');
+      });
+    }));
+
     it('should set hoverable css class when hoverable is true', async(() => {
 
       buildComponent<MzCardComponent>(`
@@ -85,6 +98,88 @@ describe('MzCardComponent:view', () => {
         expect(card().classList).not.toContain('hoverable');
       });
     }));
+  });
+
+  describe('card-image', () => {
+    let nativeElement: any;
+
+    function cardImage(): HTMLElement {
+      return nativeElement.querySelector('.card-image');
+    }
+
+    it('should transclude mz-card', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-image>
+            image-x
+          </mz-card-image>
+        </mz-card>`).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(cardImage().innerText.trim()).toBe('image-x');
+      });
+    }));
+
+    it('should not display when mz-card-image tag is not present', async(() => {
+
+      buildComponent<MzCardComponent>(`
+        <mz-card>
+          <mz-card-content>
+            content-x
+          </mz-card-content>
+        </mz-card>
+      `).then((fixture) => {
+
+        nativeElement = fixture.nativeElement;
+        fixture.autoDetectChanges();
+
+        expect(cardImage()).toBeFalsy();
+      });
+    }));
+
+    describe('card-image-title', () => {
+
+      function cardImageTitle(): HTMLElement {
+        return nativeElement.querySelector('.card-image .card-title');
+      }
+
+      it('should transclude mz-card-image-title', async(() => {
+
+        buildComponent<MzCardComponent>(`
+          <mz-card>
+            <mz-card-image>
+              image-x
+            </mz-card-image>
+            <mz-card-image-title>image-title-x</mz-card-image-title>
+          </mz-card>`).then((fixture) => {
+
+          nativeElement = fixture.nativeElement;
+          fixture.autoDetectChanges();
+
+          expect(cardImageTitle().innerText.trim()).toBe('image-title-x');
+        });
+      }));
+
+      it('should not display when mz-card-image-title tag is not present', async(() => {
+
+        buildComponent<MzCardComponent>(`
+          <mz-card>
+            <mz-card-image>
+              image-x
+            </mz-card-image>
+          </mz-card>
+        `).then((fixture) => {
+
+          nativeElement = fixture.nativeElement;
+          fixture.autoDetectChanges();
+
+          expect(cardImageTitle()).toBeFalsy();
+        });
+      }));
+    });
   });
 
   describe('card-title', () => {

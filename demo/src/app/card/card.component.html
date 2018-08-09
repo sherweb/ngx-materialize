@@ -94,6 +94,87 @@
   </p>
 </div>
 
+<h5 class="light">Image card</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-image>
+        <img src="assets/card-1.jpg" />
+      </mz-card-image>
+      <mz-card-image-title>Card Title</mz-card-image-title>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Image card combining title, content and actions.
+  </p>
+</div>
+
+<h5 class="light">Horizontal Image card</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card [horizontal]="true">
+      <mz-card-image>
+        <img src="assets/card-1.jpg" />
+      </mz-card-image>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Horizontal image card combining content and actions.
+  </p>
+</div>
+
+<h5 class="light">Image card with FAB</h5>
+
+<div class="row">
+
+  <div class="col s12 m8 l6">
+    <mz-card>
+      <mz-card-image>
+        <img src="assets/card-1.jpg" />
+        <button mz-button mz-halfway-fab [float]="true"><i mz-icon [icon]="'add'"></i></button>
+      </mz-card-image>
+      <mz-card-image-title>Card Title</mz-card-image-title>
+
+      <mz-card-content>
+        I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+      </mz-card-content>
+
+      <mz-card-action>
+        <a href="javascript:void(0)">This is a link</a>
+        <a href="javascript:void(0)">This is a link</a>
+      </mz-card-action>
+    </mz-card>
+  </div>
+
+  <p class="col s12 m4 l6">
+    Add <code class="language-markup">mz-halfway-fab</code> directive to button for floating action button.
+  </p>
+</div>
+
 <div class="section">
 
   <h5 class="light">HTML Structure</h5>
@@ -101,7 +182,15 @@
 <app-code-snippet>
 &lt;mz-card
   class="blue-grey darken-1 white-text"
+  [horizontal]="true"
   [hoverable]="true">
+  &lt;mz-card-image>
+    &lt;img src="assets/card-1.jpg" />
+    &lt;button mz-button mz-halfway-fab [float]="true">&lt;i mz-icon [icon]="'add'">&lt;/i>&lt;/button>
+  &lt;/mz-card-image>
+  &lt;mz-card-image-tilte>
+    Card Image Title
+  &lt;/mz-card-image-tiltle>
   &lt;mz-card-title>
     Card Title
   &lt;/mz-card-title>
