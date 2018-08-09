@@ -8,6 +8,5 @@ import { Directive, HostBinding } from '@angular/core';
     button[mzHalfwayFab]`,
 })
 export class MzHalfwayFabDirective {
-
   @HostBinding('class.halfway-fab') true;
 }

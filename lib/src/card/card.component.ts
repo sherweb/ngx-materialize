@@ -51,7 +51,6 @@ export class MzCardComponent implements AfterViewInit {
   }
 
   private hasImageTitleTagAndNotEmpty(): boolean {
-
     const cardImageTitleElement = this.cardImage.nativeElement.querySelector('mz-card-image-title');
     return this.isElementDisplayed(cardImageTitleElement);
   }
