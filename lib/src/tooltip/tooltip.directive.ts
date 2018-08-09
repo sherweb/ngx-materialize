@@ -21,6 +21,10 @@ export class MzTooltipDirective implements OnInit, AfterViewInit, OnChanges, OnD
   }
 
   ngAfterViewInit() {
+    if (this.elementRef.nativeElement.getAttribute('type') === 'checkbox') {
+      this.targetElement = $(this.elementRef.nativeElement).next('label');
+    }
+
     this.initTooltip();
   }
 
@@ -31,7 +35,7 @@ export class MzTooltipDirective implements OnInit, AfterViewInit, OnChanges, OnD
   }
 
   ngOnDestroy() {
-    this.renderer.invokeElementMethod(this.targetElement, 'tooltip', ['remove']);
+      this.renderer.invokeElementMethod(this.targetElement, 'tooltip', ['remove']);
   }
 
   initElements() {

@@ -36,18 +36,6 @@ describe('MzTooltipDirective:unit', () => {
     });
   });
 
-  describe('ngAfterViewInit', () => {
-
-    it('should call initTooltip method', () => {
-
-      spyOn(directive, 'initTooltip');
-
-      directive.ngAfterViewInit();
-
-      expect(directive.initTooltip).toHaveBeenCalled();
-    });
-  });
-
   describe('ngOnChanges', () => {
 
     it('should not call initTooltip method when targetElement is not initialized', () => {
