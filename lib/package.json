@@ -1,6 +1,6 @@
 {
   "name": "ngx-materialize",
-  "version": "6.1.0",
+  "version": "6.1.2",
   "description": "An Angular wrap around Materialize library",
   "license": "Apache-2.0",
   "repository": "sherweb/ngx-materialize",
