@@ -18,6 +18,13 @@
     height: 650px;
   }
 
+  .parallax-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   a {
     word-wrap: break-word;
   }

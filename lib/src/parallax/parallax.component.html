@@ -1,5 +1,17 @@
-<div #parallaxContainer class="parallax-container">
-  <div #parallax class="parallax">
-    <ng-content></ng-content>
+<div
+  #parallaxContainer
+  class="parallax-container"
+>
+  <ng-content></ng-content>
+  <div
+    #parallax
+    class="parallax"
+  >
+    <img
+      *ngIf="imgSrc"
+      [src]="imgSrc"
+      [alt]="imgAlt || ''"
+    >
+    <ng-content select="img"></ng-content>
   </div>
 </div>
