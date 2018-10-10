@@ -12,6 +12,8 @@ import {
   styleUrls: ['./parallax.component.scss'],
 })
 export class MzParallaxComponent implements AfterViewInit {
+  @Input() imgSrc?: string;
+  @Input() imgAlt?: string;
   @Input() height: number;
 
   @ViewChild('parallax') parallax: ElementRef;
