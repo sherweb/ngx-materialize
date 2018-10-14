@@ -21,10 +21,10 @@
     "materialize-css": "^0.100.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/forms": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/animations": "^6.0.0 || ^7.0.0",
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0",
+    "@angular/forms": "^6.0.0 || ^7.0.0",
     "rxjs": "^6.0.0"
   }
 }
