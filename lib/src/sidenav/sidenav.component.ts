@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'mz-sidenav',

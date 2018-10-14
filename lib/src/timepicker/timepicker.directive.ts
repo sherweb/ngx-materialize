@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, NgZone, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { HandlePropChanges } from '../shared/index';

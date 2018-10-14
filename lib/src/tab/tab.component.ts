@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  HostBinding,
-  Input,
-  NgZone,
-  QueryList,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild } from '@angular/core';
 
 import { MzTabItemComponent } from './tab-item/tab-item.component';
 

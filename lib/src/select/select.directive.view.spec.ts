@@ -1,4 +1,4 @@
-import { async, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzSelectContainerComponent, MzSelectDirective } from './';

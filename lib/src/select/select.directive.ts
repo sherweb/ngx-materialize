@@ -6,13 +6,11 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
   Output,
   Renderer,
 } from '@angular/core';
-import { fromEvent, Observable } from 'rxjs';
 
-import { HandlePropChanges } from '../shared/index';
+import { HandlePropChanges } from '../shared';
 
 @Directive({
   selector: 'select[mzSelect], select[mz-select]',
