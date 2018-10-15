@@ -77,7 +77,7 @@ describe('MzSidenavComponent:view', () => {
       });
     }));
 
-    it('should apply fixed css class when fixed is true', async(() => {
+    it('should apply sidenav-fixed css class when fixed is true', async(() => {
 
       buildComponent<MzSidenavComponent>(`
         <mz-sidenav [fixed]="true"></mz-sidenav>`).then((fixture) => {
@@ -85,7 +85,7 @@ describe('MzSidenavComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(sidenav().classList).toContain('fixed');
+        expect(sidenav().classList).toContain('sidenav-fixed');
       });
     }));
 
