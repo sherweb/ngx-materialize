@@ -46,8 +46,8 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
       ? $(`#${this.collapseButtonId}`)
       : $(document.createElement('template'));
 
-    // add data-activates to collapse button
-    this.collapseButton.attr('data-activates', this.id);
+    // add data-target to collapse button
+    this.collapseButton.attr('data-target', this.id);
 
     // extend onOpen function to update opened state
     const onOpen = this.onOpen || (() => {});

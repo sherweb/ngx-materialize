@@ -86,7 +86,7 @@ describe('MzSidenavComponent:unit', () => {
         createCollapseButton(collapseButtonId);
       });
 
-      it('should not add data-activates attribute on collapse button', () => {
+      it('should not add data-target attribute on collapse button', () => {
 
         component.id = 'sidenav-id';
         component.initCollapseButton();
@@ -124,7 +124,7 @@ describe('MzSidenavComponent:unit', () => {
         component.collapseButtonId = collapseButtonId;
       });
 
-      it('should add data-activates attribute on collapse button', () => {
+      it('should add data-target attribute on collapse button', () => {
 
         const sidenavId = 'sidenav-id';
 
