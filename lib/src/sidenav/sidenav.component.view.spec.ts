@@ -38,19 +38,19 @@ describe('MzSidenavComponent:view', () => {
         const ul = sidenav().children[0];
         expect(ul.nodeName).toBe('UL');
         expect(ul.classList.length).toBe(1);
-        expect(ul.classList).toContain('side-nav');
+        expect(ul.classList).toContain('sidenav');
         expect(ul.getAttribute('id')).toBeFalsy();
         expect(ul.children.length).toBe(0);
       });
     }));
   });
 
-  describe('side-nav', () => {
+  describe('sidenav', () => {
 
     let nativeElement: any;
 
     function sidenav(): HTMLElement {
-      return nativeElement.querySelector('.side-nav');
+      return nativeElement.querySelector('.sidenav');
     }
 
     it('should apply backgroundClass css class when provided', async(() => {
@@ -77,7 +77,7 @@ describe('MzSidenavComponent:view', () => {
       });
     }));
 
-    it('should apply fixed css class when fixed is true', async(() => {
+    it('should apply sidenav-fixed css class when fixed is true', async(() => {
 
       buildComponent<MzSidenavComponent>(`
         <mz-sidenav [fixed]="true"></mz-sidenav>`).then((fixture) => {
@@ -85,7 +85,7 @@ describe('MzSidenavComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(sidenav().classList).toContain('fixed');
+        expect(sidenav().classList).toContain('sidenav-fixed');
       });
     }));
 
@@ -126,7 +126,7 @@ describe('MzSidenavComponent:view', () => {
 
         sidenav.opened = true;
 
-        expect(sidenavSpy).toHaveBeenCalledWith('show');
+        expect(sidenavSpy).toHaveBeenCalledWith('open');
       });
     }));
 
@@ -144,7 +144,7 @@ describe('MzSidenavComponent:view', () => {
 
         sidenav.opened = false;
 
-        expect(sidenavSpy).toHaveBeenCalledWith('hide');
+        expect(sidenavSpy).toHaveBeenCalledWith('close');
       });
     }));
 
@@ -158,7 +158,7 @@ describe('MzSidenavComponent:view', () => {
         const sidenav = sidenavComponent(fixture);
         sidenav.opened = false;
 
-        sidenav['collapseButton'].sideNav('show');
+        sidenav['collapseButton'].sideNav('open');
 
         expect(sidenav.opened).toBeTruthy();
       });
@@ -174,7 +174,7 @@ describe('MzSidenavComponent:view', () => {
         const sidenav = sidenavComponent(fixture);
         sidenav.opened = true;
 
-        sidenav['collapseButton'].sideNav('hide');
+        sidenav['collapseButton'].sideNav('close');
 
         expect(sidenav.opened).toBeFalsy();
       });
