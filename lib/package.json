@@ -17,8 +17,8 @@
   ],
   "dependencies": {
     "@types/jquery": "^3.2.12",
-    "@types/materialize-css": "^0.100.4",
-    "materialize-css": "^0.100.2"
+    "@types/materialize-css": "^1.0.4",
+    "materialize-css": "^1.0.0"
   },
   "peerDependencies": {
     "@angular/animations": "^6.0.0-rc.0 || ^6.0.0",
