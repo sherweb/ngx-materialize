@@ -138,7 +138,7 @@ describe('MzDropdownComponent:unit', () => {
 
   describe('handleDataActivates', () => {
 
-    it('should add attribute data-activates', () => {
+    it('should add attribute data-target', () => {
 
       spyOn(renderer, 'setElementAttribute');
 
@@ -146,7 +146,7 @@ describe('MzDropdownComponent:unit', () => {
       component.id = 'dropdownId';
       component.handleDataActivates();
 
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-activates', component.id);
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-target', component.id);
     });
   });
 

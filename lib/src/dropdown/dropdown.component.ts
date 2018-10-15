@@ -61,7 +61,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
   }
 
   handleDataActivates() {
-    this.renderer.setElementAttribute(this.dropdownButtonElement[0], 'data-activates', this.id);
+    this.renderer.setElementAttribute(this.dropdownButtonElement[0], 'data-target', this.id);
   }
 
   handleDropdown() {
