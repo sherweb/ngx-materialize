@@ -22,7 +22,7 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
   @Output() select = new EventEmitter<Materialize.ChipDataObject>();
 
   get value(): Materialize.ChipDataObject[] {
-    return this.chipInputElement.material_chip('data') as Materialize.ChipDataObject[];
+    return this.chipInputElement.chips('data') as Materialize.ChipDataObject[];
   }
 
   private chipInputElement: JQuery<any>;
@@ -52,7 +52,7 @@ export class MzChipInputComponent implements ControlValueAccessor, OnInit, OnDes
     // https://github.com/Dogfalo/materialize/issues/4401
     this.zone.runOutsideAngular(() => {
       setTimeout(() => {
-        this.chipInputElement.material_chip({
+        this.chipInputElement.chips({
           autocompleteOptions: this.autocompleteOptions,
           data: value || this.value,
           placeholder: this.placeholder,
