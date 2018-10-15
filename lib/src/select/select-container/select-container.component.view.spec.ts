@@ -256,7 +256,7 @@ describe('MzSelectContainerComponent:view', () => {
 
         // couldn't force mutationobserver to execute before the end of the test
         // therefore options used with *ngFor need to be present for the test to work
-        $('select').material_select();
+        $('select').formSelect();
 
         fixture.detectChanges();
         tick();
@@ -353,7 +353,7 @@ describe('MzSelectContainerComponent:view', () => {
 
           // couldn't force mutationobserver to execute before the end of the test
           // therefore options used with *ngFor need to be present for the test to work
-          $('select').material_select();
+          $('select').formSelect();
 
           fixture.detectChanges();
           tick();
