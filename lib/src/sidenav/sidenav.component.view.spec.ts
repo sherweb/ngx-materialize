@@ -126,7 +126,7 @@ describe('MzSidenavComponent:view', () => {
 
         sidenav.opened = true;
 
-        expect(sidenavSpy).toHaveBeenCalledWith('show');
+        expect(sidenavSpy).toHaveBeenCalledWith('open');
       });
     }));
 
@@ -144,7 +144,7 @@ describe('MzSidenavComponent:view', () => {
 
         sidenav.opened = false;
 
-        expect(sidenavSpy).toHaveBeenCalledWith('hide');
+        expect(sidenavSpy).toHaveBeenCalledWith('close');
       });
     }));
 
@@ -158,7 +158,7 @@ describe('MzSidenavComponent:view', () => {
         const sidenav = sidenavComponent(fixture);
         sidenav.opened = false;
 
-        sidenav['collapseButton'].sideNav('show');
+        sidenav['collapseButton'].sideNav('open');
 
         expect(sidenav.opened).toBeTruthy();
       });
@@ -174,7 +174,7 @@ describe('MzSidenavComponent:view', () => {
         const sidenav = sidenavComponent(fixture);
         sidenav.opened = true;
 
-        sidenav['collapseButton'].sideNav('hide');
+        sidenav['collapseButton'].sideNav('close');
 
         expect(sidenav.opened).toBeFalsy();
       });

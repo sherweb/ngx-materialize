@@ -28,7 +28,7 @@ export class MzSidenavComponent implements AfterViewInit, OnDestroy {
   get opened() { return this._opened; }
   set opened(value: boolean) {
     this._opened = value;
-    this.collapseButton.sideNav(this._opened ? 'show' : 'hide');
+    this.collapseButton.sideNav(this._opened ? 'open' : 'close');
   }
 
   ngAfterViewInit() {
