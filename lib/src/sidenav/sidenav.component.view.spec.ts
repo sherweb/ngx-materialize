@@ -38,19 +38,19 @@ describe('MzSidenavComponent:view', () => {
         const ul = sidenav().children[0];
         expect(ul.nodeName).toBe('UL');
         expect(ul.classList.length).toBe(1);
-        expect(ul.classList).toContain('side-nav');
+        expect(ul.classList).toContain('sidenav');
         expect(ul.getAttribute('id')).toBeFalsy();
         expect(ul.children.length).toBe(0);
       });
     }));
   });
 
-  describe('side-nav', () => {
+  describe('sidenav', () => {
 
     let nativeElement: any;
 
     function sidenav(): HTMLElement {
-      return nativeElement.querySelector('.side-nav');
+      return nativeElement.querySelector('.sidenav');
     }
 
     it('should apply backgroundClass css class when provided', async(() => {
