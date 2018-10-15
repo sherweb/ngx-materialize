@@ -15,7 +15,7 @@ import { HandlePropChanges } from '../shared/index';
 })
 export class MzDropdownComponent extends HandlePropChanges implements AfterViewInit {
   @Input() align: string;
-  @Input() belowOrigin: boolean;
+  @Input() coverTrigger: boolean;
   @Input() constrainWidth: boolean;
   @Input() dropdownButtonId: string;
   @Input() gutter: number;
@@ -48,7 +48,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
   initHandlers() {
     this.handlers = {
       align: () => this.handleDropdown(),
-      belowOrigin: () => this.handleDropdown(),
+      coverTrigger: () => this.handleDropdown(),
       constrainWidth: () => this.handleDropdown(),
       dropdownButtonId: () => this.handleDataActivates(),
       gutter: () => this.handleDropdown(),
@@ -69,7 +69,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
 
     const options: Materialize.DropDownOptions = {
       alignment: this.align,
-      belowOrigin: this.belowOrigin,
+      coverTrigger: this.coverTrigger,
       constrainWidth: this.constrainWidth,
       gutter: this.gutter,
       hover: this.hover,

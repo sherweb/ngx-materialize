@@ -107,7 +107,7 @@ describe('MzDropdownComponent:unit', () => {
 
       const handlers = {
         align: 'handleDropdown',
-        belowOrigin: 'handleDropdown',
+        coverTrigger: 'handleDropdown',
         constrainWidth: 'handleDropdown',
         dropdownButtonId: 'handleDataActivates',
         gutter: 'handleDropdown',
@@ -159,7 +159,7 @@ describe('MzDropdownComponent:unit', () => {
 
       const options: Materialize.DropDownOptions = {
         alignment: 'left',
-        belowOrigin: true,
+        coverTrigger: true,
         constrainWidth: true,
         gutter: 10,
         hover: true,
