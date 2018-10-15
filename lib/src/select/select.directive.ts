@@ -28,10 +28,10 @@ export class MzSelectDirective extends HandlePropChanges implements OnInit, OnDe
   @Input() filledIn: boolean;
   @Output() update = new EventEmitter();
 
-  checkboxElements: JQuery;
-  labelElement: JQuery;
-  selectElement: JQuery;
-  selectContainerElement: JQuery;
+  checkboxElements: JQuery<any>;
+  labelElement: JQuery<any>;
+  selectElement: JQuery<any>;
+  selectContainerElement: JQuery<any>;
 
   get inputElement(): JQuery {
     return this.selectElement.siblings('input.select-dropdown');

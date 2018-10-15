@@ -26,7 +26,7 @@ import { ErrorMessageResource, MzErrorMessageComponent } from './error-message/i
 export class MzValidationComponent implements AfterViewInit, OnDestroy {
   errorMessageComponent?: ComponentRef<MzErrorMessageComponent> = null;
   labelElement: HTMLElement;
-  nativeElement: JQuery;
+  nativeElement: JQuery<any>;
   statusChangesSubscription: Subscription;
 
   // native properties

@@ -13,9 +13,9 @@ export class MzRadioButtonDirective extends HandlePropChanges implements OnInit 
   @Input() label: string;
   @Input() withGap: boolean;
 
-  inputElement: JQuery;
-  inputContainerElement: JQuery;
-  labelElement: JQuery;
+  inputElement: JQuery<any>;
+  inputContainerElement: JQuery<any>;
+  labelElement: JQuery<any>;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     super();

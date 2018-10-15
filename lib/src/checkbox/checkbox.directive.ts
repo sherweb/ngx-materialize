@@ -13,9 +13,9 @@ export class MzCheckboxDirective extends HandlePropChanges implements OnInit {
   @Input() filledIn: boolean;
   @Input() label: string;
 
-  checkboxElement: JQuery;
-  checkboxContainerElement: JQuery;
-  labelElement: JQuery;
+  checkboxElement: JQuery<any>;
+  checkboxContainerElement: JQuery<any>;
+  labelElement: JQuery<any>;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     super();

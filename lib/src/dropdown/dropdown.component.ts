@@ -25,7 +25,7 @@ export class MzDropdownComponent extends HandlePropChanges implements AfterViewI
   @Input() outDuration: number;
   @Input() stopPropagation: boolean;
 
-  dropdownButtonElement: JQuery;
+  dropdownButtonElement: JQuery<any>;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
     super();

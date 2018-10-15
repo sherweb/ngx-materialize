@@ -151,7 +151,7 @@ describe('MzCheckboxDirective:unit', () => {
       directive.id = checkboxId;
       const jQuerylabelElement = directive.createLabelElement();
 
-      expect(jQuerylabelElement).toBe(mockJQueryLabelElement);
+      expect(jQuerylabelElement).toBe(<any>mockJQueryLabelElement);
     });
   });
 

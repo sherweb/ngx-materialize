@@ -26,7 +26,7 @@ export class MzModalComponent extends HandlePropChanges implements OnInit, After
   @Output() close = new EventEmitter<void>();
   @ViewChild('modal') modalElementRef: ElementRef;
 
-  modalElement: JQuery;
+  modalElement: JQuery<any>;
 
   constructor(public renderer: Renderer) {
     super();

@@ -7,8 +7,8 @@ export class MzSwitchDirective implements OnInit {
   @Input() off: string;
   @Input() on: string;
 
-  switchContainerElement: JQuery;
-  switchElement: JQuery;
+  switchContainerElement: JQuery<any>;
+  switchElement: JQuery<any>;
 
   constructor(
     private elementRef: ElementRef,
