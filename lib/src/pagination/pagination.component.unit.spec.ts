@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MzIconModule } from '../icon/icon.module';
-import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
+import { MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzPaginationPageButtonComponent } from './pagination-page-button/pagination-page-button.component';
 import { MzPaginationComponent } from './pagination.component';
 

@@ -1,9 +1,9 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional, Renderer } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { interval, Observable, Subscription } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { first, skipWhile } from 'rxjs/operators';
 
-import { HandlePropChanges } from '../shared/index';
+import { HandlePropChanges } from '../shared';
 
 @Directive({
   selector: 'input[mzInput], input[mz-input]',

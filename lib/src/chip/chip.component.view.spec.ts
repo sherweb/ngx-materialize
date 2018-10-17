@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
 import { MzChipComponent } from './chip.component';

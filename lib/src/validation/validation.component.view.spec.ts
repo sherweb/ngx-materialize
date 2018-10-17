@@ -1,22 +1,7 @@
 import { ɵAnimationEngine } from '@angular/animations/browser';
 import { CommonModule } from '@angular/common';
-import { Component, Input, NgModule } from '@angular/core';
-import {
-  async,
-  discardPeriodicTasks,
-  fakeAsync,
-  flushMicrotasks,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { async, discardPeriodicTasks, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserTestingModule } from '@angular/platform-browser/testing';

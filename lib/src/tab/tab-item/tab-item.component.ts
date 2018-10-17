@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostBinding,
-  Input,
-  Renderer,
-  ViewChildren,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'mz-tab-item',

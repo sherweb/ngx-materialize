@@ -1,7 +1,7 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormControl, NgControl, NgModel } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormControl, NgModel } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { HandlePropChanges } from '../shared/handle-prop-changes';
 import { mockRenderer } from '../shared/test-wrapper/mocks';

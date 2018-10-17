@@ -1,11 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { buildComponent, MzTestWrapperComponent } from '../shared/test-wrapper';
-import {
-    MzTabComponent,
-    MzTabItemComponent,
-} from './';
+import { MzTabComponent, MzTabItemComponent } from './';
 
 describe('MzTabComponent:view', () => {
 
