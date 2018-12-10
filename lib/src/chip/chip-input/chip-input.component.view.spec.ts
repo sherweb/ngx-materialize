@@ -12,7 +12,7 @@ describe('MzChipInputComponent:view', () => {
   }
 
   function chipInputValue(): Materialize.ChipDataObject[] {
-    return $(chipInput()).material_chip('data') as Materialize.ChipDataObject[];
+    return $(chipInput()).chips('data') as Materialize.ChipDataObject[];
   }
 
   function chips(): HTMLElement[] {
@@ -53,7 +53,7 @@ describe('MzChipInputComponent:view', () => {
       secondaryPlaceholder,
     }).then((fixture) => {
       const mockChipsElement = {
-        material_chip: jasmine.createSpy('material_chip'),
+        chips: jasmine.createSpy('chips'),
         off: () => null,
         on: () => null,
       };
@@ -68,9 +68,9 @@ describe('MzChipInputComponent:view', () => {
       fixture.detectChanges();
       tick();
 
-      expect(mockChipsElement.material_chip).toHaveBeenCalledTimes(2);
-      expect(mockChipsElement.material_chip.calls.argsFor(0)).toEqual(['data']);
-      expect(mockChipsElement.material_chip.calls.argsFor(1)).toEqual([{
+      expect(mockChipsElement.chips).toHaveBeenCalledTimes(2);
+      expect(mockChipsElement.chips.calls.argsFor(0)).toEqual(['data']);
+      expect(mockChipsElement.chips.calls.argsFor(1)).toEqual([{
         autocompleteOptions: autocompleteOptions,
         data: undefined,
         placeholder: placeholder,
