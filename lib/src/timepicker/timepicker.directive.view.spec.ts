@@ -243,7 +243,7 @@ describe('MzTimepickerDirective:view', () => {
     it('should be initialized with options correctly', async(() => {
 
       const options = {
-        default: 'now',
+        defaultTime: 'now',
         fromnow: 0,
         twelvehour: true,
         donetext: 'OK',

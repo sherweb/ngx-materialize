@@ -6,8 +6,8 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./collection.component.scss'],
 })
 export class MzCollectionComponent implements OnInit {
-  collectionElement: JQuery;
-  collectionHeaderElement: JQuery;
+  collectionElement: JQuery<any>;
+  collectionHeaderElement: JQuery<any>;
 
   constructor(
     private elementRef: ElementRef,

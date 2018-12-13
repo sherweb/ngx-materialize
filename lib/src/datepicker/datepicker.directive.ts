@@ -22,11 +22,11 @@ export class MzDatepickerDirective extends HandlePropChanges implements OnInit, 
   // http://amsul.ca/pickadate.js/date/#options
   @Input() options: Pickadate.DateOptions = {};
 
-  inputElement: JQuery;
-  inputContainerElement: JQuery;
+  inputElement: JQuery<any>;
+  inputContainerElement: JQuery<any>;
   inputValueSubscription: Subscription;
   isInitRound = true;
-  labelElement: JQuery;
+  labelElement: JQuery<any>;
   stopChangePropagation = false;
 
   get format(): string {

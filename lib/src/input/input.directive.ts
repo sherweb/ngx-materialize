@@ -21,10 +21,10 @@ export class MzInputDirective extends HandlePropChanges implements OnInit, OnDes
   @Input() length: number;
   @Input() validate: boolean;
 
-  inputElement: JQuery;
-  inputContainerElement: JQuery;
+  inputElement: JQuery<any>;
+  inputContainerElement: JQuery<any>;
   inputValueSubscription: Subscription;
-  labelElement: JQuery;
+  labelElement: JQuery<any>;
 
   constructor(
     @Optional() private ngControl: NgControl,

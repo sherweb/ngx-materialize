@@ -9,7 +9,7 @@ export class MzTooltipDirective implements OnInit, AfterViewInit, OnChanges, OnD
   @Input() position: string;
   @Input() tooltip: string;
 
-  targetElement: JQuery;
+  targetElement: JQuery<any>;
 
   constructor(
     private elementRef: ElementRef,

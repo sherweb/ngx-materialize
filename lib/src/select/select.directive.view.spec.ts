@@ -54,7 +54,7 @@ describe('MzSelectDirective:view', () => {
           // Wait for the MutationObserver to detect the native option elements change and for the native select to emit the change event.
           setTimeout(() => {
             // The MutationObserver from the select directive detected the native option elements change
-            // and notified the native select component. The native select then calls material_select() to update
+            // and notified the native select component. The native select then calls formSelect() to update
             // the materialize select option list.
             fixture.detectChanges();
 
@@ -98,7 +98,7 @@ describe('MzSelectDirective:view', () => {
           // Wait for the MutationObserver to detect the native option elements change and for the native select to emit the change event.
           setTimeout(() => {
             // The MutationObserver from the select directive detected the native option elements change
-            // and notified the native select component. The native select then calls material_select() to update
+            // and notified the native select component. The native select then calls formSelect() to update
             // the materialize select option list.
             fixture.detectChanges();
 
@@ -142,7 +142,7 @@ describe('MzSelectDirective:view', () => {
           // Wait for the MutationObserver to detect the native option elements change and for the native select to emit the change event.
           setTimeout(() => {
             // The MutationObserver from the select directive detected the native option elements change
-            // and notified the native select component. The native select then calls material_select() to update
+            // and notified the native select component. The native select then calls formSelect() to update
             // the materialize select option list.
             fixture.detectChanges();
 
@@ -190,7 +190,7 @@ describe('MzSelectDirective:view', () => {
           // Wait for the MutationObserver to detect the native option elements change and for the native select to emit the change event.
           setTimeout(() => {
             // The MutationObserver from the select directive detected the native option elements change
-            // and notified the native select component. The native select then calls material_select() to update
+            // and notified the native select component. The native select then calls formSelect() to update
             // the materialize select option list.
             fixture.detectChanges();
 

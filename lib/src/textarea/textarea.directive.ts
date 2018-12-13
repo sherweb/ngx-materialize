@@ -16,10 +16,10 @@ export class MzTextareaDirective extends HandlePropChanges implements OnInit, On
   @Input() label: string;
   @Input() length: number;
 
-  textareaElement: JQuery;
-  textareaContainerElement: JQuery;
+  textareaElement: JQuery<any>;
+  textareaContainerElement: JQuery<any>;
   textareaValueSubscription: Subscription;
-  labelElement: JQuery;
+  labelElement: JQuery<any>;
 
   constructor(
     @Optional() private ngControl: NgControl,

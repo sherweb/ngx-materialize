@@ -107,7 +107,7 @@ describe('MzDropdownComponent:unit', () => {
 
       const handlers = {
         align: 'handleDropdown',
-        belowOrigin: 'handleDropdown',
+        coverTrigger: 'handleDropdown',
         constrainWidth: 'handleDropdown',
         dropdownButtonId: 'handleDataActivates',
         gutter: 'handleDropdown',
@@ -138,7 +138,7 @@ describe('MzDropdownComponent:unit', () => {
 
   describe('handleDataActivates', () => {
 
-    it('should add attribute data-activates', () => {
+    it('should add attribute data-target', () => {
 
       spyOn(renderer, 'setElementAttribute');
 
@@ -146,7 +146,7 @@ describe('MzDropdownComponent:unit', () => {
       component.id = 'dropdownId';
       component.handleDataActivates();
 
-      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-activates', component.id);
+      expect(renderer.setElementAttribute).toHaveBeenCalledWith(mockElementRef, 'data-target', component.id);
     });
   });
 
@@ -159,7 +159,7 @@ describe('MzDropdownComponent:unit', () => {
 
       const options: Materialize.DropDownOptions = {
         alignment: 'left',
-        belowOrigin: true,
+        coverTrigger: true,
         constrainWidth: true,
         gutter: 10,
         hover: true,
