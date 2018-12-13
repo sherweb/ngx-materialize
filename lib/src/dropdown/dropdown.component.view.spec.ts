@@ -51,7 +51,7 @@ describe('MzDropdownComponent:view', () => {
       });
     }));
 
-    it('should have data-activates', async(() => {
+    it('should have data-target', async(() => {
       buildComponent<MzDropdownComponent>(`
         <a id="dropdownButtonId" href="#">Dropdown</a>
         <mz-dropdown
@@ -64,7 +64,7 @@ describe('MzDropdownComponent:view', () => {
         nativeElement = fixture.nativeElement;
         fixture.detectChanges();
 
-        expect(nativeElement.querySelector('#dropdownButtonId').getAttribute('data-activates')).toContain('dropdownId');
+        expect(nativeElement.querySelector('#dropdownButtonId').getAttribute('data-target')).toContain('dropdownId');
       });
     }));
 
