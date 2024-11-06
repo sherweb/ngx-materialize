@@ -1,3 +1,7 @@
+> [!CAUTION]
+> This repoitory is unmaintained and **should not be used in production**
+
+
 <div class="readme-github-logo">
   <p align="center">
     <img src="https://github.com/sherweb/ngx-materialize/raw/master/demo/src/assets/ngx-materialize-circle.png">
